@@ -46,8 +46,9 @@ Files this plan creates or modifies, with single-responsibility scope:
 - `docs/assets/css/extra.css` — minimal theming (status badge colours).
 
 **Macros & generated content**
-- `main.py` — mkdocs-macros entrypoint: `define_env(env)` registering a `list_vignettes()` macro that reads frontmatter from every `docs/vignettes/*/vignette.md`.
-- `scripts/gen_filter_pages.py` — mkdocs-gen-files script that generates `vignettes/by-product/<name>/index.md`, `vignettes/by-pattern/<value>/index.md`, `vignettes/by-implementer/<name>/index.md` filter pages from frontmatter.
+- `scripts/vignette_loader.py` — shared frontmatter loader: `parse_frontmatter()`, `load_vignettes()`, `slugify()`. Single source of truth for the frontmatter contract; imported by both `main.py` and `scripts/gen_filter_pages.py` so the schema is parsed in exactly one place.
+- `main.py` — mkdocs-macros entrypoint: thin wrapper that registers `load_vignettes` as a `list_vignettes` macro for use in `docs/vignettes/index.md`.
+- `scripts/gen_filter_pages.py` — mkdocs-gen-files script that generates `vignettes/by-product/<name>/index.md`, `vignettes/by-pattern/<value>/index.md`, `vignettes/by-implementer/<name>/index.md` filter pages from frontmatter. Uses `vignette_loader` for parsing.
 
 **GitHub plumbing**
 - `.github/workflows/publish.yml` — build + deploy on push to `main`.
@@ -183,6 +184,13 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - tables
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+
+exclude_docs: |
+  vignettes/_template/
+  vignettes/patterns.yml
 
 nav:
   - Home: index.md
@@ -194,7 +202,11 @@ nav:
 strict: true
 ```
 
-Note: macros and gen-files plugins are added in later chunks (Chunk 5) when they're needed. Adding them too early breaks `--strict` if they're configured but unused. The `repo_url` / `site_url` placeholders are flagged in §11 of the spec as open questions; the executor or maintainer updates them when known.
+Notes:
+- `pymdownx.snippets` is enabled here (with `base_path: ["."]` so `--8<--` paths are repo-root-relative) because the vignette template in Chunk 3 and the worked example in Chunk 5 use snippet-include syntax to embed payload files. `check_paths: true` makes `--strict` fail on missing snippet targets, which is the regression behavior we want.
+- `exclude_docs` is set up-front for `vignettes/_template/` (so the template doesn't render as a real page) and `vignettes/patterns.yml` (so mkdocs doesn't try to treat the vocabulary file as a doc). Both targets are created in Chunk 3; excluding non-existent paths is harmless.
+- macros and gen-files plugins are added in Chunk 5 when they're first needed. Adding them too early breaks `--strict` if they're configured but unused.
+- The `repo_url` / `site_url` placeholders are flagged in §11 of the spec as open questions; the executor or maintainer updates them when known.
 
 - [ ] **Step 3: Create the four placeholder pages**
 
@@ -415,17 +427,12 @@ Expected: `OK 5 patterns`.
 mkdocs build --strict
 ```
 
-Expected: succeeds. mkdocs ignores non-markdown files in `docs/` by default but will warn on `--strict` if it tries to copy them and finds nothing. If the build warns about `patterns.yml`, add it to `exclude_docs` in `mkdocs.yml`:
-
-```yaml
-exclude_docs: |
-  vignettes/patterns.yml
-```
+Expected: succeeds. `patterns.yml` is already excluded by the `exclude_docs` block in `mkdocs.yml` (set up in Chunk 1 Task 1.2), so mkdocs won't try to render it as a page.
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add docs/vignettes/patterns.yml mkdocs.yml
+git add docs/vignettes/patterns.yml
 git commit -m "Add patterns vocabulary for vignette frontmatter"
 ```
 
@@ -452,7 +459,7 @@ contributors:
 last_updated: 2026-05-27
 ---
 
-# {{ page.meta.title }}
+# <Your one-line use case — the title as it should appear in the rendered page (match the `title` frontmatter field above)>
 
 **Why this matters**
 
@@ -473,7 +480,7 @@ last_updated: 2026-05-27
 
 ## The data
 
-<Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful, e.g.:>
+<Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful. Snippet paths are repo-root-relative (the `base_path: ["."]` config in `mkdocs.yml` enables this):>
 
 ```json
 --8<-- "docs/vignettes/<slug>/payloads/example.vrs.json"
@@ -490,31 +497,19 @@ last_updated: 2026-05-27
 - Similar implementer: <name + link>
 ```
 
-- [ ] **Step 2: Confirm the template is excluded from nav and the build**
-
-Add `_template/` to `exclude_docs` so it doesn't render as a page:
-
-In `mkdocs.yml`, extend the `exclude_docs` block:
-
-```yaml
-exclude_docs: |
-  vignettes/patterns.yml
-  vignettes/_template/
-```
-
-- [ ] **Step 3: Verify the build still succeeds and the template is NOT rendered**
+- [ ] **Step 2: Verify the build still succeeds and the template is NOT rendered**
 
 ```bash
 mkdocs build --strict
 test ! -d site/vignettes/_template && echo "OK: template excluded"
 ```
 
-Expected: both succeed. `_template/` should not appear under `site/`.
+Expected: both succeed. The `_template/` exclusion is already set up in `mkdocs.yml` from Chunk 1 Task 1.2, so no config change is needed here.
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 3: Commit**
 
 ```bash
-git add docs/vignettes/_template/vignette.md mkdocs.yml
+git add docs/vignettes/_template/vignette.md
 git commit -m "Add canonical vignette template"
 ```
 
@@ -592,7 +587,7 @@ mkdocs build --strict
 test ! -d site/vignettes/_template && echo "OK: template folder excluded"
 ```
 
-Expected: both succeed. The README in `_template/` is excluded by the same `exclude_docs` glob from Task 3.2.
+Expected: both succeed. The README in `_template/` is excluded by the `exclude_docs` glob from Chunk 1 Task 1.2.
 
 - [ ] **Step 3: Commit**
 
@@ -689,7 +684,7 @@ grep -q "GA4GH Genomic Knowledge Standards" site/about/index.html && echo OK
 
 Expected: all succeed. `--strict` will fail if any internal markdown links are broken.
 
-- [ ] **Step 3: Sanity-check external links resolve**
+- [ ] **Step 3: Sanity-check external links resolve AND point to the right content**
 
 ```bash
 for url in https://starterkit.ga4gh.org/ https://vrs.ga4gh.org/ https://cat-vrs.ga4gh.org/ https://va-ga4gh.readthedocs.io/ https://www.ga4gh.org/work_stream/genomic-knowledge-standards/; do
@@ -699,6 +694,8 @@ done
 ```
 
 Expected: each prints `200` (or `301`/`302` followed by `200` after redirect). If any returns `404` or fails to connect, the URL is wrong — find the correct one before committing.
+
+**For the VA-Spec URL specifically:** a `200` response from a ReadTheDocs project page is not enough — that just confirms *some* RTD project exists at that slug, not that it's actually VA-Spec. Open the URL in a browser and confirm the page title/content references "VA-Spec" or "Variant Annotation Specification" before committing. If the URL points to an unrelated or empty project, find the actual canonical VA-Spec docs URL (likely under the GA4GH org's GitHub Pages or a differently-slugged ReadTheDocs project) and use that. Candidates worth trying if `va-ga4gh.readthedocs.io` is wrong: `va-spec.readthedocs.io`, `ga4gh-va-spec.readthedocs.io`, or whatever is linked from the [GA4GH VA-Spec GitHub repo](https://github.com/ga4gh/va-spec).
 
 - [ ] **Step 4: Commit**
 
@@ -789,9 +786,12 @@ The trickiest chunk: macros plugin renders the catalog from frontmatter, gen-fil
 
 **Files:**
 - Modify: `mkdocs.yml`
-- Create: `main.py`
-- Create: `scripts/__init__.py` (empty)
-- Create: `scripts/gen_filter_pages.py`
+- Create: `scripts/__init__.py` (empty marker)
+- Create: `scripts/vignette_loader.py` (shared frontmatter parsing — single source of truth)
+- Create: `main.py` (mkdocs-macros entrypoint; thin wrapper over `vignette_loader`)
+- Create: `scripts/gen_filter_pages.py` (gen-files entrypoint; thin wrapper over `vignette_loader`)
+
+The shared loader is extracted into `scripts/vignette_loader.py` because both `main.py` (macros) and `gen_filter_pages.py` (gen-files) need to parse the same frontmatter. Having two copies of the parser would be a known drift hazard — a future change to the frontmatter schema would require editing two parsers in lockstep, and a missed edit would silently desync the catalog from the filter pages.
 
 - [ ] **Step 1: Update `mkdocs.yml` plugin list**
 
@@ -807,27 +807,35 @@ plugins:
         - scripts/gen_filter_pages.py
 ```
 
-- [ ] **Step 2: Create a minimal `main.py`**
+(The `markdown_extensions` block — including `pymdownx.snippets` with `base_path: ["."]` — was set up in Chunk 1 Task 1.2 and does not need to be changed here.)
 
-`main.py` at the repo root:
+- [ ] **Step 2: Create the `scripts/` package**
+
+```bash
+mkdir -p scripts
+touch scripts/__init__.py
+```
+
+- [ ] **Step 3: Create `scripts/vignette_loader.py` — the shared loader**
 
 ```python
-"""mkdocs-macros entrypoint for the GKS Starter Kit.
+"""Shared frontmatter loader for the GKS Starter Kit.
 
-Registers a `list_vignettes` macro that walks docs/vignettes/*/vignette.md,
-parses YAML frontmatter, and returns a list of dicts sorted by last_updated
-(newest first). Used by docs/vignettes/index.md to render the catalog cards.
+Both `main.py` (mkdocs-macros entrypoint) and `scripts/gen_filter_pages.py`
+(mkdocs-gen-files script) import from here, so the frontmatter contract has a
+single source of truth.
 """
 
 from pathlib import Path
 import yaml
 
-VIGNETTES_DIR = Path(__file__).parent / "docs" / "vignettes"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
 TEMPLATE_FOLDER = "_template"
 FRONTMATTER_DELIM = "---"
 
 
-def _parse_frontmatter(text: str) -> dict | None:
+def parse_frontmatter(text: str) -> dict | None:
     """Return the YAML frontmatter from a markdown file, or None if absent/invalid."""
     if not text.startswith(FRONTMATTER_DELIM):
         return None
@@ -841,35 +849,54 @@ def _parse_frontmatter(text: str) -> dict | None:
     return meta if isinstance(meta, dict) else None
 
 
-def _load_vignettes() -> list[dict]:
-    """Read every vignette.md under docs/vignettes/, return list of frontmatter dicts."""
+def slugify(s: str) -> str:
+    """Slugify a value for use in URL paths (matches the Jinja filter chain used in the catalog page)."""
+    return s.lower().replace(" ", "-").replace("/", "-")
+
+
+def load_vignettes() -> list[dict]:
+    """Read every vignette.md under docs/vignettes/<slug>/, returning a list of frontmatter dicts.
+
+    Each returned dict has the original frontmatter plus two synthesized fields:
+      - `_folder`: the vignette folder name (matches the `slug` field).
+      - `_path`: the relative path used to link to the rendered vignette page.
+
+    Sorted by `last_updated` descending (newest first), with missing dates sorting last.
+    """
     vignettes = []
     for vignette_md in sorted(VIGNETTES_DIR.glob("*/vignette.md")):
         if vignette_md.parent.name == TEMPLATE_FOLDER:
             continue
-        meta = _parse_frontmatter(vignette_md.read_text(encoding="utf-8"))
+        meta = parse_frontmatter(vignette_md.read_text(encoding="utf-8"))
         if meta is None:
             continue
-        # Attach the URL path so the index can link to the rendered page.
+        meta["_folder"] = vignette_md.parent.name
         meta["_path"] = f"{vignette_md.parent.name}/vignette.md"
         vignettes.append(meta)
     vignettes.sort(key=lambda v: str(v.get("last_updated", "")), reverse=True)
     return vignettes
+```
+
+- [ ] **Step 4: Create `main.py` (thin macros entrypoint)**
+
+`main.py` at the repo root:
+
+```python
+"""mkdocs-macros entrypoint for the GKS Starter Kit.
+
+Registers a `list_vignettes` macro used by docs/vignettes/index.md to render
+the catalog. All real work is in scripts/vignette_loader.
+"""
+
+from scripts.vignette_loader import load_vignettes
 
 
 def define_env(env):
     """Hook called by mkdocs-macros-plugin during site build."""
-    env.macro(_load_vignettes, "list_vignettes")
+    env.macro(load_vignettes, "list_vignettes")
 ```
 
-- [ ] **Step 3: Create `scripts/__init__.py` (empty file)**
-
-```bash
-mkdir -p scripts
-touch scripts/__init__.py
-```
-
-- [ ] **Step 4: Create `scripts/gen_filter_pages.py`**
+- [ ] **Step 5: Create `scripts/gen_filter_pages.py` (thin gen-files entrypoint)**
 
 ```python
 """Generate per-axis filter pages for the vignette catalog.
@@ -880,44 +907,12 @@ matching vignettes. mkdocs-gen-files runs this at build time; nothing lands
 on disk in docs/.
 """
 
-from pathlib import Path
+from collections import defaultdict
+from typing import Callable, Iterable
 
 import mkdocs_gen_files
-import yaml
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
-TEMPLATE_FOLDER = "_template"
-
-
-def _parse_frontmatter(text: str) -> dict | None:
-    if not text.startswith("---"):
-        return None
-    parts = text.split("---", 2)
-    if len(parts) < 3:
-        return None
-    try:
-        meta = yaml.safe_load(parts[1])
-    except yaml.YAMLError:
-        return None
-    return meta if isinstance(meta, dict) else None
-
-
-def _slug(s: str) -> str:
-    return s.lower().replace(" ", "-").replace("/", "-")
-
-
-def _load_vignettes() -> list[dict]:
-    vignettes = []
-    for vignette_md in sorted(VIGNETTES_DIR.glob("*/vignette.md")):
-        if vignette_md.parent.name == TEMPLATE_FOLDER:
-            continue
-        meta = _parse_frontmatter(vignette_md.read_text(encoding="utf-8"))
-        if meta is None:
-            continue
-        meta["_folder"] = vignette_md.parent.name
-        vignettes.append(meta)
-    return vignettes
+from scripts.vignette_loader import load_vignettes, slugify
 
 
 def _emit_filter_page(axis: str, value_slug: str, value_label: str, matches: list[dict]) -> None:
@@ -933,43 +928,53 @@ def _emit_filter_page(axis: str, value_slug: str, value_label: str, matches: lis
             f.write(f"- **[{title}](../../{v['_folder']}/vignette.md)** — {summary}\n")
 
 
-def main() -> None:
-    vignettes = _load_vignettes()
-    # Collect axis values.
-    by_product: dict[str, list[dict]] = {}
-    by_pattern: dict[str, list[dict]] = {}
-    by_implementer: dict[str, list[dict]] = {}
-
+def _group_by_axis(
+    vignettes: list[dict],
+    extract_values: Callable[[dict], Iterable[str]],
+) -> dict[str, list[dict]]:
+    """Group vignettes by a per-vignette value extractor (may yield 0+ values per vignette)."""
+    groups: dict[str, list[dict]] = defaultdict(list)
     for v in vignettes:
-        for p in v.get("products", []) or []:
-            name = p.get("name") if isinstance(p, dict) else str(p)
-            if name:
-                by_product.setdefault(name, []).append(v)
-        if v.get("pattern"):
-            by_pattern.setdefault(v["pattern"], []).append(v)
-        if v.get("implementer"):
-            by_implementer.setdefault(v["implementer"], []).append(v)
+        for value in extract_values(v):
+            if value:
+                groups[value].append(v)
+    return groups
 
-    for name, matches in by_product.items():
-        _emit_filter_page("product", _slug(name), name, matches)
-    for pat, matches in by_pattern.items():
-        _emit_filter_page("pattern", _slug(pat), pat, matches)
-    for impl, matches in by_implementer.items():
-        _emit_filter_page("implementer", _slug(impl), impl, matches)
+
+def _product_names(v: dict) -> Iterable[str]:
+    for p in v.get("products", []) or []:
+        if isinstance(p, dict):
+            yield p.get("name") or ""
+        else:
+            yield str(p)
+
+
+def main() -> None:
+    vignettes = load_vignettes()
+    by_axis = {
+        "product": _group_by_axis(vignettes, _product_names),
+        "pattern": _group_by_axis(vignettes, lambda v: [v.get("pattern", "")]),
+        "implementer": _group_by_axis(vignettes, lambda v: [v.get("implementer", "")]),
+    }
+    for axis, groups in by_axis.items():
+        for value, matches in groups.items():
+            _emit_filter_page(axis, slugify(value), value, matches)
 
 
 main()
 ```
 
-- [ ] **Step 5: Build and verify the plugins load**
+(Generalizing to a `_group_by_axis` helper means adding a fourth axis later — e.g. `status` — is a one-line change rather than another duplicated block.)
+
+- [ ] **Step 6: Build and verify the plugins load**
 
 ```bash
 mkdocs build --strict
 ```
 
-Expected: succeeds. Build will fail if `main.py` has syntax errors or `gen_filter_pages.py` raises. Note: with zero real vignettes (only `_template/`), no filter pages are generated — that's fine; the catalog index just shows zero cards.
+Expected: succeeds. Build will fail if `main.py`/`gen_filter_pages.py` have syntax errors or `scripts/vignette_loader.py` can't be imported. Note: with zero real vignettes (only `_template/`), no filter pages are generated — that's fine; the catalog index just shows zero cards.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
 git add mkdocs.yml main.py scripts/
@@ -1208,7 +1213,7 @@ Write `docs/vignettes/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.
 
 **Important:** This payload is illustrative. Before committing, regenerate it from real `vrs-python` output for a confirmed BRCA1 variant. The `id` and `digest` fields must be the actual digests `vrs-python` produces — fabricating them would mislead readers and break the vignette's credibility. If the executor cannot run `vrs-python` to regenerate, flag this in the PR description for maintainer follow-up; do not ship fabricated digests as if real.
 
-- [ ] **Step 4: Build, verify the vignette renders, and verify the catalog now includes it**
+- [ ] **Step 4: Build, verify the vignette renders, the JSON snippet actually got embedded, and the catalog now includes it**
 
 ```bash
 mkdocs build --strict
@@ -1217,9 +1222,18 @@ grep -q "BRCA Exchange: identifying unique variants" site/vignettes/index.html &
 test -d site/vignettes/by-product/vrs && echo "OK: by-product filter page"
 test -d site/vignettes/by-pattern/cross-source-variant-harmonization && echo "OK: by-pattern filter page"
 test -d site/vignettes/by-implementer/brca-exchange && echo "OK: by-implementer filter page"
+
+# Confirm the JSON snippet actually got embedded into the vignette page —
+# catches the silent failure where pymdownx.snippets is misconfigured and the
+# `--8<--` line renders as literal text instead of including the payload.
+grep -q "ga4gh:VA" site/vignettes/brca-exchange-vrs-cross-source/vignette/index.html && echo "OK: payload embedded"
+
+# Confirm the literal snippet-include marker is NOT in the output (would mean
+# the extension didn't process it).
+! grep -q '"--8<--"' site/vignettes/brca-exchange-vrs-cross-source/vignette/index.html && echo "OK: snippet marker consumed"
 ```
 
-Expected: all six checks succeed. The card on the catalog confirms the macros-driven rendering, and the three filter-page checks confirm `gen_filter_pages.py` is generating per-axis pages for the new vignette.
+Expected: all eight checks succeed. The card on the catalog confirms the macros-driven rendering; the three filter-page checks confirm `gen_filter_pages.py` is generating per-axis pages; the two payload checks confirm the `pymdownx.snippets` extension is actually inlining the JSON payload (not leaving the `--8<--` marker as visible text).
 
 - [ ] **Step 5: Visual check via `mkdocs serve`**
 
@@ -1295,6 +1309,15 @@ body:
         - label: Cat-VRS
         - label: VA-Spec
         - label: Other (note in the use-case field below)
+    validations:
+      required: true
+
+  - type: input
+    id: product_versions
+    attributes:
+      label: Product versions
+      description: Which version of each selected product? Comma-separated, e.g. "VRS 2.0, VA-Spec 1.0". If a version is genuinely not pinned, write "unpinned" for that product.
+      placeholder: "VRS 2.0"
     validations:
       required: true
 
@@ -1408,6 +1431,8 @@ This repository is maintained by the GKS Starter Kit working group within the GA
 
 ## Current maintainers
 
+> **Note (v1):** This list is an initial placeholder. The GKS workstream is expected to confirm or expand the maintainer set before public launch (tracked as an open question in the v1 design spec). Update via PR with workstream alignment.
+
 - @lbabb — Lawrence Babb, Broad Institute
 
 ## Responsibilities
@@ -1421,8 +1446,6 @@ This repository is maintained by the GKS Starter Kit working group within the GA
 
 Open an issue suggesting the change, with rationale. Existing maintainers will discuss and decide.
 ```
-
-(The maintainer list is a v1-initial placeholder pending the open question in spec §11. Update before public launch if the working group decides differently.)
 
 - [ ] **Step 2: Commit**
 
@@ -1510,33 +1533,65 @@ Expected: succeeds with no warnings. `--strict` would fail on any unresolved int
 - [ ] **Step 2: Verify each acceptance criterion from spec §10**
 
 ```bash
-# Criterion 2: four top-level pages render
+# AC2: four top-level pages render
 for p in index about contribute vignettes/index; do
-  test -f site/$p.html 2>/dev/null || test -f site/$p/index.html
-  echo "AC2 $p: $?"
+  ( test -f site/$p.html || test -f site/$p/index.html ) && echo "AC2 $p: OK"
 done
 
-# Criterion 3: BRCA Exchange vignette exists and is complete
+# AC3 (file existence + frontmatter completeness): the BRCA Exchange vignette
+# exists and has every required frontmatter field per spec §6.2. The
+# qualitative parts of AC3 (plain-language quality of "Why this matters",
+# status-matches-reality) are verified in the visual walkthrough in Step 3.
 test -f site/vignettes/brca-exchange-vrs-cross-source/vignette/index.html && echo "AC3 vignette page: OK"
-test -f docs/vignettes/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.json && echo "AC3 payload: OK"
+test -f docs/vignettes/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.json && echo "AC3 payload file: OK"
+python3 -c "
+import sys
+from scripts.vignette_loader import parse_frontmatter
+text = open('docs/vignettes/brca-exchange-vrs-cross-source/vignette.md').read()
+meta = parse_frontmatter(text)
+required = {'title', 'slug', 'summary', 'products', 'pattern', 'implementer', 'status', 'last_updated'}
+missing = required - set(meta or {})
+if missing:
+    print(f'AC3 frontmatter MISSING fields: {sorted(missing)}'); sys.exit(1)
+products = meta.get('products') or []
+if not products or not all(isinstance(p, dict) and p.get('name') for p in products):
+    print('AC3 frontmatter products malformed (must be list of {name, version?})'); sys.exit(1)
+if meta['status'] not in {'production', 'pilot', 'proposal'}:
+    print(f'AC3 frontmatter invalid status: {meta[\"status\"]!r}'); sys.exit(1)
+print('AC3 frontmatter complete: OK')
+"
 
-# Criterion 4: filter pages exist for all three axes
-test -d site/vignettes/by-product/vrs && echo "AC4 product: OK"
-test -d site/vignettes/by-pattern/cross-source-variant-harmonization && echo "AC4 pattern: OK"
-test -d site/vignettes/by-implementer/brca-exchange && echo "AC4 implementer: OK"
+# AC4: filter pages exist for all three axes AND the catalog card renders correctly
+test -d site/vignettes/by-product/vrs && echo "AC4 product filter page: OK"
+test -d site/vignettes/by-pattern/cross-source-variant-harmonization && echo "AC4 pattern filter page: OK"
+test -d site/vignettes/by-implementer/brca-exchange && echo "AC4 implementer filter page: OK"
+grep -q 'gks-status--' site/vignettes/index.html && echo "AC4 status badge rendered: OK"
+grep -q 'BRCA Exchange' site/vignettes/index.html && echo "AC4 implementer on card: OK"
+grep -q 'Read' site/vignettes/index.html && echo "AC4 read link on card: OK"
 
-# Criterion 5: contribution path scaffolding present
-test -f .github/ISSUE_TEMPLATE/propose-vignette.yml && echo "AC5 issue template: OK"
-test -f .github/PULL_REQUEST_TEMPLATE.md && echo "AC5 PR template: OK"
+# AC5: contribution path scaffolding present locally. End-to-end exercise
+# (form actually opens; PR template actually appears) is verified manually
+# after first push to GitHub — see Step 4 below.
+test -f .github/ISSUE_TEMPLATE/propose-vignette.yml && echo "AC5 issue template file: OK"
+test -f .github/PULL_REQUEST_TEMPLATE.md && echo "AC5 PR template file: OK"
+python3 -c "
+import yaml
+form = yaml.safe_load(open('.github/ISSUE_TEMPLATE/propose-vignette.yml'))
+ids = {b.get('id') for b in form['body'] if isinstance(b, dict) and 'id' in b}
+required = {'title', 'implementer', 'products', 'product_versions', 'use_case', 'status', 'contact'}
+missing = required - ids
+assert not missing, f'AC5 issue form missing fields: {sorted(missing)}'
+print('AC5 issue form fields complete: OK')
+"
 
-# Criterion 6: maintainers named
-test -s MAINTAINERS.md && echo "AC6 MAINTAINERS: OK"
+# AC6: at least one maintainer is actually NAMED in MAINTAINERS.md
+grep -E '^- @[A-Za-z0-9_-]+' MAINTAINERS.md > /dev/null && echo "AC6 maintainer named: OK"
 
-# Criterion 7: strict build (already passed above) — reconfirm
-mkdocs build --strict > /dev/null 2>&1 && echo "AC7 strict build: OK"
+# AC7: local strict build passes (CI version verified after first push — Step 4 below)
+mkdocs build --strict > /dev/null 2>&1 && echo "AC7 local strict build: OK"
 ```
 
-Expected: every line ends in `OK` (or `0` for the AC2 loop). If any fails, fix before declaring v1 done.
+Expected: every line above prints an `AC` label ending in `OK`. If any fails, fix the corresponding criterion before declaring v1 done. AC1 (site reachable at stable URL) and the CI version of AC7 are post-push items, verified in Step 4 below.
 
 - [ ] **Step 3: Visual walk-through via `mkdocs serve`**
 
@@ -1555,7 +1610,19 @@ Walk through the site as a first-time reader:
 
 Ctrl-C when done.
 
-- [ ] **Step 4: Final commit (if any QA fixes were made)**
+- [ ] **Step 4: Post-push verification (AC1 + CI-side AC7 + AC5 end-to-end)**
+
+The following acceptance criteria can only be verified after the repo is pushed to GitHub and the first workflow run completes. Do these manually after first push:
+
+- **AC1 — Site reachable at stable URL:** After `git push origin main`, watch the Actions tab until the publish workflow's first run completes. Open the resulting GitHub Pages URL (default `https://<org>.github.io/gks-starter-kit/`) in a browser. Confirm it returns HTTP 200 and shows the landing page.
+- **AC7 — `mkdocs build --strict` passes in CI:** Same workflow run. Confirm the build step in the Actions log shows the strict build succeeding (no warnings).
+- **AC5 end-to-end — contribution path works:**
+    - Visit `https://github.com/<org>/gks-starter-kit/issues/new/choose`. Confirm "Propose a vignette" appears as an option and that opening it shows the structured form with all required fields.
+    - Open a throwaway PR (e.g. a no-op markdown tweak in a branch) to confirm the PR template auto-populates. Close the PR without merging.
+
+If any of these fail, file an issue and fix before declaring v1 done.
+
+- [ ] **Step 5: Final commit (if any QA fixes were made)**
 
 ```bash
 git status  # if anything is modified
@@ -1565,7 +1632,7 @@ git commit -m "Final v1 QA pass"
 
 If nothing is modified, skip this step.
 
-- [ ] **Step 5: Tag v1**
+- [ ] **Step 6: Tag v1**
 
 ```bash
 git tag -a v1.0.0 -m "GKS Starter Kit v1.0.0 — vignette library launch"
