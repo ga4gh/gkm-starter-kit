@@ -1226,14 +1226,14 @@ test -d site/vignettes/by-implementer/brca-exchange && echo "OK: by-implementer 
 # Confirm the JSON snippet actually got embedded into the vignette page —
 # catches the silent failure where pymdownx.snippets is misconfigured and the
 # `--8<--` line renders as literal text instead of including the payload.
+# The `ga4gh:VA` string only exists inside the JSON payload, so a hit proves
+# the include succeeded. (mkdocs.yml sets `check_paths: true` on
+# pymdownx.snippets, so a missing snippet file would also fail `--strict`
+# directly — this grep is a belt-and-braces check on successful embed.)
 grep -q "ga4gh:VA" site/vignettes/brca-exchange-vrs-cross-source/vignette/index.html && echo "OK: payload embedded"
-
-# Confirm the literal snippet-include marker is NOT in the output (would mean
-# the extension didn't process it).
-! grep -q '"--8<--"' site/vignettes/brca-exchange-vrs-cross-source/vignette/index.html && echo "OK: snippet marker consumed"
 ```
 
-Expected: all eight checks succeed. The card on the catalog confirms the macros-driven rendering; the three filter-page checks confirm `gen_filter_pages.py` is generating per-axis pages; the two payload checks confirm the `pymdownx.snippets` extension is actually inlining the JSON payload (not leaving the `--8<--` marker as visible text).
+Expected: all seven checks succeed. The card on the catalog confirms the macros-driven rendering; the three filter-page checks confirm `gen_filter_pages.py` is generating per-axis pages; the payload check confirms `pymdownx.snippets` is actually inlining the JSON.
 
 - [ ] **Step 5: Visual check via `mkdocs serve`**
 
@@ -1567,7 +1567,9 @@ test -d site/vignettes/by-pattern/cross-source-variant-harmonization && echo "AC
 test -d site/vignettes/by-implementer/brca-exchange && echo "AC4 implementer filter page: OK"
 grep -q 'gks-status--' site/vignettes/index.html && echo "AC4 status badge rendered: OK"
 grep -q 'BRCA Exchange' site/vignettes/index.html && echo "AC4 implementer on card: OK"
-grep -q 'Read' site/vignettes/index.html && echo "AC4 read link on card: OK"
+# The catalog template ends every card with the literal "Read →" anchor text.
+# Match that specific shape, not bare "Read" which would hit mkdocs-material chrome.
+grep -q 'Read →' site/vignettes/index.html && echo "AC4 read link on card: OK"
 
 # AC5: contribution path scaffolding present locally. End-to-end exercise
 # (form actually opens; PR template actually appears) is verified manually
