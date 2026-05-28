@@ -13,6 +13,18 @@ VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
 TEMPLATE_FOLDER = "_template"
 FRONTMATTER_DELIM = "---"
 
+REQUIRED_FIELDS = (
+    "title",
+    "slug",
+    "summary",
+    "products",
+    "pattern",
+    "implementer",
+    "status",
+    "last_updated",
+)
+ALLOWED_STATUSES = ("production", "pilot", "proposal")
+
 
 def parse_frontmatter(text: str) -> dict | None:
     """Return the YAML frontmatter from a markdown file, or None if absent/invalid."""
@@ -33,12 +45,46 @@ def slugify(s: str) -> str:
     return s.lower().replace(" ", "-").replace("/", "-")
 
 
+def _validate_vignette(meta: dict, source: Path) -> None:
+    """Validate a parsed frontmatter dict; raise ValueError on any problem.
+
+    The error message names the vignette (by `title` if present, else folder)
+    and the source file path, so the failing vignette is obvious in build logs.
+    """
+    rel = source.relative_to(REPO_ROOT) if source.is_absolute() else source
+    label = meta.get("title") or source.parent.name
+
+    def fail(problem: str) -> None:
+        raise ValueError(f"{label} ({rel}): {problem}")
+
+    for field in REQUIRED_FIELDS:
+        if field not in meta or meta[field] in (None, "", []):
+            fail(f"missing required field '{field}'")
+
+    products = meta["products"]
+    if not isinstance(products, list) or not products:
+        fail("'products' must be a non-empty list")
+    for i, product in enumerate(products):
+        if not isinstance(product, dict):
+            fail(f"'products[{i}]' must be a mapping with at least a 'name' key")
+        if not product.get("name"):
+            fail(f"'products[{i}]' is missing required key 'name'")
+
+    if meta["status"] not in ALLOWED_STATUSES:
+        fail(
+            f"'status' must be one of {ALLOWED_STATUSES}, got {meta['status']!r}"
+        )
+
+
 def load_vignettes() -> list[dict]:
     """Read every vignette.md under docs/vignettes/<slug>/, returning a list of frontmatter dicts.
 
     Each returned dict has the original frontmatter plus two synthesized fields:
       - `_folder`: the vignette folder name (matches the `slug` field).
       - `_path`: the relative path used to link to the rendered vignette page.
+
+    Frontmatter is validated; malformed vignettes raise ValueError (fail the build
+    with a useful pointer) rather than silently disappearing from the catalog.
 
     Sorted by `last_updated` descending (newest first), with missing dates sorting last.
     """
@@ -48,7 +94,10 @@ def load_vignettes() -> list[dict]:
             continue
         meta = parse_frontmatter(vignette_md.read_text(encoding="utf-8"))
         if meta is None:
-            continue
+            raise ValueError(
+                f"{vignette_md.relative_to(REPO_ROOT)}: missing or unparseable YAML frontmatter"
+            )
+        _validate_vignette(meta, vignette_md)
         meta["_folder"] = vignette_md.parent.name
         meta["_path"] = f"{vignette_md.parent.name}/vignette.md"
         vignettes.append(meta)
