@@ -1,0 +1,78 @@
+name: Propose a vignette
+description: Suggest a new vignette for the GKS Starter Kit
+title: "Vignette: <one-line use case>"
+labels: ["vignette", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a vignette! This form captures the basics so a maintainer can triage. After triage, you (or a helper) will draft the full vignette in a follow-up PR — see [the contribution guide](https://ga4gh.github.io/gks-starter-kit/contribute/) for the structure.
+
+  - type: input
+    id: title
+    attributes:
+      label: Working title
+      description: One-line use case description.
+      placeholder: "e.g. BRCA Exchange: identifying unique variants across sources with VRS"
+    validations:
+      required: true
+
+  - type: input
+    id: implementer
+    attributes:
+      label: Implementer
+      description: Organization, consortium, knowledgebase, or project.
+      placeholder: "e.g. BRCA Exchange"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: products
+    attributes:
+      label: GKS products used
+      description: Select all that apply.
+      options:
+        - label: VRS
+        - label: Cat-VRS
+        - label: VA-Spec
+        - label: Other (note in the use-case field below)
+    validations:
+      required: true
+
+  - type: input
+    id: product_versions
+    attributes:
+      label: Product versions
+      description: Which version of each selected product? Comma-separated, e.g. "VRS 2.0, VA-Spec 1.0". If a version is genuinely not pinned, write "unpinned" for that product.
+      placeholder: "VRS 2.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: One-paragraph use case
+      description: What real problem does this solve? What does GKS unlock?
+      placeholder: "Plain language is fine — the maintainer will help shape the final 'Why this matters' paragraph."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      description: Where is the implementation today?
+      options:
+        - production
+        - pilot
+        - proposal
+    validations:
+      required: true
+
+  - type: input
+    id: contact
+    attributes:
+      label: Contact
+      description: GitHub handle or email — so we know how to reach you for follow-up.
+    validations:
+      required: true
