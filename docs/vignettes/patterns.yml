@@ -1,0 +1,9 @@
+# Controlled vocabulary for the `pattern` frontmatter field on vignettes.
+# Add new entries via the same PR as the vignette that introduces the pattern.
+# Each entry: key (kebab-case slug used in frontmatter) → human-readable label.
+
+cross-source-variant-harmonization: Cross-source variant harmonization
+knowledgebase-exchange: Knowledgebase exchange
+variant-categorization: Variant categorization
+variant-annotation: Variant annotation
+clinical-evidence-sharing: Clinical evidence sharing
