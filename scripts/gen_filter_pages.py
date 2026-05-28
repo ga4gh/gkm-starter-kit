@@ -11,7 +11,7 @@ from typing import Callable, Iterable
 
 import mkdocs_gen_files
 
-from scripts.vignette_loader import load_vignettes, slugify
+from scripts.vignette_loader import load_patterns, load_vignettes, slugify
 
 
 def _emit_filter_page(axis: str, value_slug: str, value_label: str, matches: list[dict]) -> None:
@@ -50,6 +50,7 @@ def _product_names(v: dict) -> Iterable[str]:
 
 def main() -> None:
     vignettes = load_vignettes()
+    patterns_dict = load_patterns()
     by_axis = {
         "product": _group_by_axis(vignettes, _product_names),
         "pattern": _group_by_axis(vignettes, lambda v: [v.get("pattern", "")]),
@@ -57,7 +58,8 @@ def main() -> None:
     }
     for axis, groups in by_axis.items():
         for value, matches in groups.items():
-            _emit_filter_page(axis, slugify(value), value, matches)
+            label = patterns_dict.get(value, value) if axis == "pattern" else value
+            _emit_filter_page(axis, slugify(value), label, matches)
 
 
 main()

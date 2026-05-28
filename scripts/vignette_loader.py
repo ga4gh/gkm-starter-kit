@@ -10,6 +10,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
+PATTERNS_YML = VIGNETTES_DIR / "patterns.yml"
 TEMPLATE_FOLDER = "_template"
 FRONTMATTER_DELIM = "---"
 
@@ -43,6 +44,15 @@ def parse_frontmatter(text: str) -> dict | None:
 def slugify(s: str) -> str:
     """Slugify a value for use in URL paths (matches the Jinja filter chain used in the catalog page)."""
     return s.lower().replace(" ", "-").replace("/", "-")
+
+
+def load_patterns() -> dict[str, str]:
+    """Return the pattern vocabulary as a {slug: label} dict, or {} if missing/empty."""
+    if not PATTERNS_YML.exists():
+        return {}
+    with PATTERNS_YML.open(encoding="utf-8") as f:
+        data = yaml.safe_load(f) or {}
+    return data if isinstance(data, dict) else {}
 
 
 def _validate_vignette(meta: dict, source: Path) -> None:
