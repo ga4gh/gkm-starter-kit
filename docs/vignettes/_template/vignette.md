@@ -4,7 +4,7 @@ slug: <kebab-case-slug-matching-folder-name>
 summary: "<One-sentence catalog blurb. Distinct from 'Why this matters' below.>"
 products:
   - name: VRS              # one of: VRS, Cat-VRS, VA-Spec
-    version: "2.0"         # optional but strongly encouraged
+    version: "2.0"
 pattern: <one value from docs/vignettes/patterns.yml>
 implementer: <organization, consortium, knowledgebase, or project>
 status: production         # one of: production | pilot | proposal
