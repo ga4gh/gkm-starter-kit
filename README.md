@@ -27,20 +27,23 @@ Then open http://127.0.0.1:8000.
 ## Repository layout
 
 - `docs/` — mkdocs source
+- `docs/index.md`, `docs/about.md`, `docs/contribute.md` — top-level reader pages
 - `docs/vignettes/` — vignette folders, one per use case
 - `docs/vignettes/_template/` — canonical template + authoring guide
 - `docs/vignettes/patterns.yml` — controlled vocabulary for the `pattern` frontmatter field
 - `main.py` — mkdocs-macros entrypoint (catalog rendering)
+- `scripts/vignette_loader.py` — shared frontmatter parser (single source of truth, imported by both `main.py` and `gen_filter_pages.py`)
 - `scripts/gen_filter_pages.py` — generates per-axis filter pages at build time
 - `.github/workflows/publish.yml` — GitHub Action that deploys to GitHub Pages on push to `main`
+- `.github/ISSUE_TEMPLATE/`, `.github/PULL_REQUEST_TEMPLATE.md` — contribution forms
 
 ## Initial GitHub Pages setup
 
-After the first push to GitHub:
+After the first push of `main` to GitHub:
 
-1. In Settings → Pages, set Source = "Deploy from a branch", Branch = `gh-pages`, Folder = `/ (root)`.
-2. The first workflow run on `main` creates the `gh-pages` branch.
-3. Confirm the workflow succeeds in the Actions tab.
+1. Wait for the publish workflow's first run to complete (Actions tab). `mkdocs gh-deploy` creates the `gh-pages` branch on first run.
+2. In Settings → Pages, set Source = "Deploy from a branch", Branch = `gh-pages`, Folder = `/ (root)`.
+3. Confirm the workflow succeeds on subsequent pushes and the site is reachable at the GitHub Pages URL.
 4. Update `site_url` in `mkdocs.yml` and the "Live site" link above if the canonical URL differs.
 
 ## License

@@ -2,6 +2,10 @@
 
 <!-- Brief summary. If this is a vignette PR, name the implementer + GKS products. -->
 
+## Linked issue (if any)
+
+<!-- e.g. "Closes #42" for a vignette proposed via the issue form, or leave blank. -->
+
 ## Vignette checklist (if adding/updating a vignette)
 
 - [ ] Frontmatter complete: `title`, `slug` (matches folder name), `summary`, `products` (with versions), `pattern`, `implementer`, `status`, `last_updated`
