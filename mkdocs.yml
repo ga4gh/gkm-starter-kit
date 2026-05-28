@@ -23,7 +23,7 @@ extra_css:
 plugins:
   - search
   - macros:
-      module_name: main
+      module_name: scripts
   - gen-files:
       scripts:
         - scripts/gen_filter_pages.py
