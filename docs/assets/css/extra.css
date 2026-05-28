@@ -1,1 +1,45 @@
-/* GKS Starter Kit theming. Populated in Chunk 5 with status badge colours. */
+/* GKS Starter Kit theming */
+
+.gks-chip {
+    display: inline-block;
+    padding: 0.15em 0.6em;
+    margin: 0.1em 0.2em 0.1em 0;
+    border-radius: 999px;
+    background: var(--md-default-fg-color--lightest);
+    color: var(--md-default-fg-color);
+    font-size: 0.85em;
+    text-decoration: none;
+    border: 1px solid var(--md-default-fg-color--lighter);
+}
+
+.gks-chip:hover {
+    background: var(--md-primary-fg-color--light);
+    color: var(--md-primary-bg-color);
+}
+
+.gks-status {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin-left: 0.4em;
+    border-radius: 0.25em;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+
+.gks-status--production {
+    background: #1b873f;
+    color: white;
+}
+
+.gks-status--pilot {
+    background: #d49a00;
+    color: white;
+}
+
+.gks-status--proposal {
+    background: #6c757d;
+    color: white;
+}
