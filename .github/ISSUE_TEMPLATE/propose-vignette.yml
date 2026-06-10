@@ -35,7 +35,6 @@ body:
         - label: VRS
         - label: Cat-VRS
         - label: VA-Spec
-        - label: Other (note in the use-case field below)
     validations:
       required: true
 
@@ -43,7 +42,7 @@ body:
     id: product_versions
     attributes:
       label: Product versions
-      description: Which version of each selected product? Comma-separated, e.g. "VRS 2.0, VA-Spec 1.0". If a version is genuinely not pinned, write "unpinned" for that product.
+      description: Which version of each selected product is being used? Comma-separated, e.g. "VRS 2.0, VA-Spec 1.0".
       placeholder: "VRS 2.0"
     validations:
       required: true
@@ -69,10 +68,18 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: contact
+  - type: textarea
+    id: links
     attributes:
-      label: Contact
-      description: GitHub handle or email — so we know how to reach you for follow-up.
-    validations:
-      required: true
+      label: Relevant links
+      description: Links for your implementation, repository, documentation, publication, and/or demo. One per line.
+      placeholder: |
+        https://github.com/ga4gh
+        https://about.readthedocs.com/
+        https://doi.org/
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional context
+      description: Anything else you'd like to share that wasn't covered above?

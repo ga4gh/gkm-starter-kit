@@ -15,7 +15,7 @@ This folder contains the canonical template for a GKS Starter Kit vignette. Copy
 ## Frontmatter field reference
 
 | Field | Required | Notes |
-|-------|----------|-------|
+| ----- | -------- | ----- |
 | `title` | yes | One-line use case description. Quoted. |
 | `slug` | yes | Kebab-case. Must match the folder name. |
 | `summary` | yes | One-sentence catalog blurb shown on the index card. Distinct from "Why this matters" in the body. |
