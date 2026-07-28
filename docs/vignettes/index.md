@@ -1,6 +1,8 @@
 # Vignettes
 
-Real-world walk-throughs of high-value GKS uses. Each vignette tells one story: who, what problem, what GKS unlocks, with the actual data and tools.
+Vignettes are the third pillar of the Starter Kit: real community use cases, each told as one story — who, what problem, what GKS unlocks — with the actual data and tools. The common thread is always the same: *what a group needs the standards for, and the standards delivering it.*
+
+Some vignettes build on the other two pillars — [Data Bundles](../data/index.md) for packaged, shareable knowledge and the [Python Package](../library/index.md) for loading and working with it — while others do not (for example, reclassifying a variant within a single resource as its evidence base changes). Both kinds belong here; the point is the use case, not which parts of the toolkit it happens to use.
 
 {% set vignettes = list_vignettes() %}
 

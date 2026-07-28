@@ -12,6 +12,7 @@ theme:
     - navigation.expand
     - content.action.edit
     - content.code.copy
+    - content.tabs.link
   palette:
     - scheme: default
       primary: indigo
@@ -36,6 +37,7 @@ plugins:
   - gen-files:
       scripts:
         - scripts/gen_filter_pages.py
+        - scripts/gen_schema_pages.py
 
 markdown_extensions:
   - admonition
@@ -44,6 +46,14 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - tables
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.snippets:
       base_path: ["."]
       check_paths: true
@@ -55,6 +65,11 @@ exclude_docs: |
 
 nav:
   - Home: index.md
+  - Data Bundles:
+      - data/index.md
+      - Bundle schema: data/schemas/gks-bundle.md
+  - Python Package:
+      - library/index.md
   - Vignettes:
       - vignettes/index.md
   - Contribute: contribute.md

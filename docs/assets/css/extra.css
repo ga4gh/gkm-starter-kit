@@ -43,3 +43,14 @@
     background: #6c757d;
     color: white;
 }
+
+/* v2 landing: pipeline strip */
+.gks-pipeline {
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    background: var(--md-primary-fg-color--light);
+    color: var(--md-primary-bg-color);
+    text-align: center;
+    font-size: 1.05rem;
+}
+.gks-pipeline strong { white-space: nowrap; }
