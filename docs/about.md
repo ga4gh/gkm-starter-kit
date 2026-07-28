@@ -24,4 +24,4 @@ It is *not* a per-product tutorial. Each GKS product has its own **Quick Start G
     - [Cat-VRS — Categorical Variation Representation](https://cat-vrs.ga4gh.org/)
     - [VA-Spec — Variant Annotation Specification](https://va-ga4gh.readthedocs.io/)
 - **GKS Home Page** — coming soon; will reference vignettes from this Starter Kit.
-- **[GA4GH Genomic Knowledge Standards](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)** — workstream overview.
+- **[GA4GH Genomic Knowledge Standards](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)** — Work Stream overview.

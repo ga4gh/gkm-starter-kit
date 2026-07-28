@@ -1,7 +1,7 @@
 site_name: GKS Starter Kit
 site_description: Real-world walk-throughs of high-value uses of the GA4GH Genomic Knowledge Standards
-site_url: https://ga4gh.github.io/gks-starter-kit/  # Update once canonical URL is decided
-repo_url: https://github.com/ga4gh/gks-starter-kit  # Update once repo is on GitHub
+site_url: https://ga4gh.github.io/gks-starter-kit/
+repo_url: https://github.com/ga4gh/gks-starter-kit
 repo_name: ga4gh/gks-starter-kit
 edit_uri: edit/main/docs/
 
@@ -17,6 +17,15 @@ theme:
     - scheme: default
       primary: indigo
       accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
 
 extra_css:
   - assets/css/extra.css
