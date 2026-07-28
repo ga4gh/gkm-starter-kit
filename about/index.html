@@ -296,7 +296,7 @@
             
   
   <span class="md-ellipsis">
-    Vignettes
+    Data Bundles
   </span>
   
 
@@ -305,6 +305,167 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Data Bundles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Data Bundles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/schemas/gks-bundle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bundle schema
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Python Package
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Python Package
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../library/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python Package
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Vignettes
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Vignettes
           </label>
@@ -525,8 +686,14 @@
 <h2 id="what-is-gks">What is GKS?</h2>
 <p>The <strong>GA4GH Genomic Knowledge Standards (GKS)</strong> are a set of open community standards for describing, exchanging, and reasoning over genomic knowledge — variants, the categories they fall into, and the clinical or research evidence attached to them. They give knowledgebases, registries, labs, and tool builders a shared way to talk about the same biology, so that data flows cleanly between systems instead of getting stuck in translation.</p>
 <h2 id="what-this-starter-kit-is-and-isnt">What this Starter Kit is (and isn't)</h2>
-<p>The <strong>GKS Starter Kit</strong> is the single community-facing entry point for the GKS ecosystem. It collects real-world vignettes — concise walk-throughs of how organizations are using GKS today — so adopters can quickly see what's possible, pick patterns they can reuse, and carry the value proposition to their own teams.</p>
-<p>It is <em>not</em> a per-product tutorial. Each GKS product has its own Quick Start Guide on its own documentation site — those are the right place to learn how to <em>produce</em> data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns.</p>
+<p>The GKS reference libraries let you <em>create</em> and <em>validate</em> genomic knowledge objects. But they say nothing about the layer that comes next: how you <strong>collect</strong> that knowledge, make it <strong>interoperable</strong> across resources, <strong>share</strong> it, and <strong>consume</strong> it. The <strong>GKS Starter Kit</strong> is the single community-facing entry point that demonstrates this missing layer.</p>
+<p>It does so through three pillars:</p>
+<ol>
+<li><strong><a href="../data/">Data Bundles</a></strong> — real content from community partners, composed from the modular GKS schemas into larger, shareable bundle documents. This is the <em>collect, make interoperable, and share</em> part.</li>
+<li><strong><a href="../library/">Python Package</a></strong> — a lightweight layer on top of the reference libraries that loads bundles into in-memory GKS objects, lets you explore and manipulate them, and exports back to GKS JSON. This is the <em>consume and build with</em> part.</li>
+<li><strong><a href="../vignettes/">Vignettes</a></strong> — real community use cases that show what a group needs the standards for, and the standards delivering it. Some build on the first two pillars; some do not.</li>
+</ol>
+<p>It is <em>not</em> a per-product tutorial. Each GKS product has its own <strong>Quick Start Guide</strong> on its own documentation site — those are the right place to learn how to <em>produce</em> data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns. (Only this GKS-level resource is a "Starter Kit"; the per-product guides are Quick Start Guides.)</p>
 <h2 id="where-else-to-look">Where else to look</h2>
 <ul>
 <li><strong><a href="https://starterkit.ga4gh.org/">GA4GH Starter Kit</a></strong> — the broader GA4GH ecosystem entry point, of which the GKS Starter Kit is a sibling.</li>
@@ -556,6 +723,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -585,7 +754,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "content.action.edit", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "content.action.edit", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>

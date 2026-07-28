@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ga4gh.github.io/gks-starter-kit/data/schemas/GksBundle",
+  "title": "GKS Bundle",
+  "description": "A GKS Bundle packages modular GKS objects (variants, conditions, propositions, statements) into a single shareable, schema-validated document. This is a self-contained demonstrator of the Pillar 1 packaging pattern: it uses local $defs rather than remote GA4GH $refs so the site build stays hermetic and offline-reproducible. The production bundles will compose the real remote GKS schemas.",
+  "type": "object",
+  "required": ["bundleVersion", "statements"],
+  "properties": {
+    "bundleVersion": {
+      "type": "string",
+      "description": "Semantic version of the bundle format.",
+      "examples": ["1.0.0"]
+    },
+    "source": {
+      "type": "object",
+      "description": "The community resource that produced this bundle (e.g. ClinVar GKS, CIViC).",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "description": "Human-readable resource name." },
+        "url": { "type": "string", "format": "uri", "description": "Homepage or API root." }
+      }
+    },
+    "statements": {
+      "type": "array",
+      "description": "The knowledge statements carried by this bundle.",
+      "items": { "$ref": "#/$defs/Statement" }
+    }
+  },
+  "$defs": {
+    "Statement": {
+      "type": "object",
+      "title": "Statement",
+      "description": "An assertion that evaluates a Proposition, with a direction and strength of support.",
+      "required": ["id", "proposition", "direction"],
+      "properties": {
+        "id": { "type": "string", "description": "Stable identifier for the statement." },
+        "direction": {
+          "type": "string",
+          "description": "Whether the statement supports, disputes, or is neutral toward the Proposition.",
+          "enum": ["supports", "neutral", "disputes"]
+        },
+        "proposition": { "$ref": "#/$defs/Proposition" }
+      }
+    },
+    "Proposition": {
+      "type": "object",
+      "title": "Proposition",
+      "description": "A possible fact about a subject, expressed as subject-predicate-object. GKS prescribes several specialized propositions (e.g. VariantPathogenicityProposition); a CustomProposition (a planned Pillar 2 escape hatch) fills the gap for propositions GKS does not prescribe.",
+      "required": ["type", "subject", "predicate", "object"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The Proposition subtype.",
+          "examples": ["VariantPathogenicityProposition", "CustomProposition"]
+        },
+        "subject": { "type": "object", "description": "The entity the Proposition is about (e.g. a variant)." },
+        "predicate": { "type": "string", "description": "The relationship asserted between subject and object.", "examples": ["isCausalFor"] },
+        "object": { "type": "object", "description": "The entity related to the subject via the predicate (e.g. a condition)." }
+      }
+    }
+  }
+}
