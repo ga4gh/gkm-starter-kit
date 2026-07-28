@@ -6,9 +6,15 @@ The **GA4GH Genomic Knowledge Standards (GKS)** are a set of open community stan
 
 ## What this Starter Kit is (and isn't)
 
-The **GKS Starter Kit** is the single community-facing entry point for the GKS ecosystem. It collects real-world vignettes — concise walk-throughs of how organizations are using GKS today — so adopters can quickly see what's possible, pick patterns they can reuse, and carry the value proposition to their own teams.
+The GKS reference libraries let you *create* and *validate* genomic knowledge objects. But they say nothing about the layer that comes next: how you **collect** that knowledge, make it **interoperable** across resources, **share** it, and **consume** it. The **GKS Starter Kit** is the single community-facing entry point that demonstrates this missing layer.
 
-It is *not* a per-product tutorial. Each GKS product has its own Quick Start Guide on its own documentation site — those are the right place to learn how to *produce* data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns.
+It does so through three pillars:
+
+1. **[Data Bundles](data/index.md)** — real content from community partners, composed from the modular GKS schemas into larger, shareable bundle documents. This is the *collect, make interoperable, and share* part.
+2. **[Python Package](library/index.md)** — a lightweight layer on top of the reference libraries that loads bundles into in-memory GKS objects, lets you explore and manipulate them, and exports back to GKS JSON. This is the *consume and build with* part.
+3. **[Vignettes](vignettes/index.md)** — real community use cases that show what a group needs the standards for, and the standards delivering it. Some build on the first two pillars; some do not.
+
+It is *not* a per-product tutorial. Each GKS product has its own **Quick Start Guide** on its own documentation site — those are the right place to learn how to *produce* data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns. (Only this GKS-level resource is a "Starter Kit"; the per-product guides are Quick Start Guides.)
 
 ## Where else to look
 
