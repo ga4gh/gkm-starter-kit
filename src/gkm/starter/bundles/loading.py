@@ -1,4 +1,4 @@
-"""Bun loading entry points."""
+"""Bundle loading entry points."""
 
 from __future__ import annotations
 
@@ -8,21 +8,21 @@ from os import PathLike
 from pathlib import Path
 from typing import IO, Any, TypeAlias
 
-from .catalog import catalog
 from .compatibility import check_gkm_version_compatibility
-from .errors import BunFormatError, BunNotFoundError
-from .models import Bun, BunCollection
+from .errors import BundleFormatError, BundleNotFoundError
+from .models import Bundle, BundleCollection
 from .references import parse_gks_values
+from .registry import registry
 
-BunSource: TypeAlias = str | PathLike[str] | IO[str] | IO[bytes]
+BundleSource: TypeAlias = str | PathLike[str] | IO[str] | IO[bytes]
 
 
 def _decode_json(source: IO[str] | IO[bytes]) -> object:
-    """Decode a JSON stream and translate parser failures to bun errors.
+    """Decode a JSON stream and translate parser failures to bundle errors.
 
     :param source: Readable text or binary JSON stream.
     :return: The decoded JSON value.
-    :raises BunFormatError: If the stream does not contain valid JSON.
+    :raises BundleFormatError: If the stream does not contain valid JSON.
     """
     try:
         return json.load(source)
@@ -30,17 +30,17 @@ def _decode_json(source: IO[str] | IO[bytes]) -> object:
         name = getattr(source, "name", None)
         location = f" in {name!s}" if name is not None else ""
         message = f"Invalid JSON{location}: {error}"
-        raise BunFormatError(message) from error
+        raise BundleFormatError(message) from error
 
 
 def _read_json(
-    source: BunSource,
+    source: BundleSource,
 ) -> tuple[object, str | None, Path | None]:
-    """Read a JSON document and determine its bun name.
+    """Read a JSON document and determine its bundle name.
 
-    :param source: Registered bun name, file path, or readable JSON stream.
+    :param source: Registered bundle name, file path, or readable JSON stream.
     :return: Decoded JSON object, inferred name, and registered schema path.
-    :raises BunNotFoundError: If ``source`` is neither a file nor a registered bun.
+    :raises BundleNotFoundError: If ``source`` is neither a file nor a registered bundle.
     """
     if hasattr(source, "read"):
         value = _decode_json(source)
@@ -56,58 +56,58 @@ def _read_json(
             return _decode_json(stream), path.stem, None
 
     if isinstance(source, str):
-        registration = catalog.get_registration(source)
+        registration = registry.get_registration(source)
         if not registration.source.is_file():
-            message = f"Bun source does not exist: {registration.source}"
-            raise BunNotFoundError(message)
+            message = f"Bundle source does not exist: {registration.source}"
+            raise BundleNotFoundError(message)
 
         with registration.source.open(encoding="utf-8") as stream:
             return _decode_json(stream), registration.name, registration.schema
 
-    message = f"Bun source does not exist: {path}"
-    raise BunNotFoundError(message)
+    message = f"Bundle source does not exist: {path}"
+    raise BundleNotFoundError(message)
 
 
 def _require_json_object(value: object, *, subject: str) -> Mapping[str, Any]:
-    """Return a decoded JSON object or raise a bun format error.
+    """Return a decoded JSON object or raise a bundle format error.
 
     :param value: Decoded JSON value.
     :param subject: Human-readable name used in an error message.
     :return: The value narrowed to a string-keyed mapping.
-    :raises BunFormatError: If ``value`` is not a JSON object.
+    :raises BundleFormatError: If ``value`` is not a JSON object.
     """
     if isinstance(value, Mapping):
         return value
 
-    message = f"A bun {subject} must be a JSON object"
-    raise BunFormatError(message)
+    message = f"A bundle {subject} must be a JSON object"
+    raise BundleFormatError(message)
 
 
-def load_bun(
-    source: BunSource,
+def load_bundle(
+    source: BundleSource,
     *,
-    schema: BunSource | None = None,
+    schema: BundleSource | None = None,
     serialization: str | None = None,
-) -> Bun:
-    """Load one bun from a registered name, JSON file, or JSON stream.
+) -> Bundle:
+    """Load one bundle from a registered name, JSON file, or JSON stream.
 
     Objects accepted by a GA4GH reference implementation are returned as its
     Pydantic models. Producer-specific structures and objects containing bundle
     references that cannot be validated independently remain mappings.
 
-    :param source: Registered bun name, file path, or readable JSON stream.
+    :param source: Registered bundle name, file path, or readable JSON stream.
     :param schema: Producer JSON Schema. A registered schema is used when omitted.
     :param serialization: Input serialization. Only ``"json"`` is supported.
         When omitted, JSON is assumed.
-    :return: The loaded bun.
-    :raises gkm.starter.buns.BunCompatibilityError: If the schema references
+    :return: The loaded bundle.
+    :raises gkm.starter.bundles.BundleCompatibilityError: If the schema references
         unsupported GKM product versions.
-    :raises BunFormatError: If the serialization or document shape is unsupported.
-    :raises BunNotFoundError: If ``source`` cannot be found.
+    :raises BundleFormatError: If the serialization or document shape is unsupported.
+    :raises BundleNotFoundError: If ``source`` cannot be found.
     """
     if serialization not in {None, "json"}:
         message = f"Unsupported serialization {serialization!r}; currently only 'json' is supported"
-        raise BunFormatError(message)
+        raise BundleFormatError(message)
 
     raw_document, name, registered_schema = _read_json(source)
 
@@ -121,7 +121,7 @@ def load_bun(
     document = _require_json_object(raw_document, subject="document")
 
     metadata = document.get("metadata", {})
-    collections: dict[str, BunCollection] = {}
+    collections: dict[str, BundleCollection] = {}
     extras: dict[str, Any] = {}
     for collection_name, values in document.items():
         if collection_name == "metadata" or not isinstance(values, Mapping):
@@ -130,9 +130,9 @@ def load_bun(
             continue
 
         parsed = parse_gks_values(values)
-        collections[collection_name] = BunCollection(collection_name, parsed)
+        collections[collection_name] = BundleCollection(collection_name, parsed)
 
-    return Bun(
+    return Bundle(
         collections,
         metadata=metadata if isinstance(metadata, Mapping) else {},
         extras=extras,
@@ -140,23 +140,23 @@ def load_bun(
     )
 
 
-def load_buns(*sources: BunSource) -> dict[str, Bun]:
-    """Load several buns and key them by their resolved names.
+def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
+    """Load several bundles and key them by their resolved names.
 
-    :param sources: Registered bun names, file paths, or readable JSON streams.
-    :return: Loaded buns keyed by name.
+    :param sources: Registered bundle names, file paths, or readable JSON streams.
+    :return: Loaded bundles keyed by name.
     :raises ValueError: If two sources resolve to the same name.
     """
-    loaded: dict[str, Bun] = {}
+    loaded: dict[str, Bundle] = {}
 
     for source in sources:
-        bun = load_bun(source)
-        key = bun.name or f"bun-{len(loaded) + 1}"
+        bundle = load_bundle(source)
+        key = bundle.name or f"bundle-{len(loaded) + 1}"
 
         if key in loaded:
-            message = f"Multiple buns resolved to the name {key!r}"
+            message = f"Multiple bundles resolved to the name {key!r}"
             raise ValueError(message)
 
-        loaded[key] = bun
+        loaded[key] = bundle
 
     return loaded

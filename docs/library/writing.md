@@ -4,12 +4,21 @@ Export a bundle when you want to save it, pass it to another tool, or share a
 processed copy with someone else. The Starter Kit keeps the producer's format,
 so existing consumers can continue to recognize its structure.
 
+!!! note "Scope of bundle export"
+
+    This page describes the Starter Kit's file-based workflow. The ability to
+    export a bundle does not make bundles required or establish them as the
+    preferred way to share all GKM data. Applications can also exchange
+    individual objects through the GKM reference implementations or query GKM
+    resources through service APIs. See [Ways to use
+    GKM](../why.md#ways-to-use-gkm) for those options.
+
 The examples use the `civic` bundle created in [Loading a bundle](loading.md).
 
-Write the bundle to a file with `bake()`:
+Write the bundle to a file with `write()`:
 
 ```python
-civic.bake("out.gks.json")
+civic.write("out.gks.json")
 ```
 
 Use `to_dict()` when another part of your application needs JSON-compatible

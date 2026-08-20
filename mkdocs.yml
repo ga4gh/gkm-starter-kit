@@ -94,13 +94,12 @@ nav:
       - Loading a bundle: library/loading.md
       - Exploring a loaded bundle: library/exploring.md
       - Saving and exporting a bundle: library/writing.md
-      - Terminology: terminology.md
       - API reference:
           - Overview: library/api/index.md
           - Bundle models: library/api/models.md
           - Loading functions: library/api/loading.md
           - GKM version compatibility: library/api/compatibility.md
-          - Named bundle catalog: library/api/catalog.md
+          - Named bundle registry: library/api/registry.md
           - Exceptions: library/api/errors.md
   - Vignettes:
       - Overview: vignettes/index.md

@@ -1,4 +1,4 @@
-"""In-memory bun containers."""
+"""In-memory bundle containers."""
 
 # ruff: noqa: ANN401
 
@@ -11,7 +11,7 @@ from typing import Any
 
 from pydantic import BaseModel
 
-from .errors import BunFormatError, BunReferenceError
+from .errors import BundleFormatError, BundleReferenceError
 
 
 def _to_json_value(value: Any) -> Any:
@@ -32,17 +32,17 @@ def _to_json_value(value: Any) -> Any:
     return value
 
 
-class BunCollection(Mapping[str, Any]):
-    """A named, keyed collection within a :class:`Bun`.
+class BundleCollection(Mapping[str, Any]):
+    """A named, keyed collection within a :class:`Bundle`.
 
-    :param name: Collection name from the bun document.
+    :param name: Collection name from the bundle document.
     :param values: Objects keyed by their identifiers.
     """
 
     def __init__(self, name: str, values: Mapping[str, Any]) -> None:
-        """Initialize a bun collection.
+        """Initialize a bundle collection.
 
-        :param name: Collection name from the bun document.
+        :param name: Collection name from the bundle document.
         :param values: Objects keyed by their identifiers.
         """
         self.name = name
@@ -76,39 +76,39 @@ class BunCollection(Mapping[str, Any]):
 
         :return: Collection name and size.
         """
-        return f"BunCollection(name={self.name!r}, size={len(self)})"
+        return f"BundleCollection(name={self.name!r}, size={len(self)})"
 
 
-class Bun(Mapping[str, BunCollection]):
+class Bundle(Mapping[str, BundleCollection]):
     """Represent a GKM Bundle in memory.
 
     :param collections: Named object collections in the bundle.
     :param metadata: Bundle format and provenance metadata.
     :param extras: Top-level values that are not object collections.
-    :param name: Registered or inferred bun name.
+    :param name: Registered or inferred bundle name.
     """
 
     def __init__(
         self,
-        collections: Mapping[str, BunCollection],
+        collections: Mapping[str, BundleCollection],
         *,
         metadata: Mapping[str, Any] | None = None,
         extras: Mapping[str, Any] | None = None,
         name: str | None = None,
     ) -> None:
-        """Initialize a bun.
+        """Initialize a bundle.
 
         :param collections: Named object collections in the bundle.
         :param metadata: Bundle format and provenance metadata.
         :param extras: Top-level values that are not object collections.
-        :param name: Registered or inferred bun name.
+        :param name: Registered or inferred bundle name.
         """
         self.name = name
         self.metadata = dict(metadata or {})
         self.collections = dict(collections)
         self.extras = dict(extras or {})
 
-    def __getitem__(self, name: str) -> BunCollection:
+    def __getitem__(self, name: str) -> BundleCollection:
         """Return a collection by name.
 
         :param name: Collection name.
@@ -134,11 +134,11 @@ class Bun(Mapping[str, BunCollection]):
     def collection_names(self) -> tuple[str, ...]:
         """Return the collection names in document order.
 
-        :return: Names of the collections exposed by this bun.
+        :return: Names of the collections exposed by this bundle.
         """
         return tuple(self.collections)
 
-    def __getattr__(self, name: str) -> BunCollection:
+    def __getattr__(self, name: str) -> BundleCollection:
         """Provide attribute access to named collections.
 
         :param name: Collection name.
@@ -150,7 +150,7 @@ class Bun(Mapping[str, BunCollection]):
         except KeyError as error:
             raise AttributeError(name) from error
 
-    def collection(self, name: str) -> BunCollection:
+    def collection(self, name: str) -> BundleCollection:
         """Return a collection by name.
 
         :param name: Collection name.
@@ -160,15 +160,15 @@ class Bun(Mapping[str, BunCollection]):
         return self.collections[name]
 
     def resolve(self, pointer: str) -> Any:
-        """Resolve an RFC 6901 JSON Pointer into this bun.
+        """Resolve an RFC 6901 JSON Pointer into this bundle.
 
-        :param pointer: Bun-local pointer beginning with ``#/``.
+        :param pointer: Bundle-local pointer beginning with ``#/``.
         :return: The referenced value.
-        :raises BunReferenceError: If the pointer is invalid or cannot be resolved.
+        :raises BundleReferenceError: If the pointer is invalid or cannot be resolved.
         """
         if not pointer.startswith("#/"):
-            message = f"Expected a bun-local JSON Pointer, got {pointer!r}"
-            raise BunReferenceError(message)
+            message = f"Expected a bundle-local JSON Pointer, got {pointer!r}"
+            raise BundleReferenceError(message)
 
         value: Any = self
 
@@ -176,7 +176,7 @@ class Bun(Mapping[str, BunCollection]):
             part = raw_part.replace("~1", "/").replace("~0", "~")
 
             try:
-                if isinstance(value, Bun):
+                if isinstance(value, Bundle):
                     value = value[part]
                 elif isinstance(value, (list, tuple)):
                     value = value[int(part)]
@@ -191,23 +191,12 @@ class Bun(Mapping[str, BunCollection]):
                 TypeError,
                 ValueError,
             ) as error:
-                message = f"Could not resolve bun reference {pointer!r}"
-                raise BunReferenceError(message) from error
+                message = f"Could not resolve bundle reference {pointer!r}"
+                raise BundleReferenceError(message) from error
 
         return value
 
-    def unwrap(self, pointer: str) -> Any:
-        """Unwrap a bun-local reference and return its target.
-
-        ``unwrap`` is the bakery-themed equivalent of :meth:`resolve`.
-
-        :param pointer: Bun-local pointer beginning with ``#/``.
-        :return: The referenced value.
-        :raises BunReferenceError: If the pointer is invalid or cannot be resolved.
-        """
-        return self.resolve(pointer)
-
-    def _unwrap_value(self, value: Any, *, trail: tuple[str, ...]) -> Any:
+    def _dereference_value(self, value: Any, *, trail: tuple[str, ...]) -> Any:
         """Replace local pointers below a value with inline values.
 
         :param value: Value to traverse.
@@ -219,7 +208,7 @@ class Bun(Mapping[str, BunCollection]):
         if isinstance(value, str) and value.startswith("#/"):
             if value in trail:
                 return value
-            return self._unwrap_value(
+            return self._dereference_value(
                 self.resolve(value),
                 trail=(*trail, value),
             )
@@ -229,43 +218,35 @@ class Bun(Mapping[str, BunCollection]):
 
         if isinstance(value, Mapping):
             return {
-                key: self._unwrap_value(item, trail=trail)
+                key: self._dereference_value(item, trail=trail)
                 for key, item in value.items()
             }
 
         if isinstance(value, list):
-            return [self._unwrap_value(item, trail=trail) for item in value]
+            return [self._dereference_value(item, trail=trail) for item in value]
 
         return value
 
-    def unwrap_all(self, value: Any | None = None) -> Any:
+    def dereference(self, value: Any | None = None) -> Any:
         """Return a value with all reachable local references replaced inline.
 
-        The complete bun is used when ``value`` is omitted. The bun itself remains
+        The complete bundle is used when ``value`` is omitted. The bundle itself remains
         referenced.
 
         Cycle-closing pointers remain referenced because JSON cannot represent a
         cyclic inline value.
 
-        :param value: Value from this bun to unwrap, or ``None`` for the complete bun.
+        :param value: Value from this bundle to dereference, or ``None`` for the
+            complete bundle.
         :return: A JSON-compatible, inline representation of the value.
         """
         target = self.to_dict() if value is None else value
-        return self._unwrap_value(target, trail=())
-
-    def dereference(self) -> dict[str, Any]:
-        """Return the complete bun with local references replaced inline.
-
-        ``dereference`` is the plain-language equivalent of :meth:`unwrap_all`.
-
-        :return: A JSON-compatible, inline representation of the bun.
-        """
-        return self.unwrap_all()
+        return self._dereference_value(target, trail=())
 
     def to_dict(self) -> dict[str, Any]:
-        """Serialize the bun to JSON-compatible Python values.
+        """Serialize the bundle to JSON-compatible Python values.
 
-        :return: The complete bun document.
+        :return: The complete bundle document.
         """
         document = {
             name: _to_json_value(collection)
@@ -286,42 +267,26 @@ class Bun(Mapping[str, BunCollection]):
         serialization: str = "json",
         indent: int | None = 2,
     ) -> None:
-        """Write the bun to a file.
+        """Write the bundle to a file.
 
         :param destination: Output file path.
         :param serialization: Output serialization. Only ``"json"`` is supported.
         :param indent: Number of spaces used to indent JSON, or ``None`` for compact
             output.
-        :raises BunFormatError: If ``serialization`` is unsupported.
+        :raises BundleFormatError: If ``serialization`` is unsupported.
         """
         if serialization != "json":
             message = f"Unsupported serialization {serialization!r}; expected 'json'"
-            raise BunFormatError(message)
+            raise BundleFormatError(message)
 
         Path(destination).write_text(
             json.dumps(self.to_dict(), indent=indent) + "\n",
             encoding="utf-8",
         )
 
-    def bake(
-        self,
-        destination: str | Path,
-        *,
-        indent: int | None = 2,
-    ) -> None:
-        """Bake the bun into a JSON file.
-
-        ``bake`` is the bakery-themed equivalent of :meth:`write`.
-
-        :param destination: Output file path.
-        :param indent: Number of spaces used to indent JSON, or ``None`` for compact
-            output.
-        """
-        self.write(destination, serialization="json", indent=indent)
-
     def __repr__(self) -> str:
-        """Return a concise representation of the bun.
+        """Return a concise representation of the bundle.
 
-        :return: Bun name and collection count.
+        :return: Bundle name and collection count.
         """
-        return f"Bun(name={self.name!r}, collections={len(self)})"
+        return f"Bundle(name={self.name!r}, collections={len(self)})"

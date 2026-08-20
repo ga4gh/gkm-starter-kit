@@ -13,7 +13,7 @@ from ga4gh.core import CORE_VERSION
 from ga4gh.va_spec import VASPEC_VERSION
 from ga4gh.vrs import VRS_VERSION
 
-from .errors import BunCompatibilityError
+from .errors import BundleCompatibilityError
 
 _W3ID_SCHEMA_REFERENCE = re.compile(
     r"^https://w3id\.org/ga4gh/schema/"
@@ -66,7 +66,7 @@ def check_gkm_version_compatibility(schema: Mapping[str, Any]) -> None:
     References outside the versioned GA4GH W3ID schema namespace are ignored.
 
     :param schema: Producer JSON Schema to inspect.
-    :raises BunCompatibilityError: If a GKM schema version does not match the
+    :raises BundleCompatibilityError: If a GKM schema version does not match the
         installed reference implementation.
     """
     mismatches: set[tuple[str, str, str]] = set()
@@ -89,4 +89,4 @@ def check_gkm_version_compatibility(schema: Mapping[str, Any]) -> None:
             for product, referenced, supported in sorted(mismatches)
         )
         message = f"Incompatible GKM schema versions: {details}"
-        raise BunCompatibilityError(message)
+        raise BundleCompatibilityError(message)

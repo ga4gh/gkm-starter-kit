@@ -2,13 +2,13 @@
 
 from importlib.metadata import PackageNotFoundError, version
 
-from . import buns
-from .buns import (
-    Bun,
-    BunCollection,
+from . import bundles
+from .bundles import (
+    Bundle,
+    BundleCollection,
     check_gkm_version_compatibility,
-    load_bun,
-    load_buns,
+    load_bundle,
+    load_bundles,
     supported_gkm_versions,
 )
 
@@ -20,11 +20,11 @@ finally:
     del version, PackageNotFoundError
 
 __all__ = [
-    "Bun",
-    "BunCollection",
-    "buns",
+    "Bundle",
+    "BundleCollection",
+    "bundles",
     "check_gkm_version_compatibility",
-    "load_bun",
-    "load_buns",
+    "load_bundle",
+    "load_bundles",
     "supported_gkm_versions",
 ]

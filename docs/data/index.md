@@ -42,7 +42,7 @@ domain while using shared GKM models.
     a partner may offer both.
 
     This service registration is a distribution concept. It is distinct from
-    the Python package's local catalog, which gives bundle files short names
+    the Python package's local registry, which gives bundle files short names
     for loading.
 
 ## Example bundles

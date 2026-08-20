@@ -43,19 +43,19 @@ assert isinstance(sequence_reference, SequenceReference)
 ## Follow relationships
 
 Objects in a bundle can link to one another with local JSON Pointers. Use
-`unwrap()` to follow one link:
+`resolve()` to follow one link:
 
 ```python
-proposition = civic.unwrap(
+proposition = civic.resolve(
     civic.assertion["civic.aid:9"]["proposition"]
 )
 ```
 
-Use `unwrap_all()` when you need a JSON-compatible view with all reachable
+Use `dereference()` when you need a JSON-compatible view with all reachable
 local links expanded:
 
 ```python
-complete_proposition = civic.unwrap_all(proposition)
+complete_proposition = civic.dereference(proposition)
 ```
 
 The original bundle remains unchanged. External identifiers are not fetched.

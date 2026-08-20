@@ -28,8 +28,7 @@ implementations are:
 
 ## The three pillars
 
-GKM defines individual knowledge objects, but it does not require one dataset
-layout. The Starter Kit builds on GKM through three pillars:
+The Starter Kit builds on GKM through three pillars:
 
 1. **[Data Bundles](data/index.md)** package real GKM data from community
    partners for others to use.
@@ -37,5 +36,13 @@ layout. The Starter Kit builds on GKM through three pillars:
    while preserving each producer's names and organization.
 3. **[Vignettes](vignettes/index.md)** show how communities put GKM standards
    to work on real problems.
+
+!!! important "Bundles are optional in GKM"
+
+    A GKM bundle is a producer-defined JSON document that packages related GKM
+    objects. Bundles are not required to use GKM: applications can work with
+    individual objects through the reference implementations above, and
+    services can expose their own APIs. Bundles are, however, the input and
+    output format of the Starter Kit Python package.
 
 Next, read [Why GKM and the Starter Kit matter](why.md).

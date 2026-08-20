@@ -9,7 +9,7 @@ import mkdocs_gen_files
 from scripts.bundle_examples import BUNDLE_OUTPUT_DIR, discover_example_paths
 
 SOURCE_DIR = Path("notebooks/civic")
-NOTEBOOK = SOURCE_DIR / "explore-civic-buns.ipynb"
+NOTEBOOK = SOURCE_DIR / "explore-civic-bundles.ipynb"
 NOTEBOOK_PAGE = Path("library/civic-notebook.md")
 
 
@@ -39,7 +39,7 @@ def _render_notebook() -> str:
     source_note = (
         '!!! info "Complete workflow"\n\n'
         "    This notebook is the end-to-end example: it locates the CIViC "
-        "files, checks compatibility, loads two buns, inspects collections, "
+        "files, checks compatibility, loads two bundles, inspects collections, "
         "works with typed GKM objects, follows references, and compares "
         "assertions. The other Python pages are focused guides to individual "
         "capabilities.\n\n"

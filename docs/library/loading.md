@@ -1,8 +1,11 @@
 # Loading a bundle
 
-`load_bun()` loads a JSON bundle and makes its collections available in
+`load_bundle()` loads a JSON bundle and makes its collections available in
 Python. Provide the producer's JSON Schema so the Starter Kit can check that
 its GKM versions match the installed reference libraries.
+
+The returned `Bundle` is the bundle's in-memory representation. In the examples
+below, `civic` refers to that loaded bundle.
 
 !!! info "CIViC example files"
 
@@ -14,19 +17,19 @@ its GKM versions match the installed reference libraries.
 ```python
 from gkm import starter
 
-civic = starter.load_bun(
+civic = starter.load_bundle(
     "notebooks/civic/bundles/civic-aid-9-bundle.json",
     schema="notebooks/civic/bundles/civic-gks-bundle-v0.1.0.schema.json",
 )
 ```
 
 Bundles and schemas can come from local files, readable JSON streams, or names
-registered in the bundle catalog. A registration can keep the data, schema,
+registered in the bundle registry. A registration can keep the data, schema,
 and producer information together under one short name.
 
 ## GKM version compatibility
 
-When a schema is provided, `load_bun()` checks its versioned GA4GH W3ID
+When a schema is provided, `load_bundle()` checks its versioned GA4GH W3ID
 references against the installed GKM libraries. This prevents the data from
 being interpreted with incompatible models. It is not full JSON Schema
 validation.
@@ -39,5 +42,5 @@ starter.supported_gkm_versions()
 ```
 
 See the [Loading API](api/loading.md), [Compatibility
-API](api/compatibility.md), and [Catalog API](api/catalog.md) for accepted
+API](api/compatibility.md), and [Registry API](api/registry.md) for accepted
 inputs, registration, and errors.

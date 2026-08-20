@@ -1,4 +1,4 @@
-"""Catalog of named buns."""
+"""Registry of named bundles."""
 
 from __future__ import annotations
 
@@ -8,18 +8,18 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-from .errors import BunNotFoundError
+from .errors import BundleNotFoundError
 
 
 @dataclass(frozen=True, slots=True)
-class BunRegistration:
-    """Associate a bun name with its source and schema.
+class BundleRegistration:
+    """Associate a bundle name with its source and schema.
 
-    :param name: Public name used to load the bun.
+    :param name: Public name used to load the bundle.
     :param source: Path to its serialized document.
     :param schema: Path to its producer JSON Schema, when available.
     :param producer: Organization that produced the data, when known.
-    :param description: Short description of the bun, when available.
+    :param description: Short description of the bundle, when available.
     """
 
     name: str
@@ -29,47 +29,49 @@ class BunRegistration:
     description: str | None = None
 
 
-class BunCatalog:
-    """Mutable catalog of named bun sources."""
+class BundleRegistry:
+    """Mutable registry of named bundle sources."""
 
     def __init__(self) -> None:
-        """Create an empty bun catalog."""
-        self._registrations: dict[str, BunRegistration] = {}
+        """Create an empty bundle registry."""
+        self._registrations: dict[str, BundleRegistration] = {}
 
-    def register(self, registration: BunRegistration, *, replace: bool = False) -> None:
-        """Register a named bun.
+    def register(
+        self, registration: BundleRegistration, *, replace: bool = False
+    ) -> None:
+        """Register a named bundle.
 
-        :param registration: Bun name and source information.
+        :param registration: Bundle name and source information.
         :param replace: Replace an existing registration with the same name.
         :raises ValueError: If the name exists and ``replace`` is false.
         """
         if registration.name in self._registrations and not replace:
-            message = f"Bun {registration.name!r} is already registered"
+            message = f"Bundle {registration.name!r} is already registered"
             raise ValueError(message)
 
         self._registrations[registration.name] = registration
 
     def registered_names(self) -> tuple[str, ...]:
-        """Return registered bun names.
+        """Return registered bundle names.
 
         :return: Registered names in alphabetical order.
         """
         return tuple(sorted(self._registrations))
 
-    def get_registration(self, name: str) -> BunRegistration:
-        """Return a bun registration by name.
+    def get_registration(self, name: str) -> BundleRegistration:
+        """Return a bundle registration by name.
 
-        :param name: Registered bun name.
+        :param name: Registered bundle name.
         :return: The matching registration.
-        :raises BunNotFoundError: If ``name`` is not registered.
+        :raises BundleNotFoundError: If ``name`` is not registered.
         """
         try:
             return self._registrations[name]
         except KeyError as error:
             available = ", ".join(self.registered_names()) or "none"
-            message = f"Unknown bun {name!r}. Available buns: {available}."
+            message = f"Unknown bundle {name!r}. Available bundles: {available}."
 
-            raise BunNotFoundError(message) from error
+            raise BundleNotFoundError(message) from error
 
 
-catalog = BunCatalog()
+registry = BundleRegistry()
