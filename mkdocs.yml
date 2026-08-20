@@ -1,5 +1,5 @@
-site_name: GKS Starter Kit
-site_description: Real-world walk-throughs of high-value uses of the GA4GH Genomic Knowledge Standards
+site_name: GKM Starter Kit
+site_description: Tools and examples for the GA4GH Genomic Knowledge Model
 site_url: https://ga4gh.github.io/gks-starter-kit/
 repo_url: https://github.com/ga4gh/gks-starter-kit
 repo_name: ga4gh/gks-starter-kit
@@ -9,9 +9,9 @@ theme:
   name: material
   features:
     - navigation.sections
-    - navigation.expand
     - content.action.edit
     - content.code.copy
+    - content.tabs.link
   palette:
     - scheme: default
       primary: indigo
@@ -29,13 +29,30 @@ theme:
 extra_css:
   - assets/css/extra.css
 
+extra_javascript:
+  - assets/js/external-links.js
+
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: sphinx
+            # Exclude private/protected names while retaining public Python
+            # protocol methods such as __getitem__ and __iter__.
+            filters: ["!^_[^_]"]
+            inherited_members: false
+            members_order: source
+            show_signature_annotations: true
   - macros:
       module_name: scripts
   - gen-files:
       scripts:
         - scripts/gen_filter_pages.py
+        - scripts/gen_notebook_files.py
+        - scripts/gen_schema_pages.py
 
 markdown_extensions:
   - admonition
@@ -44,6 +61,14 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - tables
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.snippets:
       base_path: ["."]
       check_paths: true
@@ -53,11 +78,38 @@ exclude_docs: |
   vignettes/_template/
   vignettes/patterns.yml
 
+not_in_nav: |
+  vignettes/*/vignette.md
+
 nav:
   - Home: index.md
-  - Vignettes:
-      - vignettes/index.md
-  - Contribute: contribute.md
   - About: about.md
+  - Why the Starter Kit matters: why.md
+  - Data Bundles:
+      - Overview: data/index.md
+      - Bundle formats and JSON Schema: data/formats.md
+  - Python Package:
+      - Overview: library/index.md
+      - CIViC walkthrough: library/civic-notebook.md
+      - Loading a bundle: library/loading.md
+      - Exploring a loaded bundle: library/exploring.md
+      - Saving and exporting a bundle: library/writing.md
+      - Terminology: terminology.md
+      - API reference:
+          - Overview: library/api/index.md
+          - Bundle models: library/api/models.md
+          - Loading functions: library/api/loading.md
+          - GKM version compatibility: library/api/compatibility.md
+          - Named bundle catalog: library/api/catalog.md
+          - Exceptions: library/api/errors.md
+  - Vignettes:
+      - Overview: vignettes/index.md
+      - Browse by product:
+          - VRS: vignettes/by-product/vrs/index.md
+      - Browse by use pattern:
+          - Cross-source variant harmonization: vignettes/by-pattern/cross-source-variant-harmonization/index.md
+      - Browse by implementer:
+          - BRCA Exchange: vignettes/by-implementer/brca-exchange/index.md
+  - Contribute: contribute.md
 
 strict: true

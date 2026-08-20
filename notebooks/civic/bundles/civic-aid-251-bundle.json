@@ -1,0 +1,517 @@
+{
+  "sequenceReference": {
+    "SQ.AsXvWL1-2i5U_buw6_niVIxD6zTbAuS6": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.AsXvWL1-2i5U_buw6_niVIxD6zTbAuS6"
+    },
+    "SQ.StlJo3M4b8cS253ufe9nPpWqQHBDOSPs": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.StlJo3M4b8cS253ufe9nPpWqQHBDOSPs"
+    },
+    "SQ.pwfCqZUhvQylMJzTz6iZcLLz2Zh2jE1O": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.pwfCqZUhvQylMJzTz6iZcLLz2Zh2jE1O"
+    }
+  },
+  "location": {
+    "ga4gh:SL.Nll8Z8RN1jUIH9IAInO_9WEZSHMpnFNU": {
+      "id": "ga4gh:SL.Nll8Z8RN1jUIH9IAInO_9WEZSHMpnFNU",
+      "type": "SequenceLocation",
+      "digest": "Nll8Z8RN1jUIH9IAInO_9WEZSHMpnFNU",
+      "sequenceReference": "#/sequenceReference/SQ.StlJo3M4b8cS253ufe9nPpWqQHBDOSPs",
+      "start": 123,
+      "end": 124,
+      "sequence": "P"
+    },
+    "ga4gh:SL.XQIr81u-Uj8g-c_SLHKIqVg3I1PWYHF2": {
+      "id": "ga4gh:SL.XQIr81u-Uj8g-c_SLHKIqVg3I1PWYHF2",
+      "type": "SequenceLocation",
+      "digest": "XQIr81u-Uj8g-c_SLHKIqVg3I1PWYHF2",
+      "sequenceReference": "#/sequenceReference/SQ.AsXvWL1-2i5U_buw6_niVIxD6zTbAuS6",
+      "start": 66436823,
+      "end": 66436824,
+      "sequence": "C"
+    },
+    "ga4gh:SL.dlQ90wb_AMxqX1yCx04L-j3FdmWtKI8m": {
+      "id": "ga4gh:SL.dlQ90wb_AMxqX1yCx04L-j3FdmWtKI8m",
+      "type": "SequenceLocation",
+      "digest": "dlQ90wb_AMxqX1yCx04L-j3FdmWtKI8m",
+      "sequenceReference": "#/sequenceReference/SQ.pwfCqZUhvQylMJzTz6iZcLLz2Zh2jE1O",
+      "start": 805,
+      "end": 806,
+      "sequence": "C"
+    }
+  },
+  "variant": {
+    "civic.vid:82": {
+      "protein": {
+        "ga4gh:VA.gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u": {
+          "id": "ga4gh:VA.gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u",
+          "type": "Allele",
+          "name": "MAP2K1 P124S",
+          "digest": "gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u",
+          "expressions": [
+            {
+              "syntax": "hgvs.p",
+              "value": "NP_002746.1:p.Pro124Ser"
+            }
+          ],
+          "location": "#/location/ga4gh:SL.Nll8Z8RN1jUIH9IAInO_9WEZSHMpnFNU",
+          "state": {
+            "type": "LiteralSequenceExpression",
+            "sequence": "S"
+          }
+        }
+      },
+      "genomic": {
+        "ga4gh:VA.5tTLvjSAjWhE0tW_z0aAzsk5WlWKZrCR": {
+          "id": "ga4gh:VA.5tTLvjSAjWhE0tW_z0aAzsk5WlWKZrCR",
+          "type": "Allele",
+          "name": "NC_000015.9:g.66729162C>T",
+          "digest": "5tTLvjSAjWhE0tW_z0aAzsk5WlWKZrCR",
+          "expressions": [
+            {
+              "syntax": "hgvs.g",
+              "value": "NC_000015.9:g.66729162C>T"
+            }
+          ],
+          "location": "#/location/ga4gh:SL.XQIr81u-Uj8g-c_SLHKIqVg3I1PWYHF2",
+          "state": {
+            "type": "LiteralSequenceExpression",
+            "sequence": "T"
+          }
+        }
+      },
+      "coding": {
+        "ga4gh:VA.fcZSo_OetJhIFnc6fx5LC6oPVQZZA9MR": {
+          "id": "ga4gh:VA.fcZSo_OetJhIFnc6fx5LC6oPVQZZA9MR",
+          "type": "Allele",
+          "name": "NM_002755.3:c.370C>T",
+          "digest": "fcZSo_OetJhIFnc6fx5LC6oPVQZZA9MR",
+          "expressions": [
+            {
+              "syntax": "hgvs.c",
+              "value": "NM_002755.3:c.370C>T"
+            }
+          ],
+          "location": "#/location/ga4gh:SL.dlQ90wb_AMxqX1yCx04L-j3FdmWtKI8m",
+          "state": {
+            "type": "LiteralSequenceExpression",
+            "sequence": "T"
+          }
+        }
+      }
+    }
+  },
+  "feature": {
+    "civic.gid:31": {
+      "id": "civic.gid:31",
+      "extensions": [
+        {
+          "name": "aliases",
+          "value": [
+            "CFC3",
+            "MAP2K1",
+            "MAPKK1",
+            "MEK1",
+            "MEL",
+            "MKK1",
+            "PRKMK1"
+          ]
+        },
+        {
+          "name": "description",
+          "value": "MAP2K1 is a dual-specificity kinase known for it's involvement in the ERK pathway by activation of ERK1 and ERK2. MAP2K1 activating mutations have been observed in a number of cancers including ovarian,  melanoma and lung. These activating mutations are generally found in the N-terminal negative regulatory region or the ATP-binding region of the N-terminal lobe.  Inhibitors of MEK genes have been shown to inhibit tumor growth in these cases."
+        }
+      ],
+      "conceptType": "Gene",
+      "name": "MAP2K1",
+      "mappings": [
+        {
+          "coding": {
+            "id": "ncbigene:5604",
+            "system": "https://www.ncbi.nlm.nih.gov/gene/",
+            "code": "5604"
+          },
+          "relation": "exactMatch"
+        }
+      ]
+    }
+  },
+  "molecularProfile": {
+    "civic.mpid:82": {
+      "id": "civic.mpid:82",
+      "type": "CategoricalVariant",
+      "name": "MAP2K1 P124S",
+      "description": "MAP2K1 P124S is a recurrent mutation in melanoma, and is seen in bladder and colon cancer to a lesser degree. The P124S mutation has been shown to contribute to AZD6244 resistance in melanoma cell lines, but considerably less so than its Q56P counterpart.",
+      "aliases": [
+        "PRO124SER"
+      ],
+      "extensions": [
+        {
+          "name": "molecularProfileScore",
+          "value": 7.0
+        },
+        {
+          "name": "hgvsDescriptions",
+          "value": [
+            "ENST00000307102.5:c.370C>T",
+            "NC_000015.9:g.66729162C>T",
+            "NM_002755.3:c.370C>T",
+            "NP_002746.1:p.Pro124Ser"
+          ]
+        },
+        {
+          "name": "maneSelectTranscript",
+          "value": "ENST00000307102.10:c.370C>T"
+        },
+        {
+          "name": "representativeVariantCoordinates",
+          "value": {
+            "chromosome": "15",
+            "start": 66729162,
+            "stop": 66729162,
+            "reference_bases": "C",
+            "variant_bases": "T",
+            "ensembl_version": 75,
+            "representative_transcript": "ENST00000307102.5",
+            "reference_build": "GRCh37",
+            "type": "coordinates"
+          }
+        },
+        {
+          "name": "categoricalVariationType",
+          "value": "ProteinSequenceConsequence"
+        }
+      ],
+      "members": [
+        "#/variant/civic.vid:82/genomic/ga4gh:VA.5tTLvjSAjWhE0tW_z0aAzsk5WlWKZrCR",
+        "#/variant/civic.vid:82/coding/ga4gh:VA.fcZSo_OetJhIFnc6fx5LC6oPVQZZA9MR",
+        "#/variant/civic.vid:82/protein/ga4gh:VA.gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u"
+      ],
+      "constraints": [
+        {
+          "type": "DefiningAlleleConstraint",
+          "allele": "#/variant/civic.vid:82/protein/ga4gh:VA.gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u",
+          "relations": [
+            {
+              "primaryCoding": {
+                "system": "ga4gh-gks-term:allele-relation",
+                "code": "liftover_to"
+              }
+            },
+            {
+              "primaryCoding": {
+                "system": "http://www.sequenceontology.org",
+                "code": "translation_of"
+              }
+            }
+          ]
+        }
+      ],
+      "mappings": [
+        {
+          "coding": "#/molecularProfile/civic.mpid:82",
+          "relation": "exactMatch"
+        },
+        {
+          "coding": {
+            "id": "civic.vid:82",
+            "extensions": [
+              {
+                "name": "subtype",
+                "value": "gene_variant"
+              },
+              {
+                "name": "variantTypes",
+                "value": [
+                  {
+                    "coding": {
+                      "id": "civic.variant_type:47",
+                      "name": "Missense Variant",
+                      "system": "http://www.sequenceontology.org/browser/current_svn/term/",
+                      "code": "SO:0001583"
+                    },
+                    "relation": "exactMatch"
+                  }
+                ]
+              }
+            ],
+            "name": "P124S",
+            "system": "https://civicdb.org/links/variant/",
+            "code": "82"
+          },
+          "relation": "exactMatch"
+        },
+        {
+          "coding": {
+            "id": "clingen.allele:CA16602456",
+            "system": "https://reg.clinicalgenome.org/redmine/projects/registry/genboree_registry/by_canonicalid?canonicalid=",
+            "code": "CA16602456"
+          },
+          "relation": "relatedMatch"
+        },
+        {
+          "coding": {
+            "id": "clinvar:375981",
+            "system": "https://www.ncbi.nlm.nih.gov/clinvar/variation/",
+            "code": "375981"
+          },
+          "relation": "relatedMatch"
+        }
+      ]
+    }
+  },
+  "disease": {
+    "civic.did:216": {
+      "id": "civic.did:216",
+      "conceptType": "Disease",
+      "name": "Cancer",
+      "mappings": [
+        {
+          "coding": {
+            "system": "https://disease-ontology.org/?id=",
+            "code": "DOID:162"
+          },
+          "relation": "exactMatch"
+        }
+      ]
+    }
+  },
+  "phenotype": {},
+  "conditionSet": {},
+  "therapy": {},
+  "therapyGroup": {},
+  "variantOrigin": {
+    "civic.variantOrigin:SOMATIC": {
+      "id": "civic.variantOrigin:SOMATIC",
+      "name": "somatic",
+      "mappings": [
+        {
+          "coding": {
+            "system": "https://civicdb.org",
+            "code": "SOMATIC",
+            "iris": [
+              "https://civic.readthedocs.io/en/latest/model/evidence/origin.html"
+            ]
+          },
+          "relation": "exactMatch"
+        }
+      ]
+    }
+  },
+  "source": {
+    "civic.sid:5629": {
+      "id": "civic.sid:5629",
+      "type": "Document",
+      "name": "Nikolaev et al., 2011",
+      "title": "Exome sequencing identifies recurrent somatic MAP2K1 and MAP2K2 mutations in melanoma.",
+      "urls": [
+        "https://civicdb.org/links/evidence/12986",
+        "https://civicdb.org/links/source/5629",
+        "http://www.ncbi.nlm.nih.gov/pubmed/22197931"
+      ],
+      "pmid": "22197931"
+    },
+    "pmid:35101336": {
+      "id": "pmid:35101336",
+      "type": "Document",
+      "name": "Horak et al., 2022, Genet Med.",
+      "title": "Standards for the classification of pathogenicity of somatic variants in cancer (oncogenicity): Joint recommendations of Clinical Genome Resource (ClinGen), Cancer Genomics Consortium (CGC), and Variant Interpretation for Cancer Consortium (VICC)",
+      "urls": [
+        "https://doi.org/10.1016/j.gim.2022.01.001",
+        "https://pubmed.ncbi.nlm.nih.gov/35101336/"
+      ],
+      "doi": "10.1016/j.gim.2022.01.001",
+      "pmid": "35101336"
+    }
+  },
+  "method": {},
+  "organization": {},
+  "proposition": {
+    "civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4": {
+      "id": "civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4",
+      "type": "VariantOncogenicityProposition",
+      "subjectVariant": "#/molecularProfile/civic.mpid:82",
+      "geneContextQualifier": "#/feature/civic.gid:31",
+      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC",
+      "predicate": "isOncogenicFor",
+      "objectTumorType": "#/disease/civic.did:216"
+    }
+  },
+  "evidence": {},
+  "assertion": {
+    "civic.aid:251": {
+      "id": "civic.aid:251",
+      "type": "Statement",
+      "description": "MAP2K1 P124S causes increased colony formation and increased pERK/ERK ratio (civic.eid:12986, OS2). In cancerhotspots.org there are more than 10 (15) samples with the same amino acid change and less than 50 (25) samples with a somatic variant at the same amino acid position (OM3). The variant is absent in gnomAD database (v4.1.0) (OP4). Together these criteria indicate that P124S is likely oncogenic, with a score of 7. Variant classification was done using ClinGen Somatic MAPK/ERK pathway SC-VCEP guidelines.",
+      "specifiedBy": {
+        "type": "Method",
+        "name": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+        "methodType": "guideline",
+        "reportedIn": "#/source/pmid:35101336"
+      },
+      "reportedIn": [
+        "https://civicdb.org/links/assertion/251",
+        "#/source/civic.sid:5629"
+      ],
+      "proposition": "#/proposition/civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4",
+      "direction": "supports",
+      "strength": {
+        "primaryCoding": {
+          "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+          "code": "likely"
+        }
+      },
+      "classification": {
+        "primaryCoding": {
+          "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+          "code": "likely oncogenic"
+        }
+      },
+      "hasEvidenceLines": [
+        {
+          "type": "EvidenceLine",
+          "specifiedBy": {
+            "type": "Method",
+            "name": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+            "methodType": "functional_assay",
+            "reportedIn": "#/source/pmid:35101336"
+          },
+          "directionOfEvidenceProvided": "supports",
+          "strengthOfEvidenceProvided": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "strong"
+            }
+          },
+          "scoreOfEvidenceProvided": 4,
+          "evidenceOutcome": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "OS2"
+            }
+          }
+        },
+        {
+          "type": "EvidenceLine",
+          "specifiedBy": {
+            "type": "Method",
+            "name": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+            "methodType": "somatic_hotspot_recurrence",
+            "reportedIn": "#/source/pmid:35101336"
+          },
+          "directionOfEvidenceProvided": "supports",
+          "strengthOfEvidenceProvided": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "moderate"
+            }
+          },
+          "scoreOfEvidenceProvided": 2,
+          "evidenceOutcome": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "OM3"
+            }
+          }
+        },
+        {
+          "type": "EvidenceLine",
+          "specifiedBy": {
+            "type": "Method",
+            "name": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+            "methodType": "population_frequency",
+            "reportedIn": "#/source/pmid:35101336"
+          },
+          "directionOfEvidenceProvided": "supports",
+          "strengthOfEvidenceProvided": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "supporting"
+            }
+          },
+          "scoreOfEvidenceProvided": 1,
+          "evidenceOutcome": {
+            "primaryCoding": {
+              "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+              "code": "OP4"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "metadata": {
+    "VASpecPythonVersion": "0.5.0a4.dev7+gdaa80e6e8",
+    "createdAt": "2026-08-19",
+    "bundleFormat": "civic-gks-bundle",
+    "bundleFormatVersion": "0.1.0",
+    "statistics": {
+      "collections": {
+        "sequenceReference": {
+          "count": 3
+        },
+        "location": {
+          "count": 3,
+          "types": {
+            "SequenceLocation": 3
+          }
+        },
+        "variant": {
+          "count": 1,
+          "types": {
+            "Allele": 3
+          }
+        },
+        "feature": {
+          "count": 1
+        },
+        "molecularProfile": {
+          "count": 1
+        },
+        "disease": {
+          "count": 1
+        },
+        "phenotype": {
+          "count": 0
+        },
+        "conditionSet": {
+          "count": 0
+        },
+        "therapy": {
+          "count": 0
+        },
+        "therapyGroup": {
+          "count": 0
+        },
+        "variantOrigin": {
+          "count": 1
+        },
+        "source": {
+          "count": 2
+        },
+        "method": {
+          "count": 0
+        },
+        "organization": {
+          "count": 0
+        },
+        "proposition": {
+          "count": 1,
+          "types": {
+            "VariantOncogenicityProposition": 1
+          }
+        },
+        "evidence": {
+          "count": 0
+        },
+        "assertion": {
+          "count": 1
+        }
+      }
+    }
+  },
+  "failedAssertionIds": [],
+  "errors": []
+}

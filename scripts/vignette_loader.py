@@ -6,6 +6,7 @@ single source of truth.
 """
 
 from pathlib import Path
+
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -13,6 +14,7 @@ VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
 PATTERNS_YML = VIGNETTES_DIR / "patterns.yml"
 TEMPLATE_FOLDER = "_template"
 FRONTMATTER_DELIM = "---"
+FRONTMATTER_PART_COUNT = 3
 
 REQUIRED_FIELDS = (
     "title",
@@ -32,7 +34,7 @@ def parse_frontmatter(text: str) -> dict | None:
     if not text.startswith(FRONTMATTER_DELIM):
         return None
     parts = text.split(FRONTMATTER_DELIM, 2)
-    if len(parts) < 3:
+    if len(parts) < FRONTMATTER_PART_COUNT:
         return None
     try:
         meta = yaml.safe_load(parts[1])
@@ -65,7 +67,8 @@ def _validate_vignette(meta: dict, source: Path) -> None:
     label = meta.get("title") or source.parent.name
 
     def fail(problem: str) -> None:
-        raise ValueError(f"{label} ({rel}): {problem}")
+        msg = f"{label} ({rel}): {problem}"
+        raise ValueError(msg)
 
     for field in REQUIRED_FIELDS:
         if field not in meta or meta[field] in (None, "", []):
@@ -81,9 +84,7 @@ def _validate_vignette(meta: dict, source: Path) -> None:
             fail(f"'products[{i}]' is missing required key 'name'")
 
     if meta["status"] not in ALLOWED_STATUSES:
-        fail(
-            f"'status' must be one of {ALLOWED_STATUSES}, got {meta['status']!r}"
-        )
+        fail(f"'status' must be one of {ALLOWED_STATUSES}, got {meta['status']!r}")
 
 
 def load_vignettes() -> list[dict]:
@@ -104,9 +105,8 @@ def load_vignettes() -> list[dict]:
             continue
         meta = parse_frontmatter(vignette_md.read_text(encoding="utf-8"))
         if meta is None:
-            raise ValueError(
-                f"{vignette_md.relative_to(REPO_ROOT)}: missing or unparseable YAML frontmatter"
-            )
+            msg = f"{vignette_md.relative_to(REPO_ROOT)}: missing or unparseable YAML frontmatter"
+            raise ValueError(msg)
         _validate_vignette(meta, vignette_md)
         meta["_folder"] = vignette_md.parent.name
         meta["_path"] = f"{vignette_md.parent.name}/vignette.md"

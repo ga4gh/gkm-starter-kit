@@ -1,10 +1,10 @@
-# GKS Starter Kit
+# GKM Starter Kit
 
-A single community-facing entry point for the GA4GH Genomic Knowledge Standards (GKS) ecosystem.
+A community-facing entry point for the GA4GH Genomic Knowledge Model (GKM).
 
 **Live site:** <https://ga4gh.github.io/gks-starter-kit/>
 
-The Starter Kit collects real-world **vignettes** — concise walk-throughs of high-value uses of GKS, each with the actual data and tools needed to deliver the use case. They're designed to be share-friendly so adopters can carry the value proposition to their teams, leadership, and broader communities.
+The Starter Kit collects real-world **vignettes**: concise walk-throughs of high-value uses of GKS, each with the actual data and tools needed to deliver the use case. They're designed to be share-friendly so adopters can carry the value proposition to their teams, leadership, and broader communities.
 
 ## Contributing a vignette
 
@@ -13,27 +13,59 @@ The Starter Kit collects real-world **vignettes** — concise walk-throughs of h
     - Open a [**Propose a vignette**](https://github.com/ga4gh/gks-starter-kit/issues/new?template=propose-vignette.yml) issue, or
     - Copy `docs/vignettes/_template/vignette.md` into a new `docs/vignettes/<slug>/` folder, fill it in, and open a PR.
 
-## Local development
+## gkm.starter Python Package
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+[![image](https://img.shields.io/pypi/v/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
+[![image](https://img.shields.io/pypi/l/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
+[![image](https://img.shields.io/pypi/pyversions/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
+[![Actions status](https://github.com/ga4gh/gks-starter-kit/actions/workflows/checks.yaml/badge.svg)](https://github.com/ga4gh/gks-starter-kit/actions/workflows/checks.yaml)
+
+### Installation
+
+Install from [PyPI](https://pypi.org/project/gkm.starter/):
+
+```shell
+python3 -m pip install gkm.starter
+```
+
+## Development
+
+Clone the repo and create a virtual environment:
+
+```shell
+git clone https://github.com/ga4gh/gks-starter-kit
+cd gks-starter-kit
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install development dependencies and `prek`:
+
+```shell
+python3 -m pip install -e '.[dev,tests,docs,notebooks]'
+prek install
+```
+
+Check style with `ruff`:
+
+```shell
+python3 -m ruff check .
+python3 -m ruff format --check .
+```
+
+Run tests with `pytest`:
+
+```shell
+pytest
+```
+
+## Docs
+
+```shell
 mkdocs serve
 ```
 
 Then open <http://127.0.0.1:8000>.
-
-## Repository layout
-
-- [docs/](./docs/) — mkdocs source
-- [docs/index.md](./docs/index.md), [docs/about.md](./docs/about.md), [docs/contribute.md](./docs/contribute.md) — top-level reader pages
-- [docs/vignettes/](./docs/vignettes/) — vignette folders, one per use case
-- [docs/vignettes/_template/](./docs/vignettes/_template/) — canonical template + authoring guide
-- [docs/vignettes/patterns.yml](./docs/vignettes/patterns.yml) — controlled vocabulary for the `pattern` frontmatter field
-- [scripts/main.py](./scripts/main.py) — mkdocs-macros entrypoint (catalog rendering)
-- [scripts/vignette_loader.py](./scripts/vignette_loader.py) — shared frontmatter parser (single source of truth, imported by both `main.py` and `gen_filter_pages.py`)
-- [scripts/gen_filter_pages.py](./scripts/gen_filter_pages.py) — generates per-axis filter pages at build time
 
 ## License
 

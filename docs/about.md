@@ -1,21 +1,41 @@
 # About
 
-## What is GKS?
+The GKM Starter Kit is a community project for sharing and using genomic
+knowledge represented with the Genomic Knowledge Model.
 
-The **GA4GH Genomic Knowledge Standards (GKS)** are a set of open community standards for describing, exchanging, and reasoning over genomic knowledge — variants, the categories they fall into, and the clinical or research evidence attached to them. They give knowledgebases, registries, labs, and tool builders a shared way to talk about the same biology, so that data flows cleanly between systems instead of getting stuck in translation.
+## What is GKM?
 
-## What this Starter Kit is (and isn't)
+The **Genomic Knowledge Model (GKM)** defines shared models for genomic
+variation and related knowledge. It is part of the broader [GA4GH Genomic
+Knowledge Standards (GKS)](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)
+family.
 
-The **GKS Starter Kit** is the single community-facing entry point for the GKS ecosystem. It collects real-world vignettes — concise walk-throughs of how organizations are using GKS today — so adopters can quickly see what's possible, pick patterns they can reuse, and carry the value proposition to their own teams.
+GKM brings together four standards that can be used independently or combined:
 
-It is *not* a per-product tutorial. Each GKS product has its own Quick Start Guide on its own documentation site — those are the right place to learn how to *produce* data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns.
+- **[GKS-Core](https://github.com/ga4gh/gks-core)** provides concepts shared by
+  the other standards.
+- **[VRS](https://vrs.ga4gh.org/)** describes precise molecular variation.
+- **[Cat-VRS](https://cat-vrs.ga4gh.org/)** describes categories of variation.
+- **[VA-Spec](https://va-ga4gh.readthedocs.io/)** describes what is known or
+  asserted about variation, including supporting evidence.
 
-## Where else to look
+Producers use the standards that fit their data. Their Python reference
+implementations are:
 
-- **[GA4GH Starter Kit](https://starterkit.ga4gh.org/)** — the broader GA4GH ecosystem entry point, of which the GKS Starter Kit is a sibling.
-- **GKS product documentation:**
-    - [VRS — Variation Representation Specification](https://vrs.ga4gh.org/)
-    - [Cat-VRS — Categorical Variation Representation](https://cat-vrs.ga4gh.org/)
-    - [VA-Spec — Variant Annotation Specification](https://va-ga4gh.readthedocs.io/)
-- **GKS Home Page** — coming soon; will reference vignettes from this Starter Kit.
-- **[GA4GH Genomic Knowledge Standards](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)** — Work Stream overview.
+- **GKS-Core and VRS:** [vrs-python](https://github.com/ga4gh/vrs-python)
+- **Cat-VRS:** [cat-vrs-python](https://github.com/ga4gh/cat-vrs-python)
+- **VA-Spec:** [va-spec-python](https://github.com/ga4gh/va-spec-python)
+
+## The three pillars
+
+GKM defines individual knowledge objects, but it does not require one dataset
+layout. The Starter Kit builds on GKM through three pillars:
+
+1. **[Data Bundles](data/index.md)** package real GKM data from community
+   partners for others to use.
+2. **[Python Package](library/index.md)** loads, explores, and writes bundles
+   while preserving each producer's names and organization.
+3. **[Vignettes](vignettes/index.md)** show how communities put GKM standards
+   to work on real problems.
+
+Next, read [Why GKM and the Starter Kit matter](why.md).

@@ -1,6 +1,6 @@
 # Vignette Authoring Guide
 
-This folder contains the canonical template for a GKS Starter Kit vignette. Copy `vignette.md` into a new folder under `docs/vignettes/<your-slug>/` and fill it in.
+This folder contains the canonical template for a GKM Starter Kit vignette. Copy `vignette.md` into a new folder under `docs/vignettes/<your-slug>/` and fill it in.
 
 ## Workflow
 
@@ -26,19 +26,19 @@ This folder contains the canonical template for a GKS Starter Kit vignette. Copy
 | `contributors` | no | GitHub handles or names. Optional. |
 | `last_updated` | yes | ISO date (`YYYY-MM-DD`). Drives the default catalog sort. |
 
-## "Why this matters" — what good looks like
+## "Why this matters": what good looks like
 
 The first paragraph after the title is the **forwardable** part of your vignette. Someone should be able to paste it into Slack or an email to a non-technical decision-maker and have it stand on its own.
 
 **Strong example** (concrete, plain-language, names the problem and the win):
 
-> "BRCA Exchange pulls cancer-risk variants from many sources — ClinVar, gnomAD, LOVD, the literature. Each source describes the same variant differently, which makes it hard to know which entries are duplicates. By generating a single shared identifier for each variant from its underlying sequence change, the project can confidently deduplicate across sources and surface a complete, non-redundant view to clinicians and researchers."
+> "BRCA Exchange pulls cancer-risk variants from many sources, including ClinVar, gnomAD, LOVD, and the literature. Each source describes the same variant differently, which makes it hard to know which entries are duplicates. By generating a single shared identifier for each variant from its underlying sequence change, the project can confidently deduplicate across sources and surface a complete, non-redundant view to clinicians and researchers."
 
 **Weak example** (jargon, no audience awareness, no real-world stakes):
 
 > "We apply VRS digests to harmonize variant identifiers across heterogeneous sources, enabling lossless cross-source deduplication via canonical content-addressed identification."
 
-If you're not sure your paragraph passes the "would my boss understand this?" test, ask in your PR — a reviewer can help tune it.
+If you're not sure your paragraph passes the "would my boss understand this?" test, ask in your PR. A reviewer can help tune it.
 
 ## Naming new pattern values
 
@@ -49,7 +49,7 @@ If your vignette doesn't fit an existing pattern in `patterns.yml`, add a new en
 your-new-pattern: Human-readable label for your pattern
 ```
 
-Keep new pattern names broad enough to plausibly cover future vignettes — e.g. `cross-source-variant-harmonization` is better than `brca-exchange-deduplication`.
+Keep new pattern names broad enough to plausibly cover future vignettes. For example, `cross-source-variant-harmonization` is better than `brca-exchange-deduplication`.
 
 ## See also
 

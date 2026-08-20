@@ -13,16 +13,16 @@ contributors:
 last_updated: 2026-05-27
 ---
 
-# <Your one-line use case — the title as it should appear in the rendered page (match the `title` frontmatter field above)>
+# <Your one-line use case: the title as it should appear in the rendered page (match the `title` frontmatter field above)>
 
 **Why this matters**
 
-<3–5 sentence plain-language paragraph. This is the forwardable bit — written so a non-technical reader could quote it. No jargon, no acronyms without expansion.>
+<3–5 sentence plain-language paragraph. This is the forwardable bit, written so a non-technical reader could quote it. No jargon, no acronyms without expansion.>
 
 **At a glance**
 
 - **Who:** <implementer>
-- **GKS products used:** <product + version per entry, e.g. VRS 2.0, VA-Spec 1.0>
+- **GKM standards used:** <standard + version per entry, e.g. VRS 2.0, VA-Spec 1.0>
 - **Tools:** <named libraries / services with links>
 - **Status:** <production | pilot | proposal>
 
