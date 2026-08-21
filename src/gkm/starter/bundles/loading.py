@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import IO, Any, TypeAlias
 
 from .compatibility import check_gkm_version_compatibility
-from .errors import BundleNotFoundError, BundleSerializationError
+from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
 from .models import Bundle, BundleCollection
 from .references import parse_gks_values
 from .registry import registry
@@ -91,9 +91,13 @@ def load_bundle(
 ) -> Bundle:
     """Load one bundle from a registered name, JSON file, or JSON stream.
 
-    Objects accepted by a GA4GH reference implementation are returned as its
-    Pydantic models. Producer-specific structures and objects containing bundle
-    references that cannot be validated independently remain mappings.
+    Objects recognized by a GA4GH reference implementation are validated and
+    returned as its Pydantic models. Producer-specific structures and objects
+    containing bundle-local references that cannot be validated independently
+    remain mappings.
+
+    Loading is fail-fast. If any recognized GKM object fails reference-model
+    validation, no bundle is returned.
 
     When a schema is provided, it is used to check GKM version compatibility.
     The bundle is not fully validated against the schema.
@@ -106,6 +110,8 @@ def load_bundle(
     :raises gkm.starter.bundles.BundleCompatibilityError: If the schema references
         unsupported GKM product versions.
     :raises BundleSerializationError: If the serialization or data shape is unsupported.
+    :raises gkm.starter.bundles.BundleValidationError: If a recognized GKM object
+        fails validation by its reference implementation.
     :raises BundleNotFoundError: If ``source`` cannot be found.
     """
     if serialization not in {None, "json"}:
@@ -124,6 +130,10 @@ def load_bundle(
     document = _require_json_object(raw_document, subject="document")
 
     metadata = document.get("metadata", {})
+    if not isinstance(metadata, Mapping):
+        message = "Bundle metadata must be a JSON object"
+        raise BundleSerializationError(message)
+
     collections: dict[str, BundleCollection] = {}
     extras: dict[str, Any] = {}
     for collection_name, values in document.items():
@@ -137,7 +147,7 @@ def load_bundle(
 
     return Bundle(
         collections,
-        metadata=metadata if isinstance(metadata, Mapping) else {},
+        metadata=metadata,
         extras=extras,
         name=name,
     )
@@ -148,7 +158,7 @@ def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
 
     :param sources: Registered bundle names, file paths, or readable JSON streams.
     :return: Loaded bundles keyed by name.
-    :raises ValueError: If two sources resolve to the same name.
+    :raises BundleConflictError: If two sources resolve to the same name.
     """
     loaded: dict[str, Bundle] = {}
 
@@ -158,7 +168,7 @@ def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
 
         if key in loaded:
             message = f"Multiple bundles resolved to the name {key!r}"
-            raise ValueError(message)
+            raise BundleConflictError(message)
 
         loaded[key] = bundle
 

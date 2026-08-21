@@ -4,11 +4,13 @@ from .compatibility import check_gkm_version_compatibility, supported_gkm_versio
 from .errors import (
     BundleCollectionNotFoundError,
     BundleCompatibilityError,
+    BundleConflictError,
     BundleError,
     BundleNotFoundError,
     BundleObjectNotFoundError,
     BundleReferenceError,
     BundleSerializationError,
+    BundleValidationError,
 )
 from .loading import BundleSource, load_bundle, load_bundles
 from .models import Bundle, BundleCollection
@@ -38,7 +40,7 @@ def register(registration: BundleRegistration, *, replace: bool = False) -> None
 
     :param registration: Bundle name and source information.
     :param replace: Replace an existing registration with the same name.
-    :raises ValueError: If the name exists and ``replace`` is false.
+    :raises BundleConflictError: If the name exists and ``replace`` is false.
     """
     registry.register(registration, replace=replace)
 
@@ -48,6 +50,7 @@ __all__ = [
     "BundleCollection",
     "BundleCollectionNotFoundError",
     "BundleCompatibilityError",
+    "BundleConflictError",
     "BundleError",
     "BundleNotFoundError",
     "BundleObjectNotFoundError",
@@ -56,6 +59,7 @@ __all__ = [
     "BundleRegistry",
     "BundleSerializationError",
     "BundleSource",
+    "BundleValidationError",
     "check_gkm_version_compatibility",
     "get_registration",
     "load_bundle",

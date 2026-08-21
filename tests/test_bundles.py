@@ -8,9 +8,11 @@ from ga4gh.vrs.models import SequenceReference
 from gkm import starter
 from gkm.starter.bundles import (
     BundleCompatibilityError,
+    BundleConflictError,
     BundleNotFoundError,
     BundleReferenceError,
     BundleSerializationError,
+    BundleValidationError,
 )
 
 SEQUENCE_ID = "SQ.6CnHhDq_bDCsuIBf0AzxtKq_lXYM7f0m"
@@ -186,6 +188,44 @@ def test_load_json_stream():
     assert isinstance(bundle.sequenceReference[SEQUENCE_ID], SequenceReference)
 
 
+def test_reference_model_validation_error_is_translated():
+    stream = StringIO(
+        json.dumps(
+            {
+                "sequenceReference": {
+                    "invalid": {"type": "SequenceReference"},
+                }
+            }
+        )
+    )
+
+    with pytest.raises(
+        BundleValidationError,
+        match="Invalid 'SequenceReference' bundle object",
+    ) as error:
+        starter.load_bundle(stream)
+
+    assert error.value.__cause__.__class__.__name__ == "ValidationError"
+
+
+def test_reference_does_not_hide_unrelated_validation_error():
+    stream = StringIO(
+        json.dumps(
+            {
+                "sequenceReference": {
+                    "invalid": {
+                        "type": "SequenceReference",
+                        "related": "#/objects/related",
+                    },
+                }
+            }
+        )
+    )
+
+    with pytest.raises(BundleValidationError):
+        starter.load_bundle(stream)
+
+
 def test_reject_incompatible_gkm_schema_version():
     bundle = StringIO(json.dumps({"objects": {}}))
     schema = StringIO(
@@ -208,6 +248,16 @@ def test_reject_invalid_schema_shape():
 
     with pytest.raises(BundleSerializationError, match="schema must be a JSON object"):
         starter.load_bundle(bundle, schema=schema)
+
+
+def test_reject_invalid_metadata_shape():
+    bundle = StringIO(json.dumps({"objects": {}, "metadata": []}))
+
+    with pytest.raises(
+        BundleSerializationError,
+        match="metadata must be a JSON object",
+    ):
+        starter.load_bundle(bundle)
 
 
 def test_reject_registered_bundle_with_missing_source(tmp_path):
@@ -237,7 +287,10 @@ def test_load_bundles():
 def test_load_bundles_rejects_duplicate_names():
     source = BUNDLE_DIR / "civic-aid-9-bundle.json"
 
-    with pytest.raises(ValueError, match="Multiple bundles resolved to the name"):
+    with pytest.raises(
+        BundleConflictError,
+        match="Multiple bundles resolved to the name",
+    ):
         starter.load_bundles(source, source)
 
 
@@ -267,6 +320,19 @@ def test_reject_unsupported_write_serialization(tmp_path):
         civic.write(tmp_path / "bundle.json", serialization="jsonl")
 
 
+def test_write_translates_json_encoding_error(tmp_path):
+    civic = starter.load_bundle("civic-aid-9")
+    civic.metadata["invalid"] = object()
+
+    with pytest.raises(
+        BundleSerializationError,
+        match="cannot be serialized as JSON",
+    ) as error:
+        civic.write(tmp_path / "bundle.json")
+
+    assert isinstance(error.value.__cause__, TypeError)
+
+
 def test_reject_unsupported_serialization():
     with pytest.raises(BundleSerializationError):
         starter.load_bundle("civic", serialization="parquet")
@@ -281,7 +347,7 @@ def test_bundles_namespace():
 def test_registry_rejects_duplicate_name():
     registration = starter.bundles.get_registration("civic-aid-9")
 
-    with pytest.raises(ValueError, match="already registered"):
+    with pytest.raises(BundleConflictError, match="already registered"):
         starter.bundles.register(registration)
 
 

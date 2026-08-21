@@ -25,5 +25,13 @@ class BundleCompatibilityError(BundleError):
     """Raised when a bundle schema is incompatible with installed GKM models."""
 
 
+class BundleConflictError(BundleError, ValueError):
+    """Raised when bundle names conflict in a registry or loaded collection."""
+
+
+class BundleValidationError(BundleError):
+    """Raised when a bundle object fails reference-model validation."""
+
+
 class BundleReferenceError(BundleError):
     """Raised when a bundle-local JSON Pointer cannot be resolved."""

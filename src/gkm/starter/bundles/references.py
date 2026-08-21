@@ -15,6 +15,8 @@ from ga4gh.va_spec import aac_2017, acmg_2015, base, ccv_2022
 from ga4gh.vrs import models as vrs_models
 from pydantic import BaseModel, ValidationError
 
+from .errors import BundleValidationError
+
 
 @cache
 def _model_types() -> dict[str, type[BaseModel]]:
@@ -48,12 +50,32 @@ def _model_types() -> dict[str, type[BaseModel]]:
     return types
 
 
+def _contains_bundle_reference(value: Any) -> bool:
+    """Return whether a value contains a bundle-local JSON Pointer."""
+    if isinstance(value, str):
+        return value.startswith("#/")
+    if isinstance(value, Mapping):
+        return any(_contains_bundle_reference(item) for item in value.values())
+    if isinstance(value, list):
+        return any(_contains_bundle_reference(item) for item in value)
+    return False
+
+
+def _only_bundle_reference_errors(error: ValidationError) -> bool:
+    """Return whether all errors are consequences of bundle-local references."""
+    errors = error.errors()
+    return bool(errors) and all(
+        detail["type"] != "missing" and _contains_bundle_reference(detail.get("input"))
+        for detail in errors
+    )
+
+
 def parse_gks_values(value: Any) -> Any:
     """Convert typed mappings with GA4GH reference implementations.
 
-    The conversion is recursive. A mapping remains a mapping when its reference
-    model rejects bundle-local JSON Pointer values that it cannot validate as a
-    standalone object.
+    The conversion is recursive. Recognized objects must be valid according to
+    their installed reference implementation. Objects rejected only because a
+    field contains a bundle-local JSON Pointer remain mappings.
 
     :param value: JSON-compatible value to inspect.
     :return: Reference models where possible, with other values preserved.
@@ -69,10 +91,11 @@ def parse_gks_values(value: Any) -> Any:
     if model is not None:
         try:
             return model.model_validate(value)
-        except ValidationError:
-            # Producer bundle schemas may use JSON Pointers in fields where a
-            # standalone reference model requires an embedded object. Preserve
-            # that bundle representation until graph rehydration is requested.
-            pass
+        except ValidationError as error:
+            if _only_bundle_reference_errors(error):
+                return {key: parse_gks_values(item) for key, item in value.items()}
+
+            message = f"Invalid {type_name!r} bundle object: {error}"
+            raise BundleValidationError(message) from error
 
     return {key: parse_gks_values(item) for key, item in value.items()}

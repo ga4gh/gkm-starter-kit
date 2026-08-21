@@ -304,10 +304,15 @@ class Bundle(Mapping[str, BundleCollection]):
             message = f"Unsupported serialization {serialization!r}; expected 'json'"
             raise BundleSerializationError(message)
 
-        Path(destination).write_text(
-            json.dumps(self.to_dict(), indent=indent) + "\n",
-            encoding="utf-8",
-        )
+        try:
+            serialized = json.dumps(self.to_dict(), indent=indent) + "\n"
+        except (TypeError, ValueError) as error:
+            message = (
+                f"Bundle contains a value that cannot be serialized as JSON: {error}"
+            )
+            raise BundleSerializationError(message) from error
+
+        Path(destination).write_text(serialized, encoding="utf-8")
 
     def __repr__(self) -> str:
         """Return a concise representation of the bundle.

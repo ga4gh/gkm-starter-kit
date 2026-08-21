@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pathlib import Path
 
-from .errors import BundleNotFoundError
+from .errors import BundleConflictError, BundleNotFoundError
 
 
 @dataclass(frozen=True, slots=True)
@@ -43,11 +43,11 @@ class BundleRegistry:
 
         :param registration: Bundle name and source information.
         :param replace: Replace an existing registration with the same name.
-        :raises ValueError: If the name exists and ``replace`` is false.
+        :raises BundleConflictError: If the name exists and ``replace`` is false.
         """
         if registration.name in self._registrations and not replace:
             message = f"Bundle {registration.name!r} is already registered"
-            raise ValueError(message)
+            raise BundleConflictError(message)
 
         self._registrations[registration.name] = registration
 
