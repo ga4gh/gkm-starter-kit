@@ -1,0 +1,466 @@
+{
+  "$defs": {
+    "CollectionStatistics": {
+      "description": "Summarize the objects stored in one root bundle collection.",
+      "properties": {
+        "count": {
+          "description": "Total objects in the collection.",
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "types": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "minimum": 0,
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Object counts grouped by concrete GKS type, when applicable.",
+          "title": "Types"
+        }
+      },
+      "required": [
+        "count"
+      ],
+      "title": "CollectionStatistics",
+      "type": "object"
+    },
+    "GksAssertionError": {
+      "description": "Describe a CIViC Assertion that could not become a GKS Statement.",
+      "properties": {
+        "assertionId": {
+          "title": "Assertionid",
+          "type": "integer"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assertionId",
+        "message"
+      ],
+      "title": "GksAssertionError",
+      "type": "object"
+    },
+    "Metadata": {
+      "additionalProperties": false,
+      "description": "Describe the bundle format, export provenance, and contents.",
+      "properties": {
+        "VASpecPythonVersion": {
+          "description": "VA-Spec Python version used to generate this export.",
+          "title": "Vaspecpythonversion",
+          "type": "string"
+        },
+        "createdAt": {
+          "title": "Createdat",
+          "type": "string"
+        },
+        "bundleFormat": {
+          "const": "civic-gks-bundle",
+          "default": "civic-gks-bundle",
+          "title": "Bundleformat",
+          "type": "string"
+        },
+        "bundleFormatVersion": {
+          "const": "0.1.0",
+          "default": "0.1.0",
+          "title": "Bundleformatversion",
+          "type": "string"
+        },
+        "statistics": {
+          "$ref": "#/$defs/Statistics",
+          "description": "Summary statistics for the bundle's root collections."
+        }
+      },
+      "required": [
+        "bundleFormat",
+        "bundleFormatVersion",
+        "createdAt",
+        "statistics"
+      ],
+      "title": "Metadata",
+      "type": "object"
+    },
+    "Statistics": {
+      "description": "Summarize the contents of a CIViC GKM bundle.",
+      "properties": {
+        "collections": {
+          "additionalProperties": {
+            "$ref": "#/$defs/CollectionStatistics"
+          },
+          "description": "Statistics keyed by root bundle collection name.",
+          "title": "Collections",
+          "type": "object"
+        }
+      },
+      "required": [
+        "collections"
+      ],
+      "title": "Statistics",
+      "type": "object"
+    }
+  },
+  "$id": "urn:civic:gks-bundle:schema:0.1.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "civicBundleFormat": "civic-gks-bundle",
+  "civicBundleFormatVersion": "0.1.0",
+  "description": "CIViC data in the referenced GKS Bundle Format.",
+  "additionalProperties": false,
+  "properties": {
+    "sequenceReference": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^SQ\\.[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceReference"
+        }
+      },
+      "title": "Sequencereference",
+      "type": "object"
+    },
+    "location": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^ga4gh:SL\\.[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceLocation"
+        }
+      },
+      "title": "Location",
+      "type": "object"
+    },
+    "variant": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.vid:[0-9]+$": {
+          "additionalProperties": false,
+          "properties": {
+            "protein": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                  },
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            "coding": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                  },
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            "genomic": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                  },
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            "unclassified": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                  },
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                  }
+                ]
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "title": "Variant",
+      "type": "object"
+    },
+    "feature": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.gid:[0-9]+$": {
+          "allOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+            },
+            {
+              "properties": {
+                "conceptType": {
+                  "const": "Gene"
+                }
+              },
+              "required": [
+                "conceptType"
+              ]
+            }
+          ]
+        }
+      },
+      "title": "Feature",
+      "type": "object"
+    },
+    "molecularProfile": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.mpid:[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/cat-vrs/1.1.0-snapshot.2026-02.3/json/CategoricalVariant"
+        }
+      },
+      "title": "Molecularprofile",
+      "type": "object"
+    },
+    "disease": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.did:[0-9]+$": {
+          "allOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+            },
+            {
+              "properties": {
+                "conceptType": {
+                  "const": "Disease"
+                }
+              },
+              "required": [
+                "conceptType"
+              ]
+            }
+          ]
+        }
+      },
+      "title": "Disease",
+      "type": "object"
+    },
+    "phenotype": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.phenotype:[0-9]+$": {
+          "allOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+            },
+            {
+              "properties": {
+                "conceptType": {
+                  "const": "Phenotype"
+                }
+              },
+              "required": [
+                "conceptType"
+              ]
+            }
+          ]
+        }
+      },
+      "title": "Phenotype",
+      "type": "object"
+    },
+    "conditionSet": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.conditionSet:[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/ConditionSet"
+        }
+      },
+      "title": "Conditionset",
+      "type": "object"
+    },
+    "therapy": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.tid:[0-9]+$": {
+          "allOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+            },
+            {
+              "properties": {
+                "conceptType": {
+                  "const": "Therapy"
+                }
+              },
+              "required": [
+                "conceptType"
+              ]
+            }
+          ]
+        }
+      },
+      "title": "Therapy",
+      "type": "object"
+    },
+    "therapyGroup": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.therapyGroup:[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/TherapyGroup"
+        }
+      },
+      "title": "Therapygroup",
+      "type": "object"
+    },
+    "variantOrigin": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.variantOrigin:[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+        }
+      },
+      "title": "Variantorigin",
+      "type": "object"
+    },
+    "source": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(civic\\.sid|pmid):[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Document"
+        }
+      },
+      "title": "Source",
+      "type": "object"
+    },
+    "method": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.method:[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Method"
+        }
+      },
+      "title": "Method",
+      "type": "object"
+    },
+    "organization": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.organization:[A-Za-z0-9_-]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Agent"
+        }
+      },
+      "title": "Organization",
+      "type": "object"
+    },
+    "proposition": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.proposition:[A-Za-z0-9_-]+$": {
+          "anyOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantClinicalSignificanceProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantDiagnosticProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantOncogenicityProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantPrognosticProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantTherapeuticResponseProposition"
+            }
+          ]
+        }
+      },
+      "title": "Proposition",
+      "type": "object"
+    },
+    "evidence": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.eid:[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Statement"
+        }
+      },
+      "title": "Evidence",
+      "type": "object"
+    },
+    "assertion": {
+      "additionalProperties": false,
+      "patternProperties": {
+        "^civic\\.aid:[0-9]+$": {
+          "anyOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/aac-2017/json/VariantClinicalSignificanceStatement"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/ccv-2022/json/VariantOncogenicityStatement"
+            }
+          ]
+        }
+      },
+      "title": "Assertion",
+      "type": "object"
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata"
+    },
+    "failedAssertionIds": {
+      "items": {
+        "type": "integer"
+      },
+      "title": "Failedassertionids",
+      "type": "array"
+    },
+    "errors": {
+      "items": {
+        "$ref": "#/$defs/GksAssertionError"
+      },
+      "title": "Errors",
+      "type": "array"
+    }
+  },
+  "required": [
+    "sequenceReference",
+    "location",
+    "variant",
+    "feature",
+    "molecularProfile",
+    "disease",
+    "phenotype",
+    "conditionSet",
+    "therapy",
+    "therapyGroup",
+    "variantOrigin",
+    "source",
+    "method",
+    "organization",
+    "proposition",
+    "evidence",
+    "assertion",
+    "metadata",
+    "failedAssertionIds",
+    "errors"
+  ],
+  "title": "CIViC GKS Bundle v0.1.0",
+  "type": "object"
+}

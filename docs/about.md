@@ -1,27 +1,85 @@
-# About
+# About the GKM Starter Kit
 
-## What is GKS?
+The GKM Starter Kit is a community project for sharing and using genomic
+knowledge represented with the Genomic Knowledge Model.
 
-The **GA4GH Genomic Knowledge Standards (GKS)** are a set of open community standards for describing, exchanging, and reasoning over genomic knowledge — variants, the categories they fall into, and the clinical or research evidence attached to them. They give knowledgebases, registries, labs, and tool builders a shared way to talk about the same biology, so that data flows cleanly between systems instead of getting stuck in translation.
+## What is GKM?
 
-## What this Starter Kit is (and isn't)
+The **Genomic Knowledge Model (GKM)** defines shared models for genomic
+variation and related knowledge. It is part of the broader [GA4GH Genomic
+Knowledge Standards (GKS)](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)
+Work Stream.
 
-The GKS reference libraries let you *create* and *validate* genomic knowledge objects. But they say nothing about the layer that comes next: how you **collect** that knowledge, make it **interoperable** across resources, **share** it, and **consume** it. The **GKS Starter Kit** is the single community-facing entry point that demonstrates this missing layer.
+GKM brings together four standards that can be used independently or combined:
 
-It does so through three pillars:
+- **[GKS-Core](https://github.com/ga4gh/gks-core)** provides concepts shared by
+  the other standards.
+- **[VRS](https://vrs.ga4gh.org/)** describes precise molecular variation.
+- **[Cat-VRS](https://cat-vrs.ga4gh.org/)** describes categories of variation.
+- **[VA-Spec](https://va-ga4gh.readthedocs.io/)** describes what is known or
+  asserted about variation, including supporting evidence.
 
-1. **[Data Bundles](data/index.md)** — real content from community partners, composed from the modular GKS schemas into larger, shareable bundle documents. This is the *collect, make interoperable, and share* part.
-2. **[Python Package](library/index.md)** — a lightweight layer on top of the reference libraries that loads bundles into in-memory GKS objects, lets you explore and manipulate them, and exports back to GKS JSON. This is the *consume and build with* part.
-3. **[Vignettes](vignettes/index.md)** — real community use cases that show what a group needs the standards for, and the standards delivering it. Some build on the first two pillars; some do not.
+Producers use the standards that fit their data. Their Python reference
+implementations are:
 
-It is *not* a per-product tutorial. Each GKS product has its own **Quick Start Guide** on its own documentation site — those are the right place to learn how to *produce* data in a specific GKS format. The Starter Kit is the layer above: ecosystem orientation, live implementations, and shared adoption patterns. (Only this GKS-level resource is a "Starter Kit"; the per-product guides are Quick Start Guides.)
+- **GKS-Core and VRS:** [vrs-python](https://github.com/ga4gh/vrs-python)
+- **Cat-VRS:** [cat-vrs-python](https://github.com/ga4gh/cat-vrs-python)
+- **VA-Spec:** [va-spec-python](https://github.com/ga4gh/va-spec-python)
 
-## Where else to look
+## The three pillars
 
-- **[GA4GH Starter Kit](https://starterkit.ga4gh.org/)** — the broader GA4GH ecosystem entry point, of which the GKS Starter Kit is a sibling.
-- **GKS product documentation:**
-    - [VRS — Variation Representation Specification](https://vrs.ga4gh.org/)
-    - [Cat-VRS — Categorical Variation Representation](https://cat-vrs.ga4gh.org/)
-    - [VA-Spec — Variant Annotation Specification](https://va-ga4gh.readthedocs.io/)
-- **GKS Home Page** — coming soon; will reference vignettes from this Starter Kit.
-- **[GA4GH Genomic Knowledge Standards](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)** — Work Stream overview.
+The Starter Kit connects GKM standards to real data, software, and community
+outcomes through three pillars.
+
+### Data Bundles
+
+**[Data Bundles](data/index.md) package related GKM objects while preserving the
+names and organization of their resources.**
+
+A documented, versioned bundle schema makes structural changes easier to
+communicate and helps consumers understand what a producer distributes.
+
+!!! important "Bundles are optional in GKM"
+
+    A GKM bundle packages related GKM objects using a producer-defined
+    structure. Bundles are not required to use GKM: applications can construct,
+    validate, and serialize individual GKM objects through the reference
+    implementations above.
+
+### The `gkm.starter` Python package
+
+**[`gkm.starter`](library/index.md) provides a consistent Python interface for
+loading, exploring, and writing bundles.**
+
+Consumers can work with supported GKM Python models, follow relationships
+between objects, and retain producer-specific content without hand-parsing each
+producer's organization.
+
+Bundles are the input and output format of `gkm.starter`. The initial
+implementation supports JSON serialization; other serializations may be added
+later.
+
+The GKM reference implementations construct, validate, and serialize individual
+GKM objects; `gkm.starter` works with collections of those objects in bundles.
+These packages are maintained implementations, not required interfaces.
+Developers can implement the GKM standards in their own tools and programming
+languages.
+
+### Vignettes
+
+**[Vignettes](vignettes/index.md) show how communities put GKM standards to work
+and what their implementations accomplish.**
+
+They give prospective adopters concrete examples, reveal reusable patterns,
+and help teams evaluate whether GKM fits their needs.
+
+Some vignettes use Data Bundles or `gkm.starter`; others use GKM standards
+without them. The focus is the real-world outcome, not whether an implementation
+uses every part of the Starter Kit.
+
+## How the pillars work together
+
+Data Bundles provide real data, `gkm.starter` provides a consistent bundle
+workflow, and Vignettes demonstrate the results. Together they help producers,
+consumers, and the GKM community test the standards, identify gaps, and turn
+successful implementations into patterns others can reuse.

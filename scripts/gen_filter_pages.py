@@ -7,17 +7,24 @@ on disk in docs/.
 """
 
 from collections import defaultdict
-from typing import Callable, Iterable
+from collections.abc import Callable, Iterable
 
 import mkdocs_gen_files
 
 from scripts.vignette_loader import load_patterns, load_vignettes, slugify
 
 
-def _emit_filter_page(axis: str, value_slug: str, value_label: str, matches: list[dict]) -> None:
+def _emit_filter_page(
+    axis: str, value_slug: str, value_label: str, matches: list[dict]
+) -> None:
     rel_path = f"vignettes/by-{axis}/{value_slug}/index.md"
+    headings = {
+        "product": f"Vignettes using {value_label}",
+        "pattern": f"Vignettes for {value_label}",
+        "implementer": f"Vignettes from {value_label}",
+    }
     with mkdocs_gen_files.open(rel_path, "w") as f:
-        f.write(f"# Vignettes filtered by {axis}: {value_label}\n\n")
+        f.write(f"# {headings[axis]}\n\n")
         if not matches:
             f.write("_No vignettes match this filter yet._\n")
             return
@@ -49,6 +56,7 @@ def _product_names(v: dict) -> Iterable[str]:
 
 
 def main() -> None:
+    """Generate the vignette filter pages."""
     vignettes = load_vignettes()
     patterns_dict = load_patterns()
     by_axis = {

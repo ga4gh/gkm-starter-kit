@@ -1,90 +1,47 @@
-# GKS Starter Kit
+# GKM Starter Kit
 
-**The GA4GH Genomic Knowledge Standards let you create and validate genomic
-knowledge — from statements down through evidence. The Starter Kit shows you the
-part the specs leave out: how to _package_ that knowledge, _load and build_ with
-it, and _put it to work_ in real use cases.**
-
-Whether you lead an engineering team weighing adoption, or you're a scientist who
-needs the standards to do something concrete, this is the fastest way to see what
-GKS makes possible.
+Genomic knowledge is hard to share when every resource describes it
+differently. The **[GA4GH Genomic Knowledge Model
+(GKM)](about.md#what-is-gkm)** defines standards for representing genomic
+knowledge consistently, and the **[Starter
+Kit](about.md#the-three-pillars)** helps communities put those standards
+to work with real data, software, and use cases. Together, they make genomic
+knowledge from different resources easier to compare, combine, and apply.
 
 ## How it fits together
 
 <div class="gks-pipeline" markdown>
-**📦 Data Bundles** → **🐍 Python Package** → **🔬 Vignettes**
+**🧬 GKM Standards** → **📦 Data Bundles** → **🐍 Python Package**
 
-Packaged GKS data · loaded and manipulated in Python · demonstrated in real use cases
+Shared meaning · shareable data · a consistent way to use it
+
+↓
+
+**🔬 Vignettes**
+
+Real community outcomes
 </div>
 
-## Start where you are
+## What do you want to do?
 
 <div class="grid cards" markdown>
 
-- :material-account-tie: **I lead a team**
+- :material-database: **I have data to share**
 
-    See the value fast — what GKS unlocks and why it makes your team's job easier.
+    Package your GKM data so others can use it with the Starter Kit.
 
-    [Read a vignette →](vignettes/index.md)
+    [Explore data bundles →](data/index.md)
 
 - :material-code-braces: **I want to build**
 
-    Load real GKS data into Python objects, explore them, export them back.
+    Load bundles, explore their contents, and follow relationships.
 
-    [Explore the Python package →](library/index.md)
+    [Explore the `gkm.starter` package →](library/index.md)
 
-- :material-database: **I have data to share**
+- :material-account-tie: **I lead a team**
 
-    Package your resource's knowledge as GKS bundles others can consume.
+    See how communities use GKM to share knowledge and solve real problems.
 
-    [See the data bundles →](data/index.md)
+    [Read a vignette →](vignettes/index.md)
 
 </div>
-
-## See one object, four altitudes
-
-The same piece of genomic knowledge, shown at the level you care about — narrative
-for a scientist, JSON for a data engineer, Python for a developer, schema for an
-implementer. (This is the pattern used throughout the Starter Kit.)
-
-=== "Narrative (scientist)"
-
-    **BRCA1 c.68_69del is causal for hereditary breast-ovarian cancer syndrome.**
-    A well-established pathogenic frameshift variant. The statement below *supports*
-    that proposition; the direction and strength come from the submitting resource.
-
-=== "GKS JSON (Pillar 1 bundle)"
-
-    ```json
-    {
-      "bundleVersion": "1.0.0",
-      "source": { "name": "ClinVar GKS", "url": "https://www.ncbi.nlm.nih.gov/clinvar/" },
-      "statements": [{
-        "id": "clinvar:SCV000000001",
-        "direction": "supports",
-        "proposition": {
-          "type": "VariantPathogenicityProposition",
-          "subject": { "id": "ga4gh:VA.abc123", "label": "BRCA1 c.68_69del" },
-          "predicate": "isCausalFor",
-          "object": { "id": "MONDO:0003582", "label": "hereditary breast-ovarian cancer syndrome" }
-        }
-      }]
-    }
-    ```
-
-=== "Python (Pillar 2 library)"
-
-    ```python
-    from gks_kit import load                       # package name TBD — see Python Package section
-
-    bundle = load("clinvar.gks.json")              # parse + validate
-    stmt = bundle.statements[0]
-    stmt.direction                                 # 'supports'
-    stmt.proposition.predicate                     # 'isCausalFor'
-    bundle.to_json("out.gks.json")                 # re-export canonical GKS JSON
-    ```
-
-=== "Schema (Pillar 1 contract)"
-
-    The bundle validates against a JSON Schema composed from modular GKS `$ref`s.
-    See the fully rendered, browsable schema under **[Data Bundles](data/index.md)**.

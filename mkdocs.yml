@@ -1,5 +1,5 @@
-site_name: GKS Starter Kit
-site_description: Real-world walk-throughs of high-value uses of the GA4GH Genomic Knowledge Standards
+site_name: GKM Starter Kit
+site_description: Tools and examples for the GA4GH Genomic Knowledge Model
 site_url: https://ga4gh.github.io/gks-starter-kit/
 repo_url: https://github.com/ga4gh/gks-starter-kit
 repo_name: ga4gh/gks-starter-kit
@@ -9,7 +9,6 @@ theme:
   name: material
   features:
     - navigation.sections
-    - navigation.expand
     - content.action.edit
     - content.code.copy
     - content.tabs.link
@@ -30,13 +29,35 @@ theme:
 extra_css:
   - assets/css/extra.css
 
+extra_javascript:
+  - assets/js/external-links.js
+
 plugins:
   - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: sphinx
+            # Exclude private/protected names while retaining public Python
+            # protocol methods such as __getitem__ and __iter__.
+            filters: ["!^_[^_]"]
+            inherited_members: false
+            merge_init_into_class: true
+            members_order: source
+            separate_signature: true
+            show_signature_annotations: true
+            show_source: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            signature_crossrefs: true
   - macros:
       module_name: scripts
   - gen-files:
       scripts:
         - scripts/gen_filter_pages.py
+        - scripts/gen_notebook_files.py
         - scripts/gen_schema_pages.py
 
 markdown_extensions:
@@ -63,16 +84,34 @@ exclude_docs: |
   vignettes/_template/
   vignettes/patterns.yml
 
+not_in_nav: |
+  vignettes/*/vignette.md
+
 nav:
   - Home: index.md
-  - Data Bundles:
-      - data/index.md
-      - Bundle schema: data/schemas/gks-bundle.md
-  - Python Package:
-      - library/index.md
-  - Vignettes:
-      - vignettes/index.md
-  - Contribute: contribute.md
   - About: about.md
+  - Data Bundles:
+      - Overview: data/index.md
+      - Bundle schemas: data/schemas.md
+      - Example bundles: data/examples.md
+  - Python Package:
+      - Overview: library/index.md
+      - API reference:
+          - Overview: library/api/index.md
+          - Models: library/api/models.md
+          - Loading: library/api/loading.md
+          - Compatibility: library/api/compatibility.md
+          - Registry: library/api/registry.md
+          - Errors: library/api/errors.md
+      - Example workflow: library/civic-notebook.md
+  - Vignettes:
+      - Overview: vignettes/index.md
+      - Browse by product:
+          - VRS: vignettes/by-product/vrs/index.md
+      - Browse by use pattern:
+          - Cross-source variant harmonization: vignettes/by-pattern/cross-source-variant-harmonization/index.md
+      - Browse by implementer:
+          - BRCA Exchange: vignettes/by-implementer/brca-exchange/index.md
+  - Contribute: contribute.md
 
 strict: true
