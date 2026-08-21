@@ -1,4 +1,4 @@
-# About
+# About the GKM Starter Kit
 
 The GKM Starter Kit is a community project for sharing and using genomic
 knowledge represented with the Genomic Knowledge Model.
@@ -8,7 +8,7 @@ knowledge represented with the Genomic Knowledge Model.
 The **Genomic Knowledge Model (GKM)** defines shared models for genomic
 variation and related knowledge. It is part of the broader [GA4GH Genomic
 Knowledge Standards (GKS)](https://www.ga4gh.org/work_stream/genomic-knowledge-standards/)
-family.
+Work Stream.
 
 GKM brings together four standards that can be used independently or combined:
 
@@ -28,21 +28,58 @@ implementations are:
 
 ## The three pillars
 
-The Starter Kit builds on GKM through three pillars:
+The Starter Kit connects GKM standards to real data, software, and community
+outcomes through three pillars.
 
-1. **[Data Bundles](data/index.md)** package real GKM data from community
-   partners for others to use.
-2. **[Python Package](library/index.md)** loads, explores, and writes bundles
-   while preserving each producer's names and organization.
-3. **[Vignettes](vignettes/index.md)** show how communities put GKM standards
-   to work on real problems.
+### Data Bundles
+
+**[Data Bundles](data/index.md) package related GKM objects while preserving the
+names and organization of their resources.**
+
+A documented, versioned bundle schema makes structural changes easier to
+communicate and helps consumers understand what a producer distributes.
 
 !!! important "Bundles are optional in GKM"
 
-    A GKM bundle is a producer-defined JSON document that packages related GKM
-    objects. Bundles are not required to use GKM: applications can work with
-    individual objects through the reference implementations above, and
-    services can expose their own APIs. Bundles are, however, the input and
-    output format of the Starter Kit Python package.
+    A GKM bundle packages related GKM objects using a producer-defined
+    structure. Bundles are not required to use GKM: applications can construct,
+    validate, and serialize individual GKM objects through the reference
+    implementations above.
 
-Next, read [Why GKM and the Starter Kit matter](why.md).
+### The `gkm.starter` Python package
+
+**[`gkm.starter`](library/index.md) provides a consistent Python interface for
+loading, exploring, and writing bundles.**
+
+Consumers can work with supported GKM Python models, follow relationships
+between objects, and retain producer-specific content without hand-parsing each
+producer's organization.
+
+Bundles are the input and output format of `gkm.starter`. The initial
+implementation supports JSON serialization; other serializations may be added
+later.
+
+The GKM reference implementations construct, validate, and serialize individual
+GKM objects; `gkm.starter` works with collections of those objects in bundles.
+These packages are maintained implementations, not required interfaces.
+Developers can implement the GKM standards in their own tools and programming
+languages.
+
+### Vignettes
+
+**[Vignettes](vignettes/index.md) show how communities put GKM standards to work
+and what their implementations accomplish.**
+
+They give prospective adopters concrete examples, reveal reusable patterns,
+and help teams evaluate whether GKM fits their needs.
+
+Some vignettes use Data Bundles or `gkm.starter`; others use GKM standards
+without them. The focus is the real-world outcome, not whether an implementation
+uses every part of the Starter Kit.
+
+## How the pillars work together
+
+Data Bundles provide real data, `gkm.starter` provides a consistent bundle
+workflow, and Vignettes demonstrate the results. Together they help producers,
+consumers, and the GKM community test the standards, identify gaps, and turn
+successful implementations into patterns others can reuse.

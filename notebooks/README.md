@@ -1,17 +1,11 @@
 # GKM Starter Kit notebooks
 
-The notebooks use small bundles committed alongside them, so exploration does
-not require the full source export.
+The notebooks show complete examples of working with GKM data. They use small
+bundles stored in this repository, so you can run them without downloading a
+producer's full dataset.
 
-Producer-specific examples live in their own directories. The CIViC directory
-includes a README describing its fixtures and a guided notebook:
+## Available notebooks
 
-`notebooks/civic/explore-civic-bundles.ipynb`
-
-```shell
-jupyter lab
-```
-
-The walkthrough explains why each step matters while loading bundles, inspecting
-collections, working with GKM reference models, dereferencing pointers, comparing
-assertion types, and reading the format schema.
+- [Explore two CIViC bundles](civic/explore-civic-bundles.ipynb) — load two
+  bundles, discover their contents, work with GKM Python objects, and follow
+  relationships between objects.

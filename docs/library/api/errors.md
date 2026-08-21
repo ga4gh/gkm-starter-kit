@@ -1,4 +1,4 @@
-# Exceptions
+# Errors
 
 ::: gkm.starter.bundles.errors
     options:

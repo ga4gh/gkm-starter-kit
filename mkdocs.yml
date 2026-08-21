@@ -44,8 +44,14 @@ plugins:
             # protocol methods such as __getitem__ and __iter__.
             filters: ["!^_[^_]"]
             inherited_members: false
+            merge_init_into_class: true
             members_order: source
+            separate_signature: true
             show_signature_annotations: true
+            show_source: false
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            signature_crossrefs: true
   - macros:
       module_name: scripts
   - gen-files:
@@ -84,23 +90,20 @@ not_in_nav: |
 nav:
   - Home: index.md
   - About: about.md
-  - Why the Starter Kit matters: why.md
   - Data Bundles:
       - Overview: data/index.md
-      - Bundle formats and JSON Schema: data/formats.md
+      - Bundle schemas: data/schemas.md
+      - Example bundles: data/examples.md
   - Python Package:
       - Overview: library/index.md
-      - CIViC walkthrough: library/civic-notebook.md
-      - Loading a bundle: library/loading.md
-      - Exploring a loaded bundle: library/exploring.md
-      - Saving and exporting a bundle: library/writing.md
       - API reference:
           - Overview: library/api/index.md
-          - Bundle models: library/api/models.md
-          - Loading functions: library/api/loading.md
-          - GKM version compatibility: library/api/compatibility.md
-          - Named bundle registry: library/api/registry.md
-          - Exceptions: library/api/errors.md
+          - Models: library/api/models.md
+          - Loading: library/api/loading.md
+          - Compatibility: library/api/compatibility.md
+          - Registry: library/api/registry.md
+          - Errors: library/api/errors.md
+      - Example workflow: library/civic-notebook.md
   - Vignettes:
       - Overview: vignettes/index.md
       - Browse by product:

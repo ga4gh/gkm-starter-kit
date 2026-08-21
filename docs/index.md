@@ -1,10 +1,12 @@
 # GKM Starter Kit
 
-**Genomic knowledge is hard to share when every resource describes it
-differently. The GA4GH Genomic Knowledge Model (GKM) gives that knowledge
-shared meaning, and the Starter Kit makes it practical to publish and use. The
-result is more interoperable genomic knowledge that is easier for people and
-software to understand, exchange, and reuse.**
+Genomic knowledge is hard to share when every resource describes it
+differently. The **[GA4GH Genomic Knowledge Model
+(GKM)](about.md#what-is-gkm)** defines standards for representing genomic
+knowledge consistently, and the **[Starter
+Kit](about.md#the-three-pillars)** helps communities put those standards
+to work with real data, software, and use cases. Together, they make genomic
+knowledge from different resources easier to compare, combine, and apply.
 
 ## How it fits together
 
@@ -32,9 +34,9 @@ Real community outcomes
 
 - :material-code-braces: **I want to build**
 
-    Load published bundles, explore their contents, and follow relationships.
+    Load bundles, explore their contents, and follow relationships.
 
-    [Explore the Python package →](library/index.md)
+    [Explore the `gkm.starter` package →](library/index.md)
 
 - :material-account-tie: **I lead a team**
 

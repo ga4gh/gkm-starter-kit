@@ -18,17 +18,38 @@ def _text(value: str | list[str]) -> str:
     return "".join(value) if isinstance(value, list) else value
 
 
-def _render_output(output: dict[str, Any]) -> str | None:
-    """Render a saved text output, ignoring unsupported rich output."""
+def _render_output(output: dict[str, Any]) -> tuple[str, str | None] | None:
+    """Return supported output text and its Markdown code-fence language."""
     if output.get("output_type") == "stream":
-        return _text(output.get("text", ""))
+        text = _text(output.get("text", ""))
+        try:
+            json.loads(text)
+        except json.JSONDecodeError:
+            return text, "text"
+        return text, "json"
+
+    json_value = output.get("data", {}).get("application/json")
+    if json_value is not None:
+        return json.dumps(json_value, indent=2), "json"
+
+    markdown = output.get("data", {}).get("text/markdown")
+    if markdown is not None:
+        return _text(markdown), None
 
     plain_text = output.get("data", {}).get("text/plain")
     if plain_text is not None:
-        return _text(plain_text)
+        text = _text(plain_text)
+        if "text/html" in output.get("data", {}):
+            try:
+                json.loads(text)
+            except json.JSONDecodeError:
+                pass
+            else:
+                return text, "json"
+        return text, "python"
 
     if output.get("output_type") == "error":
-        return "\n".join(output.get("traceback", ()))
+        return "\n".join(output.get("traceback", ())), "text"
 
     return None
 
@@ -37,12 +58,12 @@ def _render_notebook() -> str:
     """Convert the canonical notebook's Markdown, code, and saved outputs."""
     notebook = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
     source_note = (
-        '!!! info "Complete workflow"\n\n'
-        "    This notebook is the end-to-end example: it locates the CIViC "
-        "files, checks compatibility, loads two bundles, inspects collections, "
-        "works with typed GKM objects, follows references, and compares "
-        "assertions. The other Python pages are focused guides to individual "
-        "capabilities.\n\n"
+        '!!! info "Data files"\n\n'
+        "    Example files: "
+        '{{ bundle_linkouts("../data/bundles", '
+        '"civic-aid-9-bundle.json", '
+        '"civic-aid-251-bundle.json", '
+        '"civic-gks-bundle-v0.1.0.schema.json") }}\n\n'
         f"    Rendered from `{NOTEBOOK.as_posix()}`."
     )
     rendered: list[str] = []
@@ -69,9 +90,13 @@ def _render_notebook() -> str:
         outputs = filter(
             None, (_render_output(item) for item in cell.get("outputs", ()))
         )
-        rendered.extend(
-            f"**Output:**\n\n````text\n{output.rstrip()}\n````" for output in outputs
-        )
+        for output, language in outputs:
+            if language is None:
+                rendered.append(f"**Output:**\n\n{output.rstrip()}")
+            else:
+                rendered.append(
+                    f"**Output:**\n\n````{language}\n{output.rstrip()}\n````"
+                )
 
     return "\n\n".join(rendered) + "\n"
 

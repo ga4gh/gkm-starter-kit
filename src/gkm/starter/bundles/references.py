@@ -70,7 +70,7 @@ def parse_gks_values(value: Any) -> Any:
         try:
             return model.model_validate(value)
         except ValidationError:
-            # Referenced bundle formats may use JSON Pointers in fields where a
+            # Producer bundle schemas may use JSON Pointers in fields where a
             # standalone reference model requires an embedded object. Preserve
             # that bundle representation until graph rehydration is requested.
             pass

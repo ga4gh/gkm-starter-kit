@@ -68,8 +68,7 @@ class BundleRegistry:
         try:
             return self._registrations[name]
         except KeyError as error:
-            available = ", ".join(self.registered_names()) or "none"
-            message = f"Unknown bundle {name!r}. Available bundles: {available}."
+            message = f"Unknown bundle {name!r}"
 
             raise BundleNotFoundError(message) from error
 

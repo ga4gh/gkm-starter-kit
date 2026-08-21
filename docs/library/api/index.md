@@ -1,11 +1,14 @@
 # API reference
 
-Use the API reference for complete function and class details, including
-parameters, return values, and errors. For a shorter introduction, start with
-the [Python Package overview](../index.md).
+The API reference documents the public classes, functions, and exceptions in
+`gkm.starter`.
 
-- [Models](models.md) — `Bundle`, `BundleCollection`, and their methods.
-- [Loading](loading.md) — load one or several producer bundles.
-- [Compatibility](compatibility.md) — inspect and check supported GKM versions.
-- [Registry](registry.md) — register and retrieve named bundle sources.
-- [Exceptions](errors.md) — package-specific error hierarchy.
+- [Models](models.md) — inspect collections, resolve references, and
+  serialize bundles.
+- [Loading](loading.md) — load one or several bundles from files,
+  streams, or registered names.
+- [Compatibility](compatibility.md) — inspect supported versions and
+  check a producer's bundle schema.
+- [Registry](registry.md) — associate names with bundle and schema
+  sources.
+- [Errors](errors.md) — package-specific exception hierarchy.

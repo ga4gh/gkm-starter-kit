@@ -5,13 +5,18 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Iterator, Mapping
+from collections.abc import Iterator, KeysView, Mapping
 from pathlib import Path
 from typing import Any
 
 from pydantic import BaseModel
 
-from .errors import BundleFormatError, BundleReferenceError
+from .errors import (
+    BundleCollectionNotFoundError,
+    BundleObjectNotFoundError,
+    BundleReferenceError,
+    BundleSerializationError,
+)
 
 
 def _to_json_value(value: Any) -> Any:
@@ -35,14 +40,14 @@ def _to_json_value(value: Any) -> Any:
 class BundleCollection(Mapping[str, Any]):
     """A named, keyed collection within a :class:`Bundle`.
 
-    :param name: Collection name from the bundle document.
+    :param name: Collection name from the bundle.
     :param values: Objects keyed by their identifiers.
     """
 
     def __init__(self, name: str, values: Mapping[str, Any]) -> None:
         """Initialize a bundle collection.
 
-        :param name: Collection name from the bundle document.
+        :param name: Collection name from the bundle.
         :param values: Objects keyed by their identifiers.
         """
         self.name = name
@@ -53,9 +58,13 @@ class BundleCollection(Mapping[str, Any]):
 
         :param key: Object identifier.
         :return: The stored object.
-        :raises KeyError: If ``key`` is absent.
+        :raises BundleObjectNotFoundError: If ``key`` is absent.
         """
-        return self._values[key]
+        try:
+            return self._values[key]
+        except KeyError as error:
+            message = f"Unknown identifier {key!r} in collection {self.name!r}"
+            raise BundleObjectNotFoundError(message) from error
 
     def __iter__(self) -> Iterator[str]:
         """Iterate over object identifiers.
@@ -71,6 +80,13 @@ class BundleCollection(Mapping[str, Any]):
         """
         return len(self._values)
 
+    def keys(self) -> KeysView[str]:
+        """Return the object identifiers in the collection.
+
+        :return: A view of the collection's object identifiers.
+        """
+        return self._values.keys()
+
     def __repr__(self) -> str:
         """Return a concise representation of the collection.
 
@@ -82,8 +98,11 @@ class BundleCollection(Mapping[str, Any]):
 class Bundle(Mapping[str, BundleCollection]):
     """Represent a GKM Bundle in memory.
 
+    Producer-defined collection names are preserved and can be accessed through
+    mapping syntax, attribute access, or :meth:`collection`.
+
     :param collections: Named object collections in the bundle.
-    :param metadata: Bundle format and provenance metadata.
+    :param metadata: Bundle and provenance metadata.
     :param extras: Top-level values that are not object collections.
     :param name: Registered or inferred bundle name.
     """
@@ -99,7 +118,7 @@ class Bundle(Mapping[str, BundleCollection]):
         """Initialize a bundle.
 
         :param collections: Named object collections in the bundle.
-        :param metadata: Bundle format and provenance metadata.
+        :param metadata: Bundle and provenance metadata.
         :param extras: Top-level values that are not object collections.
         :param name: Registered or inferred bundle name.
         """
@@ -113,9 +132,13 @@ class Bundle(Mapping[str, BundleCollection]):
 
         :param name: Collection name.
         :return: The matching collection.
-        :raises KeyError: If ``name`` is absent.
+        :raises BundleCollectionNotFoundError: If ``name`` is absent.
         """
-        return self.collections[name]
+        try:
+            return self.collections[name]
+        except KeyError as error:
+            message = f"Unknown collection {name!r}"
+            raise BundleCollectionNotFoundError(message) from error
 
     def __iter__(self) -> Iterator[str]:
         """Iterate over collection names.
@@ -143,21 +166,18 @@ class Bundle(Mapping[str, BundleCollection]):
 
         :param name: Collection name.
         :return: The matching collection.
-        :raises AttributeError: If ``name`` is not a collection.
+        :raises BundleCollectionNotFoundError: If ``name`` is not a collection.
         """
-        try:
-            return self.collections[name]
-        except KeyError as error:
-            raise AttributeError(name) from error
+        return self[name]
 
     def collection(self, name: str) -> BundleCollection:
         """Return a collection by name.
 
         :param name: Collection name.
         :return: The matching collection.
-        :raises KeyError: If ``name`` is absent.
+        :raises BundleCollectionNotFoundError: If ``name`` is absent.
         """
-        return self.collections[name]
+        return self[name]
 
     def resolve(self, pointer: str) -> Any:
         """Resolve an RFC 6901 JSON Pointer into this bundle.
@@ -246,7 +266,7 @@ class Bundle(Mapping[str, BundleCollection]):
     def to_dict(self) -> dict[str, Any]:
         """Serialize the bundle to JSON-compatible Python values.
 
-        :return: The complete bundle document.
+        :return: The complete serialized bundle.
         """
         document = {
             name: _to_json_value(collection)
@@ -269,15 +289,20 @@ class Bundle(Mapping[str, BundleCollection]):
     ) -> None:
         """Write the bundle to a file.
 
+        Writing preserves collection names, identifiers, local references,
+        metadata, and producer-specific values, but the result may not be
+        byte-for-byte identical to the input. Output is not validated against
+        the producer's schema.
+
         :param destination: Output file path.
         :param serialization: Output serialization. Only ``"json"`` is supported.
         :param indent: Number of spaces used to indent JSON, or ``None`` for compact
             output.
-        :raises BundleFormatError: If ``serialization`` is unsupported.
+        :raises BundleSerializationError: If ``serialization`` is unsupported.
         """
         if serialization != "json":
             message = f"Unsupported serialization {serialization!r}; expected 'json'"
-            raise BundleFormatError(message)
+            raise BundleSerializationError(message)
 
         Path(destination).write_text(
             json.dumps(self.to_dict(), indent=indent) + "\n",

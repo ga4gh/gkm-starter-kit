@@ -1,10 +1,17 @@
 # GKM Starter Kit
 
-A community-facing entry point for the GA4GH Genomic Knowledge Model (GKM).
+A practical entry point for using the GA4GH Genomic Knowledge Model (GKM).
 
 **Live site:** <https://ga4gh.github.io/gks-starter-kit/>
 
-The Starter Kit collects real-world **vignettes**: concise walk-throughs of high-value uses of GKS, each with the actual data and tools needed to deliver the use case. They're designed to be share-friendly so adopters can carry the value proposition to their teams, leadership, and broader communities.
+The Starter Kit brings together three complementary resources:
+
+- **Data Bundles** package related GKM objects from participating producers.
+- **`gkm.starter`** provides Python tools for loading and working with those bundles.
+- **Vignettes** show how implementers use GKM standards to solve real problems.
+
+Start with the [documentation](https://ga4gh.github.io/gks-starter-kit/) for an
+overview, examples, and API details.
 
 ## Contributing a vignette
 

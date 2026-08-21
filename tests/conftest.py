@@ -21,10 +21,6 @@ def pytest_configure(config):
     # add noisy logging libraries.
     if not config.getoption("--verbose-logs"):
         pass
-        # for example:
-        # logging.getLogger("botocore").setLevel(logging.ERROR)
-        # logging.getLogger("boto3").setLevel(logging.ERROR)
-        # logging.getLogger("urllib3.connectionpool").setLevel(logging.ERROR)
 
 
 @pytest.fixture(scope="session")

@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import IO, Any, TypeAlias
 
 from .compatibility import check_gkm_version_compatibility
-from .errors import BundleFormatError, BundleNotFoundError
+from .errors import BundleNotFoundError, BundleSerializationError
 from .models import Bundle, BundleCollection
 from .references import parse_gks_values
 from .registry import registry
@@ -22,7 +22,7 @@ def _decode_json(source: IO[str] | IO[bytes]) -> object:
 
     :param source: Readable text or binary JSON stream.
     :return: The decoded JSON value.
-    :raises BundleFormatError: If the stream does not contain valid JSON.
+    :raises BundleSerializationError: If the stream does not contain valid JSON.
     """
     try:
         return json.load(source)
@@ -30,7 +30,7 @@ def _decode_json(source: IO[str] | IO[bytes]) -> object:
         name = getattr(source, "name", None)
         location = f" in {name!s}" if name is not None else ""
         message = f"Invalid JSON{location}: {error}"
-        raise BundleFormatError(message) from error
+        raise BundleSerializationError(message) from error
 
 
 def _read_json(
@@ -69,18 +69,18 @@ def _read_json(
 
 
 def _require_json_object(value: object, *, subject: str) -> Mapping[str, Any]:
-    """Return a decoded JSON object or raise a bundle format error.
+    """Return a decoded JSON object or raise a bundle serialization error.
 
     :param value: Decoded JSON value.
     :param subject: Human-readable name used in an error message.
     :return: The value narrowed to a string-keyed mapping.
-    :raises BundleFormatError: If ``value`` is not a JSON object.
+    :raises BundleSerializationError: If ``value`` is not a JSON object.
     """
     if isinstance(value, Mapping):
         return value
 
     message = f"A bundle {subject} must be a JSON object"
-    raise BundleFormatError(message)
+    raise BundleSerializationError(message)
 
 
 def load_bundle(
@@ -95,6 +95,9 @@ def load_bundle(
     Pydantic models. Producer-specific structures and objects containing bundle
     references that cannot be validated independently remain mappings.
 
+    When a schema is provided, it is used to check GKM version compatibility.
+    The bundle is not fully validated against the schema.
+
     :param source: Registered bundle name, file path, or readable JSON stream.
     :param schema: Producer JSON Schema. A registered schema is used when omitted.
     :param serialization: Input serialization. Only ``"json"`` is supported.
@@ -102,12 +105,12 @@ def load_bundle(
     :return: The loaded bundle.
     :raises gkm.starter.bundles.BundleCompatibilityError: If the schema references
         unsupported GKM product versions.
-    :raises BundleFormatError: If the serialization or document shape is unsupported.
+    :raises BundleSerializationError: If the serialization or data shape is unsupported.
     :raises BundleNotFoundError: If ``source`` cannot be found.
     """
     if serialization not in {None, "json"}:
         message = f"Unsupported serialization {serialization!r}; currently only 'json' is supported"
-        raise BundleFormatError(message)
+        raise BundleSerializationError(message)
 
     raw_document, name, registered_schema = _read_json(source)
 
