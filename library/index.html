@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Real-world walk-throughs of high-value uses of the GA4GH Genomic Knowledge Standards">
+        <meta name="description" content="Tools and examples for the GA4GH Genomic Knowledge Model">
       
       
       
         <link rel="canonical" href="https://ga4gh.github.io/gks-starter-kit/library/">
       
       
-        <link rel="prev" href="../data/schemas/gks-bundle/">
+        <link rel="prev" href="../data/examples/">
       
       
-        <link rel="next" href="../vignettes/">
+        <link rel="next" href="api/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Python Package - GKS Starter Kit</title>
+        <title>Overview - GKM Starter Kit</title>
       
     
     
@@ -49,6 +49,8 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
       <link rel="stylesheet" href="../assets/css/extra.css">
     
@@ -94,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="GKS Starter Kit" class="md-header__button md-logo" aria-label="GKS Starter Kit" data-md-component="logo">
+    <a href=".." title="GKM Starter Kit" class="md-header__button md-logo" aria-label="GKM Starter Kit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,13 +110,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            GKS Starter Kit
+            GKM Starter Kit
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Python Package
+              Overview
             
           </span>
         </div>
@@ -227,13 +229,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="GKS Starter Kit" class="md-nav__button md-logo" aria-label="GKS Starter Kit" data-md-component="logo">
+    <a href=".." title="GKM Starter Kit" class="md-nav__button md-logo" aria-label="GKM Starter Kit" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    GKS Starter Kit
+    GKM Starter Kit
   </label>
   
     <div class="md-nav__source">
@@ -276,6 +278,26 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
     
     
     
@@ -289,12 +311,10 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -305,8 +325,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Data Bundles
           </label>
@@ -323,7 +343,7 @@
         
   
   <span class="md-ellipsis">
-    Data Bundles
+    Overview
   </span>
   
 
@@ -340,11 +360,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../data/schemas/gks-bundle/" class="md-nav__link">
+      <a href="../data/schemas/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Bundle schema
+    Bundle schemas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data/examples/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example bundles
   </span>
   
 
@@ -382,10 +423,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -396,8 +437,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Python Package
           </label>
@@ -423,7 +464,7 @@
           
   
   <span class="md-ellipsis">
-    Python Package
+    Overview
   </span>
   
 
@@ -434,7 +475,7 @@
         
   
   <span class="md-ellipsis">
-    Python Package
+    Overview
   </span>
   
 
@@ -456,18 +497,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-intended-experience" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
-      The intended experience
+      Install
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#extending-propositions" class="md-nav__link">
+  <a href="#what-you-can-do" class="md-nav__link">
     <span class="md-ellipsis">
-      Extending propositions
+      What you can do
     </span>
   </a>
   
@@ -477,6 +518,198 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    API reference
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            API reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/loading/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Loading
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/compatibility/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compatibility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/registry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Registry
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/errors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="civic-notebook/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Example workflow
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -508,12 +741,10 @@
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -524,8 +755,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Vignettes
           </label>
@@ -542,11 +773,209 @@
         
   
   <span class="md-ellipsis">
-    Vignettes
+    Overview
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Browse by product
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Browse by product
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vignettes/by-product/vrs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VRS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Browse by use pattern
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Browse by use pattern
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vignettes/by-pattern/cross-source-variant-harmonization/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cross-source variant harmonization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Browse by implementer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Browse by implementer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vignettes/by-implementer/brca-exchange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BRCA Exchange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -571,26 +1000,6 @@
   
   <span class="md-ellipsis">
     Contribute
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../about/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    About
   </span>
   
 
@@ -626,18 +1035,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-intended-experience" class="md-nav__link">
+  <a href="#install" class="md-nav__link">
     <span class="md-ellipsis">
-      The intended experience
+      Install
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#extending-propositions" class="md-nav__link">
+  <a href="#what-you-can-do" class="md-nav__link">
     <span class="md-ellipsis">
-      Extending propositions
+      What you can do
     </span>
   </a>
   
@@ -667,68 +1076,25 @@
 
 
 <h1 id="python-package">Python Package</h1>
-<p>The GKS reference libraries — <a href="https://github.com/ga4gh/vrs-python"><code>vrs-python</code></a>,
-<code>cat-vrs-python</code>, and <code>va-spec-python</code> — give you validated building blocks for
-individual GKS objects. What they don't give you is a way to work with a whole
-<strong><a href="../data/">Data Bundle</a></strong> as one thing. The Python package is that
-missing layer: a lightweight wrapper on top of the reference libraries that
-lets you <strong>load</strong> a bundle into in-memory GKS objects, <strong>explore</strong> and
-manipulate those objects with ordinary Python, and <strong>export</strong> them back to
-canonical GKS JSON.</p>
-<p>The intent is deliberately thin. The package does not reinvent variant
-normalization or statement validation — it delegates that to the reference
-libraries — it simply makes a bundle pleasant to open, walk, change, and write
-back out without hand-parsing JSON.</p>
-<div class="admonition note">
-<p class="admonition-title">In development</p>
-<p>This package is in active design. The load / explore / export shape shown
-below is the intended developer experience, not a released API. A
-forthcoming Pillar 2 specification and implementation plan will define the
-object model, the loaders, and the exporters; this page will link to it
-once it lands.</p>
-</div>
-<h2 id="the-intended-experience">The intended experience</h2>
-<p>The three moves below are the whole point of the package: get a bundle in,
-work with it, get valid GKS back out.</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Load</label><label for="__tabbed_1_2">Explore</label><label for="__tabbed_1_3">Export</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gks_kit</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>                    <span class="c1"># package name TBD</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">bundle</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">&quot;clinvar.gks.json&quot;</span><span class="p">)</span>           <span class="c1"># parse + validate against the bundle schema</span>
+<p><img alt="GKM Starter Kit Logo" src="../assets/images/gkm-starter-kit-logo.png" style="display: block; margin: 0 auto;" width="300" /></p>
+<p><code>gkm.starter</code> is the Starter Kit's Python package for loading a producer's GKM
+bundle, exploring its contents, following relationships, and writing it back to
+JSON.</p>
+<h2 id="install">Install</h2>
+<p>The package requires Python 3.11 or later. Install it from PyPI:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>gkm.starter
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span> <span class="n">stmt</span> <span class="ow">in</span> <span class="n">bundle</span><span class="o">.</span><span class="n">statements</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">stmt</span><span class="o">.</span><span class="n">proposition</span><span class="o">.</span><span class="n">predicate</span><span class="p">,</span> <span class="s2">&quot;→&quot;</span><span class="p">,</span> <span class="n">stmt</span><span class="o">.</span><span class="n">proposition</span><span class="o">.</span><span class="n">object</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">])</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="c1"># isCausalFor → hereditary breast-ovarian cancer syndrome</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">stmt</span> <span class="o">=</span> <span class="n">bundle</span><span class="o">.</span><span class="n">statements</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">stmt</span><span class="o">.</span><span class="n">direction</span>                              <span class="c1"># &#39;supports&#39;</span>
+<p>Import the package as <code>starter</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gkm</span><span class="w"> </span><span class="kn">import</span> <span class="n">starter</span>
 </code></pre></div>
-</div>
-<div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">bundle</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;out.gks.json&quot;</span><span class="p">)</span>              <span class="c1"># canonical GKS JSON, re-validated on write</span>
-</code></pre></div>
-</div>
-</div>
-</div>
-<div class="admonition info">
-<p class="admonition-title"><code>gks_kit</code> is a placeholder</p>
-<p>The import name <code>gks_kit</code> used throughout this page is a stand-in. The
-final package name has not been decided, so treat every <code>gks_kit</code> here as
-"the package, whatever it ends up being called."</p>
-</div>
-<h2 id="extending-propositions">Extending propositions</h2>
-<p>GKS prescribes a set of specialized propositions — for example
-<code>VariantPathogenicityProposition</code> — that cover the most common assertions. When
-a resource needs to make a statement about a proposition GKS does not
-prescribe, the planned pathway is <strong><code>CustomProposition</code></strong>: a forthcoming
-va-spec escape hatch that lets a bundle carry a well-formed statement over a
-proposition shape the core specs don't yet define, without dropping out of the
-GKS model. <code>CustomProposition</code> is not yet specified — this names the intended
-direction only; its schema and validation rules will be defined in their own
-spec.</p>
+<h2 id="what-you-can-do">What you can do</h2>
+<ul>
+<li>Load producer JSON with its producer-defined schema.</li>
+<li>Discover the collections provided by a producer.</li>
+<li>Work with supported values as GKM Python models.</li>
+<li>Follow relationships between objects without manually navigating JSON paths.</li>
+<li>Write the bundle back to JSON while preserving producer-specific content.</li>
+</ul>
 
 
 
@@ -777,10 +1143,12 @@ spec.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.expand", "content.action.edit", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "content.action.edit", "content.code.copy", "content.tabs.link"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../assets/js/external-links.js"></script>
       
     
   </body>
