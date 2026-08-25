@@ -52,27 +52,47 @@
       "title": "GksAssertionError",
       "type": "object"
     },
+    "ImplementationVersions": {
+      "description": "Python package versions used to generate a GKS export.",
+      "properties": {
+        "VRSPython": {
+          "description": "VRS-Python version used to generate this export.",
+          "title": "Vrspython",
+          "type": "string"
+        },
+        "CatVRSPython": {
+          "description": "Cat-VRS Python version used to generate this export.",
+          "title": "Catvrspython",
+          "type": "string"
+        },
+        "VASpecPython": {
+          "description": "VA-Spec Python version used to generate this export.",
+          "title": "Vaspecpython",
+          "type": "string"
+        }
+      },
+      "title": "ImplementationVersions",
+      "type": "object"
+    },
     "Metadata": {
-      "additionalProperties": false,
       "description": "Describe the bundle format, export provenance, and contents.",
       "properties": {
-        "VASpecPythonVersion": {
-          "description": "VA-Spec Python version used to generate this export.",
-          "title": "Vaspecpythonversion",
-          "type": "string"
+        "implementationVersions": {
+          "$ref": "#/$defs/ImplementationVersions"
+        },
+        "specificationVersions": {
+          "$ref": "#/$defs/SpecificationVersions"
         },
         "createdAt": {
           "title": "Createdat",
           "type": "string"
         },
         "bundleFormat": {
-          "const": "civic-gks-bundle",
           "default": "civic-gks-bundle",
           "title": "Bundleformat",
           "type": "string"
         },
         "bundleFormatVersion": {
-          "const": "0.1.0",
           "default": "0.1.0",
           "title": "Bundleformatversion",
           "type": "string"
@@ -83,16 +103,45 @@
         }
       },
       "required": [
-        "bundleFormat",
-        "bundleFormatVersion",
         "createdAt",
         "statistics"
       ],
       "title": "Metadata",
       "type": "object"
     },
+    "SpecificationVersions": {
+      "description": "GA4GH specification versions represented in a GKS export.",
+      "properties": {
+        "GKSCore": {
+          "default": "1.1.0",
+          "description": "GKS-Core version represented in this export.",
+          "title": "Gkscore",
+          "type": "string"
+        },
+        "VRS": {
+          "default": "2.1.0-snapshot.2026-02.2",
+          "description": "VRS version represented in this export.",
+          "title": "Vrs",
+          "type": "string"
+        },
+        "CatVRS": {
+          "default": "1.1.0-snapshot.2026-02.3",
+          "description": "Cat-VRS version represented in this export.",
+          "title": "Catvrs",
+          "type": "string"
+        },
+        "VASpec": {
+          "default": "1.1.0-snapshot.2026-06.1",
+          "description": "VA-Spec version used to generate this export.",
+          "title": "Vaspec",
+          "type": "string"
+        }
+      },
+      "title": "SpecificationVersions",
+      "type": "object"
+    },
     "Statistics": {
-      "description": "Summarize the contents of a CIViC GKM bundle.",
+      "description": "Summarize the contents of a CIViC GKS bundle.",
       "properties": {
         "collections": {
           "additionalProperties": {
@@ -115,7 +164,6 @@
   "civicBundleFormat": "civic-gks-bundle",
   "civicBundleFormatVersion": "0.1.0",
   "description": "CIViC data in the referenced GKS Bundle Format.",
-  "additionalProperties": false,
   "properties": {
     "sequenceReference": {
       "additionalProperties": false,

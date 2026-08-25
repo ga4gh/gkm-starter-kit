@@ -552,8 +552,18 @@
     }
   },
   "metadata": {
-    "VASpecPythonVersion": "0.5.0a4.dev7+gdaa80e6e8",
-    "createdAt": "2026-08-19",
+    "implementationVersions": {
+      "VRSPython": "2.4.0a3.dev2+gdaceb0b6c",
+      "CatVRSPython": "0.8.0a3.dev1+g30d6c5035",
+      "VASpecPython": "0.5.0a4.dev7+gdaa80e6e8"
+    },
+    "specificationVersions": {
+      "GKSCore": "1.1.0",
+      "VRS": "2.1.0-snapshot.2026-02.2",
+      "CatVRS": "1.1.0-snapshot.2026-02.3",
+      "VASpec": "1.1.0-snapshot.2026-06.1"
+    },
+    "createdAt": "2026-08-25",
     "bundleFormat": "civic-gks-bundle",
     "bundleFormatVersion": "0.1.0",
     "statistics": {
