@@ -36,7 +36,7 @@ Real community outcomes
 
     Load bundles, explore their contents, and follow relationships.
 
-    [Explore the `gkm.starter` package →](library/index.md)
+    [Explore the `ga4gh.gkm` package →](library/index.md)
 
 - :material-account-tie: **I lead a team**
 

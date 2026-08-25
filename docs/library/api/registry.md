@@ -1,6 +1,6 @@
 # Registry
 
-::: gkm.starter.bundles.registry
+::: ga4gh.gkm.bundles.registry
     options:
       show_root_heading: true
       show_root_full_path: false
@@ -9,19 +9,19 @@
 
 ## Shared registry helpers
 
-::: gkm.starter.bundles.register
+::: ga4gh.gkm.bundles.register
     options:
       show_root_heading: true
       show_root_full_path: false
       show_object_full_path: false
 
-::: gkm.starter.bundles.registered_names
+::: ga4gh.gkm.bundles.registered_names
     options:
       show_root_heading: true
       show_root_full_path: false
       show_object_full_path: false
 
-::: gkm.starter.bundles.get_registration
+::: ga4gh.gkm.bundles.get_registration
     options:
       show_root_heading: true
       show_root_full_path: false

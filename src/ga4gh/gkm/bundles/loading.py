@@ -107,10 +107,10 @@ def load_bundle(
     :param serialization: Input serialization. Only ``"json"`` is supported.
         When omitted, JSON is assumed.
     :return: The loaded bundle.
-    :raises gkm.starter.bundles.BundleCompatibilityError: If the schema references
+    :raises ga4gh.gkm.bundles.BundleCompatibilityError: If the schema references
         unsupported GKM product versions.
     :raises BundleSerializationError: If the serialization or data shape is unsupported.
-    :raises gkm.starter.bundles.BundleValidationError: If a recognized GKM object
+    :raises ga4gh.gkm.bundles.BundleValidationError: If a recognized GKM object
         fails validation by its reference implementation.
     :raises BundleNotFoundError: If ``source`` cannot be found.
     """

@@ -46,21 +46,21 @@ communicate and helps consumers understand what a producer distributes.
     validate, and serialize individual GKM objects through the reference
     implementations above.
 
-### The `gkm.starter` Python package
+### The `ga4gh.gkm` Python package
 
-**[`gkm.starter`](library/index.md) provides a consistent Python interface for
+**[`ga4gh.gkm`](library/index.md) provides a consistent Python interface for
 loading, exploring, and writing bundles.**
 
 Consumers can work with supported GKM Python models, follow relationships
 between objects, and retain producer-specific content without hand-parsing each
 producer's organization.
 
-Bundles are the input and output format of `gkm.starter`. The initial
+Bundles are the input and output format of `ga4gh.gkm.bundles`. The initial
 implementation supports JSON serialization; other serializations may be added
 later.
 
 The GKM reference implementations construct, validate, and serialize individual
-GKM objects; `gkm.starter` works with collections of those objects in bundles.
+GKM objects; `ga4gh.gkm.bundles` works with collections of those objects in bundles.
 These packages are maintained implementations, not required interfaces.
 Developers can implement the GKM standards in their own tools and programming
 languages.
@@ -73,13 +73,13 @@ and what their implementations accomplish.**
 They give prospective adopters concrete examples, reveal reusable patterns,
 and help teams evaluate whether GKM fits their needs.
 
-Some vignettes use Data Bundles or `gkm.starter`; others use GKM standards
+Some vignettes use Data Bundles or `ga4gh.gkm`; others use GKM standards
 without them. The focus is the real-world outcome, not whether an implementation
 uses every part of the Starter Kit.
 
 ## How the pillars work together
 
-Data Bundles provide real data, `gkm.starter` provides a consistent bundle
+Data Bundles provide real data, `ga4gh.gkm` provides a consistent bundle
 workflow, and Vignettes demonstrate the results. Together they help producers,
 consumers, and the GKM community test the standards, identify gaps, and turn
 successful implementations into patterns others can reuse.
