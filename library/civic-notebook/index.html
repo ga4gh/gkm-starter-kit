@@ -699,9 +699,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#import-the-package" class="md-nav__link">
+  <a href="#import-the-bundles-package" class="md-nav__link">
     <span class="md-ellipsis">
-      Import the package
+      Import the bundles package
     </span>
   </a>
   
@@ -1225,9 +1225,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#import-the-package" class="md-nav__link">
+  <a href="#import-the-bundles-package" class="md-nav__link">
     <span class="md-ellipsis">
-      Import the package
+      Import the bundles package
     </span>
   </a>
   
@@ -1433,14 +1433,13 @@
 <p>Example files: <a href="../../data/bundles/civic-aid-251-bundle.json" rel="noopener" target="_blank"><code>civic-aid-251-bundle.json</code></a> · <a href="../../data/bundles/civic-aid-9-bundle.json" rel="noopener" target="_blank"><code>civic-aid-9-bundle.json</code></a> · <a href="../../data/bundles/civic-gks-bundle-v0.1.0.schema.json" rel="noopener" target="_blank"><code>civic-gks-bundle-v0.1.0.schema.json</code></a></p>
 <p>Rendered from <code>notebooks/civic/explore-civic-bundles.ipynb</code>.</p>
 </div>
-<p>This notebook uses two small CIViC examples to show how <code>gkm.starter</code> loads and explores GKM bundles. You will discover what each bundle contains, work with GKM Python objects, and follow relationships between them. Both examples use the same Python workflow even though CIViC defines their collection names and organization.</p>
+<p>This notebook uses two small CIViC examples to show how <code>ga4gh.gkm.bundles</code> loads and explores GKM bundles. You will discover what each bundle contains, work with GKM Python objects, and follow relationships between them. Both examples use the same Python workflow even though CIViC defines their collection names and organization.</p>
 <h2 id="set-up">Set up</h2>
-<h3 id="import-the-package">Import the package</h3>
-<p>Import <code>gkm.starter</code> as <code>starter</code>, the name used throughout this notebook.</p>
+<h3 id="import-the-bundles-package">Import the bundles package</h3>
 <div class="highlight"><span class="filename">In [1]</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">gkm</span><span class="w"> </span><span class="kn">import</span> <span class="n">starter</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ga4gh.gkm</span><span class="w"> </span><span class="kn">import</span> <span class="n">bundles</span>
 </code></pre></div>
 <h3 id="locate-the-bundles-and-their-schema">Locate the bundles and their schema</h3>
 <p>A <strong>bundle</strong> is a producer-defined JSON file containing related GKM objects grouped into named <strong>collections</strong>. A separate <strong>bundle schema</strong> describes that organization and identifies the GKM schema versions it uses. These examples include:</p>
@@ -1468,8 +1467,8 @@
 <div class="highlight"><span class="filename">In [3]</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">with</span> <span class="n">schema_path</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">civic_schema</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">starter</span><span class="o">.</span><span class="n">check_gkm_version_compatibility</span><span class="p">(</span><span class="n">civic_schema</span><span class="p">)</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">starter</span><span class="o">.</span><span class="n">supported_gkm_versions</span><span class="p">()</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">bundles</span><span class="o">.</span><span class="n">check_gkm_version_compatibility</span><span class="p">(</span><span class="n">civic_schema</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">bundles</span><span class="o">.</span><span class="n">supported_gkm_versions</span><span class="p">()</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span><span class="s1">'gks-core'</span><span class="p">:</span> <span class="s1">'1.1.0'</span><span class="p">,</span>
@@ -1485,8 +1484,8 @@
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">"civic-aid-9"</span><span class="p">:</span> <span class="n">aid_9_path</span><span class="p">,</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">"civic-aid-251"</span><span class="p">:</span> <span class="n">aid_251_path</span><span class="p">,</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">starter</span><span class="o">.</span><span class="n">bundles</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="n">starter</span><span class="o">.</span><span class="n">bundles</span><span class="o">.</span><span class="n">BundleRegistration</span><span class="p">(</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">bundles</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        <span class="n">bundles</span><span class="o">.</span><span class="n">BundleRegistration</span><span class="p">(</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>            <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">,</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>            <span class="n">schema</span><span class="o">=</span><span class="n">schema_path</span><span class="p">,</span>
@@ -1495,7 +1494,7 @@
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="p">)</span>
 <a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">loaded</span> <span class="o">=</span> <span class="n">starter</span><span class="o">.</span><span class="n">load_bundles</span><span class="p">(</span><span class="s2">"civic-aid-9"</span><span class="p">,</span> <span class="s2">"civic-aid-251"</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">loaded</span> <span class="o">=</span> <span class="n">bundles</span><span class="o">.</span><span class="n">load_bundles</span><span class="p">(</span><span class="s2">"civic-aid-9"</span><span class="p">,</span> <span class="s2">"civic-aid-251"</span><span class="p">)</span>
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">loaded</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
@@ -1513,8 +1512,8 @@
 <h4 id="handle-an-unknown-bundle">Handle an unknown bundle</h4>
 <p>Package-specific errors share the <code>BundleError</code> base class and identify the operation that failed. For example, loading an unknown registered name raises <code>BundleNotFoundError</code>.</p>
 <div class="highlight"><span class="filename">In [6]</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">try</span><span class="p">:</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">starter</span><span class="o">.</span><span class="n">load_bundle</span><span class="p">(</span><span class="s2">"civic-aid-missing"</span><span class="p">)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">except</span> <span class="n">starter</span><span class="o">.</span><span class="n">bundles</span><span class="o">.</span><span class="n">BundleNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="n">bundles</span><span class="o">.</span><span class="n">load_bundle</span><span class="p">(</span><span class="s2">"civic-aid-missing"</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">except</span> <span class="n">bundles</span><span class="o">.</span><span class="n">BundleNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
@@ -1547,7 +1546,7 @@
 <p>Each named collection is represented by a <code>BundleCollection</code>, which maps the producer's object identifiers to objects. Collections support attribute access, mapping syntax, and the explicit <code>collection()</code> method.</p>
 <div class="highlight"><span class="filename">In [8]</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">sequence_references</span> <span class="o">=</span> <span class="n">aid_9</span><span class="o">.</span><span class="n">sequenceReference</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sequence_references</span><span class="p">,</span> <span class="n">starter</span><span class="o">.</span><span class="n">BundleCollection</span><span class="p">)</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sequence_references</span><span class="p">,</span> <span class="n">bundles</span><span class="o">.</span><span class="n">BundleCollection</span><span class="p">)</span>
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">assert</span> <span class="n">sequence_references</span> <span class="ow">is</span> <span class="n">aid_9</span><span class="p">[</span><span class="s2">"sequenceReference"</span><span class="p">]</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">assert</span> <span class="n">sequence_references</span> <span class="ow">is</span> <span class="n">aid_9</span><span class="o">.</span><span class="n">collection</span><span class="p">(</span><span class="s2">"sequenceReference"</span><span class="p">)</span>
 <a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
@@ -1560,7 +1559,7 @@
 <p>Attribute access with an unknown collection name raises <code>BundleCollectionNotFoundError</code>, which is also an <code>AttributeError</code>.</p>
 <div class="highlight"><span class="filename">In [9]</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>    <span class="n">aid_9</span><span class="o">.</span><span class="n">sequenceReferences</span>  <span class="c1"># noqa: B018</span>
-<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">except</span> <span class="n">starter</span><span class="o">.</span><span class="n">bundles</span><span class="o">.</span><span class="n">BundleCollectionNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">except</span> <span class="n">bundles</span><span class="o">.</span><span class="n">BundleCollectionNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
@@ -1577,7 +1576,7 @@
 </code></pre></div>
 <h2 id="work-with-gkm-objects">Work with GKM objects</h2>
 <h3 id="use-a-typed-gkm-object">Use a typed GKM object</h3>
-<p>When an object is supported by an installed GKM reference library, the Starter Kit loads it as that library's Python model instead of leaving it as a raw dictionary. The example below retrieves a VRS <code>SequenceReference</code> by its identifier.</p>
+<p>When an object is supported by an installed GKM reference library, <code>ga4gh.gkm.bundles</code> loads it as that library's Python model instead of leaving it as a raw dictionary. The example below retrieves a VRS <code>SequenceReference</code> by its identifier.</p>
 <div class="highlight"><span class="filename">In [11]</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">sequence_id</span> <span class="o">=</span> <span class="s2">"SQ.6CnHhDq_bDCsuIBf0AzxtKq_lXYM7f0m"</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">sequence_reference</span> <span class="o">=</span> <span class="n">sequence_references</span><span class="p">[</span><span class="n">sequence_id</span><span class="p">]</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
@@ -1592,7 +1591,7 @@
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">try</span><span class="p">:</span>
 <a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="n">sequence_references</span><span class="p">[</span><span class="n">missing_sequence_id</span><span class="p">]</span>
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">except</span> <span class="n">starter</span><span class="o">.</span><span class="n">bundles</span><span class="o">.</span><span class="n">BundleObjectNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">except</span> <span class="n">bundles</span><span class="o">.</span><span class="n">BundleObjectNotFoundError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
@@ -1654,7 +1653,7 @@
 </code></pre></div>
 <h3 id="compare-assertions">Compare assertions</h3>
 <p>The two bundles have the same CIViC-defined organization, but their assertions answer different scientific questions. A small helper can apply the same workflow to both and compare selected fields.</p>
-<div class="highlight"><span class="filename">In [15]</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">assertion_summary</span><span class="p">(</span><span class="n">bundle</span><span class="p">:</span> <span class="n">starter</span><span class="o">.</span><span class="n">Bundle</span><span class="p">,</span> <span class="n">assertion_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<div class="highlight"><span class="filename">In [15]</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">assertion_summary</span><span class="p">(</span><span class="n">bundle</span><span class="p">:</span> <span class="n">bundles</span><span class="o">.</span><span class="n">Bundle</span><span class="p">,</span> <span class="n">assertion_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="sd">"""Summarize one assertion and its referenced proposition.</span>
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
 <a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="sd">    :param bundle: Bundle containing the assertion.</span>
