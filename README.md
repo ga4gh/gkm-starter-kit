@@ -7,7 +7,7 @@ A practical entry point for using the GA4GH Genomic Knowledge Model (GKM).
 The Starter Kit brings together three complementary resources:
 
 - **Data Bundles** package related GKM objects from participating producers.
-- **`gkm.starter`** provides Python tools for loading and working with those bundles.
+- **`ga4gh.gkm`** provides Python tools for loading and working with those bundles.
 - **Vignettes** show how implementers use GKM standards to solve real problems.
 
 Start with the [documentation](https://ga4gh.github.io/gks-starter-kit/) for an
@@ -20,19 +20,19 @@ overview, examples, and API details.
     - Open a [**Propose a vignette**](https://github.com/ga4gh/gks-starter-kit/issues/new?template=propose-vignette.yml) issue, or
     - Copy `docs/vignettes/_template/vignette.md` into a new `docs/vignettes/<slug>/` folder, fill it in, and open a PR.
 
-## gkm.starter Python Package
+## `ga4gh.gkm` Python package
 
-[![image](https://img.shields.io/pypi/v/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
-[![image](https://img.shields.io/pypi/l/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
-[![image](https://img.shields.io/pypi/pyversions/gkm.starter.svg)](https://pypi.python.org/pypi/gkm.starter)
+[![image](https://img.shields.io/pypi/v/ga4gh.gkm.svg)](https://pypi.org/project/ga4gh.gkm/)
+[![image](https://img.shields.io/pypi/l/ga4gh.gkm.svg)](https://pypi.org/project/ga4gh.gkm/)
+[![image](https://img.shields.io/pypi/pyversions/ga4gh.gkm.svg)](https://pypi.org/project/ga4gh.gkm/)
 [![Actions status](https://github.com/ga4gh/gks-starter-kit/actions/workflows/checks.yaml/badge.svg)](https://github.com/ga4gh/gks-starter-kit/actions/workflows/checks.yaml)
 
 ### Installation
 
-Install from [PyPI](https://pypi.org/project/gkm.starter/):
+Install from [PyPI](https://pypi.org/project/ga4gh.gkm/):
 
 ```shell
-python3 -m pip install gkm.starter
+python3 -m pip install ga4gh.gkm
 ```
 
 ## Development

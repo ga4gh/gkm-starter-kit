@@ -1,7 +1,7 @@
 # API reference
 
 The API reference documents the public classes, functions, and exceptions in
-`gkm.starter`.
+`ga4gh.gkm.bundles`.
 
 - [Models](models.md) — inspect collections, resolve references, and
   serialize bundles.

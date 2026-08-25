@@ -1,8 +1,8 @@
-# Python Package
+# `ga4gh.gkm` Python Package
 
-![GKM Starter Kit Logo](../assets/images/gkm-starter-kit-logo.png){: width="300" style="display: block; margin: 0 auto;"}
+![GKM Python package logo](../assets/images/python-package-logo.png){: width="300" style="display: block; margin: 0 auto;"}
 
-`gkm.starter` is the Starter Kit's Python package for loading a producer's GKM
+`ga4gh.gkm` is a Python package for loading a producer's GKM
 bundle, exploring its contents, following relationships, and writing it back to
 JSON.
 
@@ -11,13 +11,13 @@ JSON.
 The package requires Python 3.11 or later. Install it from PyPI:
 
 ```shell
-python3 -m pip install gkm.starter
+python3 -m pip install ga4gh.gkm
 ```
 
-Import the package as `starter`:
+Import the bundles package:
 
 ```python
-from gkm import starter
+from ga4gh.gkm import bundles
 ```
 
 ## What you can do

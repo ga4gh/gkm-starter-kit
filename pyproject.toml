@@ -1,5 +1,5 @@
 [project]
-name = "gkm.starter"
+name = "ga4gh.gkm"
 authors = [{ name = "GKM Contributors" }]
 readme = "README.md"
 classifiers = [
@@ -14,7 +14,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 requires-python = ">=3.11"
-description = "Genomic Knowledge Model Starter Kit"
+description = "Genomic Knowledge Model toolkit"
 license = "CC0-1.0"
 license-files = ["LICENSE"]
 dependencies = [

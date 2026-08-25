@@ -3,7 +3,7 @@
 The GKM Starter Kit grows by community contribution. It has three pillars, with a contribution path for each. Pick the one that matches what you have to offer.
 
 - **[Contribute a data bundle](#contribute-a-data-bundle)** — you have a resource whose knowledge you want to package and share.
-- **[Contribute to `gkm.starter`](#contribute-to-gkmstarter)** — you want to help build the Starter Kit Python package that loads and works with bundles.
+- **[Contribute to `ga4gh.gkm`](#contribute-to-ga4ghgkm)** — you want to help build the GKM Python package that loads and works with bundles.
 - **[Contribute a vignette](#contribute-a-vignette)** — you've built something real with GKM, or you're proposing to.
 
 ---
@@ -18,13 +18,13 @@ If your resource produces genomic knowledge, such as variant classifications, ev
 
 ---
 
-## Contribute to `gkm.starter`
+## Contribute to `ga4gh.gkm`
 
-The **Starter Kit Python package, `gkm.starter`,** is the lightweight layer that
+The **GKM Python package, `ga4gh.gkm`,** provides a lightweight layer that
 loads bundles into in-memory GKM objects, lets you explore and manipulate them,
 and writes them back to the producer's JSON format.
 
-**Status: forthcoming.** The package is in active design; this contribution path opens once its spec lands. In the meantime, see the [Python Package overview](library/index.md) for the intended load → explore → export shape and the planned extension points. If you'd like to help shape the design, open an issue to start the conversation.
+**Status: active development.** See the [Python package overview](library/index.md) for the current load → explore → export workflow and planned extension points. If you'd like to help shape the package, open an issue to start the conversation.
 
 ---
 

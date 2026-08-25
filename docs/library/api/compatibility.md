@@ -1,6 +1,6 @@
 # Compatibility
 
-::: gkm.starter.bundles.compatibility
+::: ga4gh.gkm.bundles.compatibility
     options:
       filters: ["!^_[^_]", "!^[A-Z]"]
       show_root_heading: true

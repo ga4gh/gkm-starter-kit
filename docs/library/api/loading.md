@@ -1,6 +1,6 @@
 # Loading
 
-::: gkm.starter.bundles.loading
+::: ga4gh.gkm.bundles.loading
     options:
       filters: ["!^_[^_]", "!^[A-Z]"]
       show_root_heading: true
