@@ -2,7 +2,7 @@
 
 **Date:** 2026-05-27
 **Status:** Draft for review
-**Repo:** `gks-starter-kit` (local at `/Users/lbabb/Development/gks/gks-starter-kit`; not yet pushed to GitHub)
+**Repo:** `gkm-starter-kit` (local at `/Users/lbabb/Development/gks/gkm-starter-kit`; not yet pushed to GitHub)
 
 ## 1. Context
 
@@ -52,7 +52,7 @@ A published mkdocs Material site (on GitHub Pages) containing:
 ## 5. Repo & site layout
 
 ```
-gks-starter-kit/
+gkm-starter-kit/
 ├── README.md                       # GitHub-facing; brief, points to rendered site
 ├── LICENSE
 ├── mkdocs.yml                      # site config: Material theme, nav, plugins
@@ -298,7 +298,7 @@ These do not block design approval but must be resolved during implementation:
 - Who is the named v1 maintainer in `MAINTAINERS.md`?
 - What is BRCA Exchange's actual `status` on the cross-source VRS workflow? (production / pilot / proposal)
 - Which specific tools (e.g. `vrs-python` version) does BRCA Exchange use for VRS digest generation, and what links should the vignette point to?
-- What is the canonical site URL (e.g. `gks.github.io/gks-starter-kit` vs a custom domain)?
+- What is the canonical site URL (e.g. `gks.github.io/gkm-starter-kit` vs a custom domain)?
 
 ## 12. Architecture notes
 

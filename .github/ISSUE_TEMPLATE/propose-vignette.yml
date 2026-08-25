@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for proposing a vignette! This form captures the basics so a maintainer can triage. After triage, you (or a helper) will draft the full vignette in a follow-up PR — see [the contribution guide](https://ga4gh.github.io/gks-starter-kit/contribute/) for the structure.
+        Thanks for proposing a vignette! This form captures the basics so a maintainer can triage. After triage, you (or a helper) will draft the full vignette in a follow-up PR — see [the contribution guide](https://ga4gh.github.io/gkm-starter-kit/contribute/) for the structure.
 
   - type: input
     id: title
