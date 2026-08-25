@@ -1,8 +1,8 @@
 site_name: GKM Starter Kit
 site_description: Tools and examples for the GA4GH Genomic Knowledge Model
-site_url: https://ga4gh.github.io/gks-starter-kit/
-repo_url: https://github.com/ga4gh/gks-starter-kit
-repo_name: ga4gh/gks-starter-kit
+site_url: https://ga4gh.github.io/gkm-starter-kit/
+repo_url: https://github.com/ga4gh/gkm-starter-kit
+repo_name: ga4gh/gkm-starter-kit
 edit_uri: edit/main/docs/
 
 theme:

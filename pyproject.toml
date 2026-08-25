@@ -38,11 +38,11 @@ notebooks = ["ipykernel"]
 
 
 [project.urls]
-Homepage = "https://github.com/ga4gh/gks-starter-kit"
-Documentation = "https://github.com/ga4gh/gks-starter-kit"
-Changelog = "https://github.com/ga4gh/gks-starter-kit/releases"
-Source = "https://github.com/ga4gh/gks-starter-kit"
-"Bug Tracker" = "https://github.com/ga4gh/gks-starter-kit/issues"
+Homepage = "https://github.com/ga4gh/gkm-starter-kit"
+Documentation = "https://ga4gh.github.io/gkm-starter-kit"
+Changelog = "https://github.com/ga4gh/gkm-starter-kit/releases"
+Source = "https://github.com/ga4gh/gkm-starter-kit"
+"Bug Tracker" = "https://github.com/ga4gh/gkm-starter-kit/issues"
 
 [project.scripts]
 
