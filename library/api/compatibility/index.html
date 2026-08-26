@@ -620,6 +620,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#supported-product-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported product versions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ga4gh.gkm.bundles.compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;compatibility
@@ -1067,6 +1085,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#supported-product-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported product versions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      API
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ga4gh.gkm.bundles.compatibility" class="md-nav__link">
     <span class="md-ellipsis">
       <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;compatibility
@@ -1128,16 +1164,49 @@
                 
                   
 
-  
-    <a href="https://github.com/ga4gh/gkm-starter-kit/edit/main/docs/library/api/compatibility.md" title="Edit this page" class="md-content__button md-icon">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
-    </a>
-  
-  
-
 
 <h1 id="compatibility">Compatibility</h1>
+<p>A bundle schema must use the GKM product versions supported by the 
+installed <code>ga4gh.gkm</code> release. Loading fails when a recognized GKM 
+schema reference uses a different version.</p>
+<h2 id="supported-product-versions">Supported product versions</h2>
+<p><code>ga4gh.gkm</code> currently supports:</p>
+<table>
+<thead>
+<tr>
+<th>GKM product</th>
+<th>Supported version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gks-core</code></td>
+<td><code>1.1.0</code></td>
+</tr>
+<tr>
+<td><code>vrs</code></td>
+<td><code>2.1.0-snapshot.2026-02.2</code></td>
+</tr>
+<tr>
+<td><code>cat-vrs</code></td>
+<td><code>1.1.0-snapshot.2026-02.3</code></td>
+</tr>
+<tr>
+<td><code>va-spec</code></td>
+<td><code>1.1.0-snapshot.2026-06.1</code></td>
+</tr>
+</tbody>
+</table>
+<p>The table is generated during the documentation build from 
+<code>ga4gh.gkm.bundles.supported_gkm_versions()</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Ballot releases during initial development</p>
+<p>During initial development, the supported versions include 
+ballot releases. As GKM products publish stable releases, 
+<code>ga4gh.gkm</code> will move to the latest stable versions and stop 
+supporting the superseded ballot releases.</p>
+</div>
+<h2 id="api">API</h2>
 
 
 <div class="doc doc-object doc-module">
@@ -1187,7 +1256,7 @@
 
     <div class="doc doc-contents ">
 
-        <p>Return the GKM product versions supported by the installed libraries.</p>
+        <p>Return the latest GKM product versions supported by this installation.</p>
 
 
     <p><span class="doc-section-title">Returns:</span></p>
@@ -1231,6 +1300,8 @@
     <div class="doc doc-contents ">
 
         <p>Check GKM W3ID references against installed product versions.</p>
+<p>Each recognized reference must exactly match the version reported by
+:func:<code>supported_gkm_versions</code>.</p>
 <p>References outside the versioned GA4GH W3ID schema namespace are ignored.</p>
 
 
