@@ -54,8 +54,10 @@ def _contains_bundle_reference(value: Any) -> bool:
     """Return whether a value contains a bundle-local JSON Pointer."""
     if isinstance(value, str):
         return value.startswith("#/")
+
     if isinstance(value, Mapping):
         return any(_contains_bundle_reference(item) for item in value.values())
+
     if isinstance(value, list):
         return any(_contains_bundle_reference(item) for item in value)
     return False
