@@ -23,7 +23,7 @@ BUNDLE_DIR = Path(__file__).parents[1] / "notebooks" / "civic" / "bundles"
 def register_example_bundles():
     """Register the notebook fixtures used by named-source tests."""
     for assertion_id in ("9", "251"):
-        bundles.register(
+        bundles.registry.register(
             bundles.BundleRegistration(
                 name=f"civic-aid-{assertion_id}",
                 source=BUNDLE_DIR / f"civic-aid-{assertion_id}-bundle.json",
@@ -261,7 +261,7 @@ def test_reject_invalid_metadata_shape():
 
 
 def test_reject_registered_bundle_with_missing_source(tmp_path):
-    bundles.register(
+    bundles.registry.register(
         bundles.BundleRegistration(
             name="missing-bundle",
             source=tmp_path / "missing.json",
@@ -340,17 +340,17 @@ def test_reject_unsupported_serialization():
 
 def test_bundles_namespace():
     assert isinstance(bundles.registry, bundles.BundleRegistry)
-    assert "civic-aid-9" in bundles.registered_names()
-    assert bundles.get_registration("civic-aid-9").producer == "CIViC"
+    assert "civic-aid-9" in bundles.registry.registered_names()
+    assert bundles.registry.get_registration("civic-aid-9").producer == "CIViC"
 
 
 def test_registry_rejects_duplicate_name():
-    registration = bundles.get_registration("civic-aid-9")
+    registration = bundles.registry.get_registration("civic-aid-9")
 
     with pytest.raises(BundleConflictError, match="already registered"):
-        bundles.register(registration)
+        bundles.registry.register(registration)
 
 
 def test_registry_rejects_unknown_name():
     with pytest.raises(BundleNotFoundError, match="Unknown bundle 'missing'"):
-        bundles.get_registration("missing")
+        bundles.registry.get_registration("missing")
