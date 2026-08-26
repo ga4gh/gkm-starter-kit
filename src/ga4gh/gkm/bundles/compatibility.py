@@ -28,7 +28,7 @@ _SUPPORTED_VERSIONS = {
 
 
 def supported_gkm_versions() -> dict[str, str]:
-    """Return the GKM product versions supported by the installed libraries.
+    """Return the latest GKM product versions supported by this installation.
 
     :return: Product names mapped to their supported schema versions.
     """
@@ -62,6 +62,9 @@ def _references(value: Any) -> list[str]:
 
 def check_gkm_version_compatibility(schema: Mapping[str, Any]) -> None:
     """Check GKM W3ID references against installed product versions.
+
+    Each recognized reference must exactly match the version reported by
+    :func:`supported_gkm_versions`.
 
     References outside the versioned GA4GH W3ID schema namespace are ignored.
 

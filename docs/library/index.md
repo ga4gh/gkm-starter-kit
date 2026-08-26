@@ -20,6 +20,11 @@ Import the bundles package:
 from ga4gh.gkm import bundles
 ```
 
+## Supported GKM product versions
+
+`ga4gh.gkm` supports the latest GKM product versions.
+Check [compatibility](api/compatibility.md) before preparing a bundle schema.
+
 ## What you can do
 
 - Load producer JSON with its producer-defined schema.

@@ -7,7 +7,7 @@ The API reference documents the public classes, functions, and exceptions in
   serialize bundles.
 - [Loading](loading.md) — load one or several bundles from files,
   streams, or registered names.
-- [Compatibility](compatibility.md) — inspect supported versions and
+- [Compatibility](compatibility.md) — view supported GKM product versions and
   check a producer's bundle schema.
 - [Registry](registry.md) — associate names with bundle and schema
   sources.
