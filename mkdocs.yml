@@ -59,6 +59,7 @@ plugins:
         - scripts/gen_filter_pages.py
         - scripts/gen_notebook_files.py
         - scripts/gen_schema_pages.py
+        - scripts/gen_supported_versions.py
 
 markdown_extensions:
   - admonition
