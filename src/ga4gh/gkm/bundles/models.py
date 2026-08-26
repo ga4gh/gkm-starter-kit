@@ -228,6 +228,7 @@ class Bundle(Mapping[str, BundleCollection]):
         if isinstance(value, str) and value.startswith("#/"):
             if value in trail:
                 return value
+
             return self._dereference_value(
                 self.resolve(value),
                 trail=(*trail, value),

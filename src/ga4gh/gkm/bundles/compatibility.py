@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Mapping
+from types import MappingProxyType
 from typing import Any
 
 from ga4gh.cat_vrs import CATVRS_VERSION
@@ -19,12 +20,14 @@ _W3ID_SCHEMA_REFERENCE = re.compile(
     r"^https://w3id\.org/ga4gh/schema/"
     r"(?P<product>gks-core|vrs|cat-vrs|va-spec)/(?P<version>[^/]+)/"
 )
-_SUPPORTED_VERSIONS = {
-    "gks-core": CORE_VERSION,
-    "vrs": VRS_VERSION,
-    "cat-vrs": CATVRS_VERSION,
-    "va-spec": VASPEC_VERSION,
-}
+_SUPPORTED_VERSIONS = MappingProxyType(
+    {
+        "gks-core": CORE_VERSION,
+        "vrs": VRS_VERSION,
+        "cat-vrs": CATVRS_VERSION,
+        "va-spec": VASPEC_VERSION,
+    }
+)
 
 
 def supported_gkm_versions() -> dict[str, str]:
