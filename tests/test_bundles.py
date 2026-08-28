@@ -25,8 +25,8 @@ def register_example_bundles():
     for assertion_id in ("9", "251"):
         bundles.registry.register(
             bundles.BundleRegistration(
-                name=f"civic-aid-{assertion_id}",
-                source=BUNDLE_DIR / f"civic-aid-{assertion_id}-bundle.json",
+                name=f"civic-assertion-{assertion_id}",
+                source=BUNDLE_DIR / f"civic-assertion-{assertion_id}-bundle.json",
                 schema=BUNDLE_DIR / "civic-gks-bundle-v0.1.0.schema.json",
                 producer="CIViC",
             ),
@@ -51,7 +51,7 @@ def test_check_gkm_version_compatibility_is_public():
 
 
 def test_load_registered_civic_bundle():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     sequence_reference = civic.sequenceReference[SEQUENCE_ID]
 
@@ -61,7 +61,7 @@ def test_load_registered_civic_bundle():
 
 
 def test_collection_names():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     assert civic.collection_names() == tuple(civic.keys())
     assert civic.collection_names()[0] == "sequenceReference"
@@ -70,11 +70,11 @@ def test_collection_names():
 
 
 def test_bundle_and_collection_protocols():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
     sequence_references = civic.sequenceReference
 
     assert len(civic) == 17
-    assert repr(civic) == "Bundle(name='civic-aid-9', collections=17)"
+    assert repr(civic) == "Bundle(name='civic-assertion-9', collections=17)"
     assert civic.collection("sequenceReference") is sequence_references
     assert len(sequence_references) == 3
     assert repr(sequence_references) == (
@@ -83,7 +83,7 @@ def test_bundle_and_collection_protocols():
 
 
 def test_missing_collection_raises_contextual_bundle_error():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     with pytest.raises(
         bundles.BundleCollectionNotFoundError,
@@ -97,7 +97,7 @@ def test_missing_collection_raises_contextual_bundle_error():
 
 
 def test_missing_collection_object_raises_contextual_bundle_error():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     with pytest.raises(
         bundles.BundleObjectNotFoundError,
@@ -110,7 +110,7 @@ def test_missing_collection_object_raises_contextual_bundle_error():
 
 
 def test_resolve_reference():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     resolved = civic.resolve(f"#/sequenceReference/{SEQUENCE_ID}")
 
@@ -118,7 +118,7 @@ def test_resolve_reference():
 
 
 def test_resolve_traverses_models_and_lists():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     assert (
         civic.resolve(f"#/sequenceReference/{SEQUENCE_ID}/refgetAccession")
@@ -133,7 +133,7 @@ def test_resolve_traverses_models_and_lists():
 
 
 def test_dereference():
-    civic = bundles.load_bundle("civic-aid-251")
+    civic = bundles.load_bundle("civic-assertion-251")
 
     inline = civic.dereference()
 
@@ -145,7 +145,7 @@ def test_dereference():
 
 
 def test_dereference_from_value():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
     proposition = civic.resolve(civic.assertion["civic.aid:9"]["proposition"])
 
     inline = civic.dereference(proposition)
@@ -155,14 +155,14 @@ def test_dereference_from_value():
 
 
 def test_resolve_bad_reference():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     with pytest.raises(BundleReferenceError):
         civic.resolve("#/sequenceReference/missing")
 
 
 def test_resolve_rejects_nonlocal_reference():
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     with pytest.raises(BundleReferenceError, match="Expected a bundle-local"):
         civic.resolve("https://example.org/object")
@@ -279,13 +279,13 @@ def test_reject_missing_bundle_path(tmp_path):
 
 
 def test_load_bundles():
-    loaded = bundles.load_bundles("civic-aid-9", "civic-aid-251")
+    loaded = bundles.load_bundles("civic-assertion-9", "civic-assertion-251")
 
-    assert set(loaded) == {"civic-aid-9", "civic-aid-251"}
+    assert set(loaded) == {"civic-assertion-9", "civic-assertion-251"}
 
 
 def test_load_bundles_rejects_duplicate_names():
-    source = BUNDLE_DIR / "civic-aid-9-bundle.json"
+    source = BUNDLE_DIR / "civic-assertion-9-bundle.json"
 
     with pytest.raises(
         BundleConflictError,
@@ -295,7 +295,7 @@ def test_load_bundles_rejects_duplicate_names():
 
 
 def test_write_round_trip(tmp_path):
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
     destination = tmp_path / "round-trip.json"
 
     civic.write(destination)
@@ -305,7 +305,7 @@ def test_write_round_trip(tmp_path):
 
 
 def test_write_serializes_metadata(tmp_path):
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
     destination = tmp_path / "baked.json"
 
     civic.write(destination)
@@ -314,14 +314,14 @@ def test_write_serializes_metadata(tmp_path):
 
 
 def test_reject_unsupported_write_serialization(tmp_path):
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
 
     with pytest.raises(BundleSerializationError, match="Unsupported serialization"):
         civic.write(tmp_path / "bundle.json", serialization="jsonl")
 
 
 def test_write_translates_json_encoding_error(tmp_path):
-    civic = bundles.load_bundle("civic-aid-9")
+    civic = bundles.load_bundle("civic-assertion-9")
     civic.metadata["invalid"] = object()
 
     with pytest.raises(
@@ -340,12 +340,12 @@ def test_reject_unsupported_serialization():
 
 def test_bundles_namespace():
     assert isinstance(bundles.registry, bundles.BundleRegistry)
-    assert "civic-aid-9" in bundles.registry.registered_names()
-    assert bundles.registry.get_registration("civic-aid-9").producer == "CIViC"
+    assert "civic-assertion-9" in bundles.registry.registered_names()
+    assert bundles.registry.get_registration("civic-assertion-9").producer == "CIViC"
 
 
 def test_registry_rejects_duplicate_name():
-    registration = bundles.registry.get_registration("civic-aid-9")
+    registration = bundles.registry.get_registration("civic-assertion-9")
 
     with pytest.raises(BundleConflictError, match="already registered"):
         bundles.registry.register(registration)

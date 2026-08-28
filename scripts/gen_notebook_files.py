@@ -61,8 +61,8 @@ def _render_notebook() -> str:
         '!!! info "Data files"\n\n'
         "    Example files: "
         '{{ bundle_linkouts("../data/bundles", '
-        '"civic-aid-9-bundle.json", '
-        '"civic-aid-251-bundle.json", '
+        '"civic-assertion-9-bundle.json", '
+        '"civic-assertion-251-bundle.json", '
         '"civic-gks-bundle-v0.1.0.schema.json") }}\n\n'
         f"    Rendered from `{NOTEBOOK.as_posix()}`."
     )
