@@ -37,10 +37,12 @@
       "description": "Describe a CIViC Assertion that could not become a GKS Statement.",
       "properties": {
         "assertionId": {
+          "description": "CIViC Assertion ID that could not be exported.",
           "title": "Assertionid",
           "type": "integer"
         },
         "message": {
+          "description": "Short explanation of why the Assertion could not be exported.",
           "title": "Message",
           "type": "string"
         }
@@ -78,12 +80,15 @@
       "description": "Describe the bundle format, export provenance, and contents.",
       "properties": {
         "implementationVersions": {
-          "$ref": "#/$defs/ImplementationVersions"
+          "$ref": "#/$defs/ImplementationVersions",
+          "description": "Reference implementation package versions used to create this export."
         },
         "specificationVersions": {
-          "$ref": "#/$defs/SpecificationVersions"
+          "$ref": "#/$defs/SpecificationVersions",
+          "description": "GA4GH specification versions represented in this export."
         },
         "createdAt": {
+          "description": "Date this export was created.",
           "title": "Createdat",
           "type": "string"
         },
@@ -163,10 +168,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "civicBundleFormat": "civic-gks-bundle",
   "civicBundleFormatVersion": "0.1.0",
-  "description": "CIViC data in the referenced GKS Bundle Format.",
+  "description": "CIViC organizes curated cancer variant knowledge around variants and molecular profiles with evidence from source publications, summary assertions, and clinical context such as diseases, therapies, phenotypes, variant origins, and curating organizations. This schema describes a GA4GH GKS representation of those CIViC concepts. Top-level keys use CIViC knowledge model terms where possible, with additional keys for supporting GKS representation details. For the CIViC data model, see https://civic.readthedocs.io/en/latest/model.html.",
   "properties": {
     "sequenceReference": {
       "additionalProperties": false,
+      "description": "Reference sequences used by variant coordinates and HGVS expressions. Collection keys are refget sequence accessions.",
       "patternProperties": {
         "^SQ\\.[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceReference"
@@ -177,6 +183,7 @@
     },
     "location": {
       "additionalProperties": false,
+      "description": "Representative sequence locations for CIViC Variant coordinates. Collection keys are GA4GH SequenceLocation identifiers.",
       "patternProperties": {
         "^ga4gh:SL\\.[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceLocation"
@@ -187,6 +194,7 @@
     },
     "variant": {
       "additionalProperties": false,
+      "description": "User-defined genomic alterations or related molecular events with potential clinical relevance. Collection keys are CIViC Variant IDs.",
       "patternProperties": {
         "^civic\\.vid:[0-9]+$": {
           "additionalProperties": false,
@@ -202,6 +210,7 @@
                   }
                 ]
               },
+              "description": "HGVS protein expressions and other protein-level representations.",
               "type": "object"
             },
             "coding": {
@@ -215,6 +224,7 @@
                   }
                 ]
               },
+              "description": "HGVS coding DNA expressions, usually relative to a transcript.",
               "type": "object"
             },
             "genomic": {
@@ -228,6 +238,7 @@
                   }
                 ]
               },
+              "description": "HGVS genomic expressions and representative genomic coordinates.",
               "type": "object"
             },
             "unclassified": {
@@ -241,6 +252,7 @@
                   }
                 ]
               },
+              "description": "Variant representations that could not be assigned to protein, coding, or genomic coordinates.",
               "type": "object"
             }
           },
@@ -252,6 +264,7 @@
     },
     "feature": {
       "additionalProperties": false,
+      "description": "Genes associated with CIViC Variants and Molecular Profiles. Collection keys are CIViC Gene IDs.",
       "patternProperties": {
         "^civic\\.gid:[0-9]+$": {
           "allOf": [
@@ -276,6 +289,7 @@
     },
     "molecularProfile": {
       "additionalProperties": false,
+      "description": "CIViC Molecular Profiles interpreted for clinical relevance; this export currently includes profiles with one CIViC Variant. Collection keys are CIViC Molecular Profile IDs.",
       "patternProperties": {
         "^civic\\.mpid:[0-9]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/cat-vrs/1.1.0-snapshot.2026-02.3/json/CategoricalVariant"
@@ -286,6 +300,7 @@
     },
     "disease": {
       "additionalProperties": false,
+      "description": "Cancer types or subtypes associated with CIViC Evidence Items and Assertions. Collection keys are CIViC Disease IDs.",
       "patternProperties": {
         "^civic\\.did:[0-9]+$": {
           "allOf": [
@@ -310,6 +325,7 @@
     },
     "phenotype": {
       "additionalProperties": false,
+      "description": "Symptoms or abnormalities from the Human Phenotype Ontology that add clinical context. Collection keys are CIViC Phenotype IDs.",
       "patternProperties": {
         "^civic\\.phenotype:[0-9]+$": {
           "allOf": [
@@ -334,6 +350,7 @@
     },
     "conditionSet": {
       "additionalProperties": false,
+      "description": "Disease and phenotype context grouped for reuse in GKS propositions. Collection keys are computed bundle-local condition set identifiers.",
       "patternProperties": {
         "^civic\\.conditionSet:[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/ConditionSet"
@@ -344,6 +361,7 @@
     },
     "therapy": {
       "additionalProperties": false,
+      "description": "Drugs or treatment types associated with predictive Evidence Items and Assertions. Collection keys are CIViC Therapy IDs.",
       "patternProperties": {
         "^civic\\.tid:[0-9]+$": {
           "allOf": [
@@ -368,6 +386,7 @@
     },
     "therapyGroup": {
       "additionalProperties": false,
+      "description": "Groups of multiple therapies used in predictive interpretations. Collection keys are computed bundle-local therapy group identifiers.",
       "patternProperties": {
         "^civic\\.therapyGroup:[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/TherapyGroup"
@@ -378,6 +397,7 @@
     },
     "variantOrigin": {
       "additionalProperties": false,
+      "description": "Presumed source of a variant in the study context, such as somatic, germline, unknown, or not applicable. Collection keys are computed identifiers based on CIViC variant origin codes.",
       "patternProperties": {
         "^civic\\.variantOrigin:[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
@@ -388,6 +408,7 @@
     },
     "source": {
       "additionalProperties": false,
+      "description": "Publications or abstracts cited as support for CIViC Evidence Items and Assertions. Collection keys are CIViC Source IDs or PubMed IDs.",
       "patternProperties": {
         "^(civic\\.sid|pmid):[0-9]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Document"
@@ -398,6 +419,7 @@
     },
     "method": {
       "additionalProperties": false,
+      "description": "Curation or classification method used to produce a CIViC GKS Statement. Collection keys are CIViC curation method IDs, such as civic.method:2019.",
       "patternProperties": {
         "^civic\\.method:[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Method"
@@ -408,6 +430,7 @@
     },
     "organization": {
       "additionalProperties": false,
+      "description": "CIViC organizations connected to assertion approvals or submissions. Collection keys are CIViC Organization IDs.",
       "patternProperties": {
         "^civic\\.organization:[A-Za-z0-9_-]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Agent"
@@ -418,6 +441,7 @@
     },
     "proposition": {
       "additionalProperties": false,
+      "description": "Structured clinical interpretation evaluated by CIViC Evidence Items or Assertions. Collection keys are computed bundle-local proposition identifiers.",
       "patternProperties": {
         "^civic\\.proposition:[A-Za-z0-9_-]+$": {
           "anyOf": [
@@ -444,6 +468,7 @@
     },
     "evidence": {
       "additionalProperties": false,
+      "description": "Clinical evidence statements manually curated from a source publication. Collection keys are CIViC Evidence IDs.",
       "patternProperties": {
         "^civic\\.eid:[0-9]+$": {
           "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Statement"
@@ -454,6 +479,7 @@
     },
     "assertion": {
       "additionalProperties": false,
+      "description": "CIViC Assertions that summarize and classify evidence for a Molecular Profile in a disease context. Collection keys are CIViC Assertion IDs.",
       "patternProperties": {
         "^civic\\.aid:[0-9]+$": {
           "anyOf": [
@@ -470,9 +496,11 @@
       "type": "object"
     },
     "metadata": {
-      "$ref": "#/$defs/Metadata"
+      "$ref": "#/$defs/Metadata",
+      "description": "Bundle format, version, creation, and collection summary information."
     },
     "failedAssertionIds": {
+      "description": "CIViC Assertion IDs skipped because they could not be converted.",
       "items": {
         "type": "integer"
       },
@@ -480,6 +508,7 @@
       "type": "array"
     },
     "errors": {
+      "description": "Export errors explaining why specific CIViC Assertions were skipped.",
       "items": {
         "$ref": "#/$defs/GksAssertionError"
       },
