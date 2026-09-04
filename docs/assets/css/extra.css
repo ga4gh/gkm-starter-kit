@@ -1,5 +1,22 @@
 /* GKM Starter Kit theming */
 
+/* GA4GH logo in the header banner (added via the header.html override). Sits to
+   the right of the title; the filter renders the mark white on the coloured
+   header, matching the GA4GH placement on the ClinVar-GKS site. */
+.md-header__ga4gh {
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.md-header__ga4gh img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
 /* Responsive home page title: show the full name on wide screens, and swap to
    the abbreviated "GKM Starter Kit" (rather than wrapping) once space is tight. */
 .gks-home-title-full {
