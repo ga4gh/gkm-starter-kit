@@ -14,6 +14,8 @@ supports today.
 
 Choose a method by scale and use case — from a single record to bulk datasets.
 
+<span class="gks-status gks-status--production">Available</span> today · <span class="gks-status gks-status--pilot">In development</span> · <span class="gks-status gks-status--proposal">Considering</span>
+
 ### One record at a time <span class="gks-status gks-status--production">Available</span>
 
 A single GKM object — a variant, a category of variants, or a clinical
@@ -89,6 +91,14 @@ validating and accessing these various data bundling and packaging methods —
 loading a bundle, exploring its objects, and exporting them back to GKM JSON.
 
 [Explore the GKM toolkit →](../library/index.md)
+
+## A growing toolkit
+
+As the community identifies other patterns, formats, and methods that are
+useful, we will continue to add those to this Starter Kit. The list above is a
+starting point, not a fixed boundary.
+
+[Contribute a data method →](contribute.md)
 
 ## Built with community partners
 
