@@ -122,6 +122,9 @@
         </div>
       </div>
     </div>
+    <a href="https://www.ga4gh.org" title="GA4GH" target="_blank" rel="noopener" class="md-header__ga4gh">
+      <img src="../assets/images/ga4gh-logo.svg" alt="GA4GH" height="40">
+    </a>
     
       
         <form class="md-header__option" data-md-component="palette">
@@ -340,7 +343,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1336,10 +1341,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-bundles" class="md-nav__link">
+  <a href="#i-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Bundles
+        I. Data
       
     </span>
   </a>
@@ -1347,10 +1352,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-ga4ghgkm-python-package" class="md-nav__link">
+  <a href="#ii-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The ga4gh.gkm Python package
+        II. Tools
       
     </span>
   </a>
@@ -1358,10 +1363,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vignettes" class="md-nav__link">
+  <a href="#iii-user-stories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vignettes
+        III. User Stories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-they-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How they work together
       
     </span>
   </a>
@@ -1370,17 +1386,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-the-pillars-work-together" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How the pillars work together
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1399,6 +1404,8 @@
               </div>
             
             
+              
+                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -1442,10 +1449,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#data-bundles" class="md-nav__link">
+  <a href="#i-data" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Data Bundles
+        I. Data
       
     </span>
   </a>
@@ -1453,10 +1460,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-ga4ghgkm-python-package" class="md-nav__link">
+  <a href="#ii-tools" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The ga4gh.gkm Python package
+        II. Tools
       
     </span>
   </a>
@@ -1464,10 +1471,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#vignettes" class="md-nav__link">
+  <a href="#iii-user-stories" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vignettes
+        III. User Stories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-they-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How they work together
       
     </span>
   </a>
@@ -1476,17 +1494,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how-the-pillars-work-together" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How the pillars work together
-      
-    </span>
-  </a>
   
 </li>
       
@@ -1504,6 +1511,8 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+
 
 
   
@@ -1525,7 +1534,7 @@ Knowledge Standards (GKS)</a>
 Work Stream.</p>
 <p>GKM brings together four standards that can be used independently or combined:</p>
 <ul>
-<li><strong><a href="https://github.com/ga4gh/gks-core">GKS-Core</a></strong> provides concepts shared by
+<li><strong><a href="https://github.com/ga4gh/gks-core">GKM-Core</a></strong> provides concepts shared by
   the other standards.</li>
 <li><strong><a href="https://vrs.ga4gh.org/">VRS</a></strong> describes precise molecular variation.</li>
 <li><strong><a href="https://cat-vrs.ga4gh.org/">Cat-VRS</a></strong> describes categories of variation.</li>
@@ -1535,15 +1544,15 @@ Work Stream.</p>
 <p>Producers use the standards that fit their data. Their Python reference
 implementations are:</p>
 <ul>
-<li><strong>GKS-Core and VRS:</strong> <a href="https://github.com/ga4gh/vrs-python">vrs-python</a></li>
+<li><strong>GKM-Core and VRS:</strong> <a href="https://github.com/ga4gh/vrs-python">vrs-python</a></li>
 <li><strong>Cat-VRS:</strong> <a href="https://github.com/ga4gh/cat-vrs-python">cat-vrs-python</a></li>
 <li><strong>VA-Spec:</strong> <a href="https://github.com/ga4gh/va-spec-python">va-spec-python</a></li>
 </ul>
 <h2 id="the-three-pillars">The three pillars</h2>
 <p>The Starter Kit connects GKM standards to real data, software, and community
 outcomes through three pillars.</p>
-<h3 id="data-bundles">Data Bundles</h3>
-<p><strong><a href="../data/">Data Bundles</a> package related GKM objects while preserving the
+<h3 id="i-data">I. Data</h3>
+<p><strong><a href="../data/">Data bundles</a> package related GKM objects while preserving the
 names and organization of their resources.</strong></p>
 <p>A documented, versioned bundle schema makes structural changes easier to
 communicate and helps consumers understand what a producer distributes.</p>
@@ -1554,7 +1563,7 @@ structure. Bundles are not required to use GKM: applications can construct,
 validate, and serialize individual GKM objects through the reference
 implementations above.</p>
 </div>
-<h3 id="the-ga4ghgkm-python-package">The <code>ga4gh.gkm</code> Python package</h3>
+<h3 id="ii-tools">II. Tools</h3>
 <p><strong><a href="../library/"><code>ga4gh.gkm</code></a> provides a consistent Python interface for
 loading, exploring, and writing bundles.</strong></p>
 <p>Consumers can work with supported GKM Python models, follow relationships
@@ -1568,19 +1577,20 @@ GKM objects; <code>ga4gh.gkm.bundles</code> works with collections of those obje
 These packages are maintained implementations, not required interfaces.
 Developers can implement the GKM standards in their own tools and programming
 languages.</p>
-<h3 id="vignettes">Vignettes</h3>
-<p><strong><a href="../vignettes/">Vignettes</a> show how communities put GKM standards to work
+<h3 id="iii-user-stories">III. User Stories</h3>
+<p><strong><a href="../vignettes/">User stories</a> show how communities put GKM standards to work
 and what their implementations accomplish.</strong></p>
 <p>They give prospective adopters concrete examples, reveal reusable patterns,
-and help teams evaluate whether GKM fits their needs.</p>
-<p>Some vignettes use Data Bundles or <code>ga4gh.gkm</code>; others use GKM standards
+and help teams evaluate whether GKM fits their needs. Each is told as a short
+vignette drawn from a real implementation.</p>
+<p>Some user stories use data bundles or <code>ga4gh.gkm</code>; others use GKM standards
 without them. The focus is the real-world outcome, not whether an implementation
 uses every part of the Starter Kit.</p>
-<h2 id="how-the-pillars-work-together">How the pillars work together</h2>
-<p>Data Bundles provide real data, <code>ga4gh.gkm</code> provides a consistent bundle
-workflow, and Vignettes demonstrate the results. Together they help producers,
-consumers, and the GKM community test the standards, identify gaps, and turn
-successful implementations into patterns others can reuse.</p>
+<h3 id="how-they-work-together">How they work together</h3>
+<p>Data bundles provide real, packaged knowledge, <code>ga4gh.gkm</code> provides a consistent
+bundle workflow, and user stories demonstrate the results. Together they help
+producers, consumers, and the GKM community test the standards, identify gaps,
+and turn successful implementations into patterns others can reuse.</p>
 
 
 
@@ -1588,8 +1598,13 @@ successful implementations into patterns others can reuse.</p>
 
 
 
+  
+  
 
 
+
+
+  
 
 
 

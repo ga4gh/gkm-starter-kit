@@ -1,5 +1,33 @@
 /* GKM Starter Kit theming */
 
+/* Omit the right-hand table of contents when a page has nothing worth
+   navigating to — i.e. zero or one heading. The :has() test keeps the TOC only
+   when its list holds a second entry (a sibling top-level heading, or a nested
+   sub-heading under a lone one); otherwise the sidebar is hidden.
+   Pages with no sub-pages hide the left nav via `hide: navigation` front matter,
+   since Material renders the full nav tree into every page's primary sidebar and
+   CSS alone can't tell an empty section from a populated one. */
+.md-sidebar--secondary:not(:has(.md-nav__list .md-nav__item:nth-child(2))) {
+    display: none;
+}
+
+/* GA4GH logo in the header banner (added via the header.html override). Sits to
+   the right of the title; the filter renders the mark white on the coloured
+   header, matching the GA4GH placement on the ClinVar-GKS site. */
+.md-header__ga4gh {
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.md-header__ga4gh img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
 /* Responsive home page title: show the full name on wide screens, and swap to
    the abbreviated "GKM Starter Kit" (rather than wrapping) once space is tight. */
 .gks-home-title-full {
@@ -107,6 +135,26 @@
     .md-typeset .gks-explainer .wb--narrow {
         display: none;
     }
+}
+
+/* Each pillar card is a link to its section landing page. Show a pointer and
+   highlight the card outline on hover/focus so the click target is obvious. */
+.wb-link {
+    cursor: pointer;
+}
+
+.wb-link .wb-card {
+    transition: stroke 0.15s ease, stroke-width 0.15s ease;
+}
+
+.wb-link:hover .wb-card,
+.wb-link:focus-visible .wb-card {
+    stroke: var(--md-accent-fg-color);
+    stroke-width: 2.5;
+}
+
+.wb-link:focus-visible {
+    outline: none;
 }
 
 /* Workbench graphic. Everything follows the active Material palette except the
