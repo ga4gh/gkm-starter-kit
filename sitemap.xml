@@ -2,78 +2,78 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/about/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/contribute/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/data/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/data/examples/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/data/schemas/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/civic-notebook/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/compatibility/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/errors/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/loading/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/models/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/library/api/registry/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/vignettes/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/vignettes/brca-exchange-vrs-cross-source/vignette/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/vignettes/by-implementer/brca-exchange/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/vignettes/by-pattern/cross-source-variant-harmonization/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
     <url>
          <loc>https://ga4gh.github.io/gkm-starter-kit/vignettes/by-product/vrs/</loc>
-         <lastmod>2026-09-02</lastmod>
+         <lastmod>2026-09-04</lastmod>
     </url>
 </urlset>
