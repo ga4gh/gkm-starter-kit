@@ -27,7 +27,7 @@
     
     
       
-        <title>Data Bundles - GKM Starter Kit</title>
+        <title>Data - GKM Starter Kit</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#data-bundles" class="md-skip">
+        <a href="#data" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Bundles
+              Data
             
           </span>
         </div>
@@ -1310,6 +1310,68 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ways-to-share-gkm-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to share GKM data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ways to share GKM data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-record-at-a-time-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One record at a time Available
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compact-bundles-of-many-records-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compact bundles of many records Available
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-volume-datasets-in-multiple-formats-in-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large-volume datasets in multiple formats In development
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-shared-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Working with shared representations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Working with shared representations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#bundle-terminology" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1319,12 +1381,39 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#bundle-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
         Bundle contents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-tools-pillar-helps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the Tools pillar helps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-growing-toolkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A growing toolkit
       
     </span>
   </a>
@@ -1367,17 +1456,39 @@
   
 
 
-<h1 id="data-bundles">Data Bundles</h1>
-<p>GKM can describe one piece of genomic knowledge, such as a variant, a category
-of variants, or a clinical assertion, in a consistent way. Real resources
-contain many of these objects and need to share them as a collection. A <strong>GKM
-bundle</strong> packages a resource's related GKM objects so another group can load
-and use them.</p>
+<h1 id="data">Data</h1>
+<p>GKM describes one piece of genomic knowledge — a variant, a category of
+variants, or a clinical assertion — in a consistent way. Real resources hold
+many of these objects and need to share them as <strong>collections</strong>.</p>
+<p>How you share those collections depends on scale and use case. There are
+different ways to share depending on what you need: a single record in a
+message, a compact bundle of many related records, or a large-volume dataset in
+a bulk format. This page walks through those methods and what the Starter Kit
+supports today.</p>
+<h2 id="ways-to-share-gkm-data">Ways to share GKM data</h2>
+<p>Choose a method by scale and use case — from a single record to bulk datasets.</p>
+<p><span class="gks-status gks-status--production">Available</span> today · <span class="gks-status gks-status--pilot">In development</span> · <span class="gks-status gks-status--proposal">Considering</span></p>
+<h3 id="one-record-at-a-time-available">One record at a time <span class="gks-status gks-status--production">Available</span></h3>
+<p>A single GKM object — a variant, a category of variants, or a clinical
+assertion — exchanged in a message or API response. This is the atomic case the
+GKM reference libraries already construct and validate.</p>
+<h3 id="compact-bundles-of-many-records-available">Compact bundles of many records <span class="gks-status gks-status--production">Available</span></h3>
+<p>Package many related objects into one document and state shared representations
+once, referencing them by a bundle-local pointer instead of repeating them.
+This is today's JSON bundle workflow (see below). Line-delimited JSON (JSON
+Lines) is <span class="gks-status gks-status--proposal">Considering</span>.</p>
+<h3 id="large-volume-datasets-in-multiple-formats-in-development">Large-volume datasets in multiple formats <span class="gks-status gks-status--pilot">In development</span></h3>
+<p>For datasets too large to share as a single JSON document, GKM knowledge can be
+distributed in bulk-friendly formats such as <strong>JSON Lines</strong>, <strong>Parquet</strong>, and
+<strong>relational tables</strong>. Support for these is being developed and prioritized with
+community partners.</p>
+<h2 id="working-with-shared-representations">Working with shared representations</h2>
+<p>Bundles are how the compact method works today: a producer packages related GKM
+objects into one document and states each shared representation once, so
+consumers can resolve references instead of re-reading repeated objects.</p>
 <p>The initial Starter Kit supports bundles serialized as JSON. Other
 serializations, such as JSON Lines, may be supported in the future.</p>
-<p>Each producer defines and versions a bundle schema. The schema preserves the
-resource's organization while its GKM objects retain their shared meaning.</p>
-<h2 id="bundle-terminology">Bundle terminology</h2>
+<h3 id="bundle-terminology">Bundle terminology</h3>
 <ul>
 <li>A <strong>bundle</strong> is a collection of related GKM objects from a producer.</li>
 <li>A <strong>bundle schema</strong> is the separate JSON Schema that defines how a producer
@@ -1386,7 +1497,7 @@ resource's organization while its GKM objects retain their shared meaning.</p>
 </ul>
 <p>The current workflow stores each bundle in a JSON file and distributes it with
 its bundle schema. Multiple bundles can share the same bundle schema.</p>
-<h2 id="bundle-contents">Bundle contents</h2>
+<h3 id="bundle-contents">Bundle contents</h3>
 <p>A producer groups related objects into named <strong>collections</strong>, such as sources
 or evidence. This simplified JSON shows how two collections can link related
 objects; it is not a complete bundle:</p>
@@ -1409,17 +1520,27 @@ objects; it is not a complete bundle:</p>
 identifiers such as <code>source-1</code> map to GKM objects.</p>
 <p>Strings that begin with <code>#/</code> are bundle-local JSON Pointers. The evidence links
 to its source without repeating the source object.</p>
+<h2 id="how-the-tools-pillar-helps">How the Tools pillar helps</h2>
+<p>The GKM Starter Kit <strong>Tools</strong> are being developed to give users a means for
+validating and accessing these various data bundling and packaging methods —
+loading a bundle, exploring its objects, and exporting them back to GKM JSON.</p>
+<p><a href="../library/">Explore the GKM toolkit →</a></p>
+<h2 id="a-growing-toolkit">A growing toolkit</h2>
+<p>As the community identifies other patterns, formats, and methods that are
+useful, we will continue to add those to this Starter Kit. The list above is a
+starting point, not a fixed boundary.</p>
+<p><a href="contribute/">Contribute a data method →</a></p>
 <h2 id="built-with-community-partners">Built with community partners</h2>
 <p>The Starter Kit uses real content developed with resources such as <strong>ClinVar
 GKS</strong> and <strong>CIViC</strong>. Each partner defines its collection names and object
 groupings in a bundle schema, preserving terminology familiar to its users
 while using shared GKM models.</p>
 <div class="admonition info">
-<p class="admonition-title">Bundles are one distribution option</p>
-<p>GKM does not require every resource to distribute bundles.
-The Data Bundles pillar supports resources that choose to package related
-GKM objects as bundles. Other distribution methods are outside the scope of
-this pillar.</p>
+<p class="admonition-title">Bundles are one of several sharing methods</p>
+<p>GKM does not require every resource to distribute bundles. Bundles are the
+compact method described above — one option alongside single-record
+messaging and large-volume formats. Choose the method that fits your data's
+scale and use case.</p>
 </div>
 
 

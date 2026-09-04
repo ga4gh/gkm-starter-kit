@@ -306,3 +306,70 @@
     fill-opacity: 0.88;
     font-size: 14.5px;
 }
+
+/* --- GKM logo -------------------------------------------------------------
+   The mark keeps its own brand colours rather than following the theme's
+   primary, so it stays recognisable in both schemes. Only the values change:
+   on dark the outline lightens for contrast and the crumb warms, so the bun
+   still reads as a lit object rather than a hole in the page. The SVG file
+   carries these light values as presentation attributes, which lets it render
+   correctly on its own; these rules outrank those attributes when it is
+   inlined into a page. */
+:root {
+    --gkm-line: #246c9c;
+    --gkm-body: #ffffff;
+    --gkm-crumb: #f6e4c8;
+    --gkm-accent: #a8d8cc;
+    --gkm-shadow-opacity: 0.5;
+}
+
+[data-md-color-scheme="slate"] {
+    --gkm-line: #7fb8da;
+    --gkm-body: #f3ead9;
+    --gkm-crumb: #e0c99e;
+    --gkm-accent: #8fd0c0;
+    --gkm-shadow-opacity: 0.38;
+}
+
+/* Float the logo so the page heading and intro text wrap to its right, keeping
+   the logo top-aligned with the heading. The snippet wraps the SVG in a
+   paragraph; float that wrapper and let the logo fill it. */
+.md-typeset p:has(> .gkm-logo) {
+    float: left;
+    width: 150px;
+    margin: 0 1.25rem 0.5rem 0;
+}
+
+.md-typeset .gkm-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+/* Subsection headings after the logo clear the float so only the page heading
+   and its intro wrap beside it. */
+.md-typeset p:has(> .gkm-logo) ~ h2 {
+    clear: left;
+}
+
+.gkm-logo .gkm-line {
+    fill: var(--gkm-line);
+}
+
+.gkm-logo .gkm-body {
+    fill: var(--gkm-body);
+}
+
+.gkm-logo .gkm-crumb {
+    fill: var(--gkm-crumb);
+}
+
+.gkm-logo .gkm-helix {
+    fill: var(--gkm-accent);
+}
+
+.gkm-logo .gkm-shadow {
+    fill: var(--gkm-accent);
+    opacity: var(--gkm-shadow-opacity);
+}
