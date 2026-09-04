@@ -1,5 +1,25 @@
 /* GKM Starter Kit theming */
 
+/* Responsive home page title: show the full name on wide screens, and swap to
+   the abbreviated "GKM Starter Kit" (rather than wrapping) once space is tight. */
+.gks-home-title-full {
+    white-space: nowrap;
+}
+
+.gks-home-title-short {
+    display: none;
+}
+
+@media screen and (max-width: 48em) {
+    .gks-home-title-full {
+        display: none;
+    }
+
+    .gks-home-title-short {
+        display: inline;
+    }
+}
+
 .gks-chip {
     display: inline-block;
     padding: 0.15em 0.6em;
@@ -44,13 +64,197 @@
     color: white;
 }
 
-/* v2 landing: pipeline strip */
-.gks-pipeline {
-    padding: 1rem 1.25rem;
-    border-radius: 0.5rem;
-    background: var(--md-primary-fg-color--light);
-    color: var(--md-primary-bg-color);
-    text-align: center;
-    font-size: 1.05rem;
+/* v2 landing: three-pillars explainer graphic */
+
+/* The graphic stays inside the text column - it never bleeds into the nav or
+   table-of-contents gutters. The theme puts max-width:100% on figures, which
+   would otherwise let this box collapse to the SVG's 300px intrinsic width and
+   render the whole graphic at quarter scale; .md-typeset is needed to outrank
+   the theme and pin the figure to the column. */
+.md-typeset .gks-explainer {
+    display: block;
+    width: 100%;
+    margin: 2rem 0;
 }
-.gks-pipeline strong { white-space: nowrap; }
+
+/* Each layout is drawn at its natural size and centred, leaving a margin on
+   both sides rather than running edge to edge. */
+.md-typeset .gks-explainer svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.md-typeset .gks-explainer .wb--wide {
+    display: none;
+    max-width: 640px;
+}
+
+.md-typeset .gks-explainer .wb--narrow {
+    display: block;
+    max-width: 440px;
+}
+
+/* Side by side once the text column can hold the 640px layout. 45em is the
+   narrowest viewport where that is true in every sidebar configuration this
+   theme produces. */
+@media screen and (min-width: 45em) {
+    .md-typeset .gks-explainer .wb--wide {
+        display: block;
+    }
+
+    .md-typeset .gks-explainer .wb--narrow {
+        display: none;
+    }
+}
+
+/* Workbench graphic. Everything follows the active Material palette except the
+   three pillar hues, which are defined per colour scheme below. */
+:root {
+    --wb-p1: #2563eb;
+    --wb-p2: #7c3aed;
+    --wb-p3: #0d9488;
+}
+
+[data-md-color-scheme="slate"] {
+    --wb-p1: #60a5fa;
+    --wb-p2: #a78bfa;
+    --wb-p3: #2dd4bf;
+}
+
+.wb text {
+    font-family: var(--md-text-font, system-ui, sans-serif);
+}
+
+.wb-kicker {
+    fill: var(--md-default-fg-color--light);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+}
+
+.wb-h1 {
+    fill: var(--md-default-fg-color);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.wb-sub {
+    fill: var(--md-default-fg-color--light);
+    font-size: 16px;
+}
+
+.wb-title {
+    fill: var(--md-default-fg-color);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.wb-desc {
+    fill: var(--md-default-fg-color--light);
+    font-size: 16.5px;
+}
+
+.wb-h1--sm {
+    font-size: 26px;
+}
+
+.wb-sub--sm {
+    font-size: 15.5px;
+}
+
+.wb-title--sm {
+    font-size: 21px;
+}
+
+.wb-desc--sm {
+    font-size: 16.5px;
+}
+
+/* Cards */
+.wb-card {
+    fill: var(--md-default-bg-color);
+    stroke: var(--md-default-fg-color--lighter);
+    stroke-width: 1.5;
+}
+
+.wb-cap1,
+.wb-p1 {
+    fill: var(--wb-p1);
+}
+
+.wb-cap2,
+.wb-p2 {
+    fill: var(--wb-p2);
+}
+
+.wb-cap3,
+.wb-p3 {
+    fill: var(--wb-p3);
+}
+
+.wb-p1s {
+    fill: none;
+    stroke: var(--wb-p1);
+    stroke-width: 7;
+    stroke-linecap: round;
+}
+
+.wb-p2s {
+    fill: none;
+    stroke: var(--wb-p2);
+    stroke-width: 9;
+}
+
+/* Shapes knocked out of an icon read as the card behind it. */
+.wb-knock {
+    fill: var(--md-default-bg-color);
+}
+
+.wb-badge {
+    stroke: var(--md-default-bg-color);
+    stroke-width: 5;
+}
+
+.wb-check {
+    fill: none;
+    stroke: var(--md-default-bg-color);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* The thread linking the three pillars. */
+.wb-thread {
+    stroke: var(--md-default-fg-color--lighter);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 3 7;
+}
+
+/* The bench they all stand on. */
+.wb-bench {
+    fill: var(--md-primary-fg-color);
+}
+
+.wb-apron {
+    fill: var(--md-primary-fg-color--dark);
+}
+
+.wb-bench-txt {
+    fill: var(--md-primary-bg-color);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wb-bench-txt--sm {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wb-bench-sub {
+    fill: var(--md-primary-bg-color);
+    fill-opacity: 0.88;
+    font-size: 14.5px;
+}
