@@ -1,5 +1,7 @@
 ---
 title: Genomic Knowledge Model (GKM) Starter Kit
+hide:
+  - navigation
 ---
 
 # <span class="gks-home-title-full">Genomic Knowledge Model (GKM) Starter Kit</span><span class="gks-home-title-short">GKM Starter Kit</span>

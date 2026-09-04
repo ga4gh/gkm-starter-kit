@@ -7,7 +7,7 @@ If you've built something real on top of GKS, or you're proposing to, a user sto
 Use this short checklist:
 
 - [ ] Real implementation, or a credible proposal with a clear use case.
-- [ ] Uses one or more GKM standards (GKS-Core, VRS, Cat-VRS, VA-Spec).
+- [ ] Uses one or more GKM standards (GKM-Core, VRS, Cat-VRS, VA-Spec).
 - [ ] You can include real data (example payloads, not synthetic placeholders).
 - [ ] You can name the actual tools and libraries used, with versions and links.
 - [ ] The value can be stated in plain language that a non-technical reader could understand and forward.

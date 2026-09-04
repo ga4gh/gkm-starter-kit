@@ -1,5 +1,16 @@
 /* GKM Starter Kit theming */
 
+/* Omit the right-hand table of contents when a page has nothing worth
+   navigating to — i.e. zero or one heading. The :has() test keeps the TOC only
+   when its list holds a second entry (a sibling top-level heading, or a nested
+   sub-heading under a lone one); otherwise the sidebar is hidden.
+   Pages with no sub-pages hide the left nav via `hide: navigation` front matter,
+   since Material renders the full nav tree into every page's primary sidebar and
+   CSS alone can't tell an empty section from a populated one. */
+.md-sidebar--secondary:not(:has(.md-nav__list .md-nav__item:nth-child(2))) {
+    display: none;
+}
+
 /* GA4GH logo in the header banner (added via the header.html override). Sits to
    the right of the title; the filter renders the mark white on the coloured
    header, matching the GA4GH placement on the ClinVar-GKS site. */
