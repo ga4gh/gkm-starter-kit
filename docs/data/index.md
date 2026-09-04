@@ -1,16 +1,14 @@
-# Data Bundles
+# Data
 
-GKM can describe one piece of genomic knowledge, such as a variant, a category
-of variants, or a clinical assertion, in a consistent way. Real resources
-contain many of these objects and need to share them as a collection. A **GKM
-bundle** packages a resource's related GKM objects so another group can load
-and use them.
+GKM describes one piece of genomic knowledge — a variant, a category of
+variants, or a clinical assertion — in a consistent way. Real resources hold
+many of these objects and need to share them as **collections**.
 
-The initial Starter Kit supports bundles serialized as JSON. Other
-serializations, such as JSON Lines, may be supported in the future.
-
-Each producer defines and versions a bundle schema. The schema preserves the
-resource's organization while its GKM objects retain their shared meaning.
+How you share those collections depends on scale and use case. There are
+different ways to share depending on what you need: a single record in a
+message, a compact bundle of many related records, or a large-volume dataset in
+a bulk format. This page walks through those methods and what the Starter Kit
+supports today.
 
 ## Bundle terminology
 
