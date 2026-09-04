@@ -1,5 +1,5 @@
 ---
-title: "BRCA Exchange: identifying unique variants across sources with VRS"
+title: "Identifying unique variants across sources with VRS"
 slug: brca-exchange-vrs-cross-source
 summary: "Using VRS digests to deduplicate BRCA variants pulled from ClinVar, gnomAD, LOVD, and the literature."
 products:
@@ -13,7 +13,7 @@ contributors:
 last_updated: 2026-05-27
 ---
 
-# BRCA Exchange: identifying unique variants across sources with VRS
+# Identifying unique variants across sources with VRS
 
 **Why this matters**
 
