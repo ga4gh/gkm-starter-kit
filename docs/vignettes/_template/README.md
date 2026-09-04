@@ -53,5 +53,5 @@ Keep new pattern names broad enough to plausibly cover future vignettes. For exa
 
 ## See also
 
-- [Contribution guide](../../contribute.md)
+- [Contribution guide](../contribute.md)
 - [Pull-request template](https://github.com/ga4gh/gkm-starter-kit/blob/main/.github/PULL_REQUEST_TEMPLATE.md)

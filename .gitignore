@@ -142,3 +142,6 @@ pytest.ini
 .idea/
 .vim/
 *.swp
+
+# Claude Code local config
+.claude/

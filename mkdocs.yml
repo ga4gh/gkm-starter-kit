@@ -8,10 +8,17 @@ edit_uri: edit/main/docs/
 theme:
   name: material
   features:
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
     - content.action.edit
     - content.code.copy
     - content.tabs.link
+    - search.suggest
+    - search.highlight
   palette:
     - scheme: default
       primary: indigo
@@ -90,29 +97,31 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - About: about.md
-  - Data Bundles:
-      - Overview: data/index.md
+  - Data:
+      - data/index.md
       - Bundle schemas: data/schemas.md
       - Example bundles: data/examples.md
-  - Python Package:
-      - Overview: library/index.md
+      - Contribute to Data: data/contribute.md
+  - Tools:
+      - library/index.md
       - API reference:
-          - Overview: library/api/index.md
+          - library/api/index.md
           - Models: library/api/models.md
           - Loading: library/api/loading.md
           - Compatibility: library/api/compatibility.md
           - Registry: library/api/registry.md
           - Errors: library/api/errors.md
       - Example workflow: library/civic-notebook.md
-  - Vignettes:
-      - Overview: vignettes/index.md
+      - Contribute to Tools: library/contribute.md
+  - User Stories:
+      - vignettes/index.md
       - Browse by product:
           - VRS: vignettes/by-product/vrs/index.md
       - Browse by use pattern:
           - Cross-source variant harmonization: vignettes/by-pattern/cross-source-variant-harmonization/index.md
       - Browse by implementer:
           - BRCA Exchange: vignettes/by-implementer/brca-exchange/index.md
-  - Contribute: contribute.md
+      - Contribute to User Stories: vignettes/contribute.md
+  - About: about.md
 
 strict: true
