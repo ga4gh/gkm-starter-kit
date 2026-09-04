@@ -34,7 +34,16 @@ distributed in bulk-friendly formats such as **JSON Lines**, **Parquet**, and
 **relational tables**. Support for these is being developed and prioritized with
 community partners.
 
-## Bundle terminology
+## Working with shared representations
+
+Bundles are how the compact method works today: a producer packages related GKM
+objects into one document and states each shared representation once, so
+consumers can resolve references instead of re-reading repeated objects.
+
+The initial Starter Kit supports bundles serialized as JSON. Other
+serializations, such as JSON Lines, may be supported in the future.
+
+### Bundle terminology
 
 - A **bundle** is a collection of related GKM objects from a producer.
 - A **bundle schema** is the separate JSON Schema that defines how a producer
@@ -44,7 +53,7 @@ community partners.
 The current workflow stores each bundle in a JSON file and distributes it with
 its bundle schema. Multiple bundles can share the same bundle schema.
 
-## Bundle contents
+### Bundle contents
 
 A producer groups related objects into named **collections**, such as sources
 or evidence. This simplified JSON shows how two collections can link related
