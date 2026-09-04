@@ -1,3 +1,8 @@
+---
+hide:
+  - navigation
+---
+
 # About the GKM Starter Kit
 
 The GKM Starter Kit is a community project for sharing and using genomic
@@ -12,7 +17,7 @@ Work Stream.
 
 GKM brings together four standards that can be used independently or combined:
 
-- **[GKS-Core](https://github.com/ga4gh/gks-core)** provides concepts shared by
+- **[GKM-Core](https://github.com/ga4gh/gks-core)** provides concepts shared by
   the other standards.
 - **[VRS](https://vrs.ga4gh.org/)** describes precise molecular variation.
 - **[Cat-VRS](https://cat-vrs.ga4gh.org/)** describes categories of variation.
@@ -22,7 +27,7 @@ GKM brings together four standards that can be used independently or combined:
 Producers use the standards that fit their data. Their Python reference
 implementations are:
 
-- **GKS-Core and VRS:** [vrs-python](https://github.com/ga4gh/vrs-python)
+- **GKM-Core and VRS:** [vrs-python](https://github.com/ga4gh/vrs-python)
 - **Cat-VRS:** [cat-vrs-python](https://github.com/ga4gh/cat-vrs-python)
 - **VA-Spec:** [va-spec-python](https://github.com/ga4gh/va-spec-python)
 
@@ -31,9 +36,9 @@ implementations are:
 The Starter Kit connects GKM standards to real data, software, and community
 outcomes through three pillars.
 
-### Data Bundles
+### I. Data
 
-**[Data Bundles](data/index.md) package related GKM objects while preserving the
+**[Data bundles](data/index.md) package related GKM objects while preserving the
 names and organization of their resources.**
 
 A documented, versioned bundle schema makes structural changes easier to
@@ -46,7 +51,7 @@ communicate and helps consumers understand what a producer distributes.
     validate, and serialize individual GKM objects through the reference
     implementations above.
 
-### The `ga4gh.gkm` Python package
+### II. Tools
 
 **[`ga4gh.gkm`](library/index.md) provides a consistent Python interface for
 loading, exploring, and writing bundles.**
@@ -65,21 +70,22 @@ These packages are maintained implementations, not required interfaces.
 Developers can implement the GKM standards in their own tools and programming
 languages.
 
-### Vignettes
+### III. User Stories
 
-**[Vignettes](vignettes/index.md) show how communities put GKM standards to work
+**[User stories](vignettes/index.md) show how communities put GKM standards to work
 and what their implementations accomplish.**
 
 They give prospective adopters concrete examples, reveal reusable patterns,
-and help teams evaluate whether GKM fits their needs.
+and help teams evaluate whether GKM fits their needs. Each is told as a short
+vignette drawn from a real implementation.
 
-Some vignettes use Data Bundles or `ga4gh.gkm`; others use GKM standards
+Some user stories use data bundles or `ga4gh.gkm`; others use GKM standards
 without them. The focus is the real-world outcome, not whether an implementation
 uses every part of the Starter Kit.
 
-## How the pillars work together
+### How they work together
 
-Data Bundles provide real data, `ga4gh.gkm` provides a consistent bundle
-workflow, and Vignettes demonstrate the results. Together they help producers,
-consumers, and the GKM community test the standards, identify gaps, and turn
-successful implementations into patterns others can reuse.
+Data bundles provide real, packaged knowledge, `ga4gh.gkm` provides a consistent
+bundle workflow, and user stories demonstrate the results. Together they help
+producers, consumers, and the GKM community test the standards, identify gaps,
+and turn successful implementations into patterns others can reuse.

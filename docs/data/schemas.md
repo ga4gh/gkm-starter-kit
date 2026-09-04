@@ -36,7 +36,7 @@ bundles through the Data Bundles pillar, the bundle schema must:
   the bundle.
     - For example,
       `"$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"`
-      selects `MappableConcept` from GKS-Core version 1.1.0.
+      selects `MappableConcept` from GKM-Core version 1.1.0.
 
 ## Recommendations
 
