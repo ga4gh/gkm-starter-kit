@@ -82,6 +82,14 @@ identifiers such as `source-1` map to GKM objects.
 Strings that begin with `#/` are bundle-local JSON Pointers. The evidence links
 to its source without repeating the source object.
 
+## How the Tools pillar helps
+
+The GKM Starter Kit **Tools** are being developed to give users a means for
+validating and accessing these various data bundling and packaging methods —
+loading a bundle, exploring its objects, and exporting them back to GKM JSON.
+
+[Explore the GKM toolkit →](../library/index.md)
+
 ## Built with community partners
 
 The Starter Kit uses real content developed with resources such as **ClinVar
