@@ -1,6 +1,6 @@
-# `ga4gh.gkm` Python Package
+--8<-- "docs/assets/images/gkm-logo.svg"
 
-![GKM Python package logo](../assets/images/python-package-logo.png){: width="300" style="display: block; margin: 0 auto;"}
+# `ga4gh.gkm` Toolkit
 
 `ga4gh.gkm` is a Python package for loading a producer's GKM
 bundle, exploring its contents, following relationships, and writing it back to
