@@ -107,9 +107,9 @@ GKS** and **CIViC**. Each partner defines its collection names and object
 groupings in a bundle schema, preserving terminology familiar to its users
 while using shared GKM models.
 
-!!! info "Bundles are one distribution option"
+!!! info "Bundles are one of several sharing methods"
 
-    GKM does not require every resource to distribute bundles.
-    The Data Bundles pillar supports resources that choose to package related
-    GKM objects as bundles. Other distribution methods are outside the scope of
-    this pillar.
+    GKM does not require every resource to distribute bundles. Bundles are the
+    compact method described above — one option alongside single-record
+    messaging and large-volume formats. Choose the method that fits your data's
+    scale and use case.
