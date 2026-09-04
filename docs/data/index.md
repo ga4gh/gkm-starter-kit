@@ -10,6 +10,30 @@ message, a compact bundle of many related records, or a large-volume dataset in
 a bulk format. This page walks through those methods and what the Starter Kit
 supports today.
 
+## Ways to share GKM data
+
+Choose a method by scale and use case — from a single record to bulk datasets.
+
+### One record at a time <span class="gks-status gks-status--production">Available</span>
+
+A single GKM object — a variant, a category of variants, or a clinical
+assertion — exchanged in a message or API response. This is the atomic case the
+GKM reference libraries already construct and validate.
+
+### Compact bundles of many records <span class="gks-status gks-status--production">Available</span>
+
+Package many related objects into one document and state shared representations
+once, referencing them by a bundle-local pointer instead of repeating them.
+This is today's JSON bundle workflow (see below). Line-delimited JSON (JSON
+Lines) is <span class="gks-status gks-status--proposal">Considering</span>.
+
+### Large-volume datasets in multiple formats <span class="gks-status gks-status--pilot">In development</span>
+
+For datasets too large to share as a single JSON document, GKM knowledge can be
+distributed in bulk-friendly formats such as **JSON Lines**, **Parquet**, and
+**relational tables**. Support for these is being developed and prioritized with
+community partners.
+
 ## Bundle terminology
 
 - A **bundle** is a collection of related GKM objects from a producer.
