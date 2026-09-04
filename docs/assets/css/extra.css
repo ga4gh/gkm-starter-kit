@@ -137,6 +137,26 @@
     }
 }
 
+/* Each pillar card is a link to its section landing page. Show a pointer and
+   highlight the card outline on hover/focus so the click target is obvious. */
+.wb-link {
+    cursor: pointer;
+}
+
+.wb-link .wb-card {
+    transition: stroke 0.15s ease, stroke-width 0.15s ease;
+}
+
+.wb-link:hover .wb-card,
+.wb-link:focus-visible .wb-card {
+    stroke: var(--md-accent-fg-color);
+    stroke-width: 2.5;
+}
+
+.wb-link:focus-visible {
+    outline: none;
+}
+
 /* Workbench graphic. Everything follows the active Material palette except the
    three pillar hues, which are defined per colour scheme below. */
 :root {
