@@ -9,7 +9,8 @@ This folder contains the canonical template for a GKM Starter Kit vignette. Copy
 3. Copy `vignette.md` from this folder into it.
 4. (Optional) Add `payloads/` and `diagrams/` subfolders for example data and figures referenced from your vignette body.
 5. Fill in the frontmatter (see field reference below) and the body sections.
-6. Run `mkdocs build --strict` locally to confirm there are no broken links or YAML errors.
+6. Run `python -m scripts.build_docs && zensical build --clean --strict`
+   locally to confirm there are no broken links or YAML errors.
 7. Open a PR. The PR template's checklist mirrors the requirements below.
 
 ## Frontmatter field reference

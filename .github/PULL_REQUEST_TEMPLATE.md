@@ -14,7 +14,7 @@
 - [ ] Tools named with versions and links — no vague references
 - [ ] `status` matches reality (production / pilot / proposal)
 - [ ] If introducing a new `pattern`, value added to `docs/vignettes/patterns.yml` in the same PR
-- [ ] `mkdocs build --strict` passes locally
+- [ ] `python -m scripts.build_docs && zensical build --clean --strict` passes locally
 
 ## Notes for reviewers
 

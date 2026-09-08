@@ -1,14 +1,12 @@
 """Render committed JSON Schemas to browsable Markdown at build time.
 
 For each docs/data/schemas/*.schema.json, run json-schema-for-humans (md
-template) and emit data/schemas/<name>.md via mkdocs-gen-files. Nothing lands
-on disk in docs/; the source schema files remain the reviewable source of truth.
+template) and emit data/schemas/<name>.md in the staged documentation tree.
 """
 
 import tempfile
 from pathlib import Path
 
-import mkdocs_gen_files
 from json_schema_for_humans.generate import generate_from_filename
 from json_schema_for_humans.generation_configuration import GenerationConfiguration
 
@@ -28,8 +26,10 @@ def _render(schema_path: Path) -> str:
         return tmp.read()
 
 
-for schema_path in sorted(SCHEMA_DIR.glob("*.schema.json")):
-    name = schema_path.name.replace(".schema.json", "")
-    rel = f"data/schemas/{name}.md"
-    with mkdocs_gen_files.open(rel, "w") as f:
-        f.write(_render(schema_path))
+def main(output_root: Path = Path("docs")) -> None:
+    """Render schema reference pages into the documentation tree."""
+    for schema_path in sorted(SCHEMA_DIR.glob("*.schema.json")):
+        name = schema_path.name.replace(".schema.json", "")
+        output_path = output_root / f"data/schemas/{name}.md"
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(_render(schema_path), encoding="utf-8")

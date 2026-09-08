@@ -34,7 +34,7 @@ last_updated: 2026-05-27
 
 ## The data
 
-<Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful. Snippet paths are repo-root-relative (the `base_path: ["."]` config in `mkdocs.yml` enables this):>
+<Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful. Snippet paths are repo-root-relative (the `base_path: ["."]` documentation configuration enables this):>
 
 ```json
 --8<-- "docs/vignettes/<slug>/payloads/example.vrs.json"

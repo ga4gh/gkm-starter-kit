@@ -7,15 +7,20 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0  # mkdocs-material needs full history for git-revision plugin if added later
+      - uses: actions/checkout@v7
+
+      - uses: actions/configure-pages@v6
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -30,5 +35,19 @@ jobs:
       - name: Install dependencies
         run: uv sync --extra docs
 
-      - name: Build and deploy
-        run: uv run mkdocs gh-deploy --force --strict
+      - name: Generate documentation
+        run: uv run python -m scripts.build_docs
+
+      - name: Build documentation
+        run: |
+          uv run zensical build --clean --strict
+          test -f site/index.html
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

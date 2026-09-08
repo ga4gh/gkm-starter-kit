@@ -118,8 +118,9 @@ celerybeat.pid
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# Documentation build output
 /site
+/docs-build
 
 # mypy
 .mypy_cache/

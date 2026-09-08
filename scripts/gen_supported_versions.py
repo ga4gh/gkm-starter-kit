@@ -5,11 +5,11 @@ package's public compatibility API, so the published documentation reflects
 the dependencies used for that specific build.
 """
 
-import mkdocs_gen_files
+from pathlib import Path
 
 from ga4gh.gkm.bundles import supported_gkm_versions
 
-OUTPUT_PATH = "library/api/compatibility.md"
+OUTPUT_PATH = Path("library/api/compatibility.md")
 
 
 def render_supported_versions() -> str:
@@ -59,5 +59,8 @@ def render_supported_versions() -> str:
     return "\n".join(lines)
 
 
-with mkdocs_gen_files.open(OUTPUT_PATH, "w") as output:
-    output.write(render_supported_versions())
+def main(output_root: Path = Path("docs")) -> None:
+    """Write the compatibility page into the documentation tree."""
+    output_path = output_root / OUTPUT_PATH
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(render_supported_versions(), encoding="utf-8")

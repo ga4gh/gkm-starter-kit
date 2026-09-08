@@ -4,9 +4,11 @@ import json
 from pathlib import Path
 from typing import Any
 
-import mkdocs_gen_files
-
-from scripts.bundle_examples import BUNDLE_OUTPUT_DIR, discover_example_paths
+from scripts.bundle_examples import (
+    BUNDLE_OUTPUT_DIR,
+    discover_example_paths,
+    render_bundle_linkouts,
+)
 
 SOURCE_DIR = Path("notebooks/civic")
 NOTEBOOK = SOURCE_DIR / "explore-civic-bundles.ipynb"
@@ -60,10 +62,13 @@ def _render_notebook() -> str:
     source_note = (
         '!!! info "Data files"\n\n'
         "    Example files: "
-        '{{ bundle_linkouts("../data/bundles", '
-        '"civic-assertion-9-bundle.json", '
-        '"civic-assertion-251-bundle.json", '
-        '"civic-gks-bundle-v0.1.0.schema.json") }}\n\n'
+        + render_bundle_linkouts(
+            "../data/bundles",
+            "civic-assertion-9-bundle.json",
+            "civic-assertion-251-bundle.json",
+            "civic-gks-bundle-v0.1.0.schema.json",
+        )
+        + "\n\n"
         f"    Rendered from `{NOTEBOOK.as_posix()}`."
     )
     rendered: list[str] = []
@@ -101,9 +106,13 @@ def _render_notebook() -> str:
     return "\n\n".join(rendered) + "\n"
 
 
-with mkdocs_gen_files.open(NOTEBOOK_PAGE, "w") as output:
-    output.write(_render_notebook())
+def main(output_root: Path = Path("docs")) -> None:
+    """Render the notebook and copy its downloadable data into the docs tree."""
+    notebook_path = output_root / NOTEBOOK_PAGE
+    notebook_path.parent.mkdir(parents=True, exist_ok=True)
+    notebook_path.write_text(_render_notebook(), encoding="utf-8")
 
-for example_path in discover_example_paths():
-    with mkdocs_gen_files.open(BUNDLE_OUTPUT_DIR / example_path.name, "wb") as output:
-        output.write(example_path.read_bytes())
+    bundle_dir = output_root / BUNDLE_OUTPUT_DIR
+    bundle_dir.mkdir(parents=True, exist_ok=True)
+    for example_path in discover_example_paths():
+        (bundle_dir / example_path.name).write_bytes(example_path.read_bytes())
