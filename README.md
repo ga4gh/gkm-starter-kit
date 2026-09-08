@@ -69,7 +69,8 @@ pytest
 ## Docs
 
 ```shell
-mkdocs serve
+python -m scripts.build_docs
+zensical serve
 ```
 
 Then open <http://127.0.0.1:8000>.

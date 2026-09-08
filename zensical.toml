@@ -1,0 +1,109 @@
+[project]
+site_name = "GKM Starter Kit"
+site_description = "Tools and examples for the GA4GH Genomic Knowledge Model"
+site_url = "https://ga4gh.github.io/gkm-starter-kit/"
+repo_url = "https://github.com/ga4gh/gkm-starter-kit"
+repo_name = "ga4gh/gkm-starter-kit"
+edit_uri = "edit/main/docs/"
+docs_dir = "docs-build"
+extra_css = ["assets/css/extra.css"]
+extra_javascript = ["assets/js/external-links.js"]
+strict = true
+nav = [
+  { Home = "index.md" },
+  { Data = [
+    "data/index.md",
+    { "Bundle schemas" = "data/schemas.md" },
+    { "Example bundles" = "data/examples.md" },
+    { "Contribute to Data" = "data/contribute.md" },
+  ] },
+  { Tools = [
+    "library/index.md",
+    { "API reference" = [
+      "library/api/index.md",
+      { Models = "library/api/models.md" },
+      { Loading = "library/api/loading.md" },
+      { Compatibility = "library/api/compatibility.md" },
+      { Registry = "library/api/registry.md" },
+      { Errors = "library/api/errors.md" },
+    ] },
+    { "Example workflow" = "library/civic-notebook.md" },
+    { "Contribute to Tools" = "library/contribute.md" },
+  ] },
+  { "User Stories" = [
+    "vignettes/index.md",
+    { "Browse by product" = [
+      { VRS = "vignettes/by-product/vrs/index.md" },
+    ] },
+    { "Browse by use pattern" = [
+      { "Cross-source variant harmonization" = "vignettes/by-pattern/cross-source-variant-harmonization/index.md" },
+    ] },
+    { "Browse by implementer" = [
+      { "BRCA Exchange" = "vignettes/by-implementer/brca-exchange/index.md" },
+    ] },
+    { "Contribute to User Stories" = "vignettes/contribute.md" },
+  ] },
+  { About = "about.md" },
+]
+
+[project.theme]
+variant = "classic"
+custom_dir = "docs/overrides"
+features = [
+  "navigation.tabs",
+  "navigation.tabs.sticky",
+  "navigation.sections",
+  "navigation.indexes",
+  "navigation.top",
+  "toc.follow",
+  "content.action.edit",
+  "content.code.copy",
+  "content.tabs.link",
+  "search.suggest",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "material/brightness-7"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "deep purple"
+accent = "deep purple"
+toggle.icon = "material/brightness-4"
+toggle.name = "Switch to light mode"
+
+[project.plugins.search]
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
+options.docstring_style = "sphinx"
+options.filters = ["!^_[^_]"]
+options.inherited_members = false
+options.merge_init_into_class = true
+options.members_order = "source"
+options.separate_signature = true
+options.show_signature_annotations = true
+options.show_source = false
+options.show_symbol_type_heading = true
+options.show_symbol_type_toc = true
+options.signature_crossrefs = true
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+pymdownx.details = {}
+pymdownx.superfences = {}
+tables = {}
+pymdownx.inlinehilite = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.tabbed.alternate_style = true
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.snippets.base_path = ["."]
+pymdownx.snippets.check_paths = true

@@ -1,8 +1,7 @@
 """Shared frontmatter loader for the GKS Starter Kit.
 
-Both `main.py` (mkdocs-macros entrypoint) and `scripts/gen_filter_pages.py`
-(mkdocs-gen-files script) import from here, so the frontmatter contract has a
-single source of truth.
+The catalog and filter-page generators import from here, so the frontmatter
+contract has a single source of truth.
 """
 
 from pathlib import Path

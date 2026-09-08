@@ -27,7 +27,8 @@ If you're ready to write:
 1. Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/vignettes/_template) (the `_template/` folder in the repo).
 2. Copy `docs/vignettes/_template/vignette.md` into a new `docs/vignettes/<your-slug>/` folder.
 3. Fill in the frontmatter and body. Add `payloads/` and `diagrams/` subfolders as needed.
-4. Run `mkdocs build --strict` locally to catch errors.
+4. Run `python -m scripts.build_docs && zensical build --clean --strict`
+   locally to catch errors.
 5. Open a PR. The PR template's checklist mirrors the authoring requirements.
 
 ## What makes a strong user story
