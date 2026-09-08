@@ -46,6 +46,10 @@ nav = [
   { About = "about.md" },
 ]
 
+[project.extra.version]
+provider = "mike"
+default = "latest"
+
 [project.theme]
 variant = "classic"
 custom_dir = "docs/overrides"
