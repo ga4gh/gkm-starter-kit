@@ -1,5 +1,21 @@
 /* GKM Starter Kit theming */
 
+/* GA4GH brand palette. Dark blue carries text and UI chrome so that it remains
+   readable; light blue is reserved for highlights and illustrations. */
+:root,
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color: #1b75bb;
+    --md-primary-fg-color--light: #4faedc;
+    --md-primary-fg-color--dark: #155a8f;
+    --md-accent-fg-color: #1b75bb;
+    --md-accent-fg-color--transparent: rgb(27 117 187 / 10%);
+}
+
+[data-md-color-scheme="slate"] {
+    --md-accent-fg-color: #4faedc;
+    --md-accent-fg-color--transparent: rgb(79 174 220 / 10%);
+}
+
 /* Omit the right-hand table of contents when a page has nothing worth
    navigating to — i.e. zero or one heading. The :has() test keeps the TOC only
    when its list holds a second entry (a sibling top-level heading, or a nested
@@ -61,7 +77,7 @@
 }
 
 .gks-chip:hover {
-    background: var(--md-primary-fg-color--light);
+    background: var(--md-primary-fg-color);
     color: var(--md-primary-bg-color);
 }
 
@@ -160,13 +176,13 @@
 /* Workbench graphic. Everything follows the active Material palette except the
    three pillar hues, which are defined per colour scheme below. */
 :root {
-    --wb-p1: #2563eb;
+    --wb-p1: #4faedc;
     --wb-p2: #7c3aed;
     --wb-p3: #0d9488;
 }
 
 [data-md-color-scheme="slate"] {
-    --wb-p1: #60a5fa;
+    --wb-p1: #4faedc;
     --wb-p2: #a78bfa;
     --wb-p3: #2dd4bf;
 }
