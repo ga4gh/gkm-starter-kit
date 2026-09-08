@@ -11,11 +11,11 @@ extra_javascript = ["assets/js/external-links.js"]
 strict = true
 nav = [
   { Home = "index.md" },
+  { "About the GKM" = "gkm.md" },
   { Data = [
     "data/index.md",
     { "Bundle schemas" = "data/schemas.md" },
-    { "Example bundles" = "data/examples.md" },
-    { "Contribute to Data" = "data/contribute.md" },
+    { "Mini bundle examples" = "data/examples.md" },
   ] },
   { Tools = [
     "library/index.md",
@@ -27,8 +27,7 @@ nav = [
       { Registry = "library/api/registry.md" },
       { Errors = "library/api/errors.md" },
     ] },
-    { "Example workflow" = "library/civic-notebook.md" },
-    { "Contribute to Tools" = "library/contribute.md" },
+    { "CIViC mini bundle walkthrough" = "library/civic-notebook.md" },
   ] },
   { "User Stories" = [
     "vignettes/index.md",
@@ -43,7 +42,6 @@ nav = [
     ] },
     { "Contribute to User Stories" = "vignettes/contribute.md" },
   ] },
-  { About = "about.md" },
 ]
 
 [project.extra.version]
