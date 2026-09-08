@@ -1,0 +1,391 @@
+/* GKM Starter Kit theming */
+
+/* GA4GH brand palette. Dark blue carries text and UI chrome so that it remains
+   readable; light blue is reserved for highlights and illustrations. */
+:root,
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color: #1b75bb;
+    --md-primary-fg-color--light: #4faedc;
+    --md-primary-fg-color--dark: #155a8f;
+    --md-accent-fg-color: #1b75bb;
+    --md-accent-fg-color--transparent: rgb(27 117 187 / 10%);
+}
+
+[data-md-color-scheme="slate"] {
+    --md-accent-fg-color: #4faedc;
+    --md-accent-fg-color--transparent: rgb(79 174 220 / 10%);
+}
+
+/* Omit the right-hand table of contents when a page has nothing worth
+   navigating to — i.e. zero or one heading. The :has() test keeps the TOC only
+   when its list holds a second entry (a sibling top-level heading, or a nested
+   sub-heading under a lone one); otherwise the sidebar is hidden.
+   Pages with no sub-pages hide the left nav via `hide: navigation` front matter,
+   since Material renders the full nav tree into every page's primary sidebar and
+   CSS alone can't tell an empty section from a populated one. */
+.md-sidebar--secondary:not(:has(.md-nav__list .md-nav__item:nth-child(2))) {
+    display: none;
+}
+
+/* GA4GH logo in the header banner (added via the header.html override). Sits to
+   the right of the title; the filter renders the mark white on the coloured
+   header, matching the GA4GH placement on the ClinVar-GKS site. */
+.md-header__ga4gh {
+    display: flex;
+    align-items: center;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    line-height: 0;
+}
+
+.md-header__ga4gh img {
+    height: 40px;
+    width: auto;
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive home page title: show the full name on wide screens, and swap to
+   the abbreviated "GKM Starter Kit" (rather than wrapping) once space is tight. */
+.gks-home-title-full {
+    white-space: nowrap;
+}
+
+.gks-home-title-short {
+    display: none;
+}
+
+@media screen and (max-width: 48em) {
+    .gks-home-title-full {
+        display: none;
+    }
+
+    .gks-home-title-short {
+        display: inline;
+    }
+}
+
+.gks-chip {
+    display: inline-block;
+    padding: 0.15em 0.6em;
+    margin: 0.1em 0.2em 0.1em 0;
+    border-radius: 999px;
+    background: var(--md-default-fg-color--lightest);
+    color: var(--md-default-fg-color);
+    font-size: 0.85em;
+    text-decoration: none;
+    border: 1px solid var(--md-default-fg-color--lighter);
+}
+
+.gks-chip:hover {
+    background: var(--md-primary-fg-color);
+    color: var(--md-primary-bg-color);
+}
+
+.gks-status {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin-left: 0.4em;
+    border-radius: 0.25em;
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+
+.gks-status--production {
+    background: #1b873f;
+    color: white;
+}
+
+.gks-status--pilot {
+    background: #d49a00;
+    color: white;
+}
+
+.gks-status--proposal {
+    background: #6c757d;
+    color: white;
+}
+
+/* v2 landing: three-pillars explainer graphic */
+
+/* The graphic stays inside the text column - it never bleeds into the nav or
+   table-of-contents gutters. The theme puts max-width:100% on figures, which
+   would otherwise let this box collapse to the SVG's 300px intrinsic width and
+   render the whole graphic at quarter scale; .md-typeset is needed to outrank
+   the theme and pin the figure to the column. */
+.md-typeset .gks-explainer {
+    display: block;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+/* Each layout is drawn at its natural size and centred, leaving a margin on
+   both sides rather than running edge to edge. */
+.md-typeset .gks-explainer svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.md-typeset .gks-explainer .wb--wide {
+    display: none;
+    max-width: 640px;
+}
+
+.md-typeset .gks-explainer .wb--narrow {
+    display: block;
+    max-width: 440px;
+}
+
+/* Side by side once the text column can hold the 640px layout. 45em is the
+   narrowest viewport where that is true in every sidebar configuration this
+   theme produces. */
+@media screen and (min-width: 45em) {
+    .md-typeset .gks-explainer .wb--wide {
+        display: block;
+    }
+
+    .md-typeset .gks-explainer .wb--narrow {
+        display: none;
+    }
+}
+
+/* Each pillar card is a link to its section landing page. Show a pointer and
+   highlight the card outline on hover/focus so the click target is obvious. */
+.wb-link {
+    cursor: pointer;
+}
+
+.wb-link .wb-card {
+    transition: stroke 0.15s ease, stroke-width 0.15s ease;
+}
+
+.wb-link:hover .wb-card,
+.wb-link:focus-visible .wb-card {
+    stroke: var(--md-accent-fg-color);
+    stroke-width: 2.5;
+}
+
+.wb-link:focus-visible {
+    outline: none;
+}
+
+/* Workbench graphic. Everything follows the active Material palette except the
+   three pillar hues, which are defined per colour scheme below. */
+:root {
+    --wb-p1: #4faedc;
+    --wb-p2: #7c3aed;
+    --wb-p3: #0d9488;
+}
+
+[data-md-color-scheme="slate"] {
+    --wb-p1: #4faedc;
+    --wb-p2: #a78bfa;
+    --wb-p3: #2dd4bf;
+}
+
+.wb text {
+    font-family: var(--md-text-font, system-ui, sans-serif);
+}
+
+.wb-kicker {
+    fill: var(--md-default-fg-color--light);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+}
+
+.wb-h1 {
+    fill: var(--md-default-fg-color);
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.wb-sub {
+    fill: var(--md-default-fg-color--light);
+    font-size: 16px;
+}
+
+.wb-title {
+    fill: var(--md-default-fg-color);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.wb-desc {
+    fill: var(--md-default-fg-color--light);
+    font-size: 16.5px;
+}
+
+.wb-h1--sm {
+    font-size: 26px;
+}
+
+.wb-sub--sm {
+    font-size: 15.5px;
+}
+
+.wb-title--sm {
+    font-size: 21px;
+}
+
+.wb-desc--sm {
+    font-size: 16.5px;
+}
+
+/* Cards */
+.wb-card {
+    fill: var(--md-default-bg-color);
+    stroke: var(--md-default-fg-color--lighter);
+    stroke-width: 1.5;
+}
+
+.wb-cap1,
+.wb-p1 {
+    fill: var(--wb-p1);
+}
+
+.wb-cap2,
+.wb-p2 {
+    fill: var(--wb-p2);
+}
+
+.wb-cap3,
+.wb-p3 {
+    fill: var(--wb-p3);
+}
+
+.wb-p1s {
+    fill: none;
+    stroke: var(--wb-p1);
+    stroke-width: 7;
+    stroke-linecap: round;
+}
+
+.wb-p2s {
+    fill: none;
+    stroke: var(--wb-p2);
+    stroke-width: 9;
+}
+
+/* Shapes knocked out of an icon read as the card behind it. */
+.wb-knock {
+    fill: var(--md-default-bg-color);
+}
+
+.wb-badge {
+    stroke: var(--md-default-bg-color);
+    stroke-width: 5;
+}
+
+.wb-check {
+    fill: none;
+    stroke: var(--md-default-bg-color);
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* The thread linking the three pillars. */
+.wb-thread {
+    stroke: var(--md-default-fg-color--lighter);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 3 7;
+}
+
+/* The bench they all stand on. */
+.wb-bench {
+    fill: var(--md-primary-fg-color);
+}
+
+.wb-apron {
+    fill: var(--md-primary-fg-color--dark);
+}
+
+.wb-bench-txt {
+    fill: var(--md-primary-bg-color);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wb-bench-txt--sm {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.wb-bench-sub {
+    fill: var(--md-primary-bg-color);
+    fill-opacity: 0.88;
+    font-size: 14.5px;
+}
+
+/* --- GKM logo -------------------------------------------------------------
+   The mark keeps its own brand colours rather than following the theme's
+   primary, so it stays recognisable in both schemes. Only the values change:
+   on dark the outline lightens for contrast and the crumb warms, so the bun
+   still reads as a lit object rather than a hole in the page. The SVG file
+   carries these light values as presentation attributes, which lets it render
+   correctly on its own; these rules outrank those attributes when it is
+   inlined into a page. */
+:root {
+    --gkm-line: #246c9c;
+    --gkm-body: #ffffff;
+    --gkm-crumb: #f6e4c8;
+    --gkm-accent: #a8d8cc;
+    --gkm-shadow-opacity: 0.5;
+}
+
+[data-md-color-scheme="slate"] {
+    --gkm-line: #7fb8da;
+    --gkm-body: #f3ead9;
+    --gkm-crumb: #e0c99e;
+    --gkm-accent: #8fd0c0;
+    --gkm-shadow-opacity: 0.38;
+}
+
+/* Float the logo so the page heading and intro text wrap to its right, keeping
+   the logo top-aligned with the heading. The snippet wraps the SVG in a
+   paragraph; float that wrapper and let the logo fill it. */
+.md-typeset p:has(> .gkm-logo) {
+    float: left;
+    width: 150px;
+    margin: 0 1.25rem 0.5rem 0;
+}
+
+.md-typeset .gkm-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+
+/* Subsection headings after the logo clear the float so only the page heading
+   and its intro wrap beside it. */
+.md-typeset p:has(> .gkm-logo) ~ h2 {
+    clear: left;
+}
+
+.gkm-logo .gkm-line {
+    fill: var(--gkm-line);
+}
+
+.gkm-logo .gkm-body {
+    fill: var(--gkm-body);
+}
+
+.gkm-logo .gkm-crumb {
+    fill: var(--gkm-crumb);
+}
+
+.gkm-logo .gkm-helix {
+    fill: var(--gkm-accent);
+}
+
+.gkm-logo .gkm-shadow {
+    fill: var(--gkm-accent);
+    opacity: var(--gkm-shadow-opacity);
+}
