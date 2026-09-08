@@ -53,6 +53,8 @@ default = "latest"
 [project.theme]
 variant = "classic"
 custom_dir = "docs/overrides"
+logo = "assets/images/ga4gh-favicon.svg"
+favicon = "assets/images/ga4gh-favicon.svg"
 features = [
   "navigation.tabs",
   "navigation.tabs.sticky",
