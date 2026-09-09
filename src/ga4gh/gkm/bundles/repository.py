@@ -31,6 +31,8 @@ class BundleRepository:
     """Access bundles from the canonical GKM Starter Kit R2 repository."""
 
     base_url: str = "https://pub-489634df77d342208a669f97e449ac4c.r2.dev"
+    bundle_filename: str = "bundle.json"
+    bundle_schema_filename: str = "bundle.schema.json"
 
     def __init__(
         self,
@@ -89,7 +91,7 @@ class BundleRepository:
         :raises BundleRepositoryFormatError: If the bundle is not a valid JSON.
         """
         self._verify_resource_exists(name)
-        return self._get_json(f"{name}/bundle.json")
+        return self._get_json(f"{name}/{self.bundle_filename}")
 
     def get_bundle_json_schema(self, name: str) -> dict[str, Any]:
         """Retrieve a bundle JSON Schema.
@@ -99,7 +101,7 @@ class BundleRepository:
         :raises BundleRepositoryFormatError: If the schema is not valid JSON.
         """
         self._verify_resource_exists(name)
-        return self._get_json(f"{name}/bundle.schema.json")
+        return self._get_json(f"{name}/{self.bundle_schema_filename}")
 
     def _get_json(self, path: str) -> dict[str, Any]:
         """Retrieve a JSON object from the repository
