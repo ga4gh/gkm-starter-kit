@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://ga4gh.github.io/gkm-starter-kit/latest/library/api/errors/">
+        <link rel="canonical" href="https://ga4gh.github.io/gkm-starter-kit/latest/library/api/repository/">
       
       
-        <link rel="prev" href="../repository/">
+        <link rel="prev" href="../registry/">
       
       
-        <link rel="next" href="../../notebooks/">
+        <link rel="next" href="../errors/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Errors - GKM Starter Kit</title>
+        <title>Bundle repository - GKM Starter Kit</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#errors" class="md-skip">
+        <a href="#bundle-repository" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Errors
+              Bundle repository
             
           </span>
         </div>
@@ -861,33 +861,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../repository/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-  Bundle repository
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -909,7 +882,7 @@
   <span class="md-ellipsis">
     
   
-  Errors
+  Bundle repository
 
     
   </span>
@@ -926,7 +899,7 @@
   <span class="md-ellipsis">
     
   
-  Errors
+  Bundle repository
 
     
   </span>
@@ -952,19 +925,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;errors
+        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;repository
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="errors">
+    <nav class="md-nav" aria-label="repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors-classes" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository-classes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
         Classes
@@ -976,10 +949,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleError" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleError
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepository
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BundleRepository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Methods:
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle
       </span>
     </span>
   </a>
@@ -987,134 +984,23 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleNotFoundError" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_json_schema" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleNotFoundError
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_json_schema
       </span>
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleCollectionNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleCollectionNotFoundError
-      </span>
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleObjectNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleObjectNotFoundError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleSerializationError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleSerializationError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleCompatibilityError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleCompatibilityError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleConflictError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleConflictError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleValidationError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleValidationError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleReferenceError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleReferenceError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryRequestError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryRequestError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryResourceNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryResourceNotFoundError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryFormatError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryFormatError
-      </span>
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -1132,6 +1018,33 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Errors
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1626,19 +1539,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;errors
+        <code class="doc-symbol doc-symbol-toc doc-symbol-module"></code>&nbsp;repository
       </span>
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="errors">
+    <nav class="md-nav" aria-label="repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors-classes" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository-classes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
         Classes
@@ -1650,10 +1563,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleError" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleError
+        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepository
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BundleRepository">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Methods:
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle
       </span>
     </span>
   </a>
@@ -1661,134 +1598,23 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleNotFoundError" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_json_schema" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleNotFoundError
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_json_schema
       </span>
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleCollectionNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleCollectionNotFoundError
-      </span>
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleObjectNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleObjectNotFoundError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleSerializationError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleSerializationError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleCompatibilityError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleCompatibilityError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleConflictError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleConflictError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleValidationError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleValidationError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleReferenceError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleReferenceError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryRequestError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryRequestError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryResourceNotFoundError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryResourceNotFoundError
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.errors.BundleRepositoryFormatError" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BundleRepositoryFormatError
-      </span>
-    </span>
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -1817,7 +1643,7 @@
                 
                   
   
-    <a href="https://github.com/ga4gh/gkm-starter-kit/edit/main/docs/library/api/errors.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/ga4gh/gkm-starter-kit/edit/main/docs/library/api/repository.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1825,22 +1651,36 @@
   
 
 
-<h1 id="errors">Errors</h1>
+<h1 id="bundle-repository">Bundle repository</h1>
 
 
 <div class="doc doc-object doc-module">
 
 
 
-<h2 id="ga4gh.gkm.bundles.errors" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">errors</span>
+<h2 id="ga4gh.gkm.bundles.repository" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">repository</span>
 
 
 </h2>
 
     <div class="doc doc-contents first">
 
-        <p>Exceptions raised by the bundle API.</p>
+        <p>Access bundles hosted in the public GKM Starter Kit R2 repository.</p>
+<p>The initial implementation makes the following assumptions:</p>
+<ul>
+<li>The repository root contains an <code>index.json</code> file listing available resource
+  names.</li>
+<li>Each resource directory contains exactly two files: <code>bundle.json</code> and
+  <code>bundle.schema.json</code>.</li>
+</ul>
+<p>For example, the expected repository layout is:</p>
+<div class="highlight"><pre><span></span><code>/
+├── index.json
+├── civic/
+│   ├── bundle.json
+│   └── bundle.schema.json
+</code></pre></div>
 
 
 
@@ -1859,26 +1699,58 @@
 
 
 
-<h3 id="ga4gh.gkm.bundles.errors-classes">Classes</h3>
+<h3 id="ga4gh.gkm.bundles.repository-classes">Classes</h3>
 
 <div class="doc doc-object doc-class">
 
 
 
-<h4 id="ga4gh.gkm.bundles.errors.BundleError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleError</span>
+<h4 id="ga4gh.gkm.bundles.repository.BundleRepository" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleRepository</span>
 
 
 </h4>
-
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BundleRepository</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+</code></pre></div>
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><span title="Exception">Exception</span></code></p>
 
 
 
-        <p>Base class for bundle-related errors.</p>
+        <p>Access bundles from the canonical GKM Starter Kit R2 repository.</p>
+
+        <p>Initialize the bundle repository.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>timeout</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>HTTP request timeout in seconds.</p>
+              </div>
+            </td>
+            <td>
+                  <code>15</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -1886,379 +1758,215 @@
 
 
 
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+<h5 id="ga4gh.gkm.bundles.repository.BundleRepository-functions">Methods:</h5>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="ga4gh.gkm.bundles.repository.BundleRepository.get_bundle" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">get_bundle</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve a bundle.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the bundle resource to retrieve.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Bundle contents.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryRequestError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the bundle cannot be retrieved.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryFormatError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the bundle is not a valid JSON.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
 
 </div>
 
-<div class="doc doc-object doc-class">
+<div class="doc doc-object doc-function">
 
 
+<h6 id="ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_json_schema" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">get_bundle_json_schema</span>
 
-<h4 id="ga4gh.gkm.bundles.errors.BundleNotFoundError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleNotFoundError</span>
 
-
-</h4>
-
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle_json_schema</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
+</code></pre></div>
 
     <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
+
+        <p>Retrieve a bundle JSON Schema.</p>
 
 
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the bundle resource whose JSON Schema should be retrieved.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-        <p>Raised when a bundle source cannot be found.</p>
 
-
-
-
-
-
-
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryRequestError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the schema cannot be retrieved.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryFormatError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the schema is not valid JSON.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
 
 </div>
 
-<div class="doc doc-object doc-class">
 
 
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleCollectionNotFoundError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleCollectionNotFoundError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code>, <code><span title="AttributeError">AttributeError</span></code>, <code><span title="KeyError">KeyError</span></code></p>
-
-
-
-        <p>Raised when a bundle does not contain a requested collection.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleObjectNotFoundError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleObjectNotFoundError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code>, <code><span title="KeyError">KeyError</span></code></p>
-
-
-
-        <p>Raised when a collection does not contain a requested object.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleSerializationError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleSerializationError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
-
-
-
-        <p>Raised when a bundle's serialization or serialized content is unsupported.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleCompatibilityError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleCompatibilityError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
-
-
-
-        <p>Raised when a bundle schema is incompatible with installed GKM models.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleConflictError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleConflictError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code>, <code><span title="ValueError">ValueError</span></code></p>
-
-
-
-        <p>Raised when bundle names conflict in a registry or loaded collection.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleValidationError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleValidationError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
-
-
-
-        <p>Raised when a bundle object fails reference-model validation.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleReferenceError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleReferenceError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
-
-
-
-        <p>Raised when a bundle-local JSON Pointer cannot be resolved.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleRepositoryError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleRepositoryError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleError">BundleError</a></code></p>
-
-
-
-        <p>Base class for bundle repository-related errors.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleRepositoryRequestError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleRepositoryRequestError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepositoryError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleRepositoryError">BundleRepositoryError</a></code></p>
-
-
-
-        <p>Raised when a repository resource cannot be retrieved.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleRepositoryResourceNotFoundError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleRepositoryResourceNotFoundError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepositoryError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleRepositoryError">BundleRepositoryError</a></code></p>
-
-
-
-        <p>Raised when a requested resource is not listed in the repository index.</p>
-
-
-
-
-
-
-
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h4 id="ga4gh.gkm.bundles.errors.BundleRepositoryFormatError" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">BundleRepositoryFormatError</span>
-
-
-</h4>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepositoryError&lt;/span&gt;" href="./#ga4gh.gkm.bundles.errors.BundleRepositoryError">BundleRepositoryError</a></code></p>
-
-
-
-        <p>Raised when a repository resource has an unexpected format.</p>
-
-
-
-
-
-
-
-
+  </div>
 
     </div>
 

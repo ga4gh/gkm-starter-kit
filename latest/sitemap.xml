@@ -16,6 +16,9 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/examples/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/repository/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/</loc>
       </url>
       <url>
@@ -34,10 +37,19 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/registry/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/repository/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/errors/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/civic-notebook/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/civic-notebook/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/repository-notebook/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/</loc>
