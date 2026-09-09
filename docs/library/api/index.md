@@ -11,4 +11,6 @@ The API reference documents the public classes, functions, and exceptions in
   check a producer's bundle schema.
 - [Registry](registry.md) — associate names with bundle and schema
   sources.
+- [Bundle repository](repository.md) — retrieve bundles and schemas from the
+  canonical public R2 repository.
 - [Errors](errors.md) — package-specific exception hierarchy.

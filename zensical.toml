@@ -16,6 +16,7 @@ nav = [
     "data/index.md",
     { "Bundle schemas" = "data/schemas.md" },
     { "Mini bundle examples" = "data/examples.md" },
+    { "Public bundle repository" = "library/repository.md" },
   ] },
   { Tools = [
     "library/index.md",
@@ -25,9 +26,14 @@ nav = [
       { Loading = "library/api/loading.md" },
       { Compatibility = "library/api/compatibility.md" },
       { Registry = "library/api/registry.md" },
+      { "Bundle repository" = "library/api/repository.md" },
       { Errors = "library/api/errors.md" },
     ] },
-    { "CIViC mini bundle walkthrough" = "library/civic-notebook.md" },
+    { "Explore with notebooks" = [
+      "library/notebooks/index.md",
+      { "Explore mini bundles" = "library/notebooks/civic-notebook.md" },
+      { "Public repository bundle walkthrough" = "library/notebooks/repository-notebook.md" },
+    ] },
   ] },
   { "User Stories" = [
     "vignettes/index.md",
