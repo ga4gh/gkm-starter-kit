@@ -3,6 +3,7 @@
 from pathlib import Path
 from shutil import copytree, rmtree
 
+from scripts.gen_downloads import main as generate_downloads
 from scripts.gen_filter_pages import main as generate_filter_pages
 from scripts.gen_notebook_files import main as generate_notebook_files
 from scripts.gen_schema_pages import main as generate_schema_pages
@@ -32,6 +33,7 @@ def main() -> None:
     generate_notebook_files(OUTPUT_DIR)
     generate_schema_pages(OUTPUT_DIR)
     generate_supported_versions(OUTPUT_DIR)
+    generate_downloads(OUTPUT_DIR)
 
 
 if __name__ == "__main__":
