@@ -3,6 +3,12 @@
 The GKM Starter Kit notebooks provide practical, runnable examples for working
 with GKM bundles and the `ga4gh.gkm` library.
 
+To get started with the included notebooks, clone the gkm-starter-kit repository:
+
+```shell
+git clone https://github.com/ga4gh/gkm-starter-kit.git
+```
+
 ## Available walkthroughs
 
 - [Explore mini bundles](civic-notebook.md) — load and explore two small
