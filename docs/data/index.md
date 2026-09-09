@@ -98,8 +98,6 @@ As the community identifies other patterns, formats, and methods that are
 useful, we will continue to add those to this Starter Kit. The list above is a
 starting point, not a fixed boundary.
 
-[Contribute a data method →](contribute.md)
-
 ## Built with community partners
 
 The Starter Kit uses real content developed with resources such as **ClinVar
