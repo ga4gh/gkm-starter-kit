@@ -35,3 +35,19 @@ class BundleValidationError(BundleError):
 
 class BundleReferenceError(BundleError):
     """Raised when a bundle-local JSON Pointer cannot be resolved."""
+
+
+class BundleRepositoryError(BundleError):
+    """Base class for bundle repository-related errors."""
+
+
+class BundleRepositoryRequestError(BundleRepositoryError):
+    """Raised when a repository resource cannot be retrieved."""
+
+
+class BundleRepositoryResourceNotFoundError(BundleRepositoryError):
+    """Raised when a requested resource is not listed in the repository index."""
+
+
+class BundleRepositoryFormatError(BundleRepositoryError):
+    """Raised when a repository resource has an unexpected format."""

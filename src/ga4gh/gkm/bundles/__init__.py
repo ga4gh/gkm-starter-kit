@@ -9,12 +9,17 @@ from .errors import (
     BundleNotFoundError,
     BundleObjectNotFoundError,
     BundleReferenceError,
+    BundleRepositoryError,
+    BundleRepositoryFormatError,
+    BundleRepositoryRequestError,
+    BundleRepositoryResourceNotFoundError,
     BundleSerializationError,
     BundleValidationError,
 )
 from .loading import BundleSource, load_bundle, load_bundles
 from .models import Bundle, BundleCollection
 from .registry import BundleRegistration, BundleRegistry, registry
+from .repository import BundleRepository
 
 __all__ = [
     "Bundle",
@@ -28,6 +33,11 @@ __all__ = [
     "BundleReferenceError",
     "BundleRegistration",
     "BundleRegistry",
+    "BundleRepository",
+    "BundleRepositoryError",
+    "BundleRepositoryFormatError",
+    "BundleRepositoryRequestError",
+    "BundleRepositoryResourceNotFoundError",
     "BundleSerializationError",
     "BundleSource",
     "BundleValidationError",

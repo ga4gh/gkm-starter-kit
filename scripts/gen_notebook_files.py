@@ -1,4 +1,4 @@
-"""Publish and render the CIViC notebook in the documentation site."""
+"""Publish and render notebooks in the documentation site."""
 
 import json
 from pathlib import Path
@@ -12,7 +12,9 @@ from scripts.bundle_examples import (
 
 SOURCE_DIR = Path("notebooks/civic")
 NOTEBOOK = SOURCE_DIR / "explore-civic-bundles.ipynb"
-NOTEBOOK_PAGE = Path("library/civic-notebook.md")
+NOTEBOOK_PAGE = Path("library/notebooks/civic-notebook.md")
+REPOSITORY_NOTEBOOK = Path("notebooks/repository/load-public-bundle.ipynb")
+REPOSITORY_NOTEBOOK_PAGE = Path("library/notebooks/repository-notebook.md")
 
 
 def _text(value: str | list[str]) -> str:
@@ -56,20 +58,23 @@ def _render_output(output: dict[str, Any]) -> tuple[str, str | None] | None:
     return None
 
 
-def _render_notebook() -> str:
-    """Convert the canonical notebook's Markdown, code, and saved outputs."""
-    notebook = json.loads(NOTEBOOK.read_text(encoding="utf-8"))
-    source_note = (
+def _render_notebook(notebook_path: Path, source_note: str = "") -> str:
+    """Convert a notebook's Markdown, code, and saved outputs."""
+    notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
+    source_note = source_note or (
+        f'!!! info "Notebook source"\n\n    Rendered from `{notebook_path.as_posix()}`.'
+    )
+    civic_source_note = (
         '!!! info "Data files"\n\n'
         "    Example files: "
         + render_bundle_linkouts(
-            "../data/bundles",
+            "../../data/bundles",
             "civic-assertion-9-bundle.json",
             "civic-assertion-251-bundle.json",
             "civic-gks-bundle-v0.1.0.schema.json",
         )
         + "\n\n"
-        f"    Rendered from `{NOTEBOOK.as_posix()}`."
+        f"    Rendered from `{notebook_path.as_posix()}`."
     )
     rendered: list[str] = []
     first_markdown_cell = True
@@ -79,7 +84,13 @@ def _render_notebook() -> str:
         if cell["cell_type"] == "markdown":
             if first_markdown_cell:
                 heading, separator, body = source.partition("\n")
-                rendered.extend((heading, source_note, body if separator else ""))
+                rendered.extend(
+                    (
+                        heading,
+                        civic_source_note if notebook_path == NOTEBOOK else source_note,
+                        body if separator else "",
+                    )
+                )
                 first_markdown_cell = False
             else:
                 rendered.append(source)
@@ -108,9 +119,13 @@ def _render_notebook() -> str:
 
 def main(output_root: Path = Path("docs")) -> None:
     """Render the notebook and copy its downloadable data into the docs tree."""
-    notebook_path = output_root / NOTEBOOK_PAGE
-    notebook_path.parent.mkdir(parents=True, exist_ok=True)
-    notebook_path.write_text(_render_notebook(), encoding="utf-8")
+    for source_path, output_path in (
+        (NOTEBOOK, NOTEBOOK_PAGE),
+        (REPOSITORY_NOTEBOOK, REPOSITORY_NOTEBOOK_PAGE),
+    ):
+        notebook_path = output_root / output_path
+        notebook_path.parent.mkdir(parents=True, exist_ok=True)
+        notebook_path.write_text(_render_notebook(source_path), encoding="utf-8")
 
     bundle_dir = output_root / BUNDLE_OUTPUT_DIR
     bundle_dir.mkdir(parents=True, exist_ok=True)
