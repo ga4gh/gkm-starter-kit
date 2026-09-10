@@ -14,7 +14,7 @@ classifiers = [
   "Programming Language :: Python :: 3.14",
 ]
 requires-python = ">=3.11"
-description = "Genomic Knowledge Model toolkit"
+description = "Genomic Knowledge Model Toolkit"
 license = "CC0-1.0"
 license-files = ["LICENSE"]
 dependencies = [
@@ -34,7 +34,7 @@ docs = [
 ]
 tests = ["pytest", "pytest-cov"]
 dev = ["prek>=0.2.23", "ruff==0.14.10"]
-notebooks = ["ipykernel"]
+notebooks = ["ipykernel", "jupyterlab"]
 
 
 [project.urls]
