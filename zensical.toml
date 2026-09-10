@@ -14,9 +14,12 @@ nav = [
   { "About the GKM" = "about.md" },
   { Data = [
     "data/index.md",
-    { "Bundle schemas" = "data/bundle-schemas.md" },
-    { "Mini bundle examples" = "data/mini-bundle-examples.md" },
-    { "Public bundle repository" = "data/bundle-repository.md" },
+    { Bundles = [
+      "data/bundles/index.md",
+      { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
+      { "Mini examples" = "data/bundles/mini-examples.md" },
+      { "Public repository" = "data/bundles/repository.md" },
+    ] },
   ] },
   { Toolkit = [
     "toolkit/installation.md",
