@@ -1,6 +1,6 @@
 ![GKM Toolkit logo](../assets/images/gkm-logo.svg){ .gkm-logo }
 
-# Pillar II: Genomic Knowledge Model Toolkit
+# Pillar II: Toolkit
 
 The Genomic Knowledge Model (GKM) Toolkit is a Python package that gives the
 community a **practical entry point for adopting GKM standards** in real
