@@ -8,9 +8,10 @@ GKM standards in real projects.
 
 The Toolkit helps you:
 
+- Use the [GKM Python reference implementations](../gkm.md#standards-and-reference-implementations)
+  to validate and work with GKM objects as Python models.
 - Load producer-published GKM Bundles and their schemas.
 - Explore collections of genomic knowledge and the relationships between objects.
-- Work with recognized GKM objects as Python models.
 - Preserve producer-specific content when processing or writing bundles.
 
 ## Explore the GKM Toolkit
