@@ -23,11 +23,11 @@ The Starter Kit is organized around
 <g transform="translate(115.33333333333333,160) scale(0.72)"><path class="wb-p1s" d="M -64 -41 L -64 27 A 14 14 0 0 0 -50 41 L 50 41 A 14 14 0 0 0 64 27 L 64 -41"/><rect class="wb-p1" x="-50" y="5" width="32" height="32" rx="7"/><rect class="wb-p2" x="-16" y="5" width="32" height="32" rx="7"/><rect class="wb-p3" x="18" y="5" width="32" height="32" rx="7"/></g>
 <text class="wb-title" x="115.33333333333333" y="216" text-anchor="middle">I. Data</text>
 <text class="wb-desc wb-desc--full" x="115.33333333333333" y="236" text-anchor="middle"><tspan x="115.33333333333333">Access, package &amp; deliver</tspan><tspan x="115.33333333333333" dy="16">genomic knowledge</tspan></text></a>
-<a href="library/" class="wb-link" aria-label="Tools — validate and use"><rect class="wb-card" x="234.66666666666666" y="104" width="210.66666666666666" height="164" rx="13"/><path class="wb-cap2" d="M 247.66666666666666 105 H 432.3333333333333 A 12 12 0 0 1 444.3333333333333 117 V 110 H 235.66666666666666 V 117 A 12 12 0 0 1 247.66666666666666 105 Z"/><rect class="wb-cap2" x="235.66666666666666" y="105" width="208.66666666666666" height="6"/>
+<a href="toolkit/" class="wb-link" aria-label="Tools — validate and use"><rect class="wb-card" x="234.66666666666666" y="104" width="210.66666666666666" height="164" rx="13"/><path class="wb-cap2" d="M 247.66666666666666 105 H 432.3333333333333 A 12 12 0 0 1 444.3333333333333 117 V 110 H 235.66666666666666 V 117 A 12 12 0 0 1 247.66666666666666 105 Z"/><rect class="wb-cap2" x="235.66666666666666" y="105" width="208.66666666666666" height="6"/>
 <g transform="translate(340.0,160) scale(0.72)"><g transform="translate(-22,13) rotate(-32)"><rect class="wb-p2" x="-6" y="-20" width="12" height="52" rx="6"/><circle class="wb-p2s" cx="0" cy="-32" r="17"/><polygon class="wb-knock" points="-10,-58 10,-58 0,-34"/></g><g transform="translate(24,13) rotate(32)"><rect class="wb-p1" x="-9" y="-2" width="18" height="34" rx="7"/><rect class="wb-p3" x="-4" y="-34" width="8" height="34"/><rect class="wb-p3" x="-6" y="-40" width="12" height="8" rx="2"/></g></g>
 <text class="wb-title" x="340.0" y="216" text-anchor="middle">II. Toolkit</text>
 <text class="wb-desc wb-desc--full" x="340.0" y="236" text-anchor="middle"><tspan x="340.0">Validate &amp; work with</tspan><tspan x="340.0" dy="16">GKM-standard data</tspan></text></a>
-<a href="vignettes/" class="wb-link" aria-label="User stories — prove the value"><rect class="wb-card" x="459.3333333333333" y="104" width="210.66666666666666" height="164" rx="13"/><path class="wb-cap3" d="M 472.3333333333333 105 H 657.0 A 12 12 0 0 1 669.0 117 V 110 H 460.3333333333333 V 117 A 12 12 0 0 1 472.3333333333333 105 Z"/><rect class="wb-cap3" x="460.3333333333333" y="105" width="208.66666666666666" height="6"/>
+<a href="user-stories/" class="wb-link" aria-label="User stories — prove the value"><rect class="wb-card" x="459.3333333333333" y="104" width="210.66666666666666" height="164" rx="13"/><path class="wb-cap3" d="M 472.3333333333333 105 H 657.0 A 12 12 0 0 1 669.0 117 V 110 H 460.3333333333333 V 117 A 12 12 0 0 1 472.3333333333333 105 Z"/><rect class="wb-cap3" x="460.3333333333333" y="105" width="208.66666666666666" height="6"/>
 <g transform="translate(564.6666666666666,160) scale(0.72)"><rect class="wb-p1" x="-40" y="5" width="36" height="36" rx="8"/><rect class="wb-p2" x="4" y="5" width="36" height="36" rx="8"/><rect class="wb-p3" x="-18" y="-31" width="36" height="36" rx="8"/><circle class="wb-p3 wb-badge" cx="44" cy="-21" r="20"/><path class="wb-check" d="M 36 -21 l 6 6 l 11 -12"/></g>
 <text class="wb-title" x="564.6666666666666" y="216" text-anchor="middle">III. User stories</text>
 <text class="wb-desc wb-desc--full" x="564.6666666666666" y="232" text-anchor="middle"><tspan x="564.6666666666666">See how projects use GKM</tspan><tspan x="564.6666666666666" dy="16">and the value they gain</tspan></text></a>
@@ -47,12 +47,12 @@ The Starter Kit is organized around
 <text class="wb-title wb-title--sm" x="152" y="208">Data</text>
 <text class="wb-desc wb-desc--sm wb-desc--full-sm" x="152" y="228"><tspan x="152">Access, package &amp; deliver</tspan><tspan x="152" dy="17">genomic knowledge</tspan></text></a>
 <line class="wb-thread" x1="86" y1="275" x2="86" y2="283"/>
-<a href="library/" class="wb-link" aria-label="Tools — validate and use"><rect class="wb-card" x="16" y="286" width="428" height="116" rx="13"/><path class="wb-cap2" d="M 29 287 H 431 A 12 12 0 0 1 443 299 V 292 H 17 V 299 A 12 12 0 0 1 29 287 Z"/><rect class="wb-cap2" x="17" y="287" width="426" height="6"/>
+<a href="toolkit/" class="wb-link" aria-label="Tools — validate and use"><rect class="wb-card" x="16" y="286" width="428" height="116" rx="13"/><path class="wb-cap2" d="M 29 287 H 431 A 12 12 0 0 1 443 299 V 292 H 17 V 299 A 12 12 0 0 1 29 287 Z"/><rect class="wb-cap2" x="17" y="287" width="426" height="6"/>
 <g transform="translate(86,344) scale(0.86)"><g transform="translate(-22,13) rotate(-32)"><rect class="wb-p2" x="-6" y="-20" width="12" height="52" rx="6"/><circle class="wb-p2s" cx="0" cy="-32" r="17"/><polygon class="wb-knock" points="-10,-58 10,-58 0,-34"/></g><g transform="translate(24,13) rotate(32)"><rect class="wb-p1" x="-9" y="-2" width="18" height="34" rx="7"/><rect class="wb-p3" x="-4" y="-34" width="8" height="34"/><rect class="wb-p3" x="-6" y="-40" width="12" height="8" rx="2"/></g></g>
 <text class="wb-title wb-title--sm" x="152" y="338">Toolkit</text>
 <text class="wb-desc wb-desc--sm wb-desc--full-sm" x="152" y="358"><tspan x="152">Validate &amp; work with</tspan><tspan x="152" dy="17">GKM-standard data</tspan></text></a>
 <line class="wb-thread" x1="86" y1="405" x2="86" y2="413"/>
-<a href="vignettes/" class="wb-link" aria-label="User stories — prove the value"><rect class="wb-card" x="16" y="416" width="428" height="116" rx="13"/><path class="wb-cap3" d="M 29 417 H 431 A 12 12 0 0 1 443 429 V 422 H 17 V 429 A 12 12 0 0 1 29 417 Z"/><rect class="wb-cap3" x="17" y="417" width="426" height="6"/>
+<a href="user-stories/" class="wb-link" aria-label="User stories — prove the value"><rect class="wb-card" x="16" y="416" width="428" height="116" rx="13"/><path class="wb-cap3" d="M 29 417 H 431 A 12 12 0 0 1 443 429 V 422 H 17 V 429 A 12 12 0 0 1 29 417 Z"/><rect class="wb-cap3" x="17" y="417" width="426" height="6"/>
 <g transform="translate(86,474) scale(0.86)"><rect class="wb-p1" x="-40" y="5" width="36" height="36" rx="8"/><rect class="wb-p2" x="4" y="5" width="36" height="36" rx="8"/><rect class="wb-p3" x="-18" y="-31" width="36" height="36" rx="8"/><circle class="wb-p3 wb-badge" cx="44" cy="-21" r="20"/><path class="wb-check" d="M 36 -21 l 6 6 l 11 -12"/></g>
 <text class="wb-title wb-title--sm" x="152" y="468">User stories</text>
 <text class="wb-desc wb-desc--sm wb-desc--full-sm" x="152" y="488"><tspan x="152">See how projects use GKM</tspan><tspan x="152" dy="17">and the value they gain</tspan></text></a>
@@ -83,12 +83,12 @@ The Starter Kit is organized around
 
     Get started with the GKM Toolkit and work with GKM data.
 
-    [Explore the GKM Toolkit →](library/index.md)
+    [Explore the GKM Toolkit →](toolkit/index.md)
 
 - :material-rocket-launch: **I have a project**
 
     Learn from projects using GKM and share your own implementation.
 
-    [Browse the user stories →](vignettes/index.md)
+    [Browse the user stories →](user-stories/index.md)
 
 </div>

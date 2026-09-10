@@ -12,9 +12,9 @@ from scripts.bundle_examples import (
 
 SOURCE_DIR = Path("notebooks/civic")
 NOTEBOOK = SOURCE_DIR / "explore-civic-bundles.ipynb"
-NOTEBOOK_PAGE = Path("library/notebooks/civic-notebook.md")
+NOTEBOOK_PAGE = Path("toolkit/notebooks/civic-notebook.md")
 REPOSITORY_NOTEBOOK = Path("notebooks/repository/load-public-bundle.ipynb")
-REPOSITORY_NOTEBOOK_PAGE = Path("library/notebooks/repository-notebook.md")
+REPOSITORY_NOTEBOOK_PAGE = Path("toolkit/notebooks/repository-notebook.md")
 
 
 def _text(value: str | list[str]) -> str:

@@ -1,7 +1,7 @@
 """Generate per-axis filter pages for the vignette catalog.
 
 For each unique product, pattern, and implementer value across all vignettes,
-emit a page at vignettes/by-<axis>/<value>/index.md that lists the matching
+emit a page at user-stories/by-<axis>/<value>/index.md that lists the matching
 vignettes in the staged documentation tree.
 """
 
@@ -83,7 +83,7 @@ def _emit_filter_page(
     value_label: str,
     matches: list[dict],
 ) -> None:
-    output_path = output_root / f"vignettes/by-{axis}/{value_slug}/index.md"
+    output_path = output_root / f"user-stories/by-{axis}/{value_slug}/index.md"
     output_path.parent.mkdir(parents=True, exist_ok=True)
     headings = {
         "product": f"Vignettes using {value_label}",
@@ -126,7 +126,7 @@ def main(output_root: Path = Path("docs")) -> None:
     """Generate the vignette filter pages."""
     vignettes = load_vignettes()
     patterns_dict = load_patterns()
-    (output_root / "vignettes/index.md").write_text(
+    (output_root / "user-stories/index.md").write_text(
         _render_catalog(vignettes, patterns_dict), encoding="utf-8"
     )
     by_axis = {

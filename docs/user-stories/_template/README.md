@@ -1,11 +1,11 @@
 # Vignette Authoring Guide
 
-This folder contains the canonical template for a GKM Starter Kit vignette. Copy `vignette.md` into a new folder under `docs/vignettes/<your-slug>/` and fill it in.
+This folder contains the canonical template for a GKM Starter Kit vignette. Copy `vignette.md` into a new folder under `docs/user-stories/<your-slug>/` and fill it in.
 
 ## Workflow
 
 1. Pick a kebab-case slug (e.g. `brca-exchange-vrs-cross-source`).
-2. Create the folder: `docs/vignettes/<your-slug>/`.
+2. Create the folder: `docs/user-stories/<your-slug>/`.
 3. Copy `vignette.md` from this folder into it.
 4. (Optional) Add `payloads/` and `diagrams/` subfolders for example data and figures referenced from your vignette body.
 5. Fill in the frontmatter (see field reference below) and the body sections.
@@ -21,7 +21,7 @@ This folder contains the canonical template for a GKM Starter Kit vignette. Copy
 | `slug` | yes | Kebab-case. Must match the folder name. |
 | `summary` | yes | One-sentence catalog blurb shown on the index card. Distinct from "Why this matters" in the body. |
 | `products` | yes | List of `{name, version?}` entries. `name` must be one of: `VRS`, `Cat-VRS`, `VA-Spec`. Version is optional but strongly encouraged. |
-| `pattern` | yes | One value from `docs/vignettes/patterns.yml`. If no existing pattern fits, add a new entry to `patterns.yml` in the same PR. |
+| `pattern` | yes | One value from `docs/user-stories/patterns.yml`. If no existing pattern fits, add a new entry to `patterns.yml` in the same PR. |
 | `implementer` | yes | The organization, consortium, knowledgebase, or project behind the use case. For `status: proposal`, the proposing party. |
 | `status` | yes | One of: `production`, `pilot`, `proposal`. Rendered as a coloured badge on the index. |
 | `contributors` | no | GitHub handles or names. Optional. |
@@ -46,7 +46,7 @@ If you're not sure your paragraph passes the "would my boss understand this?" te
 If your vignette doesn't fit an existing pattern in `patterns.yml`, add a new entry in the same PR:
 
 ```yaml
-# docs/vignettes/patterns.yml
+# docs/user-stories/patterns.yml
 your-new-pattern: Human-readable label for your pattern
 ```
 

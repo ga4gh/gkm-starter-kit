@@ -24,8 +24,8 @@ Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-
 
 If you're ready to write:
 
-1. Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/vignettes/_template) (the `_template/` folder in the repo).
-2. Copy `docs/vignettes/_template/vignette.md` into a new `docs/vignettes/<your-slug>/` folder.
+1. Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) (the `_template/` folder in the repo).
+2. Copy `docs/user-stories/_template/vignette.md` into a new `docs/user-stories/<your-slug>/` folder.
 3. Fill in the frontmatter and body. Add `payloads/` and `diagrams/` subfolders as needed.
 4. Run `python -m scripts.build_docs && zensical build --clean --strict`
    locally to catch errors.
@@ -37,9 +37,9 @@ If you're ready to write:
 - Payloads are real (or, if synthetic, clearly labelled).
 - Tools are named explicitly with versions and links.
 - The `status` field accurately reflects where the implementation actually is.
-- A new pattern, if you need one, is added to `docs/vignettes/patterns.yml` in the same PR.
+- A new pattern, if you need one, is added to `docs/user-stories/patterns.yml` in the same PR.
 
-The [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/vignettes/_template) has examples of strong and weak "Why this matters" paragraphs. It is worth reading before you start.
+The [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) has examples of strong and weak "Why this matters" paragraphs. It is worth reading before you start.
 
 ## What to expect from review
 

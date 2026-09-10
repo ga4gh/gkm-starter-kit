@@ -9,7 +9,7 @@ from pathlib import Path
 
 from ga4gh.gkm.bundles import supported_gkm_versions
 
-OUTPUT_PATH = Path("library/api/compatibility.md")
+OUTPUT_PATH = Path("toolkit/api/compatibility.md")
 
 
 def render_supported_versions() -> str:

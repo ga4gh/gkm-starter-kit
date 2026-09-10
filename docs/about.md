@@ -38,5 +38,5 @@ both.
 ## GKM Toolkit
 
 The Python reference implementations work with individual GKM objects. The
-Starter Kit's [GKM Toolkit](library/index.md) builds on them to help users load,
+Starter Kit's [GKM Toolkit](toolkit/index.md) builds on them to help users load,
 explore, and exchange collections of those objects.

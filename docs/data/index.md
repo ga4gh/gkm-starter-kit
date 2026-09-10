@@ -90,7 +90,7 @@ The **GKM Toolkit** is being developed to give users a means for
 validating and accessing these various data bundling and packaging methods —
 loading a bundle, exploring its objects, and exporting them back to GKM JSON.
 
-[Explore the GKM Toolkit →](../library/index.md)
+[Explore the GKM Toolkit →](../toolkit/index.md)
 
 ## A growing toolkit
 
