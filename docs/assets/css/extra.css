@@ -323,7 +323,7 @@
    paragraph; float that wrapper and let the logo fill it. */
 .md-typeset p:has(> .gkm-logo) {
     float: left;
-    width: 150px;
+    width: 125px;
     margin: 0 1.25rem 0.5rem 0;
 }
 

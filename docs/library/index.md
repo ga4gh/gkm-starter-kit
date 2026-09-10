@@ -2,33 +2,35 @@
 
 # Genomic Knowledge Model Toolkit
 
-`ga4gh.gkm` is a Python package for loading a producer's GKM
-bundle, exploring its contents, following relationships, and writing it back to
-JSON.
+The Genomic Knowledge Model (GKM) Toolkit is a Python package created to give
+the community a clear, practical entry point for understanding and adopting
+GKM standards in real projects.
 
-## Install
+The Toolkit helps you:
 
-The package requires Python 3.11 or later. Install it from PyPI:
+- Load producer-published GKM Bundles and their schemas.
+- Explore collections of genomic knowledge and the relationships between objects.
+- Work with recognized GKM objects as Python models.
+- Preserve producer-specific content when processing or writing bundles.
 
-```shell
-python3 -m pip install ga4gh.gkm
-```
+## Explore the GKM Toolkit
 
-Import the bundles package:
+<div class="grid cards" markdown>
 
-```python
-from ga4gh.gkm import bundles
-```
+- :material-rocket-launch: [**Get set up**](../installation.md)
 
-## Supported GKM product versions
+    Install the GKM Toolkit and choose the dependencies you need.
 
-`ga4gh.gkm` supports the latest GKM product versions.
-Check [compatibility](api/compatibility.md) before preparing a bundle schema.
+- :material-notebook-outline: [**See examples**](notebooks/index.md)
 
-## What you can do
+    Read guided notebook examples online, or learn how to run them yourself.
 
-- Load producer JSON with its producer-defined schema.
-- Discover the collections provided by a producer.
-- Work with supported values as GKM Python models.
-- Follow relationships between objects without manually navigating JSON paths.
-- Write the bundle back to JSON while preserving producer-specific content.
+- :material-language-python: [**Python API Reference**](api/index.md)
+
+    Read the API documentation for the package and its functionality.
+
+- :material-source-pull: [**Help improve the GKM Toolkit**](../development.md)
+
+    Contribute code and/or documentation.
+
+</div>
