@@ -4,72 +4,72 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/gkm/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/about/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/schemas/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle-schemas/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/examples/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/mini-bundle-examples/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/repository/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle-repository/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/installation/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/installation/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/models/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/models/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/loading/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/loading/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/compatibility/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/compatibility/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/registry/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/registry/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/repository/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/repository/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/api/errors/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/errors/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/civic-notebook/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/civic-notebook/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/repository-notebook/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/repository-notebook/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/development/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/by-product/vrs/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/vrs/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/by-pattern/cross-source-variant-harmonization/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-pattern/cross-source-variant-harmonization/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/by-implementer/brca-exchange/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-implementer/brca-exchange/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/contribute/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/contribute/</loc>
       </url>
 </urlset>
