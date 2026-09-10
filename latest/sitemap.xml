@@ -10,13 +10,16 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle-schemas/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/mini-bundle-examples/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/schemas-and-contents/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle-repository/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/mini-examples/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/repository/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/installation/</loc>
