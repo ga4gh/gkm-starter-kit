@@ -1,6 +1,9 @@
-# User Stories
+# Pillar III: User Stories
 
-User stories are the third pillar of the Starter Kit: real community use cases, each told as one vignette about who, what problem, and what GKS unlocks, with the actual data and tools. The common thread is always the same: *what a group needs the standards for, and the standards delivering it.*
+User stories are the third pillar of the Starter Kit: **real community use cases**,
+each told as one vignette about who, what problem, and what GKS
+unlocks, with the actual data and tools. The common thread is always the same:
+*what a group needs the standards for, and the standards delivering it.*
 
 Some user stories build on the other two pillars: [Data Bundles](../data/index.md) for packaged, shareable knowledge and the [`ga4gh.gkm` Python package](../toolkit/index.md) for loading and working with it. Others do not, such as reclassifying a variant within a single resource as its evidence base changes. Both kinds belong here; the point is the use case, not which parts of the toolkit it happens to use.
 

@@ -1,10 +1,18 @@
-# Bundle schemas
+# Bundle schemas and contents
 
 This page is for data producers preparing a bundle for others to use. It
 explains how to define collection names, object groupings, metadata, and GKM
 object types with JSON Schema.
 
-## What all bundles share
+## General concepts
+
+### Bundle terminology
+
+- A **bundle** is a collection of related GKM objects from a producer.
+- A **bundle schema** defines the bundle’s collections, metadata, and local
+  references.
+
+### What all bundles share
 
 Collection names and object groupings can differ, but the following rules are
 shared:
@@ -15,13 +23,9 @@ shared:
 - producer-specific collections, metadata, and provenance objects are
   permitted when the bundle schema defines them.
 
-## Linking objects within a bundle
+## Define a bundle schema
 
-Each shared GKM object appears once in a bundle. Relationships link to that
-object using an RFC 6901 JSON Pointer, which is a path to another location in
-the same bundle, rather than repeating the complete object.
-
-## Bundle schema requirements
+### Schema requirements
 
 Each producer defines a separate bundle schema for its bundles. To share
 bundles through the Data Bundles pillar, the bundle schema must:
@@ -38,7 +42,7 @@ bundles through the Data Bundles pillar, the bundle schema must:
       `"$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"`
       selects `MappableConcept` from GKS-Core version 1.1.0.
 
-## Recommendations
+### Recommendations
 
 To make a bundle schema's intent explicit:
 
@@ -46,6 +50,44 @@ To make a bundle schema's intent explicit:
 - use `minProperties` when a collection must not be empty.
 - set `additionalProperties` to state whether unknown fields are accepted.
 - use `patternProperties` when collection identifiers follow a known pattern.
+
+## Create bundle contents
+
+### Collections and relationships
+
+A producer groups related objects into named **collections**, such as sources or
+evidence. This simplified example shows how collections can link related
+objects:
+
+```json
+{
+  "sources": {
+    "source-1": {"type": "Document", "title": "Example study"}
+  },
+  "evidence": {
+    "evidence-1": {
+      "type": "Statement",
+      "reportedIn": ["#/sources/source-1"]
+    }
+  }
+}
+```
+
+The evidence links to its source with a bundle-local JSON Pointer instead of
+repeating the source object.
+
+### Shared representations
+
+A producer packages related GKM objects into one document and states each
+shared representation once. Consumers can then resolve relationships without
+re-reading repeated objects.
+
+Each shared GKM object appears once in a bundle. Relationships link to that
+object using an RFC 6901 JSON Pointer, which is a path to another location in
+the same bundle, rather than repeating the complete object.
+
+The current workflow uses JSON bundles distributed with their bundle schema.
+Other serializations may be supported in the future.
 
 ## Producer checklist
 

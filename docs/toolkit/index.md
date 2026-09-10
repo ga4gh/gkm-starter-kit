@@ -1,18 +1,18 @@
 ![GKM Toolkit logo](../assets/images/gkm-logo.svg){ .gkm-logo }
 
-# Genomic Knowledge Model Toolkit
+# Pillar II: Genomic Knowledge Model Toolkit
 
-The Genomic Knowledge Model (GKM) Toolkit is a Python package created to give
-the community a clear, practical entry point for understanding and adopting
-GKM standards in real projects.
+The Genomic Knowledge Model (GKM) Toolkit is a Python package that gives the
+community a **practical entry point for adopting GKM standards** in real
+projects. This pillar connects the standards to **real workflows**.
 
 The Toolkit helps you:
 
-- Use the [GKM Python reference implementations](../about.md#standards-and-reference-implementations)
-  to validate and work with GKM objects as Python models.
-- Load producer-published GKM Bundles and their schemas.
-- Explore collections of genomic knowledge and the relationships between objects.
-- Preserve producer-specific content when processing or writing bundles.
+- **Validate and work with** GKM objects as Python models using the [GKM Python
+  reference implementations](../about.md#standards-and-reference-implementations).
+- **Load** producer-published GKM Bundles and their schemas.
+- **Explore** collections of genomic knowledge and the relationships between objects.
+- **Preserve** producer-specific content when processing or writing bundles.
 
 ## Explore the GKM Toolkit
 
