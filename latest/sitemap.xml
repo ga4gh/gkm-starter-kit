@@ -19,6 +19,9 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/repository/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/installation/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/</loc>
       </url>
       <url>
@@ -50,6 +53,9 @@
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/library/notebooks/repository-notebook/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/development/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/vignettes/</loc>
