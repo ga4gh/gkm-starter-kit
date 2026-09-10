@@ -11,44 +11,44 @@ extra_javascript = ["assets/js/external-links.js"]
 strict = true
 nav = [
   { Home = "index.md" },
-  { "About the GKM" = "gkm.md" },
+  { "About the GKM" = "about.md" },
   { Data = [
     "data/index.md",
-    { "Bundle schemas" = "data/schemas.md" },
-    { "Mini bundle examples" = "data/examples.md" },
-    { "Public bundle repository" = "library/repository.md" },
+    { "Bundle schemas" = "data/bundle-schemas.md" },
+    { "Mini bundle examples" = "data/mini-bundle-examples.md" },
+    { "Public bundle repository" = "data/bundle-repository.md" },
   ] },
   { Toolkit = [
-    "installation.md",
-    "library/index.md",
+    "toolkit/installation.md",
+    "toolkit/index.md",
     { "API reference" = [
-      "library/api/index.md",
-      { Models = "library/api/models.md" },
-      { Loading = "library/api/loading.md" },
-      { Compatibility = "library/api/compatibility.md" },
-      { Registry = "library/api/registry.md" },
-      { "Bundle repository" = "library/api/repository.md" },
-      { Errors = "library/api/errors.md" },
+      "toolkit/api/index.md",
+      { Models = "toolkit/api/models.md" },
+      { Loading = "toolkit/api/loading.md" },
+      { Compatibility = "toolkit/api/compatibility.md" },
+      { Registry = "toolkit/api/registry.md" },
+      { "Bundle repository" = "toolkit/api/repository.md" },
+      { Errors = "toolkit/api/errors.md" },
     ] },
     { "Explore with notebooks" = [
-      "library/notebooks/index.md",
-      { "Explore mini bundles" = "library/notebooks/civic-notebook.md" },
-      { "Public repository bundle walkthrough" = "library/notebooks/repository-notebook.md" },
+      "toolkit/notebooks/index.md",
+      { "Explore mini bundle examples" = "toolkit/notebooks/civic-notebook.md" },
+      { "Public repository bundle walkthrough" = "toolkit/notebooks/repository-notebook.md" },
     ] },
     { "Development and contributing" = "development.md" },
   ] },
   { "User Stories" = [
-    "vignettes/index.md",
+    "user-stories/index.md",
     { "Browse by product" = [
-      { VRS = "vignettes/by-product/vrs/index.md" },
+      { VRS = "user-stories/by-product/vrs/index.md" },
     ] },
     { "Browse by use pattern" = [
-      { "Cross-source variant harmonization" = "vignettes/by-pattern/cross-source-variant-harmonization/index.md" },
+      { "Cross-source variant harmonization" = "user-stories/by-pattern/cross-source-variant-harmonization/index.md" },
     ] },
     { "Browse by implementer" = [
-      { "BRCA Exchange" = "vignettes/by-implementer/brca-exchange/index.md" },
+      { "BRCA Exchange" = "user-stories/by-implementer/brca-exchange/index.md" },
     ] },
-    { "Contribute to User Stories" = "vignettes/contribute.md" },
+    { "Contribute to User Stories" = "user-stories/contribute.md" },
   ] },
 ]
 

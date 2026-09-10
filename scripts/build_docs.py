@@ -13,8 +13,8 @@ SOURCE_DIR = Path("docs")
 OUTPUT_DIR = Path("docs-build")
 EXCLUDED_PATHS = {
     Path("superpowers"),
-    Path("vignettes/_template"),
-    Path("vignettes/patterns.yml"),
+    Path("user-stories/_template"),
+    Path("user-stories/patterns.yml"),
 }
 
 

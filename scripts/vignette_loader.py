@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-VIGNETTES_DIR = REPO_ROOT / "docs" / "vignettes"
+VIGNETTES_DIR = REPO_ROOT / "docs" / "user-stories"
 PATTERNS_YML = VIGNETTES_DIR / "patterns.yml"
 TEMPLATE_FOLDER = "_template"
 FRONTMATTER_DELIM = "---"
@@ -87,7 +87,7 @@ def _validate_vignette(meta: dict, source: Path) -> None:
 
 
 def load_vignettes() -> list[dict]:
-    """Read every vignette.md under docs/vignettes/<slug>/, returning a list of frontmatter dicts.
+    """Read every vignette.md under docs/user-stories/<slug>/, returning a list of frontmatter dicts.
 
     Each returned dict has the original frontmatter plus two synthesized fields:
       - `_folder`: the vignette folder name (matches the `slug` field).

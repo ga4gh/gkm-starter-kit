@@ -43,7 +43,7 @@ The workflow looks like this: pull variants from each source; convert each into 
 A single BRCA1 variant, expressed as a VRS 2.0 Allele, looks like this:
 
 ```json
---8<-- "docs/vignettes/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.json"
+--8<-- "docs/user-stories/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.json"
 ```
 
 The `id` field (the digest) is what enables exact-match deduplication: any other source describing the same change against the same reference sequence produces the same `id`.

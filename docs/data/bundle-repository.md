@@ -4,7 +4,7 @@ The public bundle repository provides access to published GKM bundles and their 
 
 ## Downloads
 
-Download the files below, or access the repository programmatically through the [Python API](api/repository.md). The table is generated during the documentation build using `BundleRepository`.
+Download the files below, or access the repository programmatically through the [Python API](../toolkit/api/repository.md). The table is generated during the documentation build using `BundleRepository`.
 
 {{ downloads_table }}
 

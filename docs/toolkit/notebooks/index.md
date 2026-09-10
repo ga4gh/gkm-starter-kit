@@ -17,7 +17,7 @@ your browser without installing anything.
 
 ## Run the notebooks locally
 
-If you want to run the notebooks yourself, follow the [Installation steps](../../installation.md)
+If you want to run the notebooks yourself, follow the [Installation steps](../installation.md)
 to clone the repository, create the virtual environment (`.venv`), and activate it.
 
 !!! note "Notebook dependency"
@@ -31,7 +31,7 @@ to clone the repository, create the virtual environment (`.venv`), and activate 
     ```
 
       `--pre` is provided since this project uses pre-release versions of the
-      [GKM reference implementations](../../gkm.md#standards-and-reference-implementations)
+      [GKM reference implementations](../../about.md#standards-and-reference-implementations)
 
 ### Open a notebook
 

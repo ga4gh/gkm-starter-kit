@@ -10,7 +10,7 @@ the documentation.
 !!! note "Only want to use the GKM Toolkit?"
 
     This page describes setting up a local source checkout for making changes. If you
-    only want to install and use the published GKM Toolkit package, see [Installation](installation.md).
+    only want to install and use the published GKM Toolkit package, see [Installation](toolkit/installation.md).
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ python3 -m pip install -e '.[dev,tests,docs,notebooks]' --pre
 
 !!! note "Why do I need `--pre`?"
 
-    This project uses pre-release versions of the [GKM reference implementations](gkm.md#standards-and-reference-implementations).
+    This project uses pre-release versions of the [GKM reference implementations](about.md#standards-and-reference-implementations).
 
 ## Install the pre-commit hooks
 

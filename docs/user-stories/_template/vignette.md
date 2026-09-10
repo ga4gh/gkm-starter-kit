@@ -5,7 +5,7 @@ summary: "<One-sentence catalog blurb. Distinct from 'Why this matters' below.>"
 products:
   - name: VRS              # one of: VRS, Cat-VRS, VA-Spec
     version: "2.0"
-pattern: <one value from docs/vignettes/patterns.yml>
+pattern: <one value from docs/user-stories/patterns.yml>
 implementer: <organization, consortium, knowledgebase, or project>
 status: production         # one of: production | pilot | proposal
 contributors:
@@ -37,7 +37,7 @@ last_updated: 2026-05-27
 <Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful. Snippet paths are repo-root-relative (the `base_path: ["."]` documentation configuration enables this):>
 
 ```json
---8<-- "docs/vignettes/<slug>/payloads/example.vrs.json"
+--8<-- "docs/user-stories/<slug>/payloads/example.vrs.json"
 ```
 
 ## The tools used

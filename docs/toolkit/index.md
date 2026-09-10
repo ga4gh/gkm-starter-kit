@@ -8,7 +8,7 @@ GKM standards in real projects.
 
 The Toolkit helps you:
 
-- Use the [GKM Python reference implementations](../gkm.md#standards-and-reference-implementations)
+- Use the [GKM Python reference implementations](../about.md#standards-and-reference-implementations)
   to validate and work with GKM objects as Python models.
 - Load producer-published GKM Bundles and their schemas.
 - Explore collections of genomic knowledge and the relationships between objects.
@@ -18,7 +18,7 @@ The Toolkit helps you:
 
 <div class="grid cards" markdown>
 
-- :material-rocket-launch: [**Get set up**](../installation.md)
+- :material-rocket-launch: [**Get set up**](installation.md)
 
     Install the GKM Toolkit and choose the dependencies you need.
 

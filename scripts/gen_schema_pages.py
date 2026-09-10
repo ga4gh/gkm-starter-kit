@@ -1,7 +1,7 @@
 """Render committed JSON Schemas to browsable Markdown at build time.
 
 For each docs/data/schemas/*.schema.json, run json-schema-for-humans (md
-template) and emit data/schemas/<name>.md in the staged documentation tree.
+template) and emit data/bundle-schemas/<name>.md in the staged documentation tree.
 """
 
 import tempfile
@@ -30,6 +30,6 @@ def main(output_root: Path = Path("docs")) -> None:
     """Render schema reference pages into the documentation tree."""
     for schema_path in sorted(SCHEMA_DIR.glob("*.schema.json")):
         name = schema_path.name.replace(".schema.json", "")
-        output_path = output_root / f"data/schemas/{name}.md"
+        output_path = output_root / f"data/bundle-schemas/{name}.md"
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text(_render(schema_path), encoding="utf-8")

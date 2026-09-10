@@ -12,5 +12,5 @@ This repository is maintained by the GKS Starter Kit working group within the GA
 
 - Triage incoming `Propose a vignette` issues within ~1 week.
 - Review vignette PRs against the checklist in `.github/PULL_REQUEST_TEMPLATE.md`.
-- Keep `docs/vignettes/patterns.yml` coherent as new patterns are proposed.
+- Keep `docs/user-stories/patterns.yml` coherent as new patterns are proposed.
 - Coordinate periodic refreshes of vignette `status` values with implementers.
