@@ -1,6 +1,5 @@
 import json
 from io import StringIO
-from pathlib import Path
 
 import pytest
 
@@ -9,9 +8,6 @@ from ga4gh.gkm.bundles import (
     BundleReferenceError,
     BundleValidationError,
 )
-
-SEQUENCE_ID = "SQ.6CnHhDq_bDCsuIBf0AzxtKq_lXYM7f0m"
-BUNDLE_DIR = Path(__file__).parents[2] / "notebooks" / "civic" / "bundles"
 
 
 def test_missing_collection_raises_contextual_bundle_error():
@@ -41,20 +37,20 @@ def test_missing_collection_object_raises_contextual_bundle_error():
     assert isinstance(error.value, KeyError)
 
 
-def test_resolve_reference():
+def test_resolve_reference(sequence_id):
     civic = bundles.load_bundle("civic-assertion-9")
 
-    resolved = civic.resolve(f"#/sequenceReference/{SEQUENCE_ID}")
+    resolved = civic.resolve(f"#/sequenceReference/{sequence_id}")
 
-    assert resolved is civic.sequenceReference[SEQUENCE_ID]
+    assert resolved is civic.sequenceReference[sequence_id]
 
 
-def test_resolve_traverses_models_and_lists():
+def test_resolve_traverses_models_and_lists(sequence_id):
     civic = bundles.load_bundle("civic-assertion-9")
 
     assert (
-        civic.resolve(f"#/sequenceReference/{SEQUENCE_ID}/refgetAccession")
-        == SEQUENCE_ID
+        civic.resolve(f"#/sequenceReference/{sequence_id}/refgetAccession")
+        == sequence_id
     )
     assert (
         civic.resolve(

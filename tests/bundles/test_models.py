@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 import pytest
 
@@ -8,17 +7,14 @@ from ga4gh.gkm.bundles import (
     BundleSerializationError,
 )
 
-SEQUENCE_ID = "SQ.6CnHhDq_bDCsuIBf0AzxtKq_lXYM7f0m"
-BUNDLE_DIR = Path(__file__).parents[2] / "notebooks" / "civic" / "bundles"
 
-
-def test_collection_names():
+def test_collection_names(sequence_id):
     civic = bundles.load_bundle("civic-assertion-9")
 
     assert civic.collection_names() == tuple(civic.keys())
     assert civic.collection_names()[0] == "sequenceReference"
     assert "assertion" in civic.collection_names()
-    assert SEQUENCE_ID in list(civic.sequenceReference.keys())
+    assert sequence_id in list(civic.sequenceReference.keys())
 
 
 def test_bundle_and_collection_protocols():
@@ -69,10 +65,10 @@ def test_normalize_and_export_round_trip():
     assert isinstance(deep_exported["proposition"], dict)
 
 
-def test_denormalize_replaces_nested_objects_by_content_or_identity():
+def test_denormalize_replaces_nested_objects_by_content_or_identity(sequence_id):
     """Denormalization uses generic bundle identity rules, not producer names."""
     civic = bundles.load_bundle("civic-assertion-9")
-    sequence = civic.sequenceReference[SEQUENCE_ID].model_dump(
+    sequence = civic.sequenceReference[sequence_id].model_dump(
         mode="json", exclude_none=True
     )
     assertion = dict(civic.assertion["civic.aid:9"])
@@ -84,7 +80,7 @@ def test_denormalize_replaces_nested_objects_by_content_or_identity():
 
     exported = civic.denormalize(normalized)
 
-    assert exported["sequence"] == f"#/sequenceReference/{SEQUENCE_ID}"
+    assert exported["sequence"] == f"#/sequenceReference/{sequence_id}"
     assert exported["updated_assertion"] == "#/assertion/civic.aid:9"
     assert exported["producer_object"] == normalized["producer_object"]
 
