@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import pytest
+import requests
 
 
 def pytest_addoption(parser):
@@ -21,6 +22,17 @@ def pytest_configure(config):
     # add noisy logging libraries.
     if not config.getoption("--verbose-logs"):
         pass
+
+
+@pytest.fixture(autouse=True)
+def block_live_network(monkeypatch):
+    """Fail tests that accidentally attempt a live HTTP request."""
+
+    def reject_request(*_args, **_kwargs):
+        message = "Live network requests are not allowed in tests"
+        raise AssertionError(message)
+
+    monkeypatch.setattr(requests.sessions.Session, "request", reject_request)
 
 
 @pytest.fixture(scope="session")

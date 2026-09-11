@@ -2,17 +2,21 @@
 
 from __future__ import annotations
 
+import io
 import json
 from collections.abc import Mapping
 from os import PathLike
 from pathlib import Path
-from typing import IO, Any, TypeAlias
+from typing import IO, TYPE_CHECKING, Any, TypeAlias
 
 from .compatibility import check_gkm_version_compatibility
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
 from .models import Bundle, BundleCollection
 from .references import parse_gks_values, validate_bundle_references
 from .registry import registry
+
+if TYPE_CHECKING:
+    from .repository import BundleRepository
 
 BundleSource: TypeAlias = str | PathLike[str] | IO[str] | IO[bytes]
 
@@ -91,6 +95,9 @@ def load_bundle(
 ) -> Bundle:
     """Load one bundle from a registered name, JSON file, or JSON stream.
 
+    This loader handles local and in-memory sources. To load a published
+    resource from the public repository, use :func:`load_repository_bundle`.
+
     Loading behavior:
 
     1. Decode the JSON document.
@@ -166,7 +173,10 @@ def load_bundle(
 
 
 def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
-    """Load several bundles and key them by their resolved names.
+    """Load several local or in-memory bundles and key them by their names.
+
+    For published repository resources, use :func:`load_repository_bundle`
+    for each resource name.
 
     :param sources: Registered bundle names, file paths, or readable JSON streams.
     :return: Loaded bundles keyed by name.
@@ -185,3 +195,30 @@ def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
         loaded[key] = bundle
 
     return loaded
+
+
+def load_repository_bundle(repository: BundleRepository, name: str) -> Bundle:
+    """Fetch and validate a published bundle from a bundle repository.
+
+    Use :attr:`BundleRepository.resource_names` to discover valid names before
+    calling this helper. The resource's ``bundle.json`` and
+    ``bundle.schema.json`` are fetched and passed through :func:`load_bundle`.
+    The repository resource name is assigned to the returned bundle.
+
+    :param repository: Repository from which to fetch the resource.
+    :param name: Name of a resource listed in ``repository.resource_names``.
+    :return: The validated bundle.
+    :raises BundleRepositoryError: If the repository cannot provide either document.
+    :raises BundleCompatibilityError: If the published schema is incompatible.
+    :raises BundleSerializationError: If either document has an invalid shape.
+    :raises BundleValidationError: If a recognized object fails validation.
+    :raises BundleReferenceError: If a bundle-local reference is invalid.
+    """
+    bundle_data = repository.get_bundle(name)
+    schema_data = repository.get_bundle_json_schema(name)
+    bundle = load_bundle(
+        io.StringIO(json.dumps(bundle_data)),
+        schema=io.StringIO(json.dumps(schema_data)),
+    )
+    bundle.name = name
+    return bundle
