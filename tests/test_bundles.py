@@ -132,10 +132,10 @@ def test_resolve_traverses_models_and_lists():
     )
 
 
-def test_dereference():
+def test_normalize():
     civic = bundles.load_bundle("civic-assertion-251")
 
-    inline = civic.dereference()
+    inline = civic.normalize()
 
     assertion = inline["assertion"]["civic.aid:251"]
     assert assertion["proposition"]["type"] == "VariantOncogenicityProposition"
@@ -144,14 +144,94 @@ def test_dereference():
     assert civic.to_dict()["assertion"]["civic.aid:251"]["proposition"].startswith("#/")
 
 
-def test_dereference_from_value():
+def test_normalize_from_value():
     civic = bundles.load_bundle("civic-assertion-9")
     proposition = civic.resolve(civic.assertion["civic.aid:9"]["proposition"])
 
-    inline = civic.dereference(proposition)
+    inline = civic.normalize(proposition)
 
     assert inline["type"] == "VariantClinicalSignificanceProposition"
     assert isinstance(inline["subjectVariant"], dict)
+
+
+def test_normalize_and_export_round_trip():
+    civic = bundles.load_bundle("civic-assertion-9")
+    original = civic.assertion["civic.aid:9"]
+
+    normalized = civic.normalize(original)
+    exported = civic.export(normalized)
+    deep_exported = civic.export(original, deep=True)
+
+    assert exported["proposition"] == original["proposition"]
+    assert exported["id"] == "civic.aid:9"
+    assert isinstance(deep_exported["proposition"], dict)
+
+
+def test_denormalize_replaces_nested_objects_by_content_or_identity():
+    """Denormalization uses generic bundle identity rules, not producer names."""
+    civic = bundles.load_bundle("civic-assertion-9")
+    sequence = civic.sequenceReference[SEQUENCE_ID].model_dump(
+        mode="json", exclude_none=True
+    )
+    assertion = dict(civic.assertion["civic.aid:9"])
+    normalized = {
+        "sequence": sequence,
+        "updated_assertion": {**assertion, "description": "updated"},
+        "producer_object": {"id": "producer-1", "type": "OtherObject"},
+    }
+
+    exported = civic.denormalize(normalized)
+
+    assert exported["sequence"] == f"#/sequenceReference/{SEQUENCE_ID}"
+    assert exported["updated_assertion"] == "#/assertion/civic.aid:9"
+    assert exported["producer_object"] == normalized["producer_object"]
+
+
+def test_export_shallow_preserves_bundle_and_deep_normalizes_it():
+    civic = bundles.load_bundle("civic-assertion-9")
+
+    shallow = civic.export()
+    deep = civic.export(deep=True)
+
+    assert shallow["assertion"]["civic.aid:9"]["proposition"].startswith("#/")
+    assert isinstance(deep["assertion"]["civic.aid:9"]["proposition"], dict)
+
+
+def test_export_rejects_non_json_content():
+    civic = bundles.load_bundle("civic-assertion-9")
+
+    with pytest.raises(
+        bundles.BundleSerializationError, match="cannot be denormalized"
+    ):
+        civic.export({"invalid": object()})
+
+
+def test_export_rejects_invalid_result(monkeypatch):
+    """Export validates results even if an internal conversion returns bad data."""
+    civic = bundles.load_bundle("civic-assertion-9")
+    monkeypatch.setattr(civic, "denormalize", lambda value: {"invalid": object()})  # noqa: ARG005
+
+    with pytest.raises(
+        bundles.BundleSerializationError, match="Exported content is not valid JSON"
+    ):
+        civic.export({"valid": True})
+
+
+def test_to_dict_includes_metadata_and_producer_extras():
+    """Serialization retains top-level metadata and producer-defined extras."""
+    bundle = bundles.Bundle(
+        {},
+        metadata={"bundleFormat": "example"},
+        extras={"producerExtension": {"enabled": True}},
+    )
+
+    assert bundle.to_dict() == {
+        "metadata": {"bundleFormat": "example"},
+        "producerExtension": {"enabled": True},
+    }
+
+    without_metadata = bundles.Bundle({}, extras={"producerExtension": {}})
+    assert without_metadata.to_dict() == {"producerExtension": {}}
 
 
 def test_resolve_bad_reference():
