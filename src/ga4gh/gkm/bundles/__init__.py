@@ -17,7 +17,7 @@ from .errors import (
     BundleSerializationError,
     BundleValidationError,
 )
-from .loading import BundleSource, load_bundle, load_bundles
+from .loading import BundleSource, load_bundle, load_bundles, load_repository_bundle
 from .models import Bundle, BundleCollection
 from .registry import BundleRegistration, BundleRegistry, registry
 from .repository import BundleRepository
@@ -46,6 +46,7 @@ __all__ = [
     "check_gkm_version_compatibility",
     "load_bundle",
     "load_bundles",
+    "load_repository_bundle",
     "registry",
     "supported_gkm_versions",
 ]

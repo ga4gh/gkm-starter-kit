@@ -1,5 +1,6 @@
 import json
 from io import StringIO
+from unittest.mock import Mock
 
 import pytest
 from ga4gh.vrs.models import SequenceReference
@@ -8,6 +9,7 @@ from ga4gh.gkm import bundles
 from ga4gh.gkm.bundles import (
     BundleConflictError,
     BundleNotFoundError,
+    BundleRepositoryResourceNotFoundError,
     BundleSerializationError,
 )
 
@@ -28,6 +30,33 @@ def test_load_json_stream(sequence_id, sequence_reference_bundle):
     bundle = bundles.load_bundle(stream)
 
     assert isinstance(bundle.sequenceReference[sequence_id], SequenceReference)
+
+
+def test_load_repository_bundle_fetches_bundle_and_schema():
+    repository = Mock()
+    repository.get_bundle.return_value = {"objects": {}}
+    repository.get_bundle_json_schema.return_value = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+    }
+
+    bundle = bundles.load_repository_bundle(repository, "civic")
+
+    assert isinstance(bundle, bundles.Bundle)
+    assert bundle.name == "civic"
+    repository.get_bundle.assert_called_once_with("civic")
+    repository.get_bundle_json_schema.assert_called_once_with("civic")
+
+
+def test_load_repository_bundle_propagates_unknown_resource():
+    repository = Mock()
+    repository.get_bundle.side_effect = BundleRepositoryResourceNotFoundError(
+        "unknown resource"
+    )
+
+    with pytest.raises(BundleRepositoryResourceNotFoundError, match="unknown resource"):
+        bundles.load_repository_bundle(repository, "missing")
+
+    repository.get_bundle_json_schema.assert_not_called()
 
 
 @pytest.mark.parametrize("value", ["not JSON", "[1, 2, 3]"])
