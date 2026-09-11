@@ -10,9 +10,10 @@ from pathlib import Path
 from typing import IO, TYPE_CHECKING, Any, TypeAlias
 
 from .compatibility import check_gkm_version_compatibility
+from .containers import Bundle, BundleCollection
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
-from .models import Bundle, BundleCollection
-from .references import parse_gks_values, validate_bundle_references
+from .model_conversion import parse_gks_values
+from .pointers import validate_bundle_references
 from .registry import registry
 
 if TYPE_CHECKING:
@@ -135,6 +136,7 @@ def load_bundle(
 
     # 2. Check schema compatibility when a schema is available.
     schema_source = schema if schema is not None else registered_schema
+    schema_document: Mapping[str, Any] | None = None
     if schema_source is not None:
         raw_schema, _, _ = _read_json(schema_source)
         schema_document = _require_json_object(raw_schema, subject="schema")
@@ -169,6 +171,7 @@ def load_bundle(
         metadata=metadata,
         extras=extras,
         name=name,
+        schema=schema_document,
     )
 
 

@@ -38,6 +38,15 @@ def supported_gkm_versions() -> dict[str, str]:
     return dict(_SUPPORTED_VERSIONS)
 
 
+def w3id_schema_reference(reference: str) -> re.Match[str] | None:
+    """Match a supported-product GA4GH W3ID schema reference.
+
+    :param reference: Schema reference URL.
+    :return: The product and version match, or ``None`` for another reference.
+    """
+    return _W3ID_SCHEMA_REFERENCE.match(reference)
+
+
 def _references(value: Any) -> list[str]:
     """Collect JSON Schema references recursively.
 
@@ -77,7 +86,7 @@ def check_gkm_version_compatibility(schema: Mapping[str, Any]) -> None:
     """
     mismatches: set[tuple[str, str, str]] = set()
     for reference in _references(schema):
-        match = _W3ID_SCHEMA_REFERENCE.match(reference)
+        match = w3id_schema_reference(reference)
         if match is None:
             continue
 
