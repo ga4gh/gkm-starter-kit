@@ -31,10 +31,19 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/models/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/containers/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/loading/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/pointers/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/schema-resolution/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/model-conversion/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/compatibility/</loc>

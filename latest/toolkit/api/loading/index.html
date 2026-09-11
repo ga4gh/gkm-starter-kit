@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/loading/">
       
       
-        <link rel="prev" href="../models/">
+        <link rel="prev" href="../containers/">
       
       
-        <link rel="next" href="../compatibility/">
+        <link rel="next" href="../pointers/">
       
       
         
@@ -800,6 +800,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -862,14 +868,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../models/" class="md-nav__link">
+      <a href="../containers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Models
+  Containers
 
     
   </span>
@@ -1020,6 +1026,87 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Pointers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schema resolution
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../model-conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Model conversion
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1783,7 +1870,7 @@
 
 
 </h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_bundle</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">serialization</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_bundle</span><span class="p">(</span><span class="n">source</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">serialization</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1882,7 +1969,7 @@ When omitted, JSON is assumed.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></code>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1972,7 +2059,7 @@ JSON Pointers cannot be resolved.</p>
 
 
 </h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_bundles</span><span class="p">(</span><span class="o">*</span><span class="n">sources</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_bundles</span><span class="p">(</span><span class="o">*</span><span class="n">sources</span><span class="p">:</span> <span class="n"><span title="ga4gh.gkm.bundles.loading.BundleSource">BundleSource</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2024,7 +2111,7 @@ for each resource name.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><span title="dict">dict</span>[<span title="str">str</span>, <a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a>]</code>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2071,7 +2158,7 @@ for each resource name.</p>
 
 
 </h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -2141,7 +2228,7 @@ The repository resource name is assigned to the returned bundle.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></code>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></code>
             </td>
             <td>
               <div class="doc-md-description">

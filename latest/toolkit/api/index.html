@@ -16,7 +16,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="./models/">
+        <link rel="next" href="./containers/">
       
       
         
@@ -800,6 +800,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -862,14 +868,14 @@
   
   
     <li class="md-nav__item">
-      <a href="./models/" class="md-nav__link">
+      <a href="./containers/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Models
+  Containers
 
     
   </span>
@@ -897,6 +903,87 @@
     
   
   Loading
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./pointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Pointers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./schema-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schema resolution
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./model-conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Model conversion
 
     
   </span>
@@ -1551,10 +1638,15 @@
 <p>The API reference documents the public classes, functions, and exceptions in
 <code>ga4gh.gkm.bundles</code>.</p>
 <ul>
-<li><a href="models/">Models</a> — inspect collections, resolve references, and
+<li><a href="containers/">Containers</a> — inspect collections, resolve references, and
   serialize bundles.</li>
 <li><a href="loading/">Loading</a> — load one or several bundles from files,
   streams, or registered names.</li>
+<li><a href="pointers/">Pointers</a> — validate bundle-local JSON Pointers.</li>
+<li><a href="schema-resolution/">Schema resolution</a> — find the schema node and external
+  reference for a bundle-local pointer target.</li>
+<li><a href="model-conversion/">Model conversion</a> — convert bundle values to installed
+  GA4GH models.</li>
 <li><a href="compatibility/">Compatibility</a> — view supported GKM product versions and
   check a producer's bundle schema.</li>
 <li><a href="registry/">Registry</a> — associate names with bundle and schema
