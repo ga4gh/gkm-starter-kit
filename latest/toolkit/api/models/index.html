@@ -1137,10 +1137,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.models.Bundle.dereference" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.normalize" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;dereference
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;normalize
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.denormalize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;denormalize
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.export" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;export
       </span>
     </span>
   </a>
@@ -2074,10 +2096,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ga4gh.gkm.bundles.models.Bundle.dereference" class="md-nav__link">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.normalize" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;dereference
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;normalize
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.denormalize" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;denormalize
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.models.Bundle.export" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;export
       </span>
     </span>
   </a>
@@ -3246,7 +3290,9 @@ mapping syntax, attribute access, or :meth:<code>collection</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Resolve an RFC 6901 JSON Pointer into this bundle.</p>
+        <p>Resolve an RFC 6901 JSON Pointer into the bundle.</p>
+<p>Use this for one pointer; use :meth:<code>normalize</code> to expand references
+recursively.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3333,21 +3379,19 @@ mapping syntax, attribute access, or :meth:<code>collection</code>.</p>
 <div class="doc doc-object doc-function">
 
 
-<h6 id="ga4gh.gkm.bundles.models.Bundle.dereference" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">dereference</span>
+<h6 id="ga4gh.gkm.bundles.models.Bundle.normalize" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">normalize</span>
 
 
 </h6>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">dereference</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Any">Any</span></span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">normalize</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Any">Any</span></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Return a value with all reachable local references replaced inline.</p>
-<p>The complete bundle is used when <code>value</code> is omitted. The bundle itself remains
-referenced.</p>
-<p>Cycle-closing pointers remain referenced because JSON cannot represent a
-cyclic inline value.</p>
+        <p>Normalize bundle content for use outside the serialized bundle.</p>
+<p>Bundle-local pointers are expanded recursively; cyclic pointers remain
+pointers. Omitting <code>value</code> normalizes the complete bundle.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3370,8 +3414,8 @@ cyclic inline value.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Value from this bundle to dereference, or <code>None</code> for the
-complete bundle.</p>
+                <p>Bundle value to normalize, or <code>None</code> for the complete
+bundle.</p>
               </div>
             </td>
             <td>
@@ -3397,7 +3441,248 @@ complete bundle.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>A JSON-compatible, inline representation of the value.</p>
+                <p>JSON-compatible normalized content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleReferenceError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a local reference cannot be resolved.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="ga4gh.gkm.bundles.models.Bundle.denormalize" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">denormalize</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">denormalize</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Any">Any</span></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Replace embedded bundle objects with local JSON Pointer references.</p>
+<p>Embedded objects matching bundle objects are replaced by local pointers;
+unknown producer content is preserved. Exact content matches take
+precedence over the optional <code>id</code>/<code>type</code> identity fallback.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Normalized JSON-compatible value.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Content using bundle-local references where possible.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleSerializationError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> cannot be represented as
+JSON-compatible content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="ga4gh.gkm.bundles.models.Bundle.export" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">export</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">export</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n"><span title="typing.Any">Any</span></span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">deep</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="typing.Any">Any</span></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Export a complete bundle or an individual object.</p>
+<p><code>deep=False</code> preserves local pointers; <code>deep=True</code> expands them.
+Omitting <code>value</code> exports the complete bundle. The result is validated
+as JSON-compatible.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>value</code>
+            </td>
+            <td>
+                  <code><span title="typing.Any">Any</span> | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Object or content to export, or <code>None</code> for the bundle.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>deep</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include reachable referenced content instead of preserving
+local references.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Any">Any</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>JSON-compatible exported content.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleSerializationError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If content is not JSON-compatible.</p>
               </div>
             </td>
           </tr>
@@ -3422,7 +3707,8 @@ complete bundle.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Serialize the bundle to JSON-compatible Python values.</p>
+        <p>Return the complete bundle as shallow Python values.</p>
+<p>This preserves local pointers and does not write a file.</p>
 
 
     <p><span class="doc-section-title">Returns:</span></p>
