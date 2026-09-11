@@ -268,6 +268,82 @@ def test_load_json_stream():
     assert isinstance(bundle.sequenceReference[SEQUENCE_ID], SequenceReference)
 
 
+def test_load_validates_all_bundle_references():
+    stream = StringIO(
+        json.dumps(
+            {
+                "objects": {
+                    "first": {"related": "#/objects/second"},
+                    "second": {"value": "ok"},
+                },
+                "metadata": {"related": "#/objects/first"},
+                "producerExtension": [{"related": "#/objects/second"}],
+            }
+        )
+    )
+
+    bundle = bundles.load_bundle(stream)
+
+    assert bundle.extras["producerExtension"][0]["related"] == "#/objects/second"
+
+
+def test_load_reports_all_invalid_bundle_references():
+    stream = StringIO(
+        json.dumps(
+            {
+                "objects": {
+                    "first": {"related": "#/objects/missing"},
+                    "second": {"related": "#/unknown"},
+                },
+                "metadata": {"related": "#/objects/first/missing"},
+            }
+        )
+    )
+
+    with pytest.raises(BundleReferenceError) as error:
+        bundles.load_bundle(stream)
+
+    message = str(error.value)
+    assert "3 total" in message
+    assert "#/objects/missing" in message
+    assert "#/unknown" in message
+    assert "#/objects/first/missing" in message
+
+
+def test_load_bounds_many_invalid_reference_details():
+    stream = StringIO(
+        json.dumps({"objects": [f"#/missing/{index}" for index in range(60)]})
+    )
+
+    with pytest.raises(BundleReferenceError, match="60 total") as error:
+        bundles.load_bundle(stream)
+
+    assert "additional failure(s)" in str(error.value)
+
+
+def test_load_reports_invalid_pointer_traversal():
+    stream = StringIO(json.dumps({"objects": [1], "related": "#/objects/0/value"}))
+
+    with pytest.raises(BundleReferenceError, match="cannot traverse scalar value"):
+        bundles.load_bundle(stream)
+
+
+@pytest.mark.parametrize(
+    ("pointer", "message"),
+    [
+        ("#/objects/-1", "invalid JSON Pointer array index"),
+        ("#/objects/01", "invalid JSON Pointer array index"),
+        ("#/objects/9", "out of bounds"),
+        ("#/objects/~2", "invalid JSON Pointer escape"),
+    ],
+)
+def test_load_reports_invalid_json_pointer_syntax(pointer, message):
+    stream = StringIO(json.dumps({"objects": ["value"], "related": pointer}))
+
+    with pytest.raises(BundleReferenceError, match=message):
+        bundles.load_bundle(stream)
+
+
 def test_reference_model_validation_error_is_translated():
     stream = StringIO(
         json.dumps(
@@ -295,7 +371,7 @@ def test_reference_does_not_hide_unrelated_validation_error():
                 "sequenceReference": {
                     "invalid": {
                         "type": "SequenceReference",
-                        "related": "#/objects/related",
+                        "related": "#/sequenceReference/invalid",
                     },
                 }
             }

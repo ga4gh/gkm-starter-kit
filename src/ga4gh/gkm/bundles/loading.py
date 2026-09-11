@@ -11,7 +11,7 @@ from typing import IO, Any, TypeAlias
 from .compatibility import check_gkm_version_compatibility
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
 from .models import Bundle, BundleCollection
-from .references import parse_gks_values
+from .references import parse_gks_values, validate_bundle_references
 from .registry import registry
 
 BundleSource: TypeAlias = str | PathLike[str] | IO[str] | IO[bytes]
@@ -73,7 +73,7 @@ def _require_json_object(value: object, *, subject: str) -> Mapping[str, Any]:
 
     :param value: Decoded JSON value.
     :param subject: Human-readable name used in an error message.
-    :return: The value narrowed to a string-keyed mapping.
+    :return: The value narrowed to a string-keyed dictionary.
     :raises BundleSerializationError: If ``value`` is not a JSON object.
     """
     if isinstance(value, Mapping):
@@ -91,16 +91,19 @@ def load_bundle(
 ) -> Bundle:
     """Load one bundle from a registered name, JSON file, or JSON stream.
 
-    Objects recognized by a GA4GH reference implementation are validated and
-    returned as its Pydantic models. Producer-specific structures and objects
-    containing bundle-local references that cannot be validated independently
-    remain mappings.
+    Loading behavior:
 
-    Loading is fail-fast. If any recognized GKM object fails reference-model
-    validation, no bundle is returned.
-
-    When a schema is provided, it is used to check GKM version compatibility.
-    The bundle is not fully validated against the schema.
+    1. Decode the JSON document.
+    2. Check a supplied schema for GKM version compatibility. This is not full
+       JSON Schema validation.
+    3. Check the document's basic shape.
+    4. Walk the complete decoded document and validate bundle-local pointers
+       before model conversion or bundle construction. Pointer failures are
+       aggregated into one :class:`BundleReferenceError`; large error lists
+       are truncated with total and omitted counts.
+    5. Convert recognized GKM objects to Pydantic models. Model validation is
+       fail-fast; the first failure prevents a bundle from being returned.
+       Producer-specific content remains dictionaries.
 
     :param source: Registered bundle name, file path, or readable JSON stream.
     :param schema: Producer JSON Schema. A registered schema is used when omitted.
@@ -112,14 +115,18 @@ def load_bundle(
     :raises BundleSerializationError: If the serialization or data shape is unsupported.
     :raises ga4gh.gkm.bundles.BundleValidationError: If a recognized GKM object
         fails validation by its reference implementation.
+    :raises ga4gh.gkm.bundles.BundleReferenceError: If one or more bundle-local
+        JSON Pointers cannot be resolved.
     :raises BundleNotFoundError: If ``source`` cannot be found.
     """
     if serialization not in {None, "json"}:
         message = f"Unsupported serialization {serialization!r}; currently only 'json' is supported"
         raise BundleSerializationError(message)
 
+    # 1. Decode the bundle document.
     raw_document, name, registered_schema = _read_json(source)
 
+    # 2. Check schema compatibility when a schema is available.
     schema_source = schema if schema is not None else registered_schema
     if schema_source is not None:
         raw_schema, _, _ = _read_json(schema_source)
@@ -127,6 +134,7 @@ def load_bundle(
 
         check_gkm_version_compatibility(schema_document)
 
+    # 3. Check the decoded document's basic shape.
     document = _require_json_object(raw_document, subject="document")
 
     metadata = document.get("metadata", {})
@@ -134,6 +142,10 @@ def load_bundle(
         message = "Bundle metadata must be a JSON object"
         raise BundleSerializationError(message)
 
+    # 4. Validate all bundle-local pointers before model conversion.
+    validate_bundle_references(document)
+
+    # 5. Convert recognized objects to reference-implementation models.
     collections: dict[str, BundleCollection] = {}
     extras: dict[str, Any] = {}
     for collection_name, values in document.items():

@@ -37,6 +37,10 @@ class BundleReferenceError(BundleError):
     """Raised when a bundle-local JSON Pointer cannot be resolved."""
 
 
+class BundlePointerResolutionError(BundleReferenceError):
+    """Raised internally when a JSON Pointer traversal fails."""
+
+
 class BundleRepositoryError(BundleError):
     """Base class for bundle repository-related errors."""
 
