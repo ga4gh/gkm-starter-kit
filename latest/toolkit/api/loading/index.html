@@ -995,6 +995,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.loading.load_repository_bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;load_repository_bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1683,6 +1694,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.loading.load_repository_bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;load_repository_bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1767,6 +1789,8 @@
     <div class="doc doc-contents ">
 
         <p>Load one bundle from a registered name, JSON file, or JSON stream.</p>
+<p>This loader handles local and in-memory sources. To load a published
+resource from the public repository, use :func:<code>load_repository_bundle</code>.</p>
 <p>Loading behavior:</p>
 <ol>
 <li>Decode the JSON document.</li>
@@ -1953,7 +1977,9 @@ JSON Pointers cannot be resolved.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Load several bundles and key them by their resolved names.</p>
+        <p>Load several local or in-memory bundles and key them by their names.</p>
+<p>For published repository resources, use :func:<code>load_repository_bundle</code>
+for each resource name.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2026,6 +2052,163 @@ JSON Pointers cannot be resolved.</p>
             <td>
               <div class="doc-md-description">
                 <p>If two sources resolve to the same name.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="ga4gh.gkm.bundles.loading.load_repository_bundle" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">load_repository_bundle</span>
+
+
+</h4>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Fetch and validate a published bundle from a bundle repository.</p>
+<p>Use :attr:<code>BundleRepository.resource_names</code> to discover valid names before
+calling this helper. The resource's <code>bundle.json</code> and
+<code>bundle.schema.json</code> are fetched and passed through :func:<code>load_bundle</code>.
+The repository resource name is assigned to the returned bundle.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>repository</code>
+            </td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Repository from which to fetch the resource.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of a resource listed in <code>repository.resource_names</code>.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../models/#ga4gh.gkm.bundles.models.Bundle">Bundle</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The validated bundle.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the repository cannot provide either document.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleCompatibilityError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the published schema is incompatible.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleSerializationError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If either document has an invalid shape.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleValidationError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a recognized object fails validation.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleReferenceError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a bundle-local reference is invalid.</p>
               </div>
             </td>
           </tr>
