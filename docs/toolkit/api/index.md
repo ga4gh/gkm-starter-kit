@@ -3,10 +3,15 @@
 The API reference documents the public classes, functions, and exceptions in
 `ga4gh.gkm.bundles`.
 
-- [Models](models.md) — inspect collections, resolve references, and
+- [Containers](containers.md) — inspect collections, resolve references, and
   serialize bundles.
 - [Loading](loading.md) — load one or several bundles from files,
   streams, or registered names.
+- [Pointers](pointers.md) — validate bundle-local JSON Pointers.
+- [Schema resolution](schema-resolution.md) — find the schema node and external
+  reference for a bundle-local pointer target.
+- [Model conversion](model-conversion.md) — convert bundle values to installed
+  GA4GH models.
 - [Compatibility](compatibility.md) — view supported GKM product versions and
   check a producer's bundle schema.
 - [Registry](registry.md) — associate names with bundle and schema

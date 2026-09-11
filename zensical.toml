@@ -26,8 +26,11 @@ nav = [
     "toolkit/index.md",
     { "API reference" = [
       "toolkit/api/index.md",
-      { Models = "toolkit/api/models.md" },
+      { Containers = "toolkit/api/containers.md" },
       { Loading = "toolkit/api/loading.md" },
+      { Pointers = "toolkit/api/pointers.md" },
+      { "Schema resolution" = "toolkit/api/schema-resolution.md" },
+      { "Model conversion" = "toolkit/api/model-conversion.md" },
       { Compatibility = "toolkit/api/compatibility.md" },
       { Registry = "toolkit/api/registry.md" },
       { "Bundle repository" = "toolkit/api/repository.md" },

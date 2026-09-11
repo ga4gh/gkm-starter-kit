@@ -9,6 +9,7 @@ from collections.abc import Iterator, KeysView, Mapping
 from pathlib import Path
 from typing import Any
 
+from ga4gh.core.models import iriReference
 from pydantic import BaseModel
 
 from .errors import (
@@ -17,6 +18,8 @@ from .errors import (
     BundleReferenceError,
     BundleSerializationError,
 )
+from .model_conversion import model_for_schema_references, parse_schema_value
+from .schema_resolution import schema_for_pointer, schema_references
 
 
 def _to_json_value(value: Any) -> Any:
@@ -105,6 +108,7 @@ class Bundle(Mapping[str, BundleCollection]):
     :param metadata: Bundle and provenance metadata.
     :param extras: Top-level values that are not object collections.
     :param name: Registered or inferred bundle name.
+    :param schema: Producer JSON Schema used to materialize pointer targets.
     """
 
     def __init__(
@@ -114,6 +118,7 @@ class Bundle(Mapping[str, BundleCollection]):
         metadata: Mapping[str, Any] | None = None,
         extras: Mapping[str, Any] | None = None,
         name: str | None = None,
+        schema: Mapping[str, Any] | None = None,
     ) -> None:
         """Initialize a bundle.
 
@@ -121,11 +126,13 @@ class Bundle(Mapping[str, BundleCollection]):
         :param metadata: Bundle and provenance metadata.
         :param extras: Top-level values that are not object collections.
         :param name: Registered or inferred bundle name.
+        :param schema: Producer JSON Schema used to materialize pointer targets.
         """
         self.name = name
         self.metadata = dict(metadata or {})
         self.collections = dict(collections)
         self.extras = dict(extras or {})
+        self.schema = dict(schema or {})
 
     def __getitem__(self, name: str) -> BundleCollection:
         """Return a collection by name.
@@ -179,26 +186,34 @@ class Bundle(Mapping[str, BundleCollection]):
         """
         return self[name]
 
-    def resolve(self, pointer: str) -> Any:
+    def resolve(self, pointer: str | iriReference) -> Any:
         """Resolve an RFC 6901 JSON Pointer into the bundle.
 
-        Use this for one pointer; use :meth:`normalize` to expand references
-        recursively.
+        ``iriReference`` objects are accepted directly. When the supplied
+        producer schema identifies the exact target with a supported GA4GH W3ID
+        reference, return its validated model; otherwise return the JSON value.
+        Use :meth:`normalize` to expand references recursively.
 
-        :param pointer: Bundle-local pointer beginning with ``#/``.
+        :param pointer: Bundle-local JSON Pointer beginning with ``#/``, or
+            an ``iriReference`` whose ``root`` contains that pointer.
         :return: The referenced value.
         :raises BundleReferenceError: If the pointer is invalid or cannot be resolved.
         """
-        if not pointer.startswith("#/"):
+        if isinstance(pointer, iriReference):
+            pointer = pointer.root
+
+        if not isinstance(pointer, str) or not pointer.startswith("#/"):
             message = f"Expected a bundle-local JSON Pointer, got {pointer!r}"
             raise BundleReferenceError(message)
 
         value: Any = self
 
-        for raw_part in pointer[2:].split("/"):
+        parts = [
+            raw_part.replace("~1", "/").replace("~0", "~")
+            for raw_part in pointer[2:].split("/")
+        ]
+        for part in parts:
             # Decode each RFC 6901 path segment; e.g. "a~1b" addresses "a/b".
-            part = raw_part.replace("~1", "/").replace("~0", "~")
-
             try:
                 # Traverse bundles, sequences, mappings, and model attributes.
                 if isinstance(value, Bundle):
@@ -218,6 +233,18 @@ class Bundle(Mapping[str, BundleCollection]):
             ) as error:
                 message = f"Could not resolve bundle reference {pointer!r}"
                 raise BundleReferenceError(message) from error
+
+        # Some GA4GH models have no ``type`` discriminator; use the producer schema.
+        if self.schema:
+            target_schema = schema_for_pointer(self.schema, parts)
+            references = (
+                schema_references(target_schema, self.schema)
+                if target_schema is not None
+                else ()
+            )
+            model = model_for_schema_references(references)
+            if model is not None:
+                value = parse_schema_value(value, model)
 
         return value
 
