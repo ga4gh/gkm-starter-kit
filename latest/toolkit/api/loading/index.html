@@ -1767,14 +1767,20 @@
     <div class="doc doc-contents ">
 
         <p>Load one bundle from a registered name, JSON file, or JSON stream.</p>
-<p>Objects recognized by a GA4GH reference implementation are validated and
-returned as its Pydantic models. Producer-specific structures and objects
-containing bundle-local references that cannot be validated independently
-remain mappings.</p>
-<p>Loading is fail-fast. If any recognized GKM object fails reference-model
-validation, no bundle is returned.</p>
-<p>When a schema is provided, it is used to check GKM version compatibility.
-The bundle is not fully validated against the schema.</p>
+<p>Loading behavior:</p>
+<ol>
+<li>Decode the JSON document.</li>
+<li>Check a supplied schema for GKM version compatibility. This is not full
+   JSON Schema validation.</li>
+<li>Check the document's basic shape.</li>
+<li>Walk the complete decoded document and validate bundle-local pointers
+   before model conversion or bundle construction. Pointer failures are
+   aggregated into one :class:<code>BundleReferenceError</code>; large error lists
+   are truncated with total and omitted counts.</li>
+<li>Convert recognized GKM objects to Pydantic models. Model validation is
+   fail-fast; the first failure prevents a bundle from being returned.
+   Producer-specific content remains dictionaries.</li>
+</ol>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -1902,6 +1908,17 @@ unsupported GKM product versions.</p>
               <div class="doc-md-description">
                 <p>If a recognized GKM object
 fails validation by its reference implementation.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>ga4gh.gkm.bundles.BundleReferenceError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If one or more bundle-local
+JSON Pointers cannot be resolved.</p>
               </div>
             </td>
           </tr>
