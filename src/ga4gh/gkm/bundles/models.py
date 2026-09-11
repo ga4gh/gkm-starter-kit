@@ -180,7 +180,10 @@ class Bundle(Mapping[str, BundleCollection]):
         return self[name]
 
     def resolve(self, pointer: str) -> Any:
-        """Resolve an RFC 6901 JSON Pointer into this bundle.
+        """Resolve an RFC 6901 JSON Pointer into the bundle.
+
+        Use this for one pointer; use :meth:`normalize` to expand references
+        recursively.
 
         :param pointer: Bundle-local pointer beginning with ``#/``.
         :return: The referenced value.
@@ -193,9 +196,11 @@ class Bundle(Mapping[str, BundleCollection]):
         value: Any = self
 
         for raw_part in pointer[2:].split("/"):
+            # Decode each RFC 6901 path segment; e.g. "a~1b" addresses "a/b".
             part = raw_part.replace("~1", "/").replace("~0", "~")
 
             try:
+                # Traverse bundles, sequences, mappings, and model attributes.
                 if isinstance(value, Bundle):
                     value = value[part]
                 elif isinstance(value, (list, tuple)):
@@ -216,20 +221,23 @@ class Bundle(Mapping[str, BundleCollection]):
 
         return value
 
-    def _dereference_value(self, value: Any, *, trail: tuple[str, ...]) -> Any:
+    def _normalize_value(self, value: Any, *, trail: tuple[str, ...]) -> Any:
         """Replace local pointers below a value with inline values.
 
         :param value: Value to traverse.
         :param trail: Pointers currently being resolved, used to detect cycles.
         :return: A JSON-compatible value with local pointers replaced inline.
-        Cycle-closing pointers remain referenced because JSON cannot represent a
-        cyclic inline value.
+            Cycle-closing pointers remain referenced because JSON cannot represent a
+            cyclic inline value.
         """
         if isinstance(value, str) and value.startswith("#/"):
+            # Expand local pointers recursively; for example, "#/a/1" can
+            # resolve to an object containing another pointer, "#/b/2".
             if value in trail:
+                # Keep the closing pointer because inline JSON cannot be cyclic.
                 return value
 
-            return self._dereference_value(
+            return self._normalize_value(
                 self.resolve(value),
                 trail=(*trail, value),
             )
@@ -239,33 +247,150 @@ class Bundle(Mapping[str, BundleCollection]):
 
         if isinstance(value, Mapping):
             return {
-                key: self._dereference_value(item, trail=trail)
+                key: self._normalize_value(item, trail=trail)
                 for key, item in value.items()
             }
 
         if isinstance(value, list):
-            return [self._dereference_value(item, trail=trail) for item in value]
+            return [self._normalize_value(item, trail=trail) for item in value]
 
         return value
 
-    def dereference(self, value: Any | None = None) -> Any:
-        """Return a value with all reachable local references replaced inline.
+    def normalize(self, value: Any | None = None) -> Any:
+        """Normalize bundle content for use outside the serialized bundle.
 
-        The complete bundle is used when ``value`` is omitted. The bundle itself remains
-        referenced.
+        Bundle-local pointers are expanded recursively; cyclic pointers remain
+        pointers. Omitting ``value`` normalizes the complete bundle.
 
-        Cycle-closing pointers remain referenced because JSON cannot represent a
-        cyclic inline value.
-
-        :param value: Value from this bundle to dereference, or ``None`` for the
-            complete bundle.
-        :return: A JSON-compatible, inline representation of the value.
+        :param value: Bundle value to normalize, or ``None`` for the complete
+            bundle.
+        :return: JSON-compatible normalized content.
+        :raises BundleReferenceError: If a local reference cannot be resolved.
         """
         target = self.to_dict() if value is None else value
-        return self._dereference_value(target, trail=())
+        return self._normalize_value(target, trail=())
+
+    def denormalize(self, value: Any) -> Any:
+        """Replace embedded bundle objects with local JSON Pointer references.
+
+        Embedded objects matching bundle objects are replaced by local pointers;
+        unknown producer content is preserved. Exact content matches take
+        precedence over the optional ``id``/``type`` identity fallback.
+
+        :param value: Normalized JSON-compatible value.
+        :return: Content using bundle-local references where possible.
+        :raises BundleSerializationError: If ``value`` cannot be represented as
+            JSON-compatible content.
+        """
+
+        def reference_for(item: Mapping[str, Any]) -> str | None:
+            """Return the bundle pointer for a recognized nested object.
+
+            Exact matches take precedence over identity matches.
+
+            :param item: Mapping to look up.
+            :return: Local pointer, or ``None`` when the item is not recognized.
+            """
+            serialized = json.dumps(item, sort_keys=True)
+            pointer = exact_references.get(serialized)
+
+            if pointer is not None:
+                return pointer
+
+            return identity_references.get((item.get("id"), item.get("type")))
+
+        def replace(item: Any, *, root: bool = False) -> Any:
+            """Recursively replace embedded bundle objects with pointers.
+
+            The root stays an object document; only nested mappings can become
+            pointers. Lists are traversed and other values are unchanged.
+
+            :param item: JSON-compatible value currently being traversed.
+            :param root: Whether ``item`` is the value supplied by the caller.
+            :return: Value with recognized nested objects replaced by pointers.
+            """
+            if isinstance(item, Mapping):
+                if not root:
+                    pointer = reference_for(item)
+                    if pointer is not None:
+                        return pointer
+
+                # Keep an individual export as an object; nested matches become
+                # pointers, e.g. {"child": {"id": "1", "type": "Thing"}}
+                # becomes {"child": "#/things/1"}.
+                return {key: replace(child) for key, child in item.items()}
+
+            if isinstance(item, list):
+                return [replace(child) for child in item]
+
+            return item
+
+        try:
+            json.dumps(value)
+        except (TypeError, ValueError) as error:
+            message = f"Content cannot be denormalized as JSON: {error}"
+            raise BundleSerializationError(message) from error
+
+        # Build lookups once so nested objects do not require repeated scans.
+        # Example: {"id": "1", "type": "Thing"} -> "#/things/1".
+        exact_references = {
+            json.dumps(_to_json_value(obj), sort_keys=True): f"#/{name}/{key}"
+            for name, collection in self.collections.items()
+            for key, obj in collection.items()
+        }
+
+        # Prefer complete matches; use stable id/type when extra fields differ.
+        # Example: {"id": "1", "type": "Thing", "description": "..."}
+        # still maps to "#/things/1".
+        identity_references = {
+            (serialized.get("id"), serialized.get("type")): pointer
+            for serialized, pointer in (
+                (json.loads(serialized), pointer)
+                for serialized, pointer in exact_references.items()
+            )
+            if serialized.get("id") is not None and serialized.get("type") is not None
+        }
+
+        return replace(value, root=True)
+
+    def export(self, value: Any | None = None, *, deep: bool = False) -> Any:
+        """Export a complete bundle or an individual object.
+
+        ``deep=False`` preserves local pointers; ``deep=True`` expands them.
+        Omitting ``value`` exports the complete bundle. The result is validated
+        as JSON-compatible.
+
+        :param value: Object or content to export, or ``None`` for the bundle.
+        :param deep: Include reachable referenced content instead of preserving
+            local references.
+        :return: JSON-compatible exported content.
+        :raises BundleSerializationError: If content is not JSON-compatible.
+        """
+        if value is None:
+            # A bundle export starts from the complete shallow document.
+            exported = self.to_dict()
+            if deep:
+                # Deep export expands its local pointers for standalone use.
+                exported = self.normalize(exported)
+        else:
+            # An object export first restores pointers for known nested objects.
+            exported = self.denormalize(value)
+            if deep:
+                # Then optionally expand those pointers again for deep output.
+                exported = self.normalize(exported)
+
+        try:
+            json.dumps(exported)
+        except (TypeError, ValueError) as error:
+            message = f"Exported content is not valid JSON: {error}"
+            raise BundleSerializationError(message) from error
+
+        return exported
 
     def to_dict(self) -> dict[str, Any]:
-        """Serialize the bundle to JSON-compatible Python values.
+        """Return the complete bundle as shallow Python values.
+
+        This preserves local pointers and does not write a file.
 
         :return: The complete serialized bundle.
         """
