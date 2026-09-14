@@ -428,6 +428,8 @@ class Bundle(Mapping[str, BundleCollection]):
         This preserves local pointers and does not write a file.
 
         :return: The complete serialized bundle.
+        :raises BundleSerializationError: If producer-specific extras conflict
+            with a collection name or the reserved ``"metadata"`` field.
         """
         document = {
             name: _to_json_value(collection)
@@ -436,6 +438,14 @@ class Bundle(Mapping[str, BundleCollection]):
 
         if self.metadata is not None:
             document["metadata"] = _to_json_value(self.metadata)
+
+        # Collections and metadata are parsed into dedicated model fields and
+        # must not be replaced by producer-specific extras with the same name.
+        conflicts = set(self.extras).intersection((*self.collections, "metadata"))
+        if conflicts:
+            names = ", ".join(repr(name) for name in sorted(conflicts))
+            message = f"Extras conflict with reserved bundle fields: {names}"
+            raise BundleSerializationError(message)
 
         document.update(_to_json_value(self.extras))
 
