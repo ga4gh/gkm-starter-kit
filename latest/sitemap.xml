@@ -4,9 +4,6 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/about/</loc>
-      </url>
-      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/</loc>
       </url>
       <url>
@@ -22,55 +19,61 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/repository/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/installation/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/reference-implementations/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/getting-started/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/installation/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/containers/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/getting-started/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/loading/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/pointers/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/civic-notebook/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/schema-resolution/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/repository-notebook/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/model-conversion/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/compatibility/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/containers/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/registry/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/loading/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/repository/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/pointers/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/api/errors/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/schema-resolution/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/model-conversion/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/civic-notebook/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/compatibility/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/toolkit/notebooks/repository-notebook/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/registry/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/development/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/repository/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/errors/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/development/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/</loc>
@@ -86,5 +89,8 @@
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/contribute/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/about/</loc>
       </url>
 </urlset>
