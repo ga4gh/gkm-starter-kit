@@ -335,6 +335,24 @@ def test_to_dict_includes_metadata_and_producer_extras():
     assert without_metadata.to_dict() == {"producerExtension": {}}
 
 
+def test_to_dict_rejects_extras_conflicting_with_collections_or_metadata():
+    """Conflicting producer extras fail instead of silently losing data."""
+    bundle = bundles.Bundle(
+        {"objects": {"first": {"value": 1}}},
+        metadata={"bundleFormat": "example"},
+        extras={
+            "objects": {"discarded": {"value": 2}},
+            "metadata": {"discarded": True},
+        },
+    )
+
+    with pytest.raises(
+        bundles.BundleSerializationError,
+        match="'metadata', 'objects'",
+    ):
+        bundle.to_dict()
+
+
 def test_to_dict_preserves_empty_metadata():
     bundle = bundles.Bundle(
         {},
