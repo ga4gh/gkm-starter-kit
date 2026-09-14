@@ -152,8 +152,11 @@ def test_refresh_keeps_removed_complete_local_resource_loadable(get, tmp_path):
 
 
 def test_cached_resource_names_preserve_url_encoding(tmp_path):
-    (tmp_path / "index.json").write_text('{"resource_names": []}')
-    for name in ("name%2Fwith%2Fslashes", "name%20with%20spaces"):
+    names = ("name%20with%20spaces", "name%2Fwith%2Fslashes")
+    (tmp_path / "index.json").write_text(
+        '{"resource_names": ["name%20with%20spaces", "name%2Fwith%2Fslashes"]}'
+    )
+    for name in names:
         resource_dir = tmp_path / name
         resource_dir.mkdir()
         (resource_dir / "bundle.json").write_text("{}")
@@ -161,10 +164,8 @@ def test_cached_resource_names_preserve_url_encoding(tmp_path):
 
     repository = BundleRepository(data_dir=tmp_path)
 
-    assert repository.cached_resource_names == (
-        "name%20with%20spaces",
-        "name%2Fwith%2Fslashes",
-    )
+    assert repository.resource_names == names
+    assert repository.cached_resource_names == repository.resource_names
 
 
 @patch("ga4gh.gkm.bundles.repository.requests.get")
