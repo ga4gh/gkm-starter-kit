@@ -27,7 +27,7 @@ from os import PathLike
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 from typing import TYPE_CHECKING, Any
-from urllib.parse import quote, unquote
+from urllib.parse import quote
 
 import requests
 
@@ -100,7 +100,7 @@ class BundleRepository:
             return ()
 
         names = [
-            unquote(path.name)
+            path.name
             for path in self.data_dir.iterdir()
             if path.is_dir()
             and (path / self.bundle_filename).is_file()

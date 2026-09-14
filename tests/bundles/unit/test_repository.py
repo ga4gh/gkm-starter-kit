@@ -151,6 +151,22 @@ def test_refresh_keeps_removed_complete_local_resource_loadable(get, tmp_path):
     assert refreshed_repository.get_bundle_json_schema("civic") == {"$schema": "saved"}
 
 
+def test_cached_resource_names_preserve_url_encoding(tmp_path):
+    (tmp_path / "index.json").write_text('{"resource_names": []}')
+    for name in ("name%2Fwith%2Fslashes", "name%20with%20spaces"):
+        resource_dir = tmp_path / name
+        resource_dir.mkdir()
+        (resource_dir / "bundle.json").write_text("{}")
+        (resource_dir / "bundle.schema.json").write_text("{}")
+
+    repository = BundleRepository(data_dir=tmp_path)
+
+    assert repository.cached_resource_names == (
+        "name%20with%20spaces",
+        "name%2Fwith%2Fslashes",
+    )
+
+
 @patch("ga4gh.gkm.bundles.repository.requests.get")
 def test_failed_refresh_preserves_saved_artifact(get, tmp_path):
     get.side_effect = [
