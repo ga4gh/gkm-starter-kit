@@ -24,6 +24,7 @@ nav = [
   { Toolkit = [
     "toolkit/installation.md",
     "toolkit/index.md",
+    { "Getting started" = "toolkit/getting-started.md" },
     { "API reference" = [
       "toolkit/api/index.md",
       { Containers = "toolkit/api/containers.md" },

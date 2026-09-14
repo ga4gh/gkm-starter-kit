@@ -22,6 +22,11 @@ The GKM Toolkit helps you:
 
     Install the GKM Toolkit and choose the dependencies you need.
 
+- :material-play-circle-outline: [**Getting started**](getting-started.md)
+
+    Take your first step: explore a published bundle, follow its linked records,
+    and export a focused result.
+
 - :material-notebook-outline: [**See examples**](notebooks/index.md)
 
     Read guided notebook examples online, or learn how to run them yourself.
