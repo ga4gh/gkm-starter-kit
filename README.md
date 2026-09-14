@@ -6,6 +6,7 @@ A practical entry point for using the GA4GH Genomic Knowledge Model (GKM).
 [![image](https://img.shields.io/pypi/l/ga4gh.gkm.svg)](https://pypi.org/project/ga4gh.gkm/)
 [![image](https://img.shields.io/pypi/pyversions/ga4gh.gkm.svg)](https://pypi.org/project/ga4gh.gkm/)
 [![Actions status](https://github.com/ga4gh/gkm-starter-kit/actions/workflows/checks.yaml/badge.svg)](https://github.com/ga4gh/gkm-starter-kit/actions/workflows/checks.yaml)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ga4gh/gkm-starter-kit/main?urlpath=%2Fdoc%2Ftree%2Fnotebooks)
 
 The project is organized around three pillars:
 
