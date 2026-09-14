@@ -31,7 +31,7 @@ to clone the repository, create the virtual environment (`.venv`), and activate 
     ```
 
       `--pre` is provided since this project uses pre-release versions of the
-      [GKM reference implementations](../../about.md#standards-and-reference-implementations)
+      [GKM reference implementations](../../reference-implementations.md)
 
 ### Open a notebook
 

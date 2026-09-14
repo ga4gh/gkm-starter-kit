@@ -11,7 +11,6 @@ extra_javascript = ["assets/js/external-links.js"]
 strict = true
 nav = [
   { Home = "index.md" },
-  { "About the GKM" = "about.md" },
   { Data = [
     "data/index.md",
     { Bundles = [
@@ -21,28 +20,32 @@ nav = [
       { "Explore published bundles" = "data/bundles/repository.md" },
     ] },
   ] },
-  { Toolkit = [
-    "toolkit/installation.md",
-    "toolkit/index.md",
-    { "Getting started" = "toolkit/getting-started.md" },
-    { "API reference" = [
-      "toolkit/api/index.md",
-      { Containers = "toolkit/api/containers.md" },
-      { Loading = "toolkit/api/loading.md" },
-      { Pointers = "toolkit/api/pointers.md" },
-      { "Schema resolution" = "toolkit/api/schema-resolution.md" },
-      { "Model conversion" = "toolkit/api/model-conversion.md" },
-      { Compatibility = "toolkit/api/compatibility.md" },
-      { Registry = "toolkit/api/registry.md" },
-      { "Bundle repository" = "toolkit/api/repository.md" },
-      { Errors = "toolkit/api/errors.md" },
+  { Tools = [
+    "tools/index.md",
+    { "Reference implementations" = "tools/reference-implementations.md" },
+    { "GKM Toolkit" = [
+      "tools/gkm-toolkit/index.md",
+      "tools/gkm-toolkit/installation.md",
+      { "Getting started" = "tools/gkm-toolkit/getting-started.md" },
+      { "Explore with notebooks" = [
+        "tools/gkm-toolkit/notebooks/index.md",
+        { "Explore mini bundles" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
+        { "Explore the public bundle repository" = "tools/gkm-toolkit/notebooks/repository-notebook.md" },
+      ] },
+      { "API reference" = [
+        "tools/gkm-toolkit/api/index.md",
+        { Containers = "tools/gkm-toolkit/api/containers.md" },
+        { Loading = "tools/gkm-toolkit/api/loading.md" },
+        { Pointers = "tools/gkm-toolkit/api/pointers.md" },
+        { "Schema resolution" = "tools/gkm-toolkit/api/schema-resolution.md" },
+        { "Model conversion" = "tools/gkm-toolkit/api/model-conversion.md" },
+        { Compatibility = "tools/gkm-toolkit/api/compatibility.md" },
+        { Registry = "tools/gkm-toolkit/api/registry.md" },
+        { "Bundle repository" = "tools/gkm-toolkit/api/repository.md" },
+        { Errors = "tools/gkm-toolkit/api/errors.md" },
+      ] },
+      { "Development and contributing" = "tools/gkm-toolkit/development.md" },
     ] },
-    { "Explore with notebooks" = [
-      "toolkit/notebooks/index.md",
-      { "Explore mini bundles" = "toolkit/notebooks/civic-notebook.md" },
-      { "Explore the public bundle repository" = "toolkit/notebooks/repository-notebook.md" },
-    ] },
-    { "Development and contributing" = "development.md" },
   ] },
   { "User Stories" = [
     "user-stories/index.md",
@@ -57,6 +60,7 @@ nav = [
     ] },
     { "Contribute to User Stories" = "user-stories/contribute.md" },
   ] },
+  { "About the GKM" = "about.md" },
 ]
 
 [project.extra.version]

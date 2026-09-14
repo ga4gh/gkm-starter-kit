@@ -6,7 +6,7 @@ focused examples on the [mini bundle examples](mini-examples.md) page.
 
 ## Downloads
 
-Download the files below, or access the repository programmatically through the [Python API](../../toolkit/api/repository.md). The table is generated during the documentation build using `BundleRepository`.
+Download the files below, or access the repository programmatically through the [Python API](../../tools/gkm-toolkit/api/repository.md). The table is generated during the documentation build using `BundleRepository`.
 
 {{ downloads_table }}
 
