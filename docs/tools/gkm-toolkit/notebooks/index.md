@@ -15,6 +15,14 @@ your browser without installing anything.
   public resources, retrieve a bundle and its schema, load them into GKM
   models, and handle repository errors.
 
+## Run the notebooks with MyBinder
+
+[Binder](https://mybinder.org/) provides a ready-to-use computing environment for running the notebooks directly in your browser, with no local installation required.
+
+You can launch the notebooks on Binder [here](https://mybinder.org/v2/gh/ga4gh/gkm-starter-kit/main?urlpath=%2Fdoc%2Ftree%2Fnotebooks).
+
+Once launched, select **GKM Toolkit Kernel** as the notebook kernel.
+
 ## Run the notebooks locally
 
 If you want to run the notebooks yourself, follow the [Installation steps](../installation.md)

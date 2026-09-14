@@ -7,6 +7,6 @@ python3 -m venv .venv
 .venv/bin/python -m pip install "ga4gh.gkm[notebooks]" --pre
 
 .venv/bin/python -m ipykernel install \
-    --prefix="${CONDA_DIR}" \
+    --prefix="${CONDA_PREFIX}" \
     --name="gkm_toolkit" \
     --display-name="GKM Toolkit Kernel"
