@@ -352,6 +352,8 @@ class Bundle(Mapping[str, BundleCollection]):
 
             return item
 
+        value = _to_json_value(value)
+
         try:
             json.dumps(value)
         except (TypeError, ValueError) as error:
