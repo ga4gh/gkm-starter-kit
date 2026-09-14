@@ -2189,16 +2189,21 @@ for each resource name.</p>
 
 
 </h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;BundleRepository&lt;/span&gt;" href="../repository/#ga4gh.gkm.bundles.repository.BundleRepository">BundleRepository</a></span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><a class="autorefs autorefs-internal" title="&lt;code class=&quot;doc-symbol doc-symbol-heading doc-symbol-class&quot;&gt;&lt;/code&gt;            &lt;span class=&quot;doc doc-object-name doc-class-name&quot;&gt;Bundle&lt;/span&gt;" href="../containers/#ga4gh.gkm.bundles.containers.Bundle">Bundle</a></span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Fetch and validate a published bundle from a bundle repository.</p>
-<p>Use :attr:<code>BundleRepository.resource_names</code> to discover valid names before
-calling this helper. The resource's <code>bundle.json</code> and
-<code>bundle.schema.json</code> are fetched and passed through :func:<code>load_bundle</code>.
-The repository resource name is assigned to the returned bundle.</p>
+        <p>Load and validate a bundle through a bundle repository.</p>
+<p>Loading behavior:</p>
+<ol>
+<li>Confirm <code>name</code> is indexed or completely saved locally.</li>
+<li>Retrieve the resource's <code>bundle.json</code> and <code>bundle.schema.json</code>
+   together. Saved local copies are reused by default; missing artifacts or
+   <code>refresh=True</code> retrieve copies from the public repository.</li>
+<li>Pass both documents to :func:<code>load_bundle</code> for validation and conversion.</li>
+<li>Assign the repository resource name to the returned bundle.</li>
+</ol>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2221,7 +2226,7 @@ The repository resource name is assigned to the returned bundle.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Repository from which to fetch the resource.</p>
+                <p>Repository that resolves saved or public resource artifacts.</p>
               </div>
             </td>
             <td>
@@ -2237,11 +2242,29 @@ The repository resource name is assigned to the returned bundle.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Name of a resource listed in <code>repository.resource_names</code>.</p>
+                <p>Name of an indexed resource or complete locally saved resource.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>refresh</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to retrieve and replace the saved bundle and schema
+instead of reusing their local copies. A refresh requires the remote
+resource to remain available.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
             </td>
           </tr>
       </tbody>

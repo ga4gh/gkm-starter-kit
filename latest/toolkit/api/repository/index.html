@@ -1185,6 +1185,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Attributes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.cached_resource_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;cached_resource_names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ga4gh.gkm.bundles.repository.BundleRepository-functions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1212,6 +1240,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_json_schema
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_documents
       </span>
     </span>
   </a>
@@ -1826,6 +1865,34 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Attributes
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.cached_resource_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-attribute"></code>&nbsp;cached_resource_names
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ga4gh.gkm.bundles.repository.BundleRepository-functions" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -1853,6 +1920,17 @@
     <span class="md-ellipsis">
       <span class="md-typeset">
         <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_json_schema
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;get_bundle_documents
       </span>
     </span>
   </a>
@@ -1917,7 +1995,9 @@
 
     <div class="doc doc-contents first">
 
-        <p>Access bundles hosted in the public GKM Starter Kit R2 repository.</p>
+        <p>Access and persist bundles hosted in the public GKM Starter Kit repository.</p>
+<p>The repository index and every retrieved bundle artifact are stored locally so
+published data remains usable after it has been fetched once.</p>
 <p>The initial implementation makes the following assumptions:</p>
 <ul>
 <li>The repository root contains an <code>index.json</code> file listing available resource
@@ -1961,7 +2041,7 @@
 
 
 </h4>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BundleRepository</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">BundleRepository</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="n"><span title="int">int</span></span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">:</span> <span class="n"><span title="str">str</span></span> <span class="o">|</span> <span class="n"><span title="os.PathLike">PathLike</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1969,8 +2049,19 @@
 
 
         <p>Access bundles from the canonical GKM Starter Kit R2 repository.</p>
+<p>Repository documents are persisted in :attr:<code>data_dir</code>, selected in this
+order:</p>
+<ol>
+<li>An explicit <code>data_dir</code> argument.</li>
+<li>The <code>GKM_STARTER_KIT_DIR</code> environment variable.</li>
+<li><code>XDG_DATA_HOME/gkm-starter-kit</code>.</li>
+<li><code>~/.local/share/gkm-starter-kit</code>.</li>
+</ol>
+<p>The saved <code>index.json</code> is reused by default, which permits offline
+construction after the index has been retrieved once. Pass <code>refresh=True</code>
+to retrieve and atomically replace the saved index.</p>
 
-        <p>Initialize the bundle repository.</p>
+        <p>Initialize the bundle repository and load its resource index.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2000,6 +2091,76 @@
                   <code>15</code>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>data_dir</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> | <span title="os.PathLike">PathLike</span>[<span title="str">str</span>] | None</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Directory for persisted repository documents. When
+omitted, the directory is derived from the environment and XDG
+data-directory conventions.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>refresh</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>When true, retrieve and replace the saved index rather
+than reuse it.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryRequestError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a required index cannot be
+retrieved from the repository.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryFormatError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the saved or retrieved index
+is not a JSON object with a <code>resource_names</code> string list.</p>
+              </div>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -2019,7 +2180,57 @@
 
 
 
+<h5 id="ga4gh.gkm.bundles.repository.BundleRepository-attributes">Attributes</h5>
 
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="ga4gh.gkm.bundles.repository.BundleRepository.cached_resource_names" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-attribute"></code>            <span class="doc doc-object-name doc-attribute-name">cached_resource_names</span>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">cached_resource_names</span><span class="p">:</span> <span class="n"><span title="tuple">tuple</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Return complete resource artifacts available in local storage.</p>
+<p>A cached resource has both <code>bundle.json</code> and
+<code>bundle.schema.json</code>. It remains available here and can be loaded
+even if a later refreshed repository index no longer lists it.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span>[<span title="str">str</span>, ...]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Locally saved resource names in alphabetical order.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+</div>
 
 
 <h5 id="ga4gh.gkm.bundles.repository.BundleRepository-functions">Methods:</h5>
@@ -2032,12 +2243,12 @@
 
 
 </h6>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Retrieve a bundle.</p>
+        <p>Retrieve a bundle, preferring its saved local copy.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2065,6 +2276,24 @@
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>refresh</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>When true, retrieve and atomically replace the saved
+bundle instead of reusing it. A refresh requires the remote resource
+to remain available.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
             </td>
           </tr>
       </tbody>
@@ -2105,11 +2334,23 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code>BundleRepositoryResourceNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>name</code> is absent
+from the repository index and does not have both saved artifacts.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
                   <code>BundleRepositoryRequestError</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the bundle cannot be retrieved.</p>
+                <p>If a missing or refreshed bundle
+cannot be retrieved.</p>
               </div>
             </td>
           </tr>
@@ -2119,7 +2360,8 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the bundle is not a valid JSON.</p>
+                <p>If the saved or retrieved bundle
+is not a JSON object.</p>
               </div>
             </td>
           </tr>
@@ -2139,12 +2381,12 @@
 
 
 </h6>
-<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle_json_schema</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle_json_schema</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Retrieve a bundle JSON Schema.</p>
+        <p>Retrieve a bundle JSON Schema, preferring its saved local copy.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -2167,11 +2409,52 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Name of the bundle resource whose JSON Schema should be retrieved.</p>
+                <p>Name of the bundle resource whose JSON Schema to retrieve.</p>
               </div>
             </td>
             <td>
                 <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>refresh</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>When true, retrieve and atomically replace the saved
+schema instead of reusing it. A refresh requires the remote resource
+to remain available.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Bundle JSON Schema contents.</p>
+              </div>
             </td>
           </tr>
       </tbody>
@@ -2189,11 +2472,23 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code>BundleRepositoryResourceNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>name</code> is absent
+from the repository index and does not have both saved artifacts.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
                   <code>BundleRepositoryRequestError</code>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the schema cannot be retrieved.</p>
+                <p>If a missing or refreshed schema
+cannot be retrieved.</p>
               </div>
             </td>
           </tr>
@@ -2203,7 +2498,147 @@
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the schema is not valid JSON.</p>
+                <p>If the saved or retrieved schema
+is not a JSON object.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h6 id="ga4gh.gkm.bundles.repository.BundleRepository.get_bundle_documents" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">get_bundle_documents</span>
+
+
+</h6>
+<div class="doc-signature highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nf">get_bundle_documents</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">refresh</span><span class="p">:</span> <span class="n"><span title="bool">bool</span></span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n"><span title="tuple">tuple</span></span><span class="p">[</span><span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">],</span> <span class="n"><span title="dict">dict</span></span><span class="p">[</span><span class="n"><span title="str">str</span></span><span class="p">,</span> <span class="n"><span title="typing.Any">Any</span></span><span class="p">]]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve a bundle and schema together.</p>
+<p>Missing or refreshed artifacts are both downloaded and validated before
+either local file is replaced. Each artifact is written atomically.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Name of the bundle resource to retrieve.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>refresh</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>When true, retrieve and replace both saved artifacts.
+A refresh requires the remote resource to remain available.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="tuple">tuple</span>[<span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>], <span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Bundle contents and its JSON Schema, in that order.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryResourceNotFoundError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>name</code> is absent
+from the repository index and does not have both saved artifacts.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryRequestError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If either required remote artifact
+cannot be retrieved.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code>BundleRepositoryFormatError</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If a saved or retrieved artifact
+is not a JSON object.</p>
               </div>
             </td>
           </tr>
