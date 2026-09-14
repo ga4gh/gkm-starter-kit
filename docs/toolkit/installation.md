@@ -74,6 +74,11 @@ Choose what you want to do next:
 
 <div class="grid cards" markdown>
 
+- :material-play-circle-outline: [**Getting started**](getting-started.md)
+
+    Explore a published bundle, follow its linked records, and export a focused
+    result.
+
 - :material-notebook-outline: [**See the examples**](notebooks/index.md)
 
     Read the rendered notebooks online, or learn how to run them locally.
