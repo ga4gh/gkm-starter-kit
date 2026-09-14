@@ -159,8 +159,8 @@ def load_bundle(
     # 3. Check the decoded document's basic shape.
     document = _require_json_object(raw_document, subject="document")
 
-    metadata = document.get("metadata", {})
-    if not isinstance(metadata, Mapping):
+    metadata = document.get("metadata")
+    if metadata is not None and not isinstance(metadata, Mapping):
         message = "Bundle metadata must be a JSON object"
         raise BundleSerializationError(message)
 

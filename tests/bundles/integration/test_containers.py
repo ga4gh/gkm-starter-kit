@@ -335,6 +335,23 @@ def test_to_dict_includes_metadata_and_producer_extras():
     assert without_metadata.to_dict() == {"producerExtension": {}}
 
 
+def test_to_dict_preserves_empty_metadata():
+    bundle = bundles.Bundle(
+        {},
+        metadata={},
+    )
+
+    assert bundle.to_dict() == {
+        "metadata": {},
+    }
+
+
+def test_to_dict_omits_missing_metadata_after_loading():
+    bundle = bundles.load_bundle(StringIO(json.dumps({"objects": {}})))
+
+    assert bundle.to_dict() == {"objects": {}}
+
+
 def test_write_round_trip(tmp_path):
     civic = bundles.load_bundle("civic-assertion-9")
     destination = tmp_path / "round-trip.json"
