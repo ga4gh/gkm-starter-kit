@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 from collections.abc import Iterator, KeysView, Mapping
+from functools import cache
 from pathlib import Path
 from typing import Any
 
@@ -40,6 +41,21 @@ def _to_json_value(value: Any) -> Any:
         return [_to_json_value(item) for item in value]
 
     return value
+
+
+@cache
+def _model_pointer_fields(model: type[BaseModel]) -> dict[str, str]:
+    """Return JSON Pointer names mapped to Pydantic field names.
+
+    :param model: Pydantic model class whose fields should be indexed.
+    :return: Mapping of field names and aliases to their field names.
+    """
+    fields: dict[str, str] = {}
+    for field_name, field in model.model_fields.items():
+        fields[field_name] = field_name
+        if field.alias is not None:
+            fields[field.alias] = field_name
+    return fields
 
 
 class BundleCollection(Mapping[str, Any]):
@@ -194,12 +210,15 @@ class Bundle(Mapping[str, BundleCollection]):
         ``iriReference`` objects are accepted directly. When the supplied
         producer schema identifies the exact target with a supported GA4GH W3ID
         reference, return its validated model; otherwise return the JSON value.
-        Use :meth:`normalize` to expand references recursively.
+        Use :meth:`normalize` to expand references recursively. Model traversal
+        is restricted to declared Pydantic fields; methods and other model
+        implementation attributes are not valid pointer targets.
 
         :param pointer: Bundle-local JSON Pointer beginning with ``#/``, or
             an ``iriReference`` whose ``root`` contains that pointer.
         :return: The referenced value.
-        :raises BundleReferenceError: If the pointer is invalid or cannot be resolved.
+        :raises BundleReferenceError: If the pointer is invalid or cannot be
+            resolved, including when it targets an undeclared model field.
         """
         if isinstance(pointer, iriReference):
             pointer = pointer.root
@@ -228,8 +247,18 @@ class Bundle(Mapping[str, BundleCollection]):
                         raise BundleReferenceError(str(error)) from error
                 elif isinstance(value, Mapping):
                     value = value[part]
+                elif isinstance(value, BaseModel):
+                    # JSON Pointers may only traverse declared model fields.
+                    # In particular, do not let a pointer access methods or
+                    # other implementation attributes on the model class.
+                    field_name = _model_pointer_fields(type(value)).get(part)
+                    if field_name is None:
+                        msg = f"Model field {part!r} is not declared"
+                        raise BundlePointerResolutionError(msg)
+                    value = getattr(value, field_name)
                 else:
-                    value = getattr(value, part)
+                    msg = f"Cannot traverse value with pointer segment {part!r}"
+                    raise BundlePointerResolutionError(msg)
             except (
                 AttributeError,
                 IndexError,
