@@ -37,6 +37,7 @@ nav = [
         { Containers = "tools/gkm-toolkit/api/containers.md" },
         { Loading = "tools/gkm-toolkit/api/loading.md" },
         { Pointers = "tools/gkm-toolkit/api/pointers.md" },
+        { "Schema validation" = "tools/gkm-toolkit/api/schema-validation.md" },
         { "Schema resolution" = "tools/gkm-toolkit/api/schema-resolution.md" },
         { "Model conversion" = "tools/gkm-toolkit/api/model-conversion.md" },
         { Compatibility = "tools/gkm-toolkit/api/compatibility.md" },

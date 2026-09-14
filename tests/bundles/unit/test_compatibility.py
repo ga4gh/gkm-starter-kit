@@ -23,7 +23,12 @@ def test_supported_gkm_versions():
 def test_reject_incompatible_gkm_schema_version():
     bundle = StringIO(json.dumps({"objects": {}}))
     schema = StringIO(
-        json.dumps({"$ref": "https://w3id.org/ga4gh/schema/vrs/0.0.0/json/Allele"})
+        json.dumps(
+            {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "$ref": "https://w3id.org/ga4gh/schema/vrs/0.0.0/json/Allele",
+            }
+        )
     )
 
     with pytest.raises(BundleCompatibilityError, match=r"vrs references '0.0.0'"):

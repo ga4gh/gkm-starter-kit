@@ -80,17 +80,42 @@ def _resolve_json_pointer(document: Any, pointer: str) -> Any:
     return value
 
 
-def validate_bundle_references(document: Mapping[str, Any]) -> None:
-    """Validate all bundle-local JSON Pointers in a decoded bundle.
+def validate_and_expand_bundle_references(
+    document: Mapping[str, Any],
+) -> Mapping[str, Any]:
+    """Validate local pointers and build one expanded document for validation.
 
-    The complete document is traversed even after failures are found. Only a
-    bounded number of failure details are retained for the exception message.
-
-    :param document: Decoded bundle document to inspect.
+    :param document: Decoded JSON bundle document to inspect.
+    :return: Document with resolvable local pointers expanded.
     :raises BundleReferenceError: If one or more local pointers cannot resolve.
     """
     failures: list[tuple[str, str, str]] = []
     failure_count = 0
+    expanded_pointers: dict[str, Any] = {}
+
+    def expand(value: Any, trail: tuple[str, ...] = ()) -> Any:
+        """Expand a value while reusing already resolved pointers."""
+        if isinstance(value, str) and value.startswith("#/"):
+            if value in trail:
+                return value
+
+            if value not in expanded_pointers:
+                try:
+                    target = _resolve_json_pointer(document, value)
+                except BundlePointerResolutionError:
+                    return value
+
+                expanded_pointers[value] = expand(target, (*trail, value))
+
+            return expanded_pointers[value]
+
+        if isinstance(value, Mapping):
+            return {key: expand(item, trail) for key, item in value.items()}
+
+        if isinstance(value, list):
+            return [expand(item, trail) for item in value]
+
+        return value
 
     def validate_value(value: Any, path: str) -> None:
         """Recursively inspect one value for unresolved local pointers.
@@ -124,8 +149,9 @@ def validate_bundle_references(document: Mapping[str, Any]) -> None:
 
     # Begin validation at the document root.
     validate_value(document, "")
+    expanded = expand(document)
     if not failures:
-        return
+        return expanded
 
     # Format the collected failures as one bounded error message.
     details = "\n".join(

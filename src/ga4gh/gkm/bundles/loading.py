@@ -13,8 +13,9 @@ from .compatibility import check_gkm_version_compatibility
 from .containers import Bundle, BundleCollection
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
 from .model_conversion import parse_gks_values
-from .pointers import validate_bundle_references
+from .pointers import validate_and_expand_bundle_references
 from .registry import registry
+from .schema_validation import prepare_bundle_schema, validate_bundle_schema
 
 if TYPE_CHECKING:
     from .repository import BundleRepository
@@ -102,25 +103,29 @@ def load_bundle(
     Loading behavior:
 
     1. Decode the JSON document.
-    2. Check a supplied schema for GKM version compatibility. This is not full
-       JSON Schema validation.
-    3. Check the document's basic shape.
+    2. Require and decode a producer JSON Schema. Verify the schema itself and
+       check its GKM version compatibility before inspecting bundle content.
+    3. Check the document and its metadata's basic shape.
     4. Walk the complete decoded document and validate bundle-local pointers
        before model conversion or bundle construction. Pointer failures are
        aggregated into one :class:`BundleReferenceError`; large error lists
        are truncated with total and omitted counts.
-    5. Convert recognized GKM objects to Pydantic models. Model validation is
+    5. Validate the complete document against the producer JSON Schema after
+       pointer syntax and traversal have been checked.
+    6. Convert recognized GKM objects to Pydantic models. Model validation is
        fail-fast; the first failure prevents a bundle from being returned.
        Producer-specific content remains dictionaries.
 
     :param source: Registered bundle name, file path, or readable JSON stream.
-    :param schema: Producer JSON Schema. A registered schema is used when omitted.
+    :param schema: Producer JSON Schema using Draft 2020-12. A registered schema
+        is used when omitted; one must be available from either source.
     :param serialization: Input serialization. Only ``"json"`` is supported.
         When omitted, JSON is assumed.
     :return: The loaded bundle.
     :raises ga4gh.gkm.bundles.BundleCompatibilityError: If the schema references
         unsupported GKM product versions.
-    :raises BundleSerializationError: If the serialization or data shape is unsupported.
+    :raises BundleSerializationError: If the serialization or data shape is unsupported,
+        or no producer JSON Schema is available.
     :raises ga4gh.gkm.bundles.BundleValidationError: If a recognized GKM object
         fails validation by its reference implementation.
     :raises ga4gh.gkm.bundles.BundleReferenceError: If one or more bundle-local
@@ -134,13 +139,21 @@ def load_bundle(
     # 1. Decode the bundle document.
     raw_document, name, registered_schema = _read_json(source)
 
-    # 2. Check schema compatibility when a schema is available.
+    # 2. Load, validate, and check compatibility of the producer schema.
     schema_source = schema if schema is not None else registered_schema
+    if schema_source is None:
+        message = "A bundle JSON Schema is required"
+        raise BundleSerializationError(message)
+
     schema_document: Mapping[str, Any] | None = None
+    schema_validator = None
     if schema_source is not None:
         raw_schema, _, _ = _read_json(schema_source)
         schema_document = _require_json_object(raw_schema, subject="schema")
 
+        # Prepare once before inspecting bundle content. Pass the validator
+        # below so instance validation does not repeat schema preparation.
+        schema_validator = prepare_bundle_schema(schema_document)
         check_gkm_version_compatibility(schema_document)
 
     # 3. Check the decoded document's basic shape.
@@ -151,10 +164,17 @@ def load_bundle(
         message = "Bundle metadata must be a JSON object"
         raise BundleSerializationError(message)
 
-    # 4. Validate all bundle-local pointers before model conversion.
-    validate_bundle_references(document)
+    # 4. Validate pointers and build the expanded document in one traversal.
+    expanded_document = validate_and_expand_bundle_references(document)
 
-    # 5. Convert recognized objects to reference-implementation models.
+    # 5. Validate the expanded document against the producer schema.
+    validate_bundle_schema(
+        expanded_document,
+        schema_document,
+        validator=schema_validator,
+    )
+
+    # 6. Convert recognized objects to reference-implementation models.
     collections: dict[str, BundleCollection] = {}
     extras: dict[str, Any] = {}
     for collection_name, values in document.items():

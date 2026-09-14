@@ -18,6 +18,7 @@ description = "Genomic Knowledge Model Toolkit"
 license = "CC0-1.0"
 license-files = ["LICENSE"]
 dependencies = [
+  "jsonschema>=4.23.0",
   "requests>=2.32.0",
   "ga4gh.vrs==2.4.0-a3",
   "ga4gh.cat_vrs==0.8.0-a3",
