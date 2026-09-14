@@ -131,7 +131,7 @@ class Bundle(Mapping[str, BundleCollection]):
         :param schema: Producer JSON Schema used to materialize pointer targets.
         """
         self.name = name
-        self.metadata = dict(metadata or {})
+        self.metadata = dict(metadata) if metadata is not None else None
         self.collections = dict(collections)
         self.extras = dict(extras or {})
         self.schema = dict(schema or {})
@@ -434,7 +434,7 @@ class Bundle(Mapping[str, BundleCollection]):
             for name, collection in self.collections.items()
         }
 
-        if self.metadata:
+        if self.metadata is not None:
             document["metadata"] = _to_json_value(self.metadata)
 
         document.update(_to_json_value(self.extras))
