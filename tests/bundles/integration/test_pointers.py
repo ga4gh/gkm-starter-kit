@@ -74,6 +74,21 @@ def test_resolve_rejects_nonlocal_reference():
         civic.resolve("https://example.org/object")
 
 
+@pytest.mark.parametrize(
+    ("pointer", "message"),
+    [
+        ("#/assertion/civic.aid:9/hasEvidenceLines/-1", "array index"),
+        ("#/assertion/civic.aid:9/hasEvidenceLines/01", "array index"),
+        ("#/assertion/civic.aid:9/hasEvidenceLines/~2", "Pointer escape"),
+    ],
+)
+def test_resolve_rejects_invalid_json_pointer_syntax(pointer, message):
+    civic = bundles.load_bundle("civic-assertion-9")
+
+    with pytest.raises(BundleReferenceError, match=message):
+        civic.resolve(pointer)
+
+
 def test_load_validates_all_bundle_references():
     stream = StringIO(
         json.dumps(

@@ -15,10 +15,12 @@ from pydantic import BaseModel
 from .errors import (
     BundleCollectionNotFoundError,
     BundleObjectNotFoundError,
+    BundlePointerResolutionError,
     BundleReferenceError,
     BundleSerializationError,
 )
 from .model_conversion import model_for_schema_references, parse_schema_value
+from .pointers import decode_json_pointer_parts, parse_json_pointer_array_index
 from .schema_resolution import schema_for_pointer, schema_references
 
 
@@ -208,10 +210,11 @@ class Bundle(Mapping[str, BundleCollection]):
 
         value: Any = self
 
-        parts = [
-            raw_part.replace("~1", "/").replace("~0", "~")
-            for raw_part in pointer[2:].split("/")
-        ]
+        try:
+            parts = decode_json_pointer_parts(pointer)
+        except BundlePointerResolutionError as error:
+            raise BundleReferenceError(str(error)) from error
+
         for part in parts:
             # Decode each RFC 6901 path segment; e.g. "a~1b" addresses "a/b".
             try:
@@ -219,7 +222,10 @@ class Bundle(Mapping[str, BundleCollection]):
                 if isinstance(value, Bundle):
                     value = value[part]
                 elif isinstance(value, (list, tuple)):
-                    value = value[int(part)]
+                    try:
+                        value = value[parse_json_pointer_array_index(part)]
+                    except BundlePointerResolutionError as error:
+                        raise BundleReferenceError(str(error)) from error
                 elif isinstance(value, Mapping):
                     value = value[part]
                 else:
