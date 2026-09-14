@@ -1,8 +1,41 @@
+import json
+from io import StringIO
 from pathlib import Path
 
 import pytest
 
 from ga4gh.gkm import bundles
+
+
+def permissive_bundle_schema() -> StringIO:
+    """Return a fresh schema for tests that do not exercise schema rules."""
+    return StringIO(
+        json.dumps(
+            {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+            }
+        )
+    )
+
+
+@pytest.fixture(autouse=True)
+def provide_schema_for_bundle_tests(monkeypatch):
+    """Supply an explicit permissive schema to bundle test calls."""
+    original_load_bundle = bundles.load_bundle
+
+    def load_bundle(source, *, schema=None, serialization=None):
+        """Load a bundle with a permissive schema when none is supplied."""
+        if schema is None:
+            schema = permissive_bundle_schema()
+        return original_load_bundle(
+            source,
+            schema=schema,
+            serialization=serialization,
+        )
+
+    monkeypatch.setattr(bundles, "load_bundle", load_bundle)
+    return original_load_bundle
 
 
 @pytest.fixture

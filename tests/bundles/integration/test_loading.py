@@ -11,6 +11,7 @@ from ga4gh.gkm.bundles import (
     BundleNotFoundError,
     BundleRepositoryResourceNotFoundError,
     BundleSerializationError,
+    BundleValidationError,
 )
 
 
@@ -27,7 +28,12 @@ def test_load_registered_civic_bundle(sequence_id):
 def test_load_json_stream(sequence_id, sequence_reference_bundle):
     stream = StringIO(json.dumps(sequence_reference_bundle))
 
-    bundle = bundles.load_bundle(stream)
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "required": ["sequenceReference"],
+    }
+    bundle = bundles.load_bundle(stream, schema=StringIO(json.dumps(schema)))
 
     assert isinstance(bundle.sequenceReference[sequence_id], SequenceReference)
 
@@ -85,6 +91,27 @@ def test_reject_invalid_schema_shape():
         bundles.load_bundle(bundle, schema=schema)
 
 
+def test_reject_bundle_that_does_not_match_schema():
+    bundle = StringIO(json.dumps({"objects": []}))
+    schema = StringIO(
+        json.dumps(
+            {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {"objects": {"type": "object"}},
+            }
+        )
+    )
+
+    with pytest.raises(BundleValidationError, match="objects"):
+        bundles.load_bundle(bundle, schema=schema)
+
+
+def test_reject_missing_bundle_schema(provide_schema_for_bundle_tests):
+    with pytest.raises(BundleSerializationError, match="JSON Schema is required"):
+        provide_schema_for_bundle_tests(StringIO(json.dumps({"objects": {}})))
+
+
 def test_reject_invalid_metadata_shape():
     bundle = StringIO(json.dumps({"objects": {}, "metadata": []}))
 
@@ -119,14 +146,12 @@ def test_load_bundles():
     assert set(loaded) == {"civic-assertion-9", "civic-assertion-251"}
 
 
-def test_load_bundles_rejects_duplicate_names(bundle_dir):
-    source = bundle_dir / "civic-assertion-9-bundle.json"
-
+def test_load_bundles_rejects_duplicate_names():
     with pytest.raises(
         BundleConflictError,
         match="Multiple bundles resolved to the name",
     ):
-        bundles.load_bundles(source, source)
+        bundles.load_bundles("civic-assertion-9", "civic-assertion-9")
 
 
 def test_reject_unsupported_serialization():

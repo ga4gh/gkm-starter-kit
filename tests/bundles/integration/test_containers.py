@@ -88,6 +88,7 @@ def test_resolve_uses_the_target_schema_not_the_collection_schema(bundle_dir):
 def test_resolve_follows_local_schema_reference_from_properties():
     """A target schema in ``$defs`` materializes an ordinary property value."""
     schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "properties": {
             "conditions": {"$ref": "#/$defs/condition_collection"},
         },
@@ -122,6 +123,7 @@ def test_resolve_follows_local_schema_reference_from_properties():
 def test_resolve_follows_schema_items_for_array_elements():
     """Array-element pointers use ``items`` or ``prefixItems`` schemas."""
     schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "properties": {
             "examples": {
                 "properties": {
@@ -180,6 +182,7 @@ def test_resolve_follows_schema_items_for_array_elements():
 def test_resolve_follows_additional_properties_schema():
     """A property covered by ``additionalProperties`` uses that target schema."""
     schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "properties": {
             "conditions": {
                 "additionalProperties": {
@@ -189,7 +192,7 @@ def test_resolve_follows_additional_properties_schema():
                     )
                 }
             }
-        }
+        },
     }
     document = {"conditions": {"producer-defined": {"name": "Example"}}}
 
@@ -207,12 +210,13 @@ def test_resolve_follows_additional_properties_schema():
 def test_resolve_selects_a_ga4gh_reference_from_all_of():
     """A non-GA4GH constraint must not hide a later GA4GH model reference."""
     schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "properties": {
             "conditions": {
                 "properties": {
                     "entry": {
                         "allOf": [
-                            {"$ref": "https://example.org/producer-constraint"},
+                            {"$ref": "#/$defs/producer-constraint"},
                             {
                                 "$ref": (
                                     "https://w3id.org/ga4gh/schema/va-spec/"
@@ -223,8 +227,9 @@ def test_resolve_selects_a_ga4gh_reference_from_all_of():
                     }
                 }
             }
-        }
+        },
     }
+    schema["$defs"] = {"producer-constraint": {}}
     document = {"conditions": {"entry": {"name": "Example"}}}
 
     bundle = bundles.load_bundle(

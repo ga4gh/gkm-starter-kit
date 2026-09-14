@@ -8,6 +8,8 @@ The API reference documents the public classes, functions, and exceptions in
 - [Loading](loading.md) — load one or several bundles from files,
   streams, registered names, or the public bundle repository.
 - [Pointers](pointers.md) — validate bundle-local JSON Pointers.
+- [Schema validation](schema-validation.md) — validate bundles against their
+  Draft 2020-12 producer schemas.
 - [Schema resolution](schema-resolution.md) — find the schema node and external
   reference for a bundle-local pointer target.
 - [Model conversion](model-conversion.md) — convert bundle values to installed
