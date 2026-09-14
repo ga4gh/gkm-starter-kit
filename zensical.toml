@@ -17,8 +17,8 @@ nav = [
     { Bundles = [
       "data/bundles/index.md",
       { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
-      { "Mini examples" = "data/bundles/mini-examples.md" },
-      { "Public repository" = "data/bundles/repository.md" },
+      { "Mini bundle examples" = "data/bundles/mini-examples.md" },
+      { "Explore published bundles" = "data/bundles/repository.md" },
     ] },
   ] },
   { Toolkit = [
@@ -39,8 +39,8 @@ nav = [
     ] },
     { "Explore with notebooks" = [
       "toolkit/notebooks/index.md",
-      { "Explore mini bundle examples" = "toolkit/notebooks/civic-notebook.md" },
-      { "Public repository bundle walkthrough" = "toolkit/notebooks/repository-notebook.md" },
+      { "Explore mini bundles" = "toolkit/notebooks/civic-notebook.md" },
+      { "Explore the public bundle repository" = "toolkit/notebooks/repository-notebook.md" },
     ] },
     { "Development and contributing" = "development.md" },
   ] },
