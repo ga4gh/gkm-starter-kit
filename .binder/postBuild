@@ -6,7 +6,9 @@ python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install "ga4gh.gkm[notebooks]" --pre
 
+JUPYTER_PREFIX="$(dirname "$(dirname "$(which jupyter)")")"
+
 .venv/bin/python -m ipykernel install \
-    --prefix="${CONDA_PREFIX}" \
+    --prefix="${JUPYTER_PREFIX}" \
     --name="gkm_toolkit" \
     --display-name="GKM Toolkit Kernel"
