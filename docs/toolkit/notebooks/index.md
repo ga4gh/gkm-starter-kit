@@ -11,7 +11,7 @@ your browser without installing anything.
 
 - [Explore mini bundles](civic-notebook.md) — load and explore two mini
   CIViC bundles, inspect their collections, and follow bundle-local references.
-- [Public repository bundle walkthrough](repository-notebook.md) — discover
+- [Explore the public bundle repository](repository-notebook.md) — discover
   public resources, retrieve a bundle and its schema, load them into GKM
   models, and handle repository errors.
 
