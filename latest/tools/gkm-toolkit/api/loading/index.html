@@ -1037,6 +1037,8 @@
       
         
       
+        
+      
     
     
     
@@ -1274,6 +1276,33 @@
     
   
   Pointers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schema validation
 
     
   </span>
@@ -2009,13 +2038,15 @@ resource from the public repository, use :func:<code>load_repository_bundle</cod
 <p>Loading behavior:</p>
 <ol>
 <li>Decode the JSON document.</li>
-<li>Check a supplied schema for GKM version compatibility. This is not full
-   JSON Schema validation.</li>
-<li>Check the document's basic shape.</li>
+<li>Require and decode a producer JSON Schema. Verify the schema itself and
+   check its GKM version compatibility before inspecting bundle content.</li>
+<li>Check the document and its metadata's basic shape.</li>
 <li>Walk the complete decoded document and validate bundle-local pointers
    before model conversion or bundle construction. Pointer failures are
    aggregated into one :class:<code>BundleReferenceError</code>; large error lists
    are truncated with total and omitted counts.</li>
+<li>Validate the complete document against the producer JSON Schema after
+   pointer syntax and traversal have been checked.</li>
 <li>Convert recognized GKM objects to Pydantic models. Model validation is
    fail-fast; the first failure prevents a bundle from being returned.
    Producer-specific content remains dictionaries.</li>
@@ -2058,7 +2089,8 @@ resource from the public repository, use :func:<code>load_repository_bundle</cod
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Producer JSON Schema. A registered schema is used when omitted.</p>
+                <p>Producer JSON Schema using Draft 2020-12. A registered schema
+is used when omitted; one must be available from either source.</p>
               </div>
             </td>
             <td>
@@ -2135,7 +2167,8 @@ unsupported GKM product versions.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the serialization or data shape is unsupported.</p>
+                <p>If the serialization or data shape is unsupported,
+or no producer JSON Schema is available.</p>
               </div>
             </td>
           </tr>

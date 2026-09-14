@@ -55,6 +55,9 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/pointers/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/schema-validation/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/schema-resolution/</loc>
       </url>
       <url>
