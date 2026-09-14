@@ -2,6 +2,7 @@ import json
 from io import StringIO
 
 import pytest
+from pydantic import BaseModel
 
 from ga4gh.gkm import bundles
 from ga4gh.gkm.bundles import (
@@ -58,6 +59,24 @@ def test_resolve_traverses_models_and_lists(sequence_id):
         )
         == "supports"
     )
+
+
+def test_resolve_rejects_model_implementation_attributes():
+    class ExampleModel(BaseModel):
+        value: int
+
+        def implementation_method(self):
+            return "exposed"
+
+    bundle = bundles.Bundle(
+        {"objects": bundles.BundleCollection("objects", {"one": ExampleModel(value=1)})}
+    )
+
+    with pytest.raises(BundleReferenceError):
+        bundle.resolve("#/objects/one/implementation_method")
+
+    with pytest.raises(BundleReferenceError):
+        bundle.resolve("#/objects/one/model_fields")
 
 
 def test_resolve_bad_reference():
