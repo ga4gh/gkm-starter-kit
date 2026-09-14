@@ -83,7 +83,7 @@ The Starter Kit is organized around
 
 - :material-code-braces: **I want to build**
 
-    Find tools for constructing, validating, and working with GKM data.
+    Get started with the tools for working with GKM data.
 
     [Explore tools →](tools/index.md)
 
