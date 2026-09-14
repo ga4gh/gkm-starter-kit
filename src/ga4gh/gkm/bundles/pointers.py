@@ -25,15 +25,15 @@ from .errors import (
 _MAX_BUNDLE_REFERENCE_ERRORS = 50
 
 
-def _resolve_json_pointer(document: Any, pointer: str) -> Any:
-    """Resolve an RFC 6901 JSON Pointer against a decoded JSON document.
+def decode_json_pointer_parts(pointer: str) -> list[str]:
+    """Decode and validate the syntax of a local JSON Pointer.
 
-    :param document: Decoded JSON document used as the pointer root.
     :param pointer: Bundle-local JSON Pointer beginning with ``#/``.
-    :return: The value addressed by ``pointer``.
-    :raises BundlePointerResolutionError: If traversal cannot be completed.
+    :return: Decoded JSON Pointer path segments.
+    :raises BundlePointerResolutionError: If a path segment contains an
+        invalid ``~`` escape.
     """
-    value = document
+    parts = []
     for raw_part in pointer[2:].split("/"):
         # Every ``~`` must begin a valid ``~0`` or ``~1`` escape.
         if any(
@@ -47,8 +47,39 @@ def _resolve_json_pointer(document: Any, pointer: str) -> Any:
             )
             raise BundlePointerResolutionError(msg)
 
-        part = raw_part.replace("~1", "/").replace("~0", "~")
+        parts.append(raw_part.replace("~1", "/").replace("~0", "~"))
 
+    return parts
+
+
+def parse_json_pointer_array_index(part: str) -> int:
+    """Parse a valid JSON Pointer array index.
+
+    :param part: Decoded JSON Pointer path segment addressing an array element.
+    :return: The non-negative array index.
+    :raises BundlePointerResolutionError: If ``part`` is not ``0`` or a
+        non-zero digit followed by digits.
+    """
+    if part != "0" and (not part.isdigit() or part.startswith("0")):
+        msg = (
+            f"invalid JSON Pointer array index {part!r}; expected '0' "
+            "or a non-zero digit followed by digits"
+        )
+        raise BundlePointerResolutionError(msg)
+
+    return int(part)
+
+
+def _resolve_json_pointer(document: Any, pointer: str) -> Any:
+    """Resolve an RFC 6901 JSON Pointer against a decoded JSON document.
+
+    :param document: Decoded JSON document used as the pointer root.
+    :param pointer: Bundle-local JSON Pointer beginning with ``#/``.
+    :return: The value addressed by ``pointer``.
+    :raises BundlePointerResolutionError: If traversal cannot be completed.
+    """
+    value = document
+    for part in decode_json_pointer_parts(pointer):
         if isinstance(value, Mapping):
             # Object segments select a key in the current dictionary.
             try:
@@ -58,14 +89,7 @@ def _resolve_json_pointer(document: Any, pointer: str) -> Any:
                 raise BundlePointerResolutionError(msg) from error
         elif isinstance(value, list):
             # Array segments must be a non-negative index with no leading zero.
-            if part != "0" and (not part.isdigit() or part.startswith("0")):
-                msg = (
-                    f"invalid JSON Pointer array index {part!r}; expected '0' "
-                    "or a non-zero digit followed by digits"
-                )
-                raise BundlePointerResolutionError(msg)
-
-            index = int(part)
+            index = parse_json_pointer_array_index(part)
 
             # A valid index must still point to an existing array element.
             if index >= len(value):
