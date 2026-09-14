@@ -3592,7 +3592,9 @@ mapping syntax, attribute access, or :meth:<code>collection</code>.</p>
 <p><code>iriReference</code> objects are accepted directly. When the supplied
 producer schema identifies the exact target with a supported GA4GH W3ID
 reference, return its validated model; otherwise return the JSON value.
-Use :meth:<code>normalize</code> to expand references recursively.</p>
+Use :meth:<code>normalize</code> to expand references recursively. Model traversal
+is restricted to declared Pydantic fields; methods and other model
+implementation attributes are not valid pointer targets.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -3665,7 +3667,8 @@ an <code>iriReference</code> whose <code>root</code> contains that pointer.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the pointer is invalid or cannot be resolved.</p>
+                <p>If the pointer is invalid or cannot be
+resolved, including when it targets an undeclared model field.</p>
               </div>
             </td>
           </tr>
