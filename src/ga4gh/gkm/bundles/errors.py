@@ -50,7 +50,7 @@ class BundleRepositoryRequestError(BundleRepositoryError):
 
 
 class BundleRepositoryResourceNotFoundError(BundleRepositoryError):
-    """Raised when a requested resource is not listed in the repository index."""
+    """Raised when a resource is neither indexed nor completely saved locally."""
 
 
 class BundleRepositoryFormatError(BundleRepositoryError):

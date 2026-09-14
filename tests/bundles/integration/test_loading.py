@@ -34,29 +34,41 @@ def test_load_json_stream(sequence_id, sequence_reference_bundle):
 
 def test_load_repository_bundle_fetches_bundle_and_schema():
     repository = Mock()
-    repository.get_bundle.return_value = {"objects": {}}
-    repository.get_bundle_json_schema.return_value = {
-        "$schema": "https://json-schema.org/draft/2020-12/schema"
-    }
+    repository.get_bundle_documents.return_value = (
+        {"objects": {}},
+        {"$schema": "https://json-schema.org/draft/2020-12/schema"},
+    )
 
     bundle = bundles.load_repository_bundle(repository, "civic")
 
     assert isinstance(bundle, bundles.Bundle)
     assert bundle.name == "civic"
-    repository.get_bundle.assert_called_once_with("civic")
-    repository.get_bundle_json_schema.assert_called_once_with("civic")
+    repository.get_bundle_documents.assert_called_once_with("civic", refresh=False)
 
 
 def test_load_repository_bundle_propagates_unknown_resource():
     repository = Mock()
-    repository.get_bundle.side_effect = BundleRepositoryResourceNotFoundError(
+    repository.get_bundle_documents.side_effect = BundleRepositoryResourceNotFoundError(
         "unknown resource"
     )
 
     with pytest.raises(BundleRepositoryResourceNotFoundError, match="unknown resource"):
         bundles.load_repository_bundle(repository, "missing")
 
+    repository.get_bundle.assert_not_called()
     repository.get_bundle_json_schema.assert_not_called()
+
+
+def test_load_repository_bundle_refreshes_both_artifacts():
+    repository = Mock()
+    repository.get_bundle_documents.return_value = (
+        {"objects": {}},
+        {"$schema": "https://json-schema.org/draft/2020-12/schema"},
+    )
+
+    bundles.load_repository_bundle(repository, "civic", refresh=True)
+
+    repository.get_bundle_documents.assert_called_once_with("civic", refresh=True)
 
 
 @pytest.mark.parametrize("value", ["not JSON", "[1, 2, 3]"])

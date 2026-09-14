@@ -200,16 +200,25 @@ def load_bundles(*sources: BundleSource) -> dict[str, Bundle]:
     return loaded
 
 
-def load_repository_bundle(repository: BundleRepository, name: str) -> Bundle:
-    """Fetch and validate a published bundle from a bundle repository.
+def load_repository_bundle(
+    repository: BundleRepository, name: str, *, refresh: bool = False
+) -> Bundle:
+    """Load and validate a bundle through a bundle repository.
 
-    Use :attr:`BundleRepository.resource_names` to discover valid names before
-    calling this helper. The resource's ``bundle.json`` and
-    ``bundle.schema.json`` are fetched and passed through :func:`load_bundle`.
-    The repository resource name is assigned to the returned bundle.
+    Loading behavior:
 
-    :param repository: Repository from which to fetch the resource.
-    :param name: Name of a resource listed in ``repository.resource_names``.
+    1. Confirm ``name`` is indexed or completely saved locally.
+    2. Retrieve the resource's ``bundle.json`` and ``bundle.schema.json``
+       together. Saved local copies are reused by default; missing artifacts or
+       ``refresh=True`` retrieve copies from the public repository.
+    3. Pass both documents to :func:`load_bundle` for validation and conversion.
+    4. Assign the repository resource name to the returned bundle.
+
+    :param repository: Repository that resolves saved or public resource artifacts.
+    :param name: Name of an indexed resource or complete locally saved resource.
+    :param refresh: Whether to retrieve and replace the saved bundle and schema
+        instead of reusing their local copies. A refresh requires the remote
+        resource to remain available.
     :return: The validated bundle.
     :raises BundleRepositoryError: If the repository cannot provide either document.
     :raises BundleCompatibilityError: If the published schema is incompatible.
@@ -217,8 +226,7 @@ def load_repository_bundle(repository: BundleRepository, name: str) -> Bundle:
     :raises BundleValidationError: If a recognized object fails validation.
     :raises BundleReferenceError: If a bundle-local reference is invalid.
     """
-    bundle_data = repository.get_bundle(name)
-    schema_data = repository.get_bundle_json_schema(name)
+    bundle_data, schema_data = repository.get_bundle_documents(name, refresh=refresh)
     bundle = load_bundle(
         io.StringIO(json.dumps(bundle_data)),
         schema=io.StringIO(json.dumps(schema_data)),
