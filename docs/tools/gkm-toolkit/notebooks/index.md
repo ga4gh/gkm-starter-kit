@@ -41,14 +41,15 @@ We recommend either of the following options for opening a notebook.
 
 1. In the terminal, activate the project's `.venv` virtual environment:
 
-   ```shell
-   source .venv/bin/activate
-   ```
+         source .venv/bin/activate
 
-2. Run `python -m jupyterlab` in the terminal. JupyterLab usually opens
-   automatically in a new browser window. If it does not, open the URL shown
-   in the terminal.
-3. Open a notebook from the `notebooks/` directory.
+2. In the activated virtual environment, start [JupyterLab](https://docs.jupyter.org/en/latest/):
+
+         python3 -m jupyterlab
+
+3. JupyterLab usually opens automatically in a new browser window. If it does not, open
+   the URL shown in the terminal.
+4. Open a notebook from the `notebooks/` directory.
 
 #### VS Code
 
