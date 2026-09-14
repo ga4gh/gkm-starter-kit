@@ -12,7 +12,6 @@ from scripts.gen_supported_versions import main as generate_supported_versions
 SOURCE_DIR = Path("docs")
 OUTPUT_DIR = Path("docs-build")
 EXCLUDED_PATHS = {
-    Path("superpowers"),
     Path("user-stories/_template"),
     Path("user-stories/patterns.yml"),
 }
