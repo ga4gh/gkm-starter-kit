@@ -55,10 +55,6 @@ class BundleRepository:
     The saved ``index.json`` is reused by default, which permits offline
     construction after the index has been retrieved once. Pass ``refresh=True``
     to retrieve and atomically replace the saved index.
-
-    :attr:`resource_names` reflects the saved or refreshed repository index.
-    :attr:`cached_resource_names` lists complete locally saved resources,
-    including resources subsequently removed from a refreshed remote index.
     """
 
     base_url: str = "https://pub-489634df77d342208a669f97e449ac4c.r2.dev"
