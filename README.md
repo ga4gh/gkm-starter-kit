@@ -10,8 +10,9 @@ A practical entry point for using the GA4GH Genomic Knowledge Model (GKM).
 The project is organized around three pillars:
 
 - **Data** — GKM Bundles from participating producers
-- **Toolkit** — the Python package for loading, exploring, and exchanging GKM
-  Bundles, schemas, and the genomic knowledge objects they contain
+- **Tools** — reference implementations and the Python package for loading,
+  exploring, and exchanging GKM Bundles, schemas, and the genomic knowledge
+  objects they contain
 - **User stories** — examples of projects using GKM standards
 
 Start with the **[GKM Starter Kit documentation](https://ga4gh.github.io/gkm-starter-kit/)**.

@@ -112,7 +112,7 @@ and replace `"civic"`.
 
     Read guided notebook examples online, or learn how to run them yourself.
 
-- :material-database: [**Explore available data**](../data/bundles/repository.md)
+- :material-database: [**Explore available data**](../../data/bundles/repository.md)
 
     Learn about the public bundle repository and its published datasets.
 
@@ -120,7 +120,7 @@ and replace `"civic"`.
 
     Read the API documentation for the package and its functionality.
 
-- :material-file-search-outline: [**Preview example data**](../data/bundles/mini-examples.md)
+- :material-file-search-outline: [**Preview example data**](../../data/bundles/mini-examples.md)
 
     Inspect a compact, mini bundles and the linked records it contains.
 

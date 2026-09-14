@@ -77,6 +77,132 @@
     color: white;
 }
 
+.gks-standard-label {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin: 0.1em 0.2em 0.1em 0;
+    border-radius: 0.25em;
+    border: 1px solid rgb(27 117 187 / 35%);
+    background: rgb(27 117 187 / 8%);
+    color: var(--md-primary-fg-color--dark);
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+}
+
+[data-md-color-scheme="slate"] .gks-standard-label {
+    border-color: rgb(79 174 220 / 45%);
+    background: rgb(79 174 220 / 12%);
+    color: var(--md-primary-fg-color--light);
+}
+
+.gks-standard-stack {
+    display: grid;
+    justify-items: center;
+    gap: 0.7rem;
+    margin: 1.25rem auto 1.75rem;
+    max-width: 24rem;
+}
+
+.gks-standard-layer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.gks-standard-block {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid;
+    border-radius: 0.35rem;
+    color: var(--md-default-fg-color);
+    font-size: 0.8rem;
+    line-height: 1.35;
+    text-align: center;
+    text-decoration: none;
+}
+
+.gks-standard-block:hover {
+    color: var(--md-default-fg-color);
+    text-decoration: none;
+}
+
+.gks-standard-block strong {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.gks-standard-block span {
+    font-size: 0.78rem;
+}
+
+.gks-standard-layer--core {
+    width: 100%;
+}
+
+.gks-standard-layer--vrs {
+    width: 86%;
+}
+
+.gks-standard-layer--cat-vrs {
+    width: 72%;
+}
+
+.gks-standard-layer--va-spec {
+    width: 58%;
+}
+
+.gks-standard-layer--core .gks-standard-block {
+    width: 100%;
+    border-color: #6a9fca;
+    background: #eaf4fb;
+}
+
+.gks-standard-layer--vrs .gks-standard-block {
+    width: 100%;
+    border-color: #79b8d5;
+    background: #edf8fc;
+}
+
+.gks-standard-layer--cat-vrs .gks-standard-block {
+    width: 100%;
+    border-color: #a59bc4;
+    background: #f3f0f9;
+}
+
+.gks-standard-layer--va-spec .gks-standard-block {
+    width: 100%;
+    border-color: #9ebc7e;
+    background: #f2f8ed;
+}
+
+[data-md-color-scheme="slate"] .gks-standard-block {
+    color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .gks-standard-block:hover {
+    color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .gks-standard-layer--core .gks-standard-block {
+    background: #17354b;
+}
+
+[data-md-color-scheme="slate"] .gks-standard-layer--vrs .gks-standard-block {
+    background: #173d4d;
+}
+
+[data-md-color-scheme="slate"] .gks-standard-layer--cat-vrs .gks-standard-block {
+    background: #352f4b;
+}
+
+[data-md-color-scheme="slate"] .gks-standard-layer--va-spec .gks-standard-block {
+    background: #304528;
+}
+
 /* v2 landing: three-pillars explainer graphic */
 
 /* The graphic stays inside the text column - it never bleeds into the nav or
