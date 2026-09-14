@@ -5,6 +5,7 @@ import pytest
 from ga4gh.cat_vrs.models import CategoricalVariant
 from ga4gh.core.models import MappableConcept
 from ga4gh.va_spec.base import Condition
+from pydantic import BaseModel
 
 from ga4gh.gkm import bundles
 from ga4gh.gkm.bundles import (
@@ -274,6 +275,17 @@ def test_denormalize_replaces_nested_objects_by_content_or_identity(sequence_id)
     assert exported["sequence"] == f"#/sequenceReference/{sequence_id}"
     assert exported["updated_assertion"] == "#/assertion/civic.aid:9"
     assert exported["producer_object"] == normalized["producer_object"]
+
+
+def test_export_accepts_pydantic_models():
+    """Export converts materialized models to JSON-compatible mappings."""
+
+    class ExampleModel(BaseModel):
+        value: int
+
+    bundle = bundles.Bundle({})
+
+    assert bundle.export(ExampleModel(value=1)) == {"value": 1}
 
 
 def test_export_shallow_preserves_bundle_and_deep_normalizes_it():
