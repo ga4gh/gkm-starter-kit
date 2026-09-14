@@ -18,7 +18,7 @@ See which published datasets are available in the Starter Kit repository:
 ```python
 from ga4gh.gkm.bundles import BundleRepository, load_repository_bundle
 
-repository = BundleRepository()
+repository = BundleRepository(refresh=False)
 print("Available resources:", repository.resource_names)
 ```
 
@@ -36,7 +36,7 @@ but the same pattern works with any name the repository lists.
 Bring the published CIViC bundle into your application:
 
 ```python
-civic = load_repository_bundle(repository, "civic")
+civic = load_repository_bundle(repository, "civic", refresh=False)
 print(f"Loaded {civic.name}")
 ```
 
@@ -46,8 +46,8 @@ Expected output:
 Loaded civic
 ```
 
-The Toolkit retrieves the bundle and its schema, then checks them before you
-work with the data.
+By default, the Toolkit uses saved local artifacts when available, then
+validates the bundle and schema before you work with the data.
 
 ## Follow the connected knowledge
 
