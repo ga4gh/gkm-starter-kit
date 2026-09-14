@@ -4,4 +4,4 @@ set -e
 python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install "ga4gh.gkm[notebooks]" --pre
-python -m ipykernel install --user --display-name="GKM_Toolkit_Kernel"
+python3 -m ipykernel install --user --display-name="GKM_Toolkit_Kernel"
