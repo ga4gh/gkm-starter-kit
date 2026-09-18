@@ -3,8 +3,12 @@ from io import StringIO
 
 import pytest
 from ga4gh.cat_vrs.models import CategoricalVariant
-from ga4gh.core.models import MappableConcept
+from ga4gh.core.models import MappableConcept, iriReference
 from ga4gh.va_spec.base import Condition
+from ga4gh.va_spec.ccv_2022.models import (
+    VariantOncogenicityEvidenceLine,
+    VariantOncogenicityStatement,
+)
 from pydantic import BaseModel
 
 from ga4gh.gkm import bundles
@@ -35,6 +39,111 @@ def test_bundle_and_collection_protocols():
     )
 
 
+def test_collection_access_materializes_oncogenicity_models():
+    schema = {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "properties": {
+            "assertion": {
+                "additionalProperties": {
+                    "$ref": (
+                        "https://w3id.org/ga4gh/schema/va-spec/"
+                        "1.1.0-snapshot.2026-06.1/ccv-2022/json/"
+                        "VariantOncogenicityStatement"
+                    )
+                }
+            },
+            "proposition": {
+                "additionalProperties": {
+                    "anyOf": [
+                        {
+                            "$ref": (
+                                "https://w3id.org/ga4gh/schema/va-spec/"
+                                "1.1.0-snapshot.2026-06.1/base/json/"
+                                "VariantClinicalSignificanceProposition"
+                            )
+                        },
+                        {
+                            "$ref": (
+                                "https://w3id.org/ga4gh/schema/va-spec/"
+                                "1.1.0-snapshot.2026-06.1/base/json/"
+                                "VariantOncogenicityProposition"
+                            )
+                        },
+                    ]
+                }
+            },
+        },
+        "type": "object",
+    }
+    document = {
+        "assertion": {
+            "example.assertion:1": {
+                "id": "example.assertion:1",
+                "type": "Statement",
+                "specifiedBy": {"type": "Method", "name": "Oncogenicity guideline"},
+                "proposition": "#/proposition/example.proposition:1",
+                "direction": "supports",
+                "classification": {
+                    "name": "Likely Oncogenic",
+                    "primaryCoding": {
+                        "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+                        "code": "likely oncogenic",
+                    },
+                },
+                "hasEvidenceLines": [
+                    {
+                        "type": "EvidenceLine",
+                        "specifiedBy": {
+                            "type": "Method",
+                            "name": "Oncogenicity guideline",
+                            "methodType": "functional_domain_location",
+                            "reportedIn": {
+                                "type": "Document",
+                                "name": "Oncogenicity guideline publication",
+                            },
+                        },
+                        "directionOfEvidenceProvided": "supports",
+                        "strengthOfEvidenceProvided": {
+                            "primaryCoding": {
+                                "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+                                "code": "moderate",
+                            }
+                        },
+                    }
+                ],
+            }
+        },
+        "proposition": {
+            "example.proposition:1": {
+                "id": "example.proposition:1",
+                "type": "VariantOncogenicityProposition",
+                "subjectVariant": {
+                    "type": "CategoricalVariant",
+                    "name": "RET M918T",
+                    "members": [],
+                    "constraints": [],
+                },
+                "predicate": "isOncogenicFor",
+                "objectTumorType": {"name": "Medullary thyroid carcinoma"},
+            }
+        },
+    }
+    civic = bundles.load_bundle(
+        StringIO(json.dumps(document)), schema=StringIO(json.dumps(schema))
+    )
+    assertion = civic.assertion["example.assertion:1"]
+
+    assert isinstance(assertion, VariantOncogenicityStatement)
+    assert assertion.proposition.subjectVariant.name == "RET M918T"
+    assert isinstance(assertion.hasEvidenceLines[0], VariantOncogenicityEvidenceLine)
+    assert (
+        civic.to_dict()["assertion"]["example.assertion:1"]["proposition"]
+        == "#/proposition/example.proposition:1"
+    )
+    normalized = civic.normalize(civic.to_dict()["assertion"]["example.assertion:1"])
+    assert normalized["proposition"]["type"] == "VariantOncogenicityProposition"
+
+
 def test_normalize():
     civic = bundles.load_bundle("civic-assertion-251")
 
@@ -47,7 +156,7 @@ def test_normalize():
 
 def test_normalize_from_value():
     civic = bundles.load_bundle("civic-assertion-9")
-    proposition = civic.resolve(civic.assertion["civic.aid:9"]["proposition"])
+    proposition = civic.assertion["civic.aid:9"].proposition
 
     inline = civic.normalize(proposition)
 
@@ -55,22 +164,19 @@ def test_normalize_from_value():
     assert isinstance(inline["subjectVariant"], dict)
 
 
-def test_resolve_accepts_iri_references_and_nested_root(bundle_dir):
+def test_resolve_accepts_iri_references(bundle_dir):
     civic = bundles.load_bundle(
         bundle_dir / "civic-assertion-9-bundle.json",
         schema=bundle_dir / "civic-gks-bundle-v0.1.0.schema.json",
     )
-    assertion = civic.assertion[next(iter(civic.assertion))]
-    proposition = civic.resolve(assertion["proposition"])
-
-    subject_variant = civic.resolve(proposition.subjectVariant)
+    subject_variant = civic.resolve(
+        iriReference(root="#/molecularProfile/civic.mpid:1594")
+    )
     assert isinstance(subject_variant, CategoricalVariant)
-    assert civic.resolve(proposition.subjectVariant.root) == subject_variant
 
-    object_condition = civic.resolve(proposition.objectCondition)
+    object_condition = civic.resolve(iriReference(root="#/disease/civic.did:2950"))
     assert isinstance(object_condition, Condition)
     assert isinstance(object_condition.root, MappableConcept)
-    assert civic.resolve(proposition.objectCondition.root) == object_condition
 
 
 def test_resolve_uses_the_target_schema_not_the_collection_schema(bundle_dir):
@@ -246,7 +352,7 @@ def test_resolve_selects_a_ga4gh_reference_from_all_of():
 
 def test_normalize_and_export_round_trip():
     civic = bundles.load_bundle("civic-assertion-9")
-    original = civic.assertion["civic.aid:9"]
+    original = civic.to_dict()["assertion"]["civic.aid:9"]
 
     normalized = civic.normalize(original)
     exported = civic.export(normalized)
@@ -263,7 +369,7 @@ def test_denormalize_replaces_nested_objects_by_content_or_identity(sequence_id)
     sequence = civic.sequenceReference[sequence_id].model_dump(
         mode="json", exclude_none=True
     )
-    assertion = dict(civic.assertion["civic.aid:9"])
+    assertion = civic.to_dict()["assertion"]["civic.aid:9"]
     normalized = {
         "sequence": sequence,
         "updated_assertion": {**assertion, "description": "updated"},

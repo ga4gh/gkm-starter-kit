@@ -9,12 +9,15 @@ from os import PathLike
 from pathlib import Path
 from typing import IO, TYPE_CHECKING, Any, TypeAlias
 
+from pydantic import BaseModel
+
 from .compatibility import check_gkm_version_compatibility
 from .containers import Bundle, BundleCollection
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
-from .model_conversion import parse_gks_values
+from .model_conversion import parse_gks_values, parse_schema_references_value
 from .pointers import validate_and_expand_bundle_references
 from .registry import registry
+from .schema_resolution import schema_for_pointer, schema_references
 from .schema_validation import prepare_bundle_schema, validate_bundle_schema
 
 if TYPE_CHECKING:
@@ -183,8 +186,43 @@ def load_bundle(
                 extras[collection_name] = values
             continue
 
+        # Keep the compact values for serialization and use the expanded copy to
+        # build typed objects whose required fields may contain local pointers.
         parsed = parse_gks_values(values)
-        collections[collection_name] = BundleCollection(collection_name, parsed)
+        expanded_values = expanded_document.get(collection_name, values)
+        materialized: dict[str, Any] = {}
+
+        for key, parsed_value in parsed.items():
+            expanded_value = expanded_values.get(key)
+            # The producer schema selects specific models when a shared `type`
+            # discriminator, such as `Statement`, is not sufficiently precise.
+            target_schema = schema_for_pointer(schema_document, [collection_name, key])
+            references = (
+                schema_references(target_schema, schema_document)
+                if target_schema is not None
+                else ()
+            )
+            materialized_value = parse_schema_references_value(
+                expanded_value, references
+            )
+
+            if isinstance(materialized_value, BaseModel):
+                materialized[key] = materialized_value
+            else:
+                # Fall back to discriminator-based conversion for objects whose
+                # producer schema does not identify a supported GKM model.
+                parsed_expanded_value = parse_gks_values(expanded_value)
+                materialized[key] = (
+                    parsed_expanded_value
+                    if isinstance(parsed_expanded_value, BaseModel)
+                    else parsed_value
+                )
+
+        collections[collection_name] = BundleCollection(
+            collection_name,
+            materialized,
+            serialized_values=parsed,
+        )
 
     return Bundle(
         collections,

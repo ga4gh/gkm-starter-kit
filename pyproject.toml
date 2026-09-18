@@ -22,7 +22,7 @@ dependencies = [
   "requests>=2.32.0",
   "ga4gh.vrs==2.4.0-a3",
   "ga4gh.cat_vrs==0.8.0-a3",
-  "ga4gh.va_spec==0.5.0-a4",
+  "ga4gh.va_spec==0.5.0-a5",
 ]
 dynamic = ["version"]
 

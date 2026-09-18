@@ -176,9 +176,11 @@ def schema_references(
     if isinstance(reference, str) and not reference.startswith("#/"):
         return (reference,)
 
+    composition_keywords = ("allOf", "anyOf", "oneOf")
     return tuple(
         reference
-        for branch in schema.get("allOf", [])
+        for keyword in composition_keywords
+        for branch in schema.get(keyword, [])
         if isinstance(branch, Mapping)
         for reference in schema_references(branch, root)
     )
