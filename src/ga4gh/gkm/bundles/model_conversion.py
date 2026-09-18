@@ -6,14 +6,15 @@ from __future__ import annotations
 
 import inspect
 from collections.abc import Mapping
-from functools import cache
+from functools import cache, reduce
+from operator import or_
 from typing import Any
 
 from ga4gh.cat_vrs import models as cat_vrs_models
 from ga4gh.core import models as core_models
 from ga4gh.va_spec import aac_2017, acmg_2015, base, ccv_2022
 from ga4gh.vrs import models as vrs_models
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel, TypeAdapter, ValidationError
 
 from .compatibility import supported_gkm_versions, w3id_schema_reference
 from .errors import BundleValidationError
@@ -124,6 +125,34 @@ def parse_schema_value(value: Any, model: type[BaseModel]) -> Any:
             return value
 
         message = f"Invalid {model.__name__!r} bundle object: {error}"
+        raise BundleValidationError(message) from error
+
+
+def parse_schema_references_value(value: Any, references: tuple[str, ...]) -> Any:
+    """Validate a value against the models selected by schema references.
+
+    Composition keywords can identify multiple candidate models. Pydantic selects
+    the candidate whose complete structure validates.
+
+    :param value: JSON-compatible value to validate.
+    :param references: Candidate external schema references.
+    :return: A validated model, or the original value when no model is supported.
+    :raises BundleValidationError: If supported models exist but none validate.
+    """
+    models = tuple(
+        model
+        for reference in references
+        if (model := model_for_schema_ref(reference)) is not None
+    )
+    if not models:
+        return value
+    if len(models) == 1:
+        return parse_schema_value(value, models[0])
+
+    try:
+        return TypeAdapter(reduce(or_, models)).validate_python(value)
+    except ValidationError as error:
+        message = f"Invalid value for schema-selected models: {error}"
         raise BundleValidationError(message) from error
 
 

@@ -20,7 +20,7 @@ from .errors import (
     BundleReferenceError,
     BundleSerializationError,
 )
-from .model_conversion import model_for_schema_references, parse_schema_value
+from .model_conversion import parse_schema_references_value
 from .pointers import decode_json_pointer_parts, parse_json_pointer_array_index
 from .schema_resolution import schema_for_pointer, schema_references
 
@@ -63,16 +63,47 @@ class BundleCollection(Mapping[str, Any]):
 
     :param name: Collection name from the bundle.
     :param values: Objects keyed by their identifiers.
+    :param serialized_values: Compact objects used when serializing the bundle.
     """
 
-    def __init__(self, name: str, values: Mapping[str, Any]) -> None:
+    def __init__(
+        self,
+        name: str,
+        values: Mapping[str, Any],
+        *,
+        serialized_values: Mapping[str, Any] | None = None,
+    ) -> None:
         """Initialize a bundle collection.
 
         :param name: Collection name from the bundle.
         :param values: Objects keyed by their identifiers.
+        :param serialized_values: Compact objects used when serializing the bundle.
         """
         self.name = name
         self._values = dict(values)
+        self._serialized_values = dict(
+            values if serialized_values is None else serialized_values
+        )
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return the collection's compact serialized values.
+
+        :return: Objects keyed by identifier with local references preserved.
+        """
+        return _to_json_value(self._serialized_values)
+
+    def serialized(self, key: str) -> Any:
+        """Return one compact object by identifier.
+
+        :param key: Object identifier.
+        :return: The stored object with local references preserved.
+        :raises BundleObjectNotFoundError: If ``key`` is absent.
+        """
+        try:
+            return self._serialized_values[key]
+        except KeyError as error:
+            message = f"Unknown identifier {key!r} in collection {self.name!r}"
+            raise BundleObjectNotFoundError(message) from error
 
     def __getitem__(self, key: str) -> Any:
         """Return an object by identifier.
@@ -234,7 +265,7 @@ class Bundle(Mapping[str, BundleCollection]):
         except BundlePointerResolutionError as error:
             raise BundleReferenceError(str(error)) from error
 
-        for part in parts:
+        for index, part in enumerate(parts):
             # Decode each RFC 6901 path segment; e.g. "a~1b" addresses "a/b".
             try:
                 # Traverse bundles, sequences, mappings, and model attributes.
@@ -245,6 +276,14 @@ class Bundle(Mapping[str, BundleCollection]):
                         value = value[parse_json_pointer_array_index(part)]
                     except BundlePointerResolutionError as error:
                         raise BundleReferenceError(str(error)) from error
+                elif isinstance(value, BundleCollection):
+                    # Return the typed object at the target, but traverse compact data
+                    # so nested pointers remain addressable.
+                    value = (
+                        value[part]
+                        if index == len(parts) - 1
+                        else value.serialized(part)
+                    )
                 elif isinstance(value, Mapping):
                     value = value[part]
                 elif isinstance(value, BaseModel):
@@ -277,9 +316,7 @@ class Bundle(Mapping[str, BundleCollection]):
                 if target_schema is not None
                 else ()
             )
-            model = model_for_schema_references(references)
-            if model is not None:
-                value = parse_schema_value(value, model)
+            value = parse_schema_references_value(value, references)
 
         return value
 
@@ -461,7 +498,9 @@ class Bundle(Mapping[str, BundleCollection]):
             with a collection name or the reserved ``"metadata"`` field.
         """
         document = {
-            name: _to_json_value(collection)
+            name: collection.to_dict()
+            if isinstance(collection, BundleCollection)
+            else _to_json_value(collection)
             for name, collection in self.collections.items()
         }
 
