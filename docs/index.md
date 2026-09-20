@@ -75,22 +75,16 @@ The Starter Kit is organized around
 
 <div class="grid cards" markdown>
 
-- :material-database: **I have data to share**
+- :material-database: [**I have data to share**](data/index.md)
 
     Prepare and share GKM data for others to use.
 
-    [Explore data →](data/index.md)
-
-- :material-code-braces: **I want to build**
+- :material-code-braces: [**I want to build**](tools/index.md)
 
     Get started with the tools for working with GKM data.
 
-    [Explore tools →](tools/index.md)
-
-- :material-rocket-launch: **I have a project**
+- :material-rocket-launch: [**I have a project**](user-stories/index.md)
 
     Learn from projects using GKM and share your own implementation.
-
-    [Browse the user stories →](user-stories/index.md)
 
 </div>
