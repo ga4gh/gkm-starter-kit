@@ -20,7 +20,7 @@ the scale and use case.
 
     Share a single GKM object in a message or API response.
 
-- **[Compact bundles](bundles/index.md)**
+- [**Compact bundles**](bundles/index.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
