@@ -51,13 +51,30 @@ nav = [
   { "User Stories" = [
     "user-stories/index.md",
     { "Browse by product" = [
+      "user-stories/by-product/index.md",
+      { GKS-Core = "user-stories/by-product/gks-core/index.md" },
       { VRS = "user-stories/by-product/vrs/index.md" },
+      { Cat-VRS = "user-stories/by-product/cat-vrs/index.md" },
+      { VA-Spec = "user-stories/by-product/va-spec/index.md" },
     ] },
     { "Browse by use pattern" = [
+      "user-stories/by-pattern/index.md",
       { "Cross-source variant harmonization" = "user-stories/by-pattern/cross-source-variant-harmonization/index.md" },
+      { "Knowledgebase exchange" = "user-stories/by-pattern/knowledgebase-exchange/index.md"}
     ] },
     { "Browse by implementer" = [
-      { "BRCA Exchange" = "user-stories/by-implementer/brca-exchange/index.md" },
+      "user-stories/by-implementer/index.md",
+      { "BRCA Exchange" = [
+        "user-stories/by-implementer/brca-exchange/index.md",
+        { "Identifying unique variants across sources with VRS" = "user-stories/brca/identifying-unique-variants-vrs/vignette.md" },
+      ] },
+      { "CIViC" = [
+        "user-stories/by-implementer/civic/index.md",
+        { "Sharing oncogenicity knowledge with GA4GH GKM" = [
+          "user-stories/civic/civic-oncogenicity-gkm/vignette/index.md",
+          { "Try the Notebook" = "user-stories/civic/civic-oncogenicity-gkm/notebook.md" },
+        ] },
+      ] }
     ] },
     { "Contribute to User Stories" = "user-stories/contribute.md" },
   ] },

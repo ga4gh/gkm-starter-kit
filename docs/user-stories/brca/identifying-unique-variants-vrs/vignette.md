@@ -21,10 +21,11 @@ BRCA Exchange aggregates cancer-risk variants in the BRCA1 and BRCA2 genes from 
 
 **At a glance**
 
-- **Who:** BRCA Exchange
-- **GKM standards used:** VRS 2.0
+- **Implementer:** BRCA Exchange
+- **Products:** <span class="gks-product-label gks-product-label--vrs">VRS <small>2.0</small></span>
+- **Pattern:** Cross-source variant harmonization
 - **Tools:** `vrs-python` (link below)
-- **Status:** pilot
+- **Status:** <span class="gks-status gks-status--pilot">pilot</span>
 
 ---
 
@@ -43,7 +44,7 @@ The workflow looks like this: pull variants from each source; convert each into 
 A single BRCA1 variant, expressed as a VRS 2.0 Allele, looks like this:
 
 ```json
---8<-- "docs/user-stories/brca-exchange-vrs-cross-source/payloads/brca1-variant.vrs.json"
+--8<-- "docs/user-stories/brca/identifying-unique-variants-vrs/payloads/brca1-variant.vrs.json"
 ```
 
 The `id` field (the digest) is what enables exact-match deduplication: any other source describing the same change against the same reference sequence produces the same `id`.
@@ -57,4 +58,4 @@ The `id` field (the digest) is what enables exact-match deduplication: any other
 
 - [VRS Quick Start Guide](https://vrs.ga4gh.org/) — for producing VRS-format records.
 - [vrs-python documentation](https://vrs-python.readthedocs.io/) — installation and API reference.
-- Other implementers of `cross-source-variant-harmonization`: see [vignettes filtered by this pattern](../by-pattern/cross-source-variant-harmonization/index.md).
+- Other implementers of `cross-source-variant-harmonization`: see [vignettes filtered by this pattern](../../by-pattern/cross-source-variant-harmonization/index.md).

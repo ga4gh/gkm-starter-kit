@@ -25,7 +25,7 @@ Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-
 If you're ready to write:
 
 1. Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) (the `_template/` folder in the repo).
-2. Copy `docs/user-stories/_template/vignette.md` into a new `docs/user-stories/<your-slug>/` folder.
+2. Copy `docs/user-stories/_template/vignette.md` into a new `docs/user-stories/<source>/<your-slug>/` folder.
 3. Fill in the frontmatter and body. Add `payloads/` and `diagrams/` subfolders as needed.
 4. Run `python -m scripts.build_docs && zensical build --clean --strict`
    locally to catch errors.

@@ -1,11 +1,11 @@
 # Vignette Authoring Guide
 
-This folder contains the canonical template for a GKM Starter Kit vignette. Copy `vignette.md` into a new folder under `docs/user-stories/<your-slug>/` and fill it in.
+This folder contains the canonical template for a GKM Starter Kit vignette. Copy `vignette.md` into `docs/user-stories/<source>/<your-slug>/` and fill it in.
 
 ## Workflow
 
-1. Pick a kebab-case slug (e.g. `brca-exchange-vrs-cross-source`).
-2. Create the folder: `docs/user-stories/<your-slug>/`.
+1. Pick a source namespace (e.g. `brca` or `civic`) and a kebab-case vignette slug (e.g. `identifying-unique-variants-vrs`).
+2. Create the folder: `docs/user-stories/<source>/<your-slug>/`.
 3. Copy `vignette.md` from this folder into it.
 4. (Optional) Add `payloads/` and `diagrams/` subfolders for example data and figures referenced from your vignette body.
 5. Fill in the frontmatter (see field reference below) and the body sections.
@@ -18,9 +18,9 @@ This folder contains the canonical template for a GKM Starter Kit vignette. Copy
 | Field | Required | Notes |
 | ----- | -------- | ----- |
 | `title` | yes | One-line use case description. Quoted. |
-| `slug` | yes | Kebab-case. Must match the folder name. |
+| `slug` | yes | Kebab-case. Must match the vignette folder name. The source folder defines the URL namespace. |
 | `summary` | yes | One-sentence catalog blurb shown on the index card. Distinct from "Why this matters" in the body. |
-| `products` | yes | List of `{name, version?}` entries. `name` must be one of: `VRS`, `Cat-VRS`, `VA-Spec`. Version is optional but strongly encouraged. |
+| `products` | yes | List of `{name, version?}` entries. `name` must be one of: `GKS-Core`, `VRS`, `Cat-VRS`, `VA-Spec`. Version is optional but strongly encouraged. |
 | `pattern` | yes | One value from `docs/user-stories/patterns.yml`. If no existing pattern fits, add a new entry to `patterns.yml` in the same PR. |
 | `implementer` | yes | The organization, consortium, knowledgebase, or project behind the use case. For `status: proposal`, the proposing party. |
 | `status` | yes | One of: `production`, `pilot`, `proposal`. Rendered as a coloured badge on the index. |
