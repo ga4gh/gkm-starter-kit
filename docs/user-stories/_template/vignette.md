@@ -1,9 +1,9 @@
 ---
 title: "<One-line use case>"
-slug: <kebab-case-slug-matching-folder-name>
+slug: <kebab-case-slug-matching-vignette-folder-name>
 summary: "<One-sentence catalog blurb. Distinct from 'Why this matters' below.>"
 products:
-  - name: VRS              # one of: VRS, Cat-VRS, VA-Spec
+  - name: VRS              # one of: GKS-Core, VRS, Cat-VRS, VA-Spec
     version: "2.0"
 pattern: <one value from docs/user-stories/patterns.yml>
 implementer: <organization, consortium, knowledgebase, or project>
@@ -21,10 +21,11 @@ last_updated: 2026-05-27
 
 **At a glance**
 
-- **Who:** <implementer>
-- **GKM standards used:** <standard + version per entry, e.g. VRS 2.0, VA-Spec 1.0>
+- **Implementer:** <implementer>
+- **Products:** <span class="gks-product-label gks-product-label--vrs">VRS <small>2.0</small></span> <span class="gks-product-label gks-product-label--va-spec">VA-Spec <small>1.0</small></span>
+- **Pattern:** <pattern label from `patterns.yml`>
 - **Tools:** <named libraries / services with links>
-- **Status:** <production | pilot | proposal>
+- **Status:** <span class="gks-status gks-status--production">production</span>
 
 ---
 
@@ -37,7 +38,7 @@ last_updated: 2026-05-27
 <Real example payloads, lightly annotated. Reference files in `./payloads/` where helpful. Snippet paths are repo-root-relative (the `base_path: ["."]` documentation configuration enables this):>
 
 ```json
---8<-- "docs/user-stories/<slug>/payloads/example.vrs.json"
+--8<-- "docs/user-stories/<source>/<slug>/payloads/example.vrs.json"
 ```
 
 ## The tools used
@@ -49,3 +50,17 @@ last_updated: 2026-05-27
 - [Product Quick Start Guide for X](https://link.to/product/quickstart)
 - Related vignette: [<title>](../<other-slug>/vignette.md)
 - Similar implementer: <name + link>
+
+## Add a supporting notebook walkthrough
+
+When a vignette has an executable example, keep the narrative and the notebook
+on separate pages. Add the notebook under `notebooks/<source>/`, then register
+its source and generated page in `scripts/gen_notebook_files.py`, placing the
+generated page alongside the vignette at
+`user-stories/<source>/<slug>/notebook.md`. Add the generated page as a nested
+entry under the vignette in `zensical.toml`, link to it from the vignette, and
+copy any notebook-local images or data through the generator so the rendered
+page does not depend on files outside `docs-build/`.
+
+Use a concise task-oriented page label such as **Explore CIViC oncogenicity**;
+the notebook's first Markdown heading becomes the page heading.
