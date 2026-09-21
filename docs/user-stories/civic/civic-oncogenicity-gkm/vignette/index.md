@@ -56,14 +56,14 @@ CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-
       "type": "CategoricalVariant",
       "name": "MAP2K1 P124S",
       "members": [
-        "#/variant/civic.vid:82/genomic/ga4gh:VA.5tTL...", // NC_000015.9:g.66729162C>T
-        "#/variant/civic.vid:82/coding/ga4gh:VA.fcZ...",    // NM_002755.3:c.370C>T
-        "#/variant/civic.vid:82/protein/ga4gh:VA.gI5..."     // NP_002746.1:p.Pro124Ser
+        "#/variant/civic.vid:82/genomic/ga4gh:VA.5tTLvjSAjWhE0tW_z0aAzsk5WlWKZrCR", // NC_000015.9:g.66729162C>T
+        "#/variant/civic.vid:82/coding/ga4gh:VA.fcZSo_OetJhIFnc6fx5LC6oPVQZZA9MR", // NM_002755.3:c.370C>T
+        "#/variant/civic.vid:82/protein/ga4gh:VA.gI5daa-xbJJEiE4IAXyJUjJRgI-DYK8u" // NP_002746.1:p.Pro124Ser
       ]
     }
   },
   "proposition": {
-    "civic.proposition:...": {
+    "civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4": {
       "type": "VariantOncogenicityProposition",
       "subjectVariant": "#/molecularProfile/civic.mpid:82",
       "geneContextQualifier": "#/feature/civic.gid:31", // MAP2K1
@@ -89,7 +89,7 @@ CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-
   "assertion": {
     "civic.aid:251": {
       "type": "Statement",
-      "proposition": "#/proposition/civic.proposition:...",
+      "proposition": "#/proposition/civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4",
       "classification": {
         "primaryCoding": {
           "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
@@ -101,9 +101,9 @@ CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-
         "#/source/civic.sid:5629"
       ],
       "hasEvidenceLines": [
-        { "evidenceOutcome": "OS2", "scoreOfEvidenceProvided": 4 },
-        { "evidenceOutcome": "OM3", "scoreOfEvidenceProvided": 2 },
-        { "evidenceOutcome": "OP4", "scoreOfEvidenceProvided": 1 }
+        { "evidenceOutcome": "OS2", "scoreOfEvidenceProvided": 4, ... },
+        { "evidenceOutcome": "OM3", "scoreOfEvidenceProvided": 2, ... },
+        { "evidenceOutcome": "OP4", "scoreOfEvidenceProvided": 1, ... }
       ]
     }
   }
