@@ -50,6 +50,11 @@
     color: var(--md-primary-bg-color);
 }
 
+/* Keep vignette status badges in content, but omit them from sidebar labels. */
+.md-nav .md-status {
+  display: none;
+}
+
 .gks-status {
     display: inline-block;
     padding: 0.1em 0.5em;
@@ -90,6 +95,58 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     vertical-align: middle;
+}
+
+.gks-product-label {
+    display: inline-block;
+    padding: 0.1em 0.5em;
+    margin: 0.1em 0.2em 0.1em 0;
+    border: 1px solid;
+    border-radius: 0.25em;
+    font-size: 0.75em;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.gks-product-label small {
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+.gks-product-label--gks-core {
+    border-color: #6a9fca;
+    background: #eaf4fb;
+}
+
+.gks-product-label--vrs {
+    border-color: #79b8d5;
+    background: #edf8fc;
+}
+
+.gks-product-label--cat-vrs {
+    border-color: #a59bc4;
+    background: #f3f0f9;
+}
+
+.gks-product-label--va-spec {
+    border-color: #9ebc7e;
+    background: #f2f8ed;
+}
+
+[data-md-color-scheme="slate"] .gks-product-label--gks-core {
+    background: #17354b;
+}
+
+[data-md-color-scheme="slate"] .gks-product-label--vrs {
+    background: #173d4d;
+}
+
+[data-md-color-scheme="slate"] .gks-product-label--cat-vrs {
+    background: #352f4b;
+}
+
+[data-md-color-scheme="slate"] .gks-product-label--va-spec {
+    background: #304528;
 }
 
 [data-md-color-scheme="slate"] .gks-standard-label {

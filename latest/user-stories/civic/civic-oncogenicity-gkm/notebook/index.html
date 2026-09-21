@@ -1,0 +1,3298 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Tools and examples for the GA4GH Genomic Knowledge Model">
+      
+      
+      
+        <link rel="canonical" href="https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/civic/civic-oncogenicity-gkm/notebook/">
+      
+      
+        <link rel="prev" href="../vignette/">
+      
+      
+        <link rel="next" href="../../../contribute/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/ga4gh-favicon.svg">
+      <meta name="generator" content="zensical-0.0.59">
+    
+    
+      
+        <title>Try the Notebook - Genomic Knowledge Model Starter Kit</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../../../assets/stylesheets/classic/main.38807bfb.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/classic/palette.c7ab7c71.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/css/extra.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-civic-represents-oncogenicity-assertions-using-gkm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Genomic Knowledge Model Starter Kit" class="md-header__button md-logo" aria-label="Genomic Knowledge Model Starter Kit" data-md-component="logo">
+      
+  <img src="../../../../assets/images/ga4gh-favicon.svg" alt="Genomic Knowledge Model Starter Kit">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Genomic Knowledge Model Starter Kit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Try the Notebook
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="none" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/ga4gh/gkm-starter-kit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ga4gh/gkm-starter-kit
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../data/" class="md-tabs__link">
+          
+  
+  Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../tools/" class="md-tabs__link">
+          
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  User Stories
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../about/" class="md-tabs__link">
+        
+  
+  About the GKM
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Genomic Knowledge Model Starter Kit" class="md-nav__button md-logo" aria-label="Genomic Knowledge Model Starter Kit" data-md-component="logo">
+      
+  <img src="../../../../assets/images/ga4gh-favicon.svg" alt="Genomic Knowledge Model Starter Kit">
+
+    </a>
+    Genomic Knowledge Model Starter Kit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ga4gh/gkm-starter-kit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ga4gh/gkm-starter-kit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../data/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Data
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../data/bundles/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Bundles
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Bundles
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../data/bundles/schemas-and-contents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Bundle schemas and contents
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../data/bundles/mini-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Mini bundle examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../data/bundles/repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Explore published bundles
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Tools
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Tools
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/reference-implementations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Reference implementations
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tools/gkm-toolkit/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GKM Toolkit
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  GKM Toolkit
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Getting started
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tools/gkm-toolkit/notebooks/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Explore with notebooks
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3_4" id="__nav_3_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Explore with notebooks
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/notebooks/civic-notebook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Explore mini bundles
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/notebooks/repository-notebook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Explore the public bundle repository
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../tools/gkm-toolkit/api/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API reference
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3_5" id="__nav_3_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  API reference
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Containers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/loading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Loading
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/pointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Pointers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/schema-validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schema validation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/schema-resolution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schema resolution
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/model-conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Model conversion
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/compatibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Compatibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Registry
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/repository/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Bundle repository
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/api/errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Errors
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Development and contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  User Stories
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  User Stories
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../by-product/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browse by product
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Browse by product
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-product/gks-core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GKS-Core
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-product/vrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  VRS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-product/cat-vrs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Cat-VRS
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-product/va-spec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  VA-Spec
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../by-pattern/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browse by use pattern
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Browse by use pattern
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-pattern/cross-source-variant-harmonization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Cross-source variant harmonization
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../by-pattern/knowledgebase-exchange/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Knowledgebase exchange
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../by-implementer/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Browse by implementer
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Browse by implementer
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../by-implementer/brca-exchange/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  BRCA Exchange
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  BRCA Exchange
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../brca/identifying-unique-variants-vrs/vignette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identifying unique variants across sources with VRS
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../by-implementer/civic/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  CIViC
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_3" id="__nav_4_4_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  CIViC
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../vignette/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Sharing oncogenicity knowledge with GA4GH GKM
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--pilot"></span>
+  
+
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_4_3_2" id="__nav_4_4_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_4_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Sharing oncogenicity knowledge with GA4GH GKM
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+        <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Try the Notebook
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Try the Notebook
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-in-civic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Starting in CIViC
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Starting in CIViC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#civic-assertion-202" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CIViC Assertion 202
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-the-civic-assertion-page-to-gkm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        From the CIViC assertion page to GKM
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From the CIViC assertion page to GKM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-the-published-gkm-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Load the published GKM bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-the-oncogenic-assertion-from-the-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Retrieve the oncogenic assertion from the bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-claim-was-classified" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What claim was classified?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-variation-and-disease-behind-the-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The variation and disease behind the claim
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The variation and disease behind the claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-a-civic-molecular-profile-to-cat-vrs-and-vrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        From a CIViC molecular profile to Cat-VRS and VRS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From a CIViC molecular profile to Cat-VRS and VRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-vrs-allele-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Full VRS Allele representation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-the-civic-disease-as-a-mapped-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Representing the CIViC disease as a mapped concept
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representing the CIViC disease as a mapped concept">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disease-concept-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Disease concept JSON
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-evidence-behind-the-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The evidence behind the classification
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The evidence behind the classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#representing-oncogenicity-criteria-as-evidence-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Representing oncogenicity criteria as Evidence Lines
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-oncogenicity-codes-and-evidence-items-remain-separate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Why oncogenicity codes and Evidence Items remain separate
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinguishing-evidence-strength-level-and-curator-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Distinguishing evidence strength, level, and curator quality
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking-civic-evidence-items-to-source-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Linking CIViC Evidence Items to source documents
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-civics-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recording CIViC's approval
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-the-connected-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reusing the connected interpretation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reusing the connected interpretation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct-the-complete-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Construct the complete interpretation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contribute to User Stories
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  About the GKM
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#starting-in-civic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Starting in CIViC
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Starting in CIViC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#civic-assertion-202" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        CIViC Assertion 202
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-the-civic-assertion-page-to-gkm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        From the CIViC assertion page to GKM
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From the CIViC assertion page to GKM">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#load-the-published-gkm-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Load the published GKM bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#retrieve-the-oncogenic-assertion-from-the-bundle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Retrieve the oncogenic assertion from the bundle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-claim-was-classified" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What claim was classified?
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-variation-and-disease-behind-the-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The variation and disease behind the claim
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The variation and disease behind the claim">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-a-civic-molecular-profile-to-cat-vrs-and-vrs" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        From a CIViC molecular profile to Cat-VRS and VRS
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="From a CIViC molecular profile to Cat-VRS and VRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-vrs-allele-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Full VRS Allele representation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#representing-the-civic-disease-as-a-mapped-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Representing the CIViC disease as a mapped concept
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representing the CIViC disease as a mapped concept">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#disease-concept-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Disease concept JSON
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-evidence-behind-the-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The evidence behind the classification
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The evidence behind the classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#representing-oncogenicity-criteria-as-evidence-lines" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Representing oncogenicity criteria as Evidence Lines
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-oncogenicity-codes-and-evidence-items-remain-separate" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Why oncogenicity codes and Evidence Items remain separate
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinguishing-evidence-strength-level-and-curator-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Distinguishing evidence strength, level, and curator quality
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linking-civic-evidence-items-to-source-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Linking CIViC Evidence Items to source documents
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recording-civics-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Recording CIViC's approval
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusing-the-connected-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reusing the connected interpretation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reusing the connected interpretation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#construct-the-complete-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Construct the complete interpretation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+    <a href="https://github.com/ga4gh/gkm-starter-kit/edit/main/docs/user-stories/civic/civic-oncogenicity-gkm/notebook.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="how-civic-represents-oncogenicity-assertions-using-gkm">How CIViC represents Oncogenicity Assertions using GKM</h1>
+<div class="admonition info">
+<p class="admonition-title">Notebook source</p>
+<p>Rendered from <code>notebooks/civic/vignettes/oncogenicity/civic-oncogenicity-gkm.ipynb</code>.</p>
+</div>
+<p>Use this notebook to trace a CIViC oncogenicity assertion from the CIViC user interface into the GA4GH Genomic Knowledge Model (GKM). It accompanies the <a href="../vignette/">CIViC oncogenicity vignette</a>.</p>
+<p>Start with the CIViC page, then use the GKM Toolkit to inspect its connected GKM records: a VA-Spec assertion and proposition, a Cat-VRS categorical variant with VRS members, evidence lines, source links, and provenance.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To learn how to explore a published bundle with the GKM Toolkit, see the <a href="../../../../tools/gkm-toolkit/notebooks/civic-notebook/">Explore mini bundles notebook</a></p>
+</div>
+<h2 id="starting-in-civic">Starting in CIViC</h2>
+<p>A CIViC Oncogenic Assertion (Oncogenic AID) summarizes a collection of Evidence Items (EIDs) to provide a classification of somatic variant oncogenicity under the ClinGen/CGC/VICC guidelines <a href="https://pubmed.ncbi.nlm.nih.gov/35101336/">(Horak et al. 2022)</a>.</p>
+<p>For this walkthrough, keep two related CIViC concepts separate: <strong>Evidence Items</strong> are the curated records attached to the assertion, while <strong>oncogenicity codes</strong> are the criteria CIViC applies to reach the classification. The CIViC UI displays both, but the current CIViC data model does not link an individual code to an individual Evidence Item.</p>
+<h3 id="civic-assertion-202">CIViC Assertion 202</h3>
+<p>We will use <a href="https://civicdb.org/assertions/202/summary">CIViC Assertion 202</a> in this notebook.</p>
+<p>The CIViC UI shows that this assertion:</p>
+<ul>
+<li>Classifies <strong>RET M918T as likely oncogenic in medullary thyroid carcinoma</strong> using the ClinGen/CGC/VICC Codes OM1, OS2, OP4, OP1, and OP3</li>
+<li>Classification has been approved by CIViC</li>
+<li>Has 7 attached Evidence Items</li>
+</ul>
+<p><img alt="CIViC Assertion 202" src="../civic-assertion-202-ui.png" /></p>
+<p>The next sections map each part of the UI to GKM.</p>
+<h2 id="from-the-civic-assertion-page-to-gkm">From the CIViC assertion page to GKM</h2>
+<h3 id="load-the-published-gkm-bundle">Load the published GKM bundle</h3>
+<p>CIViCpy creates GKM-compatible records and bundles from CIViC data. This notebook uses the GKM Toolkit to load the published CIViC bundle from the public bundle repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The examples read the published CIViC bundle. On first use, the Toolkit may download and cache it locally.</p>
+</div>
+<div class="highlight"><span class="filename">In [1]</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ga4gh.gkm.bundles</span><span class="w"> </span><span class="kn">import</span> <span class="n">BundleRepository</span><span class="p">,</span> <span class="n">load_repository_bundle</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">repository</span> <span class="o">=</span> <span class="n">BundleRepository</span><span class="p">(</span><span class="n">refresh</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">civic_bundle</span> <span class="o">=</span> <span class="n">load_repository_bundle</span><span class="p">(</span><span class="n">repository</span><span class="p">,</span> <span class="s2">"civic"</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">civic_bundle</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">Bundle</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'civic'</span><span class="p">,</span> <span class="n">collections</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="retrieve-the-oncogenic-assertion-from-the-bundle">Retrieve the oncogenic assertion from the bundle</h3>
+<p>We can use the GKM Toolkit to retrieve CIViC AID 202 from the bundle. Its GKM representation is a VA-Spec <code>VariantOncogenicityStatement</code>: a knowledge record that evaluates a proposition and stores CIViC's classification.</p>
+<div class="highlight"><span class="filename">In [2]</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">assertion_id</span> <span class="o">=</span> <span class="s2">"civic.aid:202"</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">assertion</span> <span class="o">=</span> <span class="n">civic_bundle</span><span class="o">.</span><span class="n">assertion</span><span class="p">[</span><span class="n">assertion_id</span><span class="p">]</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">type</span><span class="p">(</span><span class="n">assertion</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">ga4gh</span><span class="o">.</span><span class="n">va_spec</span><span class="o">.</span><span class="n">ccv_2022</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">VariantOncogenicityStatement</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">In [3]</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CIViC record: </span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Declared VA-Spec type: </span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"GKM record type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">assertion</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CIViC assessment: </span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">direction</span><span class="si">}</span><span class="s2"> the proposition"</span><span class="p">)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">classification</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classification: </span><span class="si">{</span><span class="n">classification</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Linked proposition: </span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">proposition</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>CIViC record: civic.aid:202
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Declared VA-Spec type: Statement
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>GKM record type: VariantOncogenicityStatement
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>CIViC assessment: supports the proposition
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Classification: likely oncogenic
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Linked proposition: civic.proposition:lGNyTBSVq9ncomifdlwtOERYq7ZM37FX
+</code></pre></div>
+<p>This record is GKM's counterpart to the CIViC assertion page. Its declared VA-Spec <code>type</code> is the general <strong><code>Statement</code></strong> type. The bundle schema identifies it as the more specific <strong><code>VariantOncogenicityStatement</code></strong> profile for the ClinGen/CGC/VICC oncogenicity guidelines. The Toolkit uses that profile to create a Python object with oncogenicity-specific fields, including <code>classification</code> and <code>hasEvidenceLines</code>.</p>
+<p>The assertion <strong>supports</strong> the proposition and classifies it as <strong>likely oncogenic</strong>. The Toolkit also follows the bundle reference, so <code>assertion.proposition</code> is a typed <code>VariantOncogenicityProposition</code>, not a pointer string.</p>
+<h3 id="what-claim-was-classified">What claim was classified?</h3>
+<p>The assertion links to a proposition that holds the variant, disease, gene context, and allele origin. The Toolkit follows that link for you.</p>
+<div class="highlight"><span class="filename">In [4]</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">proposition</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">proposition</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">variant</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">subjectVariant</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">disease</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">objectTumorType</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">gene</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">geneContextQualifier</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">origin</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">alleleOriginQualifier</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">evidence_lines</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">hasEvidenceLines</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">framework</span> <span class="o">=</span> <span class="n">evidence_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Proposition type: </span><span class="si">{</span><span class="n">proposition</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Subject variant: </span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Gene context: </span><span class="si">{</span><span class="n">gene</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Allele origin: </span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Claim: </span><span class="si">{</span><span class="n">proposition</span><span class="o">.</span><span class="n">predicate</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Proposition type: VariantOncogenicityProposition
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Subject variant: RET M918T
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Gene context: RET
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Allele origin: somatic
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Claim: isOncogenicFor Medullary Thyroid Carcinoma
+</code></pre></div>
+<p>Read the proposition as: <strong>somatic RET M918T is oncogenic for medullary thyroid carcinoma</strong>. The proposition defines the claim. The Statement records CIViC's assessment: <em>likely oncogenic</em>. Keeping them separate lets GKM evaluate, cite, and reuse the same claim with its context intact.</p>
+<h2 id="the-variation-and-disease-behind-the-claim">The variation and disease behind the claim</h2>
+<h3 id="from-a-civic-molecular-profile-to-cat-vrs-and-vrs">From a CIViC molecular profile to Cat-VRS and VRS</h3>
+<p>Precise variation identification requires more than a display name such as <code>RET M918T</code>. CIViC groups all sequence contexts under one CIViC Variant. Cat-VRS represents that interpreted category, and its members point to precise VRS Alleles at coding, genomic, and protein levels.</p>
+<p>In the assertion UI, we can see the following molecular profile:</p>
+<p><img alt="CIViC Assertion Molecular Profile" src="../civic-assertion-202-molecular-profile-ui.png" /></p>
+<p>Selecting the molecular profile opens:</p>
+<p><img alt="CIViC Molecular Profile RET M918T" src=".././civic-molecular-profile-ret-m918t.png" /></p>
+<div class="highlight"><span class="filename">In [5]</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">members</span> <span class="o">=</span> <span class="p">[</span><span class="n">member</span><span class="o">.</span><span class="n">root</span> <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">variant</span><span class="o">.</span><span class="n">members</span><span class="p">]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">civic_variant</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">mapping</span><span class="o">.</span><span class="n">coding</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>    <span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">variant</span><span class="o">.</span><span class="n">mappings</span> <span class="ow">or</span> <span class="p">[]</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="k">if</span> <span class="n">mapping</span><span class="o">.</span><span class="n">coding</span><span class="o">.</span><span class="n">system</span> <span class="o">==</span> <span class="s2">"https://civicdb.org/links/variant/"</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="p">)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Categorical variant: </span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"CIViC Variant ID: </span><span class="si">{</span><span class="n">civic_variant</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"VRS Allele IDs by sequence context:"</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="n">context_labels</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="s2">"hgvs.c"</span><span class="p">:</span> <span class="s2">"Coding"</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="s2">"hgvs.g"</span><span class="p">:</span> <span class="s2">"Genomic"</span><span class="p">,</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>    <span class="s2">"hgvs.p"</span><span class="p">:</span> <span class="s2">"Protein"</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="p">}</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="n">protein_allele</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>    <span class="n">member</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">expression</span><span class="o">.</span><span class="n">syntax</span> <span class="o">==</span> <span class="s2">"hgvs.p"</span> <span class="k">for</span> <span class="n">expression</span> <span class="ow">in</span> <span class="n">member</span><span class="o">.</span><span class="n">expressions</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>    <span class="n">context</span> <span class="o">=</span> <span class="n">context_labels</span><span class="p">[</span><span class="n">member</span><span class="o">.</span><span class="n">expressions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">syntax</span><span class="p">]</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  - </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">member</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">member</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Categorical variant: RET M918T (civic.mpid:113)
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>CIViC Variant ID: civic.vid:113
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>VRS Allele IDs by sequence context:
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>  - Coding: ga4gh:VA.TZBjEPHhLRYxssQopcOQLWEBQrwzhH3T (NM_020975.4:c.2753T&gt;C)
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>  - Genomic: ga4gh:VA.ON-Q17mJBYx3unmQ8GiqllzEphxR-Fie (NC_000010.11:g.43121968T&gt;C)
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>  - Protein: ga4gh:VA.hEybNB_CeKflfFhT5AKOU5i1lgZPP-aS (RET M918T)
+</code></pre></div>
+<h4 id="full-vrs-allele-representation">Full VRS Allele representation</h4>
+<p>Focus on the protein-level member as one VRS representation.</p>
+<div class="highlight"><span class="filename">In [6]</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Example VRS Protein Allele: </span><span class="si">{</span><span class="n">protein_allele</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Name: </span><span class="si">{</span><span class="n">protein_allele</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">for</span> <span class="n">expression</span> <span class="ow">in</span> <span class="n">protein_allele</span><span class="o">.</span><span class="n">expressions</span><span class="p">:</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">expression</span><span class="o">.</span><span class="n">syntax</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">expression</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Example VRS Protein Allele: ga4gh:VA.hEybNB_CeKflfFhT5AKOU5i1lgZPP-aS
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Name: RET M918T
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  hgvs.p: NP_065681.1:p.Met918Thr
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  hgvs.p: ENSP00000347942.3:p.Met918Thr
+</code></pre></div>
+<p>This output shows the complete VRS representation of the protein-level member.</p>
+<div class="highlight"><span class="filename">In [7]</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">protein_allele</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ga4gh:VA.hEybNB_CeKflfFhT5AKOU5i1lgZPP-aS"</span><span class="p">,</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allele"</span><span class="p">,</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RET M918T"</span><span class="p">,</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">  </span><span class="nt">"digest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hEybNB_CeKflfFhT5AKOU5i1lgZPP-aS"</span><span class="p">,</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">  </span><span class="nt">"expressions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">      </span><span class="nt">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hgvs.p"</span><span class="p">,</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NP_065681.1:p.Met918Thr"</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">      </span><span class="nt">"syntax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hgvs.p"</span><span class="p">,</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENSP00000347942.3:p.Met918Thr"</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">  </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ga4gh:SL.oIeqSfOEuqO7KNOPt8YUIa9vo1f6yMao"</span><span class="p">,</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SequenceLocation"</span><span class="p">,</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">    </span><span class="nt">"digest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"oIeqSfOEuqO7KNOPt8YUIa9vo1f6yMao"</span><span class="p">,</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">    </span><span class="nt">"sequenceReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SequenceReference"</span><span class="p">,</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">      </span><span class="nt">"refgetAccession"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SQ.jMu9-ItXSycQsm4hyABeW_UfSNRXRVnl"</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">    </span><span class="nt">"start"</span><span class="p">:</span><span class="w"> </span><span class="mi">917</span><span class="p">,</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">    </span><span class="nt">"end"</span><span class="p">:</span><span class="w"> </span><span class="mi">918</span><span class="p">,</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="nt">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">  </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="w">    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LiteralSequenceExpression"</span><span class="p">,</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="w">    </span><span class="nt">"sequence"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T"</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="p">}</span>
+</code></pre></div>
+<p>The CIViC Variant ID connects the CIViC record to its categorical interpretation. Cat-VRS groups its equivalent molecular descriptions into that one interpreted subject, while the VRS Allele IDs identify the precise coding, genomic, and protein-level forms.</p>
+<p>The last object is the complete VRS representation for the protein-level context of that CIViC Variant:</p>
+<ul>
+<li><code>id</code> is the computable VRS identifier for this Allele.</li>
+<li><code>location</code> identifies where the variation occurs on the relevant reference sequence.</li>
+<li><code>state</code> identifies what sequence state is observed at that location.</li>
+<li><code>expressions</code> provide familiar human-readable forms, such as protein HGVS.</li>
+</ul>
+<p>The coding and genomic member Alleles use the same VRS structure. Together, these records preserve the distinct sequence-level representations grouped under one CIViC Variant.</p>
+<h3 id="representing-the-civic-disease-as-a-mapped-concept">Representing the CIViC disease as a mapped concept</h3>
+<p>In the assertion UI, we can see the following disease:</p>
+<p><img alt="CIViC disease as shown in assertion" src=".././civic-assertion-202-diseaase-ui.png" /></p>
+<p>Selecting the disease opens:</p>
+<p><img alt="CIViC Disease Medullary Thyroid Carcinoma" src=".././civic-disease-medullary-thyroid-carcinoma.png" /></p>
+<p>GKM represents this as a mapped disease concept. It keeps the display name and adds a computable disease identifier:</p>
+<div class="highlight"><span class="filename">In [8]</span><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Disease:"</span><span class="p">,</span> <span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">mappings</span> <span class="ow">or</span> <span class="p">[]:</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="n">coding</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">coding</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">mapping</span><span class="o">.</span><span class="n">relation</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">coding</span><span class="o">.</span><span class="n">system</span><span class="si">}{</span><span class="n">coding</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Disease: Medullary Thyroid Carcinoma
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  exactMatch: https://disease-ontology.org/?id=root='DOID:3973'
+</code></pre></div>
+<h4 id="disease-concept-json">Disease concept JSON</h4>
+<p>This output shows the full mapped disease concept:</p>
+<div class="highlight"><span class="filename">In [9]</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">disease</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude_none</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"civic.did:15"</span><span class="p">,</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="nt">"conceptType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease"</span><span class="p">,</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medullary Thyroid Carcinoma"</span><span class="p">,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="nt">"mappings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">      </span><span class="nt">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">        </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://disease-ontology.org/?id="</span><span class="p">,</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOID:3973"</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">      </span><span class="nt">"relation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exactMatch"</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="p">}</span>
+</code></pre></div>
+<h2 id="the-evidence-behind-the-classification">The evidence behind the classification</h2>
+<h3 id="representing-oncogenicity-criteria-as-evidence-lines">Representing oncogenicity criteria as Evidence Lines</h3>
+<p>The CIViC UI shows OM1, OS2, OP4, OP1, and OP3. The published GKM representation contains five VA-Spec Evidence Lines for this criterion-level rationale. The Evidence Items shown in the UI are represented separately, as source URLs later in this notebook.</p>
+<p><img alt="CIViC Assertion 202 Summary" src="../civic-assertion-202-summary-ui.png" /></p>
+<div class="highlight"><span class="filename">In [10]</span><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'Code'</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}{</span><span class="s1">'Method'</span><span class="si">:</span><span class="s2">&lt;32</span><span class="si">}{</span><span class="s1">'Strength'</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}{</span><span class="s1">'Score'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span> <span class="o">*</span> <span class="mi">62</span><span class="p">)</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">evidence_codes</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>    <span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">]</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span><span class="p">:</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>    <span class="n">code</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>    <span class="n">method</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">methodType</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>    <span class="n">strength</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strengthOfEvidenceProvided</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>    <span class="n">score</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">scoreOfEvidenceProvided</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">code</span><span class="si">:</span><span class="s2">&lt;6</span><span class="si">}{</span><span class="n">method</span><span class="si">:</span><span class="s2">&lt;32</span><span class="si">}{</span><span class="n">strength</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}{</span><span class="n">score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="n">total_score</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">scoreOfEvidenceProvided</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span><span class="p">)</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total classification score: </span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="n">evidence_summary</span> <span class="o">=</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">methodType</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_'</span><span class="p">,</span><span class="w"> </span><span class="s1">'-'</span><span class="p">)</span><span class="si">}</span><span class="s2"> "</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a>    <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">)"</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Code  Method                          Strength      Score
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>--------------------------------------------------------------
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>OM1   functional_domain_location      moderate      2
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>OS2   functional_assay                strong        4
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>OP4   population_frequency            supporting    1
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>OP1   computational_prediction        supporting    1
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>OP3   somatic_hotspot_recurrence      supporting    1
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>Total classification score: 9
+</code></pre></div>
+<h3 id="why-oncogenicity-codes-and-evidence-items-remain-separate">Why oncogenicity codes and Evidence Items remain separate</h3>
+<p>The scores are 2 (OM1), 4 (OS2), and 1 each (OP4, OP1, and OP3), totaling 9. The GKM representation uses an Evidence Line for each criterion contributing to the classification. Each line records the criterion, its method, strength, direction, and contribution under the ClinGen/CGC/VICC classification method.</p>
+<p>CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention an Evidence Item and code in free text, for example <code>(civic.eid:12709, OS2)</code>. Descriptions can also include other parenthetical references, such as database versions <code>(v4.1.0, OP4)</code>, and curators use different conventions. CIViCpy therefore cannot reliably link Evidence Lines to Evidence Items from these descriptions. Its CIViC-to-GKM representation leaves <code>EvidenceLine.hasEvidenceItems</code> empty. A future CIViC model could link each Evidence Line directly to its Evidence Items.</p>
+<p>A <strong>CIViC Evidence Item</strong> is a curated record associated with the assertion. CIViCpy retains each Evidence Item URL in a source document referenced by <code>Statement.reportedIn</code>. This reflects the current CIViC model: it does not identify which Evidence Item supports each oncogenicity code.</p>
+<div class="highlight"><span class="filename">In [11]</span><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span><span class="p">:</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="n">criterion</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="s2">"hasEvidenceItems:"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">hasEvidenceItems</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>OM1 hasEvidenceItems: None
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>OS2 hasEvidenceItems: None
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>OP4 hasEvidenceItems: None
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>OP1 hasEvidenceItems: None
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>OP3 hasEvidenceItems: None
+</code></pre></div>
+<h3 id="distinguishing-evidence-strength-level-and-curator-quality">Distinguishing evidence strength, level, and curator quality</h3>
+<p><strong>Evidence strength</strong> is part of an oncogenicity Evidence Line: for example, OM1 is moderate and OS2 is strong. It describes the weight the ClinGen/CGC/VICC method assigns to that criterion.</p>
+<p><strong>Evidence level</strong> and <strong>trust rating / quality</strong> belong to CIViC Evidence Items. Evidence level describes the kind of underlying evidence, while the star rating in the CIViC UI reflects curator confidence in that item. A carefully curated record can still describe preclinical evidence. In the current GKM bundle for this assertion, Evidence Items are retained as URLs, so their UI star ratings are not available as structured GKM quality assessments.</p>
+<h3 id="linking-civic-evidence-items-to-source-documents">Linking CIViC Evidence Items to source documents</h3>
+<p>The CIViC UI lists Evidence Items separately from the oncogenicity codes:</p>
+<p><img alt="CIViC Assertion 202 EIDs" src=".././civic-assertion-202-eids-ui.png" /></p>
+<p>CIViCpy keeps these links in <code>assertion.reportedIn</code>. They lead back to the original CIViC Evidence Item and its source context.</p>
+<div class="highlight"><span class="filename">In [12]</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">evidence_item_documents</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">document</span> <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">assertion</span><span class="o">.</span><span class="n">reportedIn</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">"urls"</span><span class="p">)</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">]</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="n">evidence_item_links</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Evidence Item URL -&gt; source document"</span><span class="p">)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">evidence_item_documents</span><span class="p">:</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">civic_eid_url</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">url</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">urls</span> <span class="k">if</span> <span class="s2">"/links/evidence/"</span> <span class="ow">in</span> <span class="n">url</span><span class="p">)</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="n">pmid_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"https://pubmed.ncbi.nlm.nih.gov/</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2">/"</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="n">evidence_item_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>        <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">) ([PMID </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">pmid_url</span><span class="si">}</span><span class="s2">))"</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="p">)</span>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">: PMID:</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="n">evidence_item_bullets</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">evidence_item_links</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Evidence Item URL -&gt; source document
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>- https://civicdb.org/links/evidence/74: PMID:18073307 (civic.sid:44)
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>- https://civicdb.org/links/evidence/78: PMID:9839497 (civic.sid:92)
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>- https://civicdb.org/links/evidence/12711: PMID:29515777 (civic.sid:5458)
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>- https://civicdb.org/links/evidence/12805: PMID:17108110 (civic.sid:5519)
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>- https://civicdb.org/links/evidence/11867: PMID:32284345 (civic.sid:4870)
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>- https://civicdb.org/links/evidence/12709: PMID:9191060 (civic.sid:4953)
+</code></pre></div>
+<p>Evidence Item URLs lead to CIViC's curated observation records and their source documents. Evidence Lines cite the ClinGen/CGC/VICC guideline instead. This separates documents that report observations from the method that weighs the oncogenicity criteria.</p>
+<div class="highlight"><span class="filename">In [13]</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">guideline</span> <span class="o">=</span> <span class="n">evidence_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">reportedIn</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"PMID:"</span><span class="p">,</span> <span class="n">guideline</span><span class="o">.</span><span class="n">pmid</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Horak et al., 2022, Genet Med.
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Standards for the classification of pathogenicity of somatic variants in cancer (oncogenicity): Joint recommendations of Clinical Genome Resource (ClinGen), Cancer Genomics Consortium (CGC), and Variant Interpretation for Cancer Consortium (VICC)
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>PMID: 35101336
+</code></pre></div>
+<h2 id="recording-civics-approval">Recording CIViC's approval</h2>
+<p>VA-Spec contributions connect a record to an agent, activity, and date. Assertion 202 records the CIViC organization as the agent for its latest approval review. The current bundle represents this as a <code>Contribution</code>; it does not provide a separate provenance-action object.</p>
+<p><img alt="CIViC Assertion 202 Approvals" src=".././civic-assertion-202-approvals-ui.png" /></p>
+<div class="highlight"><span class="filename">In [14]</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">approval</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>    <span class="n">contribution</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">assertion</span><span class="o">.</span><span class="n">contributions</span> <span class="ow">or</span> <span class="p">[]</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="k">if</span> <span class="n">contribution</span><span class="o">.</span><span class="n">activityType</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"approval"</span><span class="p">)</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="p">)</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="n">approval_date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">approval</span><span class="o">.</span><span class="n">date</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">assertion</span><span class="o">.</span><span class="n">contributions</span> <span class="ow">or</span> <span class="p">[]:</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="n">contributor</span> <span class="o">=</span> <span class="n">contribution</span><span class="o">.</span><span class="n">contributor</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">contribution</span><span class="o">.</span><span class="n">activityType</span><span class="si">}</span><span class="s2"> by </span><span class="si">{</span><span class="n">contributor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">contribution</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>approval.last_reviewed by CIViC on 2026-04-16 00:00:00
+</code></pre></div>
+<h2 id="reusing-the-connected-interpretation">Reusing the connected interpretation</h2>
+<p>The published bundle uses pointers so it does not duplicate records. The Toolkit can expand them into one connected record that another application can use without implementing CIViC's internal data model.</p>
+<div class="highlight"><span class="filename">In [15]</span><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">connected</span> <span class="o">=</span> <span class="n">civic_bundle</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">assertion</span><span class="p">)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connected record: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classification: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'classification'</span><span class="p">][</span><span class="s1">'primaryCoding'</span><span class="p">][</span><span class="s1">'code'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Variant: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'subjectVariant'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disease: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'objectTumorType'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Evidence lines:"</span><span class="p">,</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">evidence_codes</span><span class="p">))</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Approving agent: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'contributor'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Connected record: civic.aid:202
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>Classification: likely oncogenic
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>Variant: RET M918T
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>Disease: Medullary Thyroid Carcinoma
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>Evidence lines: OM1, OS2, OP4, OP1, OP3
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>Approving agent: CIViC
+</code></pre></div>
+<h3 id="construct-the-complete-interpretation">Construct the complete interpretation</h3>
+<p>The final cell combines the connected records. It lists oncogenicity codes and CIViC Evidence Items separately because the current CIViC model does not identify which item supports which code. Each Evidence Item links to its source PMID.</p>
+<div class="highlight"><span class="filename">In [16]</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span> <span class="k">as</span> <span class="n">ipython_display</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="n">interpretation</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">:**</span><span class="se">\n\n</span><span class="s2">"</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">** **</span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">** is "</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">classification</span><span class="si">}</span><span class="s2">** for **</span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">**, evaluated under the "</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2">** framework.</span><span class="se">\n\n</span><span class="s2">"</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>    <span class="s2">"The classification has a score of "</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">** and is supported by </span><span class="si">{</span><span class="n">evidence_summary</span><span class="si">}</span><span class="s2"> evidence. CIViC associates "</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>    <span class="sa">f</span><span class="s2">"the following Evidence Items and source documents with the assertion:</span><span class="se">\n\n</span><span class="s2">"</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">evidence_item_bullets</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a>    <span class="s2">"The classification was "</span>
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a>    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">activityType</span><span class="si">}</span><span class="s2"> by **</span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">contributor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">** on "</span>
+<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">approval_date</span><span class="si">}</span><span class="s2">**."</span>
+<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="p">)</span>
+<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a><span class="n">ipython_display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="n">interpretation</span><span class="p">))</span>
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<p><strong>CIVIC.AID:202:</strong></p>
+<p><strong>Somatic</strong> <strong>RET M918T</strong> is <strong>likely oncogenic</strong> for <strong>Medullary Thyroid Carcinoma</strong>, evaluated under the <strong>ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022</strong> framework.</p>
+<p>The classification has a score of <strong>9</strong> and is supported by functional-domain-location (OM1), functional-assay (OS2), population-frequency (OP4), computational-prediction (OP1), somatic-hotspot-recurrence (OP3) evidence. CIViC associates the following Evidence Items and source documents with the assertion:</p>
+<ul>
+<li><a href="https://civicdb.org/links/evidence/74">https://civicdb.org/links/evidence/74</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/18073307/">PMID 18073307</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/78">https://civicdb.org/links/evidence/78</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/9839497/">PMID 9839497</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/12711">https://civicdb.org/links/evidence/12711</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/29515777/">PMID 29515777</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/12805">https://civicdb.org/links/evidence/12805</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/17108110/">PMID 17108110</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/11867">https://civicdb.org/links/evidence/11867</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/32284345/">PMID 32284345</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/12709">https://civicdb.org/links/evidence/12709</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/9191060/">PMID 9191060</a>)</li>
+</ul>
+<p>The classification was approval.last_reviewed by <strong>CIViC</strong> on <strong>2026-04-16</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../../../..","features":["navigation.tabs","navigation.tabs.sticky","navigation.sections","navigation.indexes","navigation.top","toc.follow","content.action.edit","content.code.copy","content.tabs.link","search.suggest","search.highlight"],"search":"../../../../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"default":"latest","provider":"mike"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.6970bfe9.min.js"></script>
+      
+        <script src="../../../../assets/js/external-links.js"></script>
+      
+    
+  </body>
+</html>

@@ -82,13 +82,46 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/gks-core/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/vrs/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/cat-vrs/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-product/va-spec/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-pattern/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-pattern/cross-source-variant-harmonization/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-pattern/knowledgebase-exchange/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-implementer/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-implementer/brca-exchange/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/brca/identifying-unique-variants-vrs/vignette/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/by-implementer/civic/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/civic/civic-oncogenicity-gkm/vignette/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/civic/civic-oncogenicity-gkm/notebook/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/user-stories/contribute/</loc>
