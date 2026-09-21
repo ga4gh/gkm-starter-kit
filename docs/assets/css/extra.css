@@ -267,7 +267,7 @@
    would otherwise let this box collapse to the SVG's 300px intrinsic width and
    render the whole graphic at quarter scale; .md-typeset is needed to outrank
    the theme and pin the figure to the column. */
-.md-typeset .gks-explainer {
+.md-typeset .gkm {
     display: block;
     width: 100%;
     margin: 2rem 0;
@@ -275,19 +275,19 @@
 
 /* Each layout is drawn at its natural size and centred, leaving a margin on
    both sides rather than running edge to edge. */
-.md-typeset .gks-explainer svg {
+.md-typeset .gkm svg {
     display: block;
     width: 100%;
     height: auto;
     margin: 0 auto;
 }
 
-.md-typeset .gks-explainer .wb--wide {
+.md-typeset .gkm .wb--wide {
     display: none;
     max-width: 640px;
 }
 
-.md-typeset .gks-explainer .wb--narrow {
+.md-typeset .gkm .wb--narrow {
     display: block;
     max-width: 440px;
 }
@@ -296,11 +296,11 @@
    narrowest viewport where that is true in every sidebar configuration this
    theme produces. */
 @media screen and (min-width: 45em) {
-    .md-typeset .gks-explainer .wb--wide {
+    .md-typeset .gkm .wb--wide {
         display: block;
     }
 
-    .md-typeset .gks-explainer .wb--narrow {
+    .md-typeset .gkm .wb--narrow {
         display: none;
     }
 }
@@ -400,6 +400,12 @@
 .wb-cap1,
 .wb-p1 {
     fill: var(--wb-p1);
+}
+
+.wb-cap1,
+.wb-cap2,
+.wb-cap3 {
+    clip-path: inset(0 2px 0 2px round 13px);
 }
 
 .wb-cap2,
