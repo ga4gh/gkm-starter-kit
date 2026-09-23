@@ -23,36 +23,6 @@ shared:
 - producer-specific collections, metadata, and provenance objects are
   permitted when the bundle schema defines them.
 
-## Define a bundle schema
-
-### Schema requirements
-
-Each producer defines a separate bundle schema for its bundles. To share
-bundles through the Data Bundles pillar, the bundle schema must:
-
-- use JSON Schema Draft 2020-12, declared with
-  `"$schema": "https://json-schema.org/draft/2020-12/schema"`.
-- define an object at the schema root with `"type": "object"`.
-- define its root collections and any producer-specific metadata or provenance
-  fields.
-- reference the official GKM product schemas with versioned GA4GH W3ID `$ref`
-  URLs that are compatible with the GKM reference implementations used to load
-  the bundle.
-    - For example,
-      `"$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"`
-      selects `MappableConcept` from GKS-Core version 1.1.0.
-
-### Recommendations
-
-To make a bundle schema's intent explicit:
-
-- list collections that must appear with `required`.
-- use `minProperties` when a collection must not be empty.
-- set `additionalProperties` to state whether unknown fields are accepted.
-- use `patternProperties` when collection identifiers follow a known pattern.
-
-## Create bundle contents
-
 ### Collections and relationships
 
 A producer groups related objects into named **collections**. The bundle schema
@@ -76,17 +46,55 @@ the same bundle, rather than repeating the complete object.
 The current workflow uses JSON bundles distributed with their bundle schema.
 Other serializations may be supported in the future.
 
-### Example
+## Example
 
-This example shows how a bundle schema defines the contents a bundle must have.
-The bundle includes required metadata, a shared standard `Extension`, and two
-producer-specific `Sample` objects. The versioned W3ID `$ref` points to the
-GKS-Core schema for `Extension`.
+This example shows what a bundle looks like and how its bundle schema describes
+it. The bundle includes required metadata, a shared standard `Extension`, and
+two producer-specific `Sample` objects. Both samples reuse the same extension
+through a bundle-local JSON Pointer, so the release value is stated once.
 
-#### Bundle schema
+### Bundle contents
 
-The schema requires metadata, extensions, and samples, and defines what they
-contain.
+The bundle includes the required metadata, one data-release extension, and two
+samples that use it. Both samples point to `#/extensions/data-release` instead
+of repeating the release value.
+
+```json
+{
+  "metadata": {
+    "createdAt": "2026-09-21",
+    "producer": "Example knowledgebase",
+    "bundleVersion": "1.0"
+  },
+  "extensions": {
+    "data-release": {
+      "type": "Extension",
+      "name": "dataRelease",
+      "value": "2026-09"
+    }
+  },
+  "samples": {
+    "sample:1": {
+      "id": "sample:1",
+      "type": "Sample",
+      "name": "Tumor sample",
+      "dataRelease": "#/extensions/data-release"
+    },
+    "sample:2": {
+      "id": "sample:2",
+      "type": "Sample",
+      "name": "Normal sample",
+      "dataRelease": "#/extensions/data-release"
+    }
+  }
+}
+```
+
+### Bundle schema
+
+The bundle schema below describes the contents above. It requires metadata,
+extensions, and samples, and defines what each may contain. The versioned W3ID
+`$ref` points to the GKS-Core schema for `Extension`.
 
 ```json
 {
@@ -134,43 +142,7 @@ contain.
 }
 ```
 
-#### Bundle contents
-
-The bundle includes the required metadata, one data-release extension, and two
-samples that use it.
-
-```json
-{
-  "metadata": {
-    "createdAt": "2026-09-21",
-    "producer": "Example knowledgebase",
-    "bundleVersion": "1.0"
-  },
-  "extensions": {
-    "data-release": {
-      "type": "Extension",
-      "name": "dataRelease",
-      "value": "2026-09"
-    }
-  },
-  "samples": {
-    "sample:1": {
-      "id": "sample:1",
-      "type": "Sample",
-      "name": "Tumor sample",
-      "dataRelease": "#/extensions/data-release"
-    },
-    "sample:2": {
-      "id": "sample:2",
-      "type": "Sample",
-      "name": "Normal sample",
-      "dataRelease": "#/extensions/data-release"
-    }
-  }
-}
-```
-
-#### How they work together
+### How they work together
 
 This table shows how the bundle schema relates to the bundle contents in this
 example.
@@ -186,6 +158,37 @@ as `data-release` and `sample:1`, identify the objects they contain.
 | `patternProperties` | Sample keys follow the `sample:<number>` pattern, such as `sample:1`. |
 | `$ref` | Each `extensions` value uses the GKS-Core `Extension` schema, identified by its GA4GH W3ID URL. |
 | Bundle-local JSON Pointer | Both samples point to `#/extensions/data-release`, so the release value is stored once. |
+
+## Define a bundle schema
+
+With the example in mind, this section covers the formal rules for authoring a
+bundle schema.
+
+### Schema requirements
+
+Each producer defines a separate bundle schema for its bundles. To share
+bundles through the Data Bundles pillar, the bundle schema must:
+
+- use JSON Schema Draft 2020-12, declared with
+  `"$schema": "https://json-schema.org/draft/2020-12/schema"`.
+- define an object at the schema root with `"type": "object"`.
+- define its root collections and any producer-specific metadata or provenance
+  fields.
+- reference the official GKM product schemas with versioned GA4GH W3ID `$ref`
+  URLs that are compatible with the GKM reference implementations used to load
+  the bundle.
+    - For example,
+      `"$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"`
+      selects `MappableConcept` from GKS-Core version 1.1.0.
+
+### Recommendations
+
+To make a bundle schema's intent explicit:
+
+- list collections that must appear with `required`.
+- use `minProperties` when a collection must not be empty.
+- set `additionalProperties` to state whether unknown fields are accepted.
+- use `patternProperties` when collection identifiers follow a known pattern.
 
 ## Producer checklist
 

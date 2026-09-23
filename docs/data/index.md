@@ -8,33 +8,128 @@ from individual records to compact bundles and larger datasets.
 
 ## Ways to share GKM data
 
-The initial implementation supports some sharing patterns today. Others remain
-in development or are future directions. The right delivery method depends on
-the scale and use case.
+The right delivery method depends on the scale and the use case. The initial
+implementation supports some patterns today; others are in development. The
+sections below introduce each method with a short example.
 
 <div class="grid cards" markdown>
 
-- **One record at a time**
+- **Individual records**
 
     <span class="gks-status gks-status--production">Available now</span>
 
-    Share a single GKM object in a message or API response.
+    Plain JSON for a single record or a small set. Each object is
+    **self-contained**, with nothing compacted.
 
 - [**Compact bundles**](bundles/index.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
-    Package related objects together, keeping **shared representations and
-    relationships explicit**.
+    Package related objects together, stating **shared representations once**
+    and linking to them by reference.
 
 - **Large-volume datasets**
 
     <span class="gks-status gks-status--pilot">In development</span>
 
-    Use **bulk-friendly formats** such as JSON Lines, Parquet, or relational
-    tables as support develops.
+    Bulk formats such as **Parquet** or **relational tables** for very large
+    collections, as support develops.
 
 </div>
+
+### Individual records
+
+<span class="gks-status gks-status--production">Available now</span>
+
+Share a single GKM object, or a small set, in a message or API response. The
+object is written in plain JSON with everything it needs **inline** — nothing is
+factored out or referenced elsewhere. This is the atomic form the GKM reference
+libraries already construct and validate.
+
+The VRS `Allele` below is complete on its own: its `location` and
+`sequenceReference` are nested directly inside it.
+
+```json
+{
+  "id": "ga4gh:VA.YpMp7lIYDfsjOmHyPel8NHPgkOlL_J0B",
+  "type": "Allele",
+  "location": {
+    "id": "ga4gh:SL.dlLI8V13wN0QF9iTu7o9DJZKn8TjXkh3",
+    "type": "SequenceLocation",
+    "sequenceReference": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
+    },
+    "start": 43093453,
+    "end": 43093454
+  },
+  "state": {
+    "type": "ReferenceLengthExpression",
+    "length": 1,
+    "sequence": "C",
+    "repeatSubunitLength": 1
+  }
+}
+```
+
+This form is simple to read and produce, but when the same objects recur — in
+one record or across many — repeating them in full becomes wasteful. That is
+what compact bundles solve.
+
+### Compact bundles
+
+<span class="gks-status gks-status--production">Available now</span>
+
+When shared representations appear more than once — reused within a single
+record, or referenced many times across a larger set of records — a bundle
+states each object **once** and links to it with a bundle-local
+[JSON Pointer](https://www.rfc-editor.org/rfc/rfc6901) (a `#/...` path to another
+place in the same document).
+
+Objects of a kind are grouped into dictionary-like **collections** keyed by
+identifier. In the excerpt below, one `SequenceReference` lives in the
+`sequenceReference` collection, and a `SequenceLocation` refers to it by pointer
+instead of nesting a copy — so the same sequence reference can be reused by any
+number of locations across the bundle.
+
+```json
+{
+  "sequenceReference": {
+    "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj"
+    }
+  },
+  "location": {
+    "ga4gh:SL.DO4BZ8csWCDedM5lh7NrmIpS3RnboBHw": {
+      "id": "ga4gh:SL.DO4BZ8csWCDedM5lh7NrmIpS3RnboBHw",
+      "type": "SequenceLocation",
+      "sequenceReference": "#/sequenceReference/SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj",
+      "start": 1699,
+      "end": 1700
+    }
+  }
+}
+```
+
+A full bundle carries many such collections — variants, molecular profiles,
+propositions, evidence, assertions, provenance — all wired together by pointers.
+See a complete, real example in the
+[CIViC mini bundles](bundles/mini-examples.md), or learn how producers define
+one in [bundle schemas and contents](bundles/schemas-and-contents.md).
+
+### Large-volume datasets
+
+<span class="gks-status gks-status--pilot">In development</span>
+
+A single JSON bundle works well up to a point, but some producers need to share
+GKM records at a volume where one document is impractical. Work is underway on
+distributing large collections of GKM records — drawn from a common set of
+classes — as a **Parquet** export or a **relational database dump**, so
+consumers can query them at scale without loading everything into memory.
+
+This method is not yet available. It is being prioritized with community
+partners, and this page will be updated as the format and tooling take shape.
 
 ## Built with community partners
 

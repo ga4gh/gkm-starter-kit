@@ -5,6 +5,36 @@ pair representative GKM data from a community resource with its bundle schema,
 making the bundle's structure and relationships easier to inspect. They are not
 complete published datasets.
 
+## What a mini bundle shows
+
+Each bundle groups objects into dictionary-like **collections** keyed by
+identifier, and links related objects with bundle-local JSON Pointers so a
+shared object is stated once and reused. The excerpt below, taken from the
+CIViC assertion 9 bundle, shows a `SequenceLocation` referring to a
+`SequenceReference` by pointer rather than nesting a copy:
+
+```json
+{
+  "sequenceReference": {
+    "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj"
+    }
+  },
+  "location": {
+    "ga4gh:SL.DO4BZ8csWCDedM5lh7NrmIpS3RnboBHw": {
+      "type": "SequenceLocation",
+      "sequenceReference": "#/sequenceReference/SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj",
+      "start": 1699,
+      "end": 1700
+    }
+  }
+}
+```
+
+Open the full files below to see how variants, molecular profiles,
+propositions, evidence, and assertions are wired together the same way.
+
 ## CIViC
 
 These two CIViC mini bundles show different VA-Spec assertion types. Both use
