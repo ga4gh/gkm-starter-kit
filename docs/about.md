@@ -20,25 +20,25 @@ and building toward more specific kinds of genomic knowledge.
   <div class="gks-standard-layer gks-standard-layer--va-spec">
     <a class="gks-standard-block" href="https://va-ga4gh.readthedocs.io/">
       <strong>VA-Spec</strong>
-      <span>The Variant Annotation Specification is used for <b>statements, assertions</b>, and their <b>supporting evidence</b>.</span>
+      <span>Use for statements, assertions, and their supporting evidence.</span>
     </a>
   </div>
   <div class="gks-standard-layer gks-standard-layer--cat-vrs">
     <a class="gks-standard-block" href="https://cat-vrs.ga4gh.org/">
       <strong>Cat-VRS</strong>
-      <span>The Categorical Variation Representation Specification is used for <b>categories of variation</b>.</span>
+      <span>Use for categories of variation.</span>
     </a>
   </div>
   <div class="gks-standard-layer gks-standard-layer--vrs">
     <a class="gks-standard-block" href="https://vrs.ga4gh.org/">
       <strong>VRS</strong>
-      <span>The Variation Representation Specification is used for <b>precise molecular variation</b>.</span>
+      <span>Use for precise molecular variation.</span>
     </a>
   </div>
   <div class="gks-standard-layer gks-standard-layer--core">
     <a class="gks-standard-block" href="https://github.com/ga4gh/gkm-core">
       <strong>GKS-Core</strong>
-      <span>Genomic Knowledge Standards Core is used for <b>concepts shared across genomic knowledge</b>.</span>
+      <span>Use for concepts shared across genomic knowledge.</span>
     </a>
   </div>
 </div>
