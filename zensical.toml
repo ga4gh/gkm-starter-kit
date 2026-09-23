@@ -13,12 +13,14 @@ nav = [
   { Home = "index.md" },
   { Data = [
     "data/index.md",
+    { "Native records" = "data/native-records.md" },
     { Bundles = [
       "data/bundles/index.md",
       { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
       { "Mini bundle examples" = "data/bundles/mini-examples.md" },
       { "Explore published bundles" = "data/bundles/repository.md" },
     ] },
+    { "Large-volume datasets" = "data/large-datasets.md" },
   ] },
   { Tools = [
     "tools/index.md",

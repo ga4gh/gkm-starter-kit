@@ -14,12 +14,14 @@ sections below introduce each method with a short example.
 
 <div class="grid cards" markdown>
 
-- **Native records**
+- [**Native records**](native-records.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
     A single record or a small set. Each object is **self-contained**, with
     nothing compacted.
+
+    *Formats: JSON, YAML*
 
 - [**Compact records**](bundles/index.md)
 
@@ -29,7 +31,9 @@ sections below introduce each method with a short example.
     and linking to them by reference. Called **bundling** in GKM —
     [see the bundle reference pages](bundles/index.md).
 
-- **Large-volume datasets**
+    *Formats: JSON, JSON Schema*
+
+- [**Large-volume datasets**](large-datasets.md)
 
     <span class="gks-status gks-status--pilot">In development</span>
 
@@ -76,6 +80,8 @@ The VRS `Allele` below is complete on its own: its `location` and
 This form is simple to read and produce, but when the same objects recur — in
 one record or across many — repeating them in full becomes wasteful. That is
 what compact records solve.
+
+[See how native records work in practice →](native-records.md)
 
 ### Compact records
 
@@ -138,6 +144,8 @@ consumers can query them at scale without loading everything into memory.
 
 This method is not yet available. It is being prioritized with community
 partners, and this page will be updated as the format and tooling take shape.
+
+[Read about large-volume dataset support →](large-datasets.md)
 
 ## Built with community partners
 
