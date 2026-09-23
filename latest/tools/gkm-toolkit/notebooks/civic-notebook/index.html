@@ -2950,7 +2950,7 @@
 <p>Example files: <a href="../../../../data/bundles/civic-assertion-251-bundle.json" rel="noopener" target="_blank"><code>civic-assertion-251-bundle.json</code></a> · <a href="../../../../data/bundles/civic-assertion-9-bundle.json" rel="noopener" target="_blank"><code>civic-assertion-9-bundle.json</code></a> · <a href="../../../../data/bundles/civic-gks-bundle-v0.1.0.schema.json" rel="noopener" target="_blank"><code>civic-gks-bundle-v0.1.0.schema.json</code></a></p>
 <p>Rendered from <code>notebooks/civic/bundles/explore-civic-bundles.ipynb</code>.</p>
 </div>
-<p>Say you receive a CIViC bundle and want to find what an assertion refers to.</p>
+<p>Say you receive a CIViC mini bundle and want to find what an assertion refers to.</p>
 <p>You want to inspect the related content and send it to another tool. This extended walkthrough follows that task from loading through export.</p>
 <ol>
 <li><a href="#set-up">Load the CIViC bundle</a>.</li>
@@ -2958,7 +2958,7 @@
 <li><a href="#which-proposition-does-this-assertion-refer-to">Find and resolve an assertion</a>.</li>
 <li><a href="#how-do-we-prepare-data-for-another-tool">Normalize, denormalize, and export the result</a>.</li>
 </ol>
-<p>This walkthrough explores two CIViC mini bundles using the same Python workflow.</p>
+<p>This walkthrough explores two CIViC mini bundles using the same Python workflow. Each contains a selected subset of CIViC data.</p>
 <h2 id="set-up">Set up</h2>
 <h3 id="how-do-we-work-with-a-bundle-in-python">How do we work with a bundle in Python?</h3>
 <p>Import the bundles package. It provides the loader, in-memory bundle model, reference lookup, and export operations used below.</p>
@@ -2971,7 +2971,7 @@
 <h3 id="locate-the-bundle-schema-and-bundles">Locate the bundle schema and bundles</h3>
 <p>A <strong>bundle schema</strong> defines the constraints for a producer-defined bundle and identifies the GKM schema versions it uses.</p>
 <p>A <strong>bundle</strong> is the JSON data that follows those constraints, containing related GKM objects grouped into named <strong>collections</strong>.</p>
-<p>We will use the two CIViC mini bundles and their shared schema stored with this repository.</p>
+<p>We will use two CIViC mini bundles and their shared schema stored with this repository. Each contains a selected subset for this walkthrough.</p>
 <div class="highlight"><span class="filename">In [2]</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">bundle_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"bundles"</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">bundle_dir</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">bundle_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"notebooks/civic/bundles"</span><span class="p">)</span>

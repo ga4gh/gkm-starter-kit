@@ -2766,8 +2766,8 @@ Other serializations may be supported in the future.</p>
 <h3 id="example">Example</h3>
 <p>This example shows how a bundle schema defines the contents a bundle must have.
 The bundle includes required metadata, a shared standard <code>Extension</code>, and two
-local <code>Sample</code> objects. The versioned W3ID <code>$ref</code> points to the GKS-Core schema
-for <code>Extension</code>.</p>
+producer-specific <code>Sample</code> objects. The versioned W3ID <code>$ref</code> points to the
+GKS-Core schema for <code>Extension</code>.</p>
 <h4 id="bundle-schema">Bundle schema</h4>
 <p>The schema requires metadata, extensions, and samples, and defines what they
 contain.</p>
@@ -2878,7 +2878,7 @@ as <code>data-release</code> and <code>sample:1</code>, identify the objects the
 </tr>
 <tr>
 <td><code>$ref</code></td>
-<td>The linked GKS-Core schema defines each extension's structure.</td>
+<td>Each <code>extensions</code> value uses the GKS-Core <code>Extension</code> schema, identified by its GA4GH W3ID URL.</td>
 </tr>
 <tr>
 <td>Bundle-local JSON Pointer</td>
