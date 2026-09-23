@@ -14,19 +14,20 @@ sections below introduce each method with a short example.
 
 <div class="grid cards" markdown>
 
-- **Individual records**
+- **Native records**
 
     <span class="gks-status gks-status--production">Available now</span>
 
-    Plain JSON for a single record or a small set. Each object is
-    **self-contained**, with nothing compacted.
+    A single record or a small set. Each object is **self-contained**, with
+    nothing compacted.
 
-- [**Compact bundles**](bundles/index.md)
+- [**Compact records**](bundles/index.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
     Package related objects together, stating **shared representations once**
-    and linking to them by reference.
+    and linking to them by reference. Called **bundling** in GKM —
+    [see the bundle reference pages](bundles/index.md).
 
 - **Large-volume datasets**
 
@@ -37,14 +38,14 @@ sections below introduce each method with a short example.
 
 </div>
 
-### Individual records
+### Native records
 
 <span class="gks-status gks-status--production">Available now</span>
 
 Share a single GKM object, or a small set, in a message or API response. The
-object is written in plain JSON with everything it needs **inline** — nothing is
-factored out or referenced elsewhere. This is the atomic form the GKM reference
-libraries already construct and validate.
+object carries everything it needs **inline** — nothing is factored out or
+referenced elsewhere. This is the atomic form the GKM reference libraries
+already construct and validate.
 
 The VRS `Allele` below is complete on its own: its `location` and
 `sequenceReference` are nested directly inside it.
@@ -74,17 +75,24 @@ The VRS `Allele` below is complete on its own: its `location` and
 
 This form is simple to read and produce, but when the same objects recur — in
 one record or across many — repeating them in full becomes wasteful. That is
-what compact bundles solve.
+what compact records solve.
 
-### Compact bundles
+### Compact records
 
 <span class="gks-status gks-status--production">Available now</span>
 
 When shared representations appear more than once — reused within a single
-record, or referenced many times across a larger set of records — a bundle
-states each object **once** and links to it with a bundle-local
+record, or referenced many times across a larger set of records — a compact
+record states each object **once** and links to it with a bundle-local
 [JSON Pointer](https://www.rfc-editor.org/rfc/rfc6901) (a `#/...` path to another
 place in the same document).
+
+!!! note "Called *bundling* in GKM"
+
+    Packaging records this way is known as **bundling** in GKM terminology, and
+    the resulting document is a **bundle**. See the
+    [bundle reference pages](bundles/index.md) for schemas, examples, and the
+    public repository.
 
 Objects of a kind are grouped into dictionary-like **collections** keyed by
 identifier. In the excerpt below, one `SequenceReference` lives in the
