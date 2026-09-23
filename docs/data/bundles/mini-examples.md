@@ -1,9 +1,9 @@
 # Mini bundle examples
 
-Mini bundles are small, focused examples that show what a GKM bundle can look
-like. Each pairs representative GKM data from a community resource with its
-bundle schema, making the bundle's structure and relationships easier to
-inspect.
+Mini bundles are small, focused subsets of a producer's complete dataset. They
+pair representative GKM data from a community resource with its bundle schema,
+making the bundle's structure and relationships easier to inspect. They are not
+complete published datasets.
 
 ## CIViC
 
