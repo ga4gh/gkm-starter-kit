@@ -13,6 +13,8 @@ products:
     version: 1.1.0-snapshot.2026-06.1
 pattern: knowledgebase-exchange
 implementer: CIViC
+notebook:
+  path: civic/civic-oncogenicity-gkm/notebook.md
 status: pilot
 last_updated: 2026-09
 ---
@@ -31,6 +33,7 @@ CIViC curates oncogenicity classifications and their supporting evidence. To use
 * **Products:** <span class="gks-product-label gks-product-label--gks-core">GKS-Core <small>1.1.0</small></span> <span class="gks-product-label gks-product-label--vrs">VRS <small>2.1.0-snapshot.2026-02.2</small></span> <span class="gks-product-label gks-product-label--cat-vrs">Cat-VRS <small>1.1.0-snapshot.2026-02.3</small></span> <span class="gks-product-label gks-product-label--va-spec">VA-Spec <small>1.1.0-snapshot.2026-06.1</small></span>
 * **Pattern:** Knowledgebase exchange
 * **Tools:** [CIViCpy](https://github.com/griffithlab/civicpy), [ClinVar This](https://github.com/clingen-data-model/clinvar-this)
+* **Notebook:** [Explore the example](../notebook.md)
 * **Status:** <span class="gks-status gks-status--pilot">pilot</span>
 
 ---
