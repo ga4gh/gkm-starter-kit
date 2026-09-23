@@ -67,6 +67,28 @@
     vertical-align: middle;
 }
 
+/* Corner badge for a grid card (e.g. the "Bundle" tag on the Compact records
+   panel). The card is the positioning context; the badge pins to its top-right. */
+.md-typeset .grid.cards > ul > li,
+.md-typeset .grid.cards > ol > li {
+    position: relative;
+}
+
+.gks-card-badge {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 0.15em 0.6em;
+    border-radius: 999px;
+    background: var(--md-primary-fg-color);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+}
+
 .gks-status--production {
     background: #1b873f;
     color: white;

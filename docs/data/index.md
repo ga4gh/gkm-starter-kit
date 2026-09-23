@@ -23,7 +23,7 @@ sections below introduce each method with a short example.
 
     *Formats: JSON, YAML*
 
-- [**Compact records**](bundles/index.md)
+- [**Compact records**](bundles/index.md)<span class="gks-card-badge">Bundle</span>
 
     <span class="gks-status gks-status--production">Available now</span>
 
