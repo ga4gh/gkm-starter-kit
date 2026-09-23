@@ -1,8 +1,8 @@
 # Reference Implementations
 
-Each GKM standard has a maintained Python reference implementation for constructing and
-validating its models. Together, these implementations provide a
-**standards-aligned foundation for building with GKM in Python**.
+Each GKM standard has a maintained Python reference implementation for constructing
+objects and validating records against the GKM models. Together, these implementations
+provide a **standards-aligned foundation for building with GKM in Python**.
 
 The labels below identify the GKM standards each implementation supports.
 

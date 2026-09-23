@@ -80,8 +80,8 @@ Other serializations may be supported in the future.
 
 This example shows how a bundle schema defines the contents a bundle must have.
 The bundle includes required metadata, a shared standard `Extension`, and two
-local `Sample` objects. The versioned W3ID `$ref` points to the GKS-Core schema
-for `Extension`.
+producer-specific `Sample` objects. The versioned W3ID `$ref` points to the
+GKS-Core schema for `Extension`.
 
 #### Bundle schema
 
@@ -184,7 +184,7 @@ as `data-release` and `sample:1`, identify the objects they contain.
 | `minProperties` | The `extensions` and `samples` collections cannot be empty. |
 | `additionalProperties` | Extension keys have no required pattern. Producers may use names such as `data-release` and `license`; each value is an `Extension`. |
 | `patternProperties` | Sample keys follow the `sample:<number>` pattern, such as `sample:1`. |
-| `$ref` | The linked GKS-Core schema defines each extension's structure. |
+| `$ref` | Each `extensions` value uses the GKS-Core `Extension` schema, identified by its GA4GH W3ID URL. |
 | Bundle-local JSON Pointer | Both samples point to `#/extensions/data-release`, so the release value is stored once. |
 
 ## Producer checklist

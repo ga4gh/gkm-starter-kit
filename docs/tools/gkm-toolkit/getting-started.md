@@ -2,9 +2,9 @@
 
 The GKM Toolkit lets you bring published genomic knowledge into Python, follow
 the links between related records, and save just the knowledge your application
-needs. This getting-started guide demonstrates the core ingest-and-integrate
-pattern—load a validated bundle, resolve local relationships, and export a
-focused result—using CIViC as an example.
+needs. This guide demonstrates the core workflow: load a validated bundle,
+resolve local relationships, and export a focused result using
+[CIViC](https://civicdb.org/welcome) as an example.
 
 !!! note
 
