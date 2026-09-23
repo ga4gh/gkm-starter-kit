@@ -98,6 +98,15 @@ def _validate_vignette(
             f"got {meta['pattern']!r}"
         )
 
+    notebook = meta.get("notebook")
+    if notebook is not None:
+        if not isinstance(notebook, dict):
+            fail("'notebook' must be a mapping with a 'path' key")
+        if not notebook.get("path"):
+            fail("'notebook' must include a non-empty 'path' key")
+        if not isinstance(notebook["path"], str):
+            fail("'notebook.path' must be a string")
+
 
 def load_vignettes() -> list[dict]:
     """Read every vignette.md under docs/user-stories/<source>/<slug>/, returning a list of frontmatter dicts.

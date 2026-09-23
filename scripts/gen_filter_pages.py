@@ -82,6 +82,14 @@ def _render_catalog(vignettes: list[dict], patterns: dict[str, str]) -> str:
                 "",
                 f"**Products:** {products_label}",
                 "",
+                *(
+                    [
+                        f":material-notebook-outline: [**Explore the example**]({item['notebook']['path']})",
+                        "",
+                    ]
+                    if item.get("notebook")
+                    else []
+                ),
                 item["summary"],
                 "",
                 "---",
