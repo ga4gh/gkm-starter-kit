@@ -13,6 +13,7 @@ nav = [
   { Home = "index.md" },
   { Data = [
     "data/index.md",
+    { "Contribute to Data" = "data/contributing.md" },
     { Bundles = [
       "data/bundles/index.md",
       { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
