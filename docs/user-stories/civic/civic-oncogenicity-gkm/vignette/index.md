@@ -127,9 +127,9 @@ CIViC stores the genomic, coding, and protein sequence representations under one
 
 ### Classification rationale and sources
 
-Together, these objects form a reusable statement: **MAP2K1 P124S is likely oncogenic in Cancer.** The classification has a score of 7 and is supported by functional-assay (OS2), hotspot-recurrence (OM3), and population-frequency (OP4) evidence evaluated under the ClinGen/CGC/VICC framework. The full example also includes source documents and three sequence-level representations.
+Together, these objects form a reusable statement: Somatic **RET M918T is likely oncogenic for Medullary Thyroid Carcinoma**, evaluated under the ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022 framework. The classification has a score of 9 and is supported by functional domain location (OM1), functional assay (OS2), population frequency (OP4), computational prediction (OP1), somatic hotspot recurrence (OP3) evidence.
 
-CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention both in free text, for example `(civic.eid:12709, OS2)`, but conventions vary. CIViCpy cannot reliably infer those links, so `EvidenceLine.hasEvidenceItems` is empty. The Evidence Item URL (`https://civicdb.org/links/evidence/12986`) remains in the source document referenced by `Statement.reportedIn`.
+CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention both in free text, for example `(civic.EID:12709, OS2)`, but conventions vary. CIViCpy cannot reliably infer those links, so `EvidenceLine.hasEvidenceItems` is empty. The Evidence Item URL (`https://civicdb.org/links/evidence/12986`) remains in the source document referenced by `Statement.reportedIn`.
 
 ## The tools used
 
