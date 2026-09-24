@@ -9,8 +9,7 @@ from individual records to compact bundles and larger datasets.
 ## Ways to share GKM data
 
 The right delivery method depends on the scale and the use case. The initial
-implementation supports some patterns today; others are in development. The
-sections below introduce each method with a short example.
+implementation supports some patterns today; others are in development.
 
 <div class="grid cards" markdown>
 
@@ -28,8 +27,7 @@ sections below introduce each method with a short example.
     <span class="gks-status gks-status--production">Available now</span>
 
     Package related objects together, stating **shared representations once**
-    and linking to them by reference. Called **bundling** in GKM —
-    [see the bundle reference pages](bundles/index.md).
+    and linking to them by reference. GKM calls this **bundling**.
 
     *Formats: JSON, JSON Schema*
 
@@ -42,110 +40,93 @@ sections below introduce each method with a short example.
 
 </div>
 
-### Native records
+### Native and bundled representations
 
-<span class="gks-status gks-status--production">Available now</span>
+Native records carry related objects inline. Bundles place shared objects in
+collections and link to them with bundle-local JSON Pointers. Below, two alleles
+share a location but have different states. Native records repeat the location
+and sequence reference; the bundle stores them once.
 
-Share a single GKM object, or a small set, in a message or API response. The
-object carries everything it needs **inline** — nothing is factored out or
-referenced elsewhere. This is the atomic form the GKM reference libraries
-already construct and validate.
+=== "Native record"
 
-The VRS `Allele` below is complete on its own: its `location` and
-`sequenceReference` are nested directly inside it.
+    ```json
+    [
+      {
+        "type": "Allele",
+        "location": {
+          "type": "SequenceLocation",
+          "sequenceReference": {
+            "type": "SequenceReference",
+            "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
+          },
+          "start": 43093453,
+          "end": 43093454
+        },
+        "state": {
+          "type": "LiteralSequenceExpression",
+          "sequence": "C"
+        }
+      },
+      {
+        "type": "Allele",
+        "location": {
+          "type": "SequenceLocation",
+          "sequenceReference": {
+            "type": "SequenceReference",
+            "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
+          },
+          "start": 43093453,
+          "end": 43093454
+        },
+        "state": {
+          "type": "LiteralSequenceExpression",
+          "sequence": "T"
+        }
+      }
+    ]
+    ```
 
-```json
-{
-  "id": "ga4gh:VA.YpMp7lIYDfsjOmHyPel8NHPgkOlL_J0B",
-  "type": "Allele",
-  "location": {
-    "id": "ga4gh:SL.dlLI8V13wN0QF9iTu7o9DJZKn8TjXkh3",
-    "type": "SequenceLocation",
-    "sequenceReference": {
-      "type": "SequenceReference",
-      "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
-    },
-    "start": 43093453,
-    "end": 43093454
-  },
-  "state": {
-    "type": "ReferenceLengthExpression",
-    "length": 1,
-    "sequence": "C",
-    "repeatSubunitLength": 1
-  }
-}
-```
+=== "Bundle"
 
-This form is simple to read and produce, but when the same objects recur — in
-one record or across many — repeating them in full becomes wasteful. That is
-what compact records solve.
-
-[See how native records work in practice →](native-records.md)
-
-### Compact records
-
-<span class="gks-status gks-status--production">Available now</span>
-
-When shared representations appear more than once — reused within a single
-record, or referenced many times across a larger set of records — a compact
-record states each object **once** and links to it with a bundle-local
-[JSON Pointer](https://www.rfc-editor.org/rfc/rfc6901) (a `#/...` path to another
-place in the same document).
-
-!!! note "Called *bundling* in GKM"
-
-    Packaging records this way is known as **bundling** in GKM terminology, and
-    the resulting document is a **bundle**. See the
-    [bundle reference pages](bundles/index.md) for schemas, examples, and the
-    public repository.
-
-Objects of a kind are grouped into dictionary-like **collections** keyed by
-identifier. In the excerpt below, one `SequenceReference` lives in the
-`sequenceReference` collection, and a `SequenceLocation` refers to it by pointer
-instead of nesting a copy — so the same sequence reference can be reused by any
-number of locations across the bundle.
-
-```json
-{
-  "sequenceReference": {
-    "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj": {
-      "type": "SequenceReference",
-      "refgetAccession": "SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj"
+    ```json
+    {
+      "sequenceReference": {
+        "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7": {
+          "type": "SequenceReference",
+          "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
+        }
+      },
+      "location": {
+        "location:1": {
+          "type": "SequenceLocation",
+          "sequenceReference": "#/sequenceReference/SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7",
+          "start": 43093453,
+          "end": 43093454
+        }
+      },
+      "allele": {
+        "allele:1": {
+          "type": "Allele",
+          "location": "#/location/location:1",
+          "state": {
+            "type": "LiteralSequenceExpression",
+            "sequence": "C"
+          }
+        },
+        "allele:2": {
+          "type": "Allele",
+          "location": "#/location/location:1",
+          "state": {
+            "type": "LiteralSequenceExpression",
+            "sequence": "T"
+          }
+        }
+      }
     }
-  },
-  "location": {
-    "ga4gh:SL.DO4BZ8csWCDedM5lh7NrmIpS3RnboBHw": {
-      "id": "ga4gh:SL.DO4BZ8csWCDedM5lh7NrmIpS3RnboBHw",
-      "type": "SequenceLocation",
-      "sequenceReference": "#/sequenceReference/SQ.EJQv9rQmiD76iFmXsLwCy2dJHOFO3bpj",
-      "start": 1699,
-      "end": 1700
-    }
-  }
-}
-```
+    ```
 
-A full bundle carries many such collections — variants, molecular profiles,
-propositions, evidence, assertions, provenance — all wired together by pointers.
-See a complete, real example in the
-[CIViC mini bundles](bundles/mini-examples.md), or learn how producers define
-one in [bundle schemas and contents](bundles/schemas-and-contents.md).
-
-### Large-volume datasets
-
-<span class="gks-status gks-status--pilot">In development</span>
-
-A single JSON bundle works well up to a point, but some producers need to share
-GKM records at a volume where one document is impractical. Work is underway on
-distributing large collections of GKM records — drawn from a common set of
-classes — as a **Parquet** export or a **relational database dump**, so
-consumers can query them at scale without loading everything into memory.
-
-This method is not yet available. It is being prioritized with community
-partners, and this page will be updated as the format and tooling take shape.
-
-[Read about large-volume dataset support →](large-datasets.md)
+Both alleles link to the same location and keep only their distinct states. See
+the cards above for format-specific guidance and examples.
 
 ## Built with community partners
 

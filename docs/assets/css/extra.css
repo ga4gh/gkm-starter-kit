@@ -67,8 +67,7 @@
     vertical-align: middle;
 }
 
-/* Corner badge for a grid card (e.g. the "Bundle" tag on the Compact records
-   panel). The card is the positioning context; the badge pins to its top-right. */
+/* Position the Bundle badge in the top-right corner of a grid card. */
 .md-typeset .grid.cards > ul > li,
 .md-typeset .grid.cards > ol > li {
     position: relative;

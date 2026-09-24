@@ -1,17 +1,17 @@
-# Mini bundle examples
+# Bundle examples
 
-Mini bundles are **small subsets of full records from a real dataset**. They let
-developers trial genuine GKM data — complete, unmodified records from a community
-resource — without taking on the challenge of handling a large dataset from the
-start. A mini bundle is a real slice, not a simplified illustration: the records
-are exactly what the producer publishes, just fewer of them.
+These examples are **small, focused subsets of a producer's actual published
+dataset**. They let readers inspect genuine, unmodified GKM records without
+downloading the full dataset.
 
-## What's inside a mini bundle
+!!! note "Want the full dataset?"
 
-Each mini bundle contains a handful of complete records plus everything they
-depend on. The CIViC assertion 9 bundle, for example, packages one clinical
-assertion together with the propositions, evidence, variants, and provenance it
-references — a bounded, connected slice of CIViC:
+    Download a producer's complete dataset from the [Public bundle repository](repository.md).
+
+## What's in each example
+
+The CIViC Assertion 9 bundle contains one clinical assertion and the
+propositions, evidence, variants, and provenance it references:
 
 | Collection | Records |
 | --- | --- |
@@ -24,17 +24,16 @@ references — a bounded, connected slice of CIViC:
 | source | 3 |
 | method | 1 |
 
-Because the whole slice fits in one small file, you can load it, inspect it, and
-build against real GKM structures immediately, then scale up to a
-[full published bundle](repository.md) once your code works.
+The whole slice fits in one small file, so you can load it, inspect it, and build
+against real GKM structures.
 
 ## A complete record from the bundle
 
 The record below is the actual [CIViC Assertion 9](https://civicdb.org/links/assertion/9),
-carried in the bundle exactly as CIViC publishes it — a real Tier II
+carried in the bundle exactly as CIViC publishes it. It is a Tier II
 clinical-significance statement with its guideline classification and evidence
 lines. It links to its proposition, method, sources, and evidence elsewhere in
-the same bundle rather than repeating them:
+the same bundle:
 
 ```json
 {
@@ -87,7 +86,7 @@ evidence, variants, and molecular profiles it connects to.
 
 ## CIViC
 
-These two CIViC mini bundles show different VA-Spec assertion types. Both use
+These two CIViC bundle examples show different VA-Spec assertion types. Both use
 the [`civic-gks-bundle-v0.1.0.schema.json`](civic-gks-bundle-v0.1.0.schema.json){ target="_blank" rel="noopener" }
 bundle schema.
 

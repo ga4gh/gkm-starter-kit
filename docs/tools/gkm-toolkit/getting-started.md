@@ -120,8 +120,8 @@ and replace `"civic"`.
 
     Read the API documentation for the package and its functionality.
 
-- :material-file-search-outline: [**Preview example data**](../../data/bundles/mini-examples.md)
+- :material-file-search-outline: [**Preview example data**](../../data/bundles/examples.md)
 
-    Inspect a compact, mini bundles and the linked records it contains.
+    Inspect a bundle example and the linked records it contains.
 
 </div>

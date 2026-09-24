@@ -17,7 +17,7 @@ nav = [
     { Bundles = [
       "data/bundles/index.md",
       { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
-      { "Mini bundle examples" = "data/bundles/mini-examples.md" },
+      { "Bundle examples" = "data/bundles/examples.md" },
       { "Explore published bundles" = "data/bundles/repository.md" },
     ] },
     { "Large-volume datasets" = "data/large-datasets.md" },
@@ -31,7 +31,7 @@ nav = [
       { "Getting started" = "tools/gkm-toolkit/getting-started.md" },
       { "Explore with notebooks" = [
         "tools/gkm-toolkit/notebooks/index.md",
-        { "Explore GKM Toolkit features with CIViC mini bundles" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
+        { "Explore GKM Toolkit features with CIViC bundle examples" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
         { "Explore the public bundle repository" = "tools/gkm-toolkit/notebooks/repository-notebook.md" },
       ] },
       { "API reference" = [

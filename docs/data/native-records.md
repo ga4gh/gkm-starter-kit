@@ -1,21 +1,20 @@
 # Native records
 
-A **native record** is a single GKM object — a variant, a category of variants,
-or a clinical assertion — written out on its own, with everything it needs
-**inline**. Nothing is factored out into shared collections and nothing is
-linked by reference. This is how GKM records work in practice before any
-[bundling](bundles/index.md) features are applied.
+A **native record** is a single GKM object, such as a variant, a category of
+variants, or a clinical assertion, written out on its own with everything it
+needs **inline**. Nothing is factored out into shared collections or linked by
+reference. It is the form of a GKM object before
+[bundling](bundles/index.md).
 
-Native records are the right choice when you are exchanging one record, or a
-small set, in a message or an API response, and readability matters more than
-avoiding repetition.
+Use native records to exchange one record, or a small set, in a message or API
+response.
 
 ## A single record
 
 The example below is a complete VRS `Allele`. Its `location` and
 `sequenceReference` are nested directly inside it, so the record stands entirely
-on its own. The same object can be serialized as **JSON** or **YAML** — the
-structure is identical.
+on its own. The same object can be serialized as **JSON** or **YAML** with the
+same structure.
 
 === "JSON"
 
@@ -107,11 +106,10 @@ repeats everything it needs, even if two records happen to share a value.
 ## When to move beyond native records
 
 Native records stay simple as long as the set is small and repetition is
-limited. When the same objects recur many times — reused within one record, or
-referenced across a larger set — restating them in full becomes wasteful and
-harder to keep consistent.
+limited. When the same objects recur within one record or across a larger set,
+restating them in full becomes wasteful and harder to keep consistent.
 
-At that point, a **compact record** states each shared object once and links to
-it by reference. In GKM terminology this is called **bundling**.
+A **compact record** states each shared object once and links to it by reference.
+In GKM terminology, this is called **bundling**.
 
 [Learn about bundles →](bundles/index.md)
