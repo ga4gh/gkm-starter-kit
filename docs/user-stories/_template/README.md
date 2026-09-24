@@ -13,6 +13,31 @@ This folder contains the canonical template for a GKM Starter Kit vignette. Copy
    locally to confirm there are no broken links or YAML errors.
 7. Open a PR. The PR template's checklist mirrors the requirements below.
 
+### Starting from a vignette proposal issue
+
+Maintainers can turn a submitted **Propose a vignette** issue into a populated
+draft with `scripts/generate_vignette_from_issue.py`. It maps the issue form's
+structured fields into frontmatter and carries over the catalog summary, the
+"Why this matters" paragraph, tools, links, and proposal notes.
+
+```shell
+python -m scripts.generate_vignette_from_issue --issue 123
+```
+
+The command uses the authenticated GitHub CLI (`gh`) to fetch the issue. To
+work from an exported issue body instead, pass `--issue-file issue.md`; use
+`--dry-run` to inspect the generated Markdown. It will not overwrite an
+existing vignette unless `--force` is supplied.
+
+When it writes a vignette under `docs/user-stories/`, the command also adds or
+refreshes an implementer dropdown in `zensical.toml`, with the vignette title
+as a child, so it appears in the documentation sidebar.
+
+The proposal form intentionally does not ask for the full story or example
+payloads, so the generated file contains TODOs for those sections. When the
+form selects **New pattern**, add the pattern to `patterns.yml` and pass its
+slug with `--new-pattern-slug`.
+
 ## Frontmatter field reference
 
 | Field | Required | Notes |
