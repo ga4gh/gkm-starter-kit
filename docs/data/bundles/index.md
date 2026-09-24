@@ -1,10 +1,9 @@
 # Bundles
 
-GKM bundles package **related genomic knowledge** so it can be **shared,
-validated, and reused across resources** without losing meaning. They keep
-standard GKM objects connected while preserving the **producer’s organization
-and context**, giving producers **flexibility in how they structure their
-data**.
+GKM bundles are compact records that package related genomic knowledge for
+sharing, validation, and reuse across resources. They keep standard GKM objects
+connected while preserving each producer's organization and context, giving producers
+flexibility in how they structure their data.
 
 ## What a bundle looks like
 
