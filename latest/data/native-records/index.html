@@ -27,7 +27,7 @@
     
     
       
-        <title>Native records - Genomic Knowledge Model Starter Kit</title>
+        <title>Native - Genomic Knowledge Model Starter Kit</title>
       
     
     
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Native records
+              Native
             
           </span>
         </div>
@@ -519,7 +519,7 @@
   <span class="md-ellipsis">
     
   
-  Native records
+  Native
 
     
   </span>
@@ -536,7 +536,7 @@
   <span class="md-ellipsis">
     
   
-  Native records
+  Native
 
     
   </span>
@@ -649,7 +649,7 @@
   <span class="md-ellipsis">
     
   
-  Bundles
+  Bundle
 
     
   </span>
@@ -670,7 +670,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-  Bundles
+  Bundle
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -780,7 +780,7 @@
   <span class="md-ellipsis">
     
   
-  Large-volume datasets
+  Bulk
 
     
   </span>
@@ -2472,8 +2472,8 @@
 <p>A <strong>native record</strong> is a single GKM object, such as a variant, a category of
 variants, or a clinical assertion, written out on its own with everything it
 needs <strong>inline</strong>. Nothing is factored out into shared collections or linked by
-reference. It is the form of a GKM object before
-<a href="../bundles/">bundling</a>.</p>
+reference. It is the form of a GKM object before it is
+<a href="../bundles/">bundled into a compact record</a>.</p>
 <p>Use native records to exchange one record, or a small set, in a message or API
 response.</p>
 <h2 id="a-single-record">A single record</h2>
@@ -2567,8 +2567,8 @@ repeats everything it needs, even if two records happen to share a value.</p>
 <p>Native records stay simple as long as the set is small and repetition is
 limited. When the same objects recur within one record or across a larger set,
 restating them in full becomes wasteful and harder to keep consistent.</p>
-<p>A <strong>compact record</strong> states each shared object once and links to it by reference.
-In GKM terminology, this is called <strong>bundling</strong>.</p>
+<p>A <strong>compact record</strong>, called a <strong>bundle</strong> in GKM, states each shared object once
+and links to it by reference.</p>
 <p><a href="../bundles/">Learn about bundles →</a></p>
 
 
