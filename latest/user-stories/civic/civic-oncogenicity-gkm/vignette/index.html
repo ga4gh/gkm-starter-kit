@@ -956,7 +956,7 @@
   <span class="md-ellipsis">
     
   
-  Explore mini bundles
+  Explore GKM Toolkit features with CIViC mini bundles
 
     
   </span>
@@ -2292,6 +2292,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-gkm-enables-for-civic" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        What GKM enables for CIViC
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-data" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
@@ -2299,6 +2310,45 @@
       </span>
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="The data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#connected-gkm-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Connected GKM representation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storing-the-molecular-profile-and-its-variant-context" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Storing the molecular profile and its variant context
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classification-rationale-and-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Classification rationale and sources
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2349,7 +2399,7 @@
 
 <h1 id="sharing-oncogenicity-knowledge-with-ga4gh-gkm">Sharing oncogenicity knowledge with GA4GH GKM</h1>
 <p><strong>Why this matters</strong></p>
-<p>Clinical Interpretation of Variants in Cancer (CIViC) is a public, community-driven knowledgebase for curating evidence about how genomic variants relate to cancer. It organizes that evidence into interpretations, including oncogenicity classifications, that researchers and clinical applications can review and reuse.</p>
+<p><a href="https://civicdb.org/welcome">Clinical Interpretation of Variants in Cancer (CIViC)</a> is a public, community-driven knowledgebase for curating evidence about how genomic variants relate to cancer. It organizes that evidence into interpretations, including oncogenicity classifications, that researchers and clinical applications can review and reuse.</p>
 <p>CIViC curates oncogenicity classifications and their supporting evidence. To use a classification outside CIViC, another system needs its variant, claim, supporting evidence, and provenance. The GA4GH Genomic Knowledge Model provides a common, computable representation for these connected records so interpretations retain their meaning across systems and can support workflows such as ClinVar submission.</p>
 <p><strong>At a glance</strong></p>
 <ul>
@@ -2364,10 +2414,13 @@
 <h2 id="the-challenge">The challenge</h2>
 <p>CIViC curators use the ClinGen/CGC/VICC framework to classify whether somatic variants may contribute to cancer. An interpretation combines a variant and disease context with evidence evaluated against oncogenicity criteria. It produces classifications such as <em>Oncogenic</em>, <em>Likely Oncogenic</em>, or <em>Uncertain Significance</em>, plus the supporting evidence and provenance needed to interpret the result.</p>
 <p>CIViC and other resources represent variants, evidence, assertions, and curation provenance differently. Without GKM, every destination needs a CIViC-specific transformation. Each integration must then account for both data models, limiting reuse of the structured interpretation.</p>
-<p>CIViCpy maps CIViC records, including Variants, Molecular Profiles, Evidence Items, and Assertions, into the GA4GH Genomic Knowledge Model. VRS represents the molecular variation underlying CIViC Variants. Cat-VRS represents the categorical variants and Molecular Profiles that CIViC interprets. VA-Spec represents claims made by Evidence Items and Assertions, with their classifications, evidence assessments, supporting documents, and provenance. Together, these standards preserve the relationships among CIViC records in a common exchange format.</p>
-<p>CIViCpy produces a structured GKM representation that knowledgebases and applications can use without implementing CIViC's internal data model. It preserves the relationships between the variant, classification, supporting evidence, and provenance. It also supports destination-specific workflows, including preparing classifications for ClinVar submission and tracking them through the submission lifecycle.</p>
+<h2 id="what-gkm-enables-for-civic">What GKM enables for CIViC</h2>
+<p>CIViCpy maps CIViC records, including Variants, Molecular Profiles, Evidence Items, and Assertions, into GKM-formatted data. Cat-VRS represents CIViC Molecular Profiles as CategoricalVariants. VRS represents the sequence-level variation within their CIViC Variant contexts. VA-Spec represents claims made by Evidence Items and Assertions, with their classifications, evidence assessments, supporting documents, and provenance.</p>
+<p>This gives CIViC one shared representation instead of a separate CIViC-specific transformation for each downstream workflow. The data can be serialized as JSON for exchange. For example, <a href="https://github.com/clingen-data-model/clinvar-this">ClinVar This</a> can use GKM-formatted JSON to prepare and track ClinVar submissions. Other GKM-capable applications can use the same linked claim, classification, evidence, and provenance without implementing CIViC's internal data model.</p>
 <h2 id="the-data">The data</h2>
 <p>CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-VRS for the molecular profile, VRS for the underlying alleles, and VA-Spec for the proposition, assertion, evidence assessments, and provenance. This preserves the links between the variant, its context, the classification, and its evidence. The following shortened example is adapted from <a href="../../../data/bundles/civic-assertion-251-bundle.json" rel="noopener" target="_blank">CIViC Assertion 251</a>. The linked bundle contains the full record.</p>
+<h3 id="connected-gkm-representation">Connected GKM representation</h3>
+<p>The example places the Molecular Profile, claim, source document, and assertion in one connected representation. The sections that follow explain the most important relationships in the JSON.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"molecularProfile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">"civic.mpid:82"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -2427,8 +2480,12 @@
 <a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="p">}</span>
 </code></pre></div>
-<p>Together, these objects form a reusable statement: <code>The MAP2K1 P124S variant is likely oncogenic in Cancer. The classification has a score of 7 and is supported by functional-assay (OS2), hotspot-recurrence (OM3), and population-frequency (OP4) evidence evaluated under the ClinGen/CGC/VICC framework</code>. The full example also includes source documents and three sequence-level representations.</p>
-<p>CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention an Evidence Item and code in free text, for example <code>(civic.eid:12709, OS2)</code>. Descriptions can also include other parenthetical references, such as database versions <code>(v4.1.0, OP4)</code>, and curators use different conventions. CIViCpy cannot reliably link Evidence Lines to Evidence Items from these descriptions. Its GKM representation leaves <code>EvidenceLine.hasEvidenceItems</code> empty. The Evidence Item URL (<code>https://civicdb.org/links/evidence/12986</code>) remains in the <code>urls</code> of the source document referenced by <code>Statement.reportedIn</code>. A future CIViC model could link each Evidence Line directly to its Evidence Item(s).</p>
+<h3 id="storing-the-molecular-profile-and-its-variant-context">Storing the molecular profile and its variant context</h3>
+<p>CIViCpy represents the CIViC Molecular Profile as the Cat-VRS CategoricalVariant <code>civic.mpid:82</code>. It retains the profile's grouping of one or more CIViC Variants and serves as the proposition's <code>subjectVariant</code>.</p>
+<p>CIViC stores the genomic, coding, and protein sequence representations under one CIViC Variant ID. In this example, each <code>members</code> path begins with <code>civic.vid:82</code>. The CategoricalVariant preserves that context through VRS Allele members, each with a precise, computable representation.</p>
+<h3 id="classification-rationale-and-sources">Classification rationale and sources</h3>
+<p>Together, these objects form a reusable statement: Somatic <strong>RET M918T is likely oncogenic for Medullary Thyroid Carcinoma</strong>, evaluated under the ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022 framework. The classification has a score of 9 and is supported by functional domain location (OM1), functional assay (OS2), population frequency (OP4), computational prediction (OP1), somatic hotspot recurrence (OP3) evidence.</p>
+<p>CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention both in free text, for example <code>(civic.EID:12709, OS2)</code>, but conventions vary. CIViCpy cannot reliably infer those links, so <code>EvidenceLine.hasEvidenceItems</code> is empty. The Evidence Item URL (<code>https://civicdb.org/links/evidence/12986</code>) remains in the source document referenced by <code>Statement.reportedIn</code>.</p>
 <h2 id="the-tools-used">The tools used</h2>
 <ul>
 <li><a href="https://civicdb.org/">CIViC</a>: source knowledgebase for curated cancer variant evidence and oncogenicity classifications.</li>
@@ -2437,8 +2494,9 @@
 </ul>
 <h2 id="explore-the-example">Explore the example</h2>
 <p>The accompanying <a href="../notebook/">CIViC oncogenicity notebook</a> walks through
-the same interpretation in executable Python. It loads the CIViC bundle and
-inspects the classification, evidence, and normalized GKM representation.</p>
+the same interpretation in executable Python. Use it as a starting point for
+loading CIViC data, following its linked records, and preparing a connected
+representation for your own application.</p>
 
 
 

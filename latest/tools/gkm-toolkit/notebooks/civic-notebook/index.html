@@ -27,7 +27,7 @@
     
     
       
-        <title>Explore mini bundles - Genomic Knowledge Model Starter Kit</title>
+        <title>Explore GKM Toolkit features with CIViC mini bundles - Genomic Knowledge Model Starter Kit</title>
       
     
     
@@ -85,7 +85,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#explore-mini-bundles" class="md-skip">
+        <a href="#explore-gkm-toolkit-features-with-civic-mini-bundles" class="md-skip">
           Skip to content
         </a>
       
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Explore mini bundles
+              Explore GKM Toolkit features with CIViC mini bundles
             
           </span>
         </div>
@@ -979,7 +979,7 @@
   <span class="md-ellipsis">
     
   
-  Explore mini bundles
+  Explore GKM Toolkit features with CIViC mini bundles
 
     
   </span>
@@ -996,7 +996,7 @@
   <span class="md-ellipsis">
     
   
-  Explore mini bundles
+  Explore GKM Toolkit features with CIViC mini bundles
 
     
   </span>
@@ -2944,21 +2944,21 @@
   
 
 
-<h1 id="explore-mini-bundles">Explore mini bundles</h1>
+<h1 id="explore-gkm-toolkit-features-with-civic-mini-bundles">Explore GKM Toolkit features with CIViC mini bundles</h1>
 <div class="admonition info">
 <p class="admonition-title">Data files</p>
 <p>Example files: <a href="../../../../data/bundles/civic-assertion-251-bundle.json" rel="noopener" target="_blank"><code>civic-assertion-251-bundle.json</code></a> · <a href="../../../../data/bundles/civic-assertion-9-bundle.json" rel="noopener" target="_blank"><code>civic-assertion-9-bundle.json</code></a> · <a href="../../../../data/bundles/civic-gks-bundle-v0.1.0.schema.json" rel="noopener" target="_blank"><code>civic-gks-bundle-v0.1.0.schema.json</code></a></p>
 <p>Rendered from <code>notebooks/civic/bundles/explore-civic-bundles.ipynb</code>.</p>
 </div>
-<p>Say you receive a CIViC mini bundle and want to find what an assertion refers to.</p>
-<p>You want to inspect the related content and send it to another tool. This extended walkthrough follows that task from loading through export.</p>
+<p>Use this walkthrough to learn how the GKM Toolkit works with CIViC bundle data.</p>
+<p>Start with a small, self-contained CIViC mini bundle. Then inspect its schema and collections, follow an assertion's links, and prepare its data for another tool.</p>
 <ol>
 <li><a href="#set-up">Load the CIViC bundle</a>.</li>
 <li><a href="#load-and-inspect">Understand its schema and collections</a>.</li>
 <li><a href="#which-proposition-does-this-assertion-refer-to">Find and resolve an assertion</a>.</li>
 <li><a href="#how-do-we-prepare-data-for-another-tool">Normalize, denormalize, and export the result</a>.</li>
 </ol>
-<p>This walkthrough explores two CIViC mini bundles using the same Python workflow. Each contains a selected subset of CIViC data.</p>
+<p>This walkthrough uses two CIViC mini bundles stored in this repository. Their small scope keeps the examples focused while highlighting the Toolkit operations used to explore a bundle.</p>
 <h2 id="set-up">Set up</h2>
 <h3 id="how-do-we-work-with-a-bundle-in-python">How do we work with a bundle in Python?</h3>
 <p>Import the bundles package. It provides the loader, in-memory bundle model, reference lookup, and export operations used below.</p>
