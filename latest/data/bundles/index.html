@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../native-records/">
       
       
         <link rel="next" href="./schemas-and-contents/">
@@ -238,6 +238,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -431,6 +435,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -490,6 +498,33 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../native-records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Native records
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -523,7 +558,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
         
           
           <div class="md-nav__link md-nav__container">
@@ -544,14 +579,14 @@
             </a>
             
               
-              <label class="md-nav__link md-nav__link--active" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+              <label class="md-nav__link md-nav__link--active" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -596,14 +631,14 @@
   
   
     <li class="md-nav__item">
-      <a href="./mini-examples/" class="md-nav__link">
+      <a href="./examples/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Mini bundle examples
+  Bundle examples
 
     
   </span>
@@ -646,6 +681,33 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../large-datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Large-volume datasets
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -966,7 +1028,7 @@
   <span class="md-ellipsis">
     
   
-  Explore GKM Toolkit features with CIViC mini bundles
+  Explore GKM Toolkit features with CIViC bundle examples
 
     
   </span>
@@ -2271,10 +2333,21 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#get-started-with-bundles" class="md-nav__link">
+  <a href="#what-a-bundle-looks-like" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Get started with bundles
+        What a bundle looks like
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continue-exploring" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Continue exploring
       </span>
     </span>
   </a>
@@ -2310,20 +2383,59 @@ validated, and reused across resources</strong> without losing meaning. They kee
 standard GKM objects connected while preserving the <strong>producer’s organization
 and context</strong>, giving producers <strong>flexibility in how they structure their
 data</strong>.</p>
-<h2 id="get-started-with-bundles">Get started with bundles</h2>
+<h2 id="what-a-bundle-looks-like">What a bundle looks like</h2>
+<p>A bundle groups related GKM objects into named <strong>collections</strong>. A producer
+defines the collections and their contents in a bundle schema. Relationships
+between objects in the same bundle use bundle-local JSON Pointers (<code>#/...</code>).</p>
+<p>This example has required metadata, a shared data-release extension, and two
+samples. Both samples point to the same extension, so its value appears once.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-21"</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">"producer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example knowledgebase"</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">"bundleVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">"extensions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">"data-release"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Extension"</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dataRelease"</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09"</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="nt">"samples"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">"sample:1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample:1"</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample"</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tumor sample"</span><span class="p">,</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="nt">"dataRelease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/extensions/data-release"</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span><span class="nt">"sample:2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample:2"</span><span class="p">,</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample"</span><span class="p">,</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Normal sample"</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="nt">"dataRelease"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#/extensions/data-release"</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="p">}</span>
+</code></pre></div>
+<p>Each shared GKM object appears once in a bundle. Other objects link to it with a
+JSON Pointer instead of repeating it. Bundles are distributed with their bundle
+schema, which defines the collection names, allowed objects, metadata, and local
+references.</p>
+<h2 id="continue-exploring">Continue exploring</h2>
 <div class="grid cards">
 <ul>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h6v4H3zm12 7h6v4h-6zm0 7h6v4h-6zm-2-4H7v5h6v2H5V9h2v2h6z"/></svg></span> <a href="schemas-and-contents/"><strong>Define schemas and contents</strong></a></p>
-<p>Understand collections, relationships, metadata, and provenance.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h6v4H3zm12 7h6v4h-6zm0 7h6v4h-6zm-2-4H7v5h6v2H5V9h2v2h6z"/></svg></span> <a href="schemas-and-contents/"><strong>Define bundle schemas</strong></a></p>
+<p>Define collections, metadata, and the GKM objects they contain.</p>
 </li>
 <li>
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0"/></svg></span> <a href="mini-examples/"><strong>Inspect mini bundle examples</strong></a></p>
-<p>See short, focused examples that are easy to inspect in JSON.</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m0-4.5c5 0 9.27 3.11 11 7.5-1.73 4.39-6 7.5-11 7.5S2.73 16.39 1 12c1.73-4.39 6-7.5 11-7.5M3.18 12a9.821 9.821 0 0 0 17.64 0 9.821 9.821 0 0 0-17.64 0"/></svg></span> <a href="examples/"><strong>Inspect bundle examples</strong></a></p>
+<p>Explore small, focused subsets of producers' actual published data.</p>
 </li>
 <li>
 <p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13c-2.17 0-4.07 1.16-5.12 2.89-.6.07-1.23.11-1.88.11-4.42 0-8-1.79-8-4V9c0 2.21 3.58 4 8 4s8-1.79 8-4v3c0 .36-.1.71-.28 1.05C19.5 13 19.24 13 19 13m-7-2c4.42 0 8-1.79 8-4s-3.58-4-8-4-8 1.79-8 4 3.58 4 8 4m1.1 6.96c-.36.04-.73.04-1.1.04-4.42 0-8-1.79-8-4v3c0 2.21 3.58 4 8 4 .46 0 .9 0 1.33-.06A6 6 0 0 1 13 19c0-.36.04-.7.1-1.04M20 20v-4h-2v4h-2l3 3 3-3z"/></svg></span> <a href="repository/"><strong>Browse complete public bundles</strong></a></p>
-<p>Download full published resources and their schemas.</p>
+<p>Download producers' complete published datasets and schemas.</p>
 </li>
 </ul>
 </div>

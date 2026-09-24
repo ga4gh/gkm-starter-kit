@@ -7,16 +7,22 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/</loc>
       </url>
       <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/native-records/</loc>
+      </url>
+      <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/schemas-and-contents/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/mini-examples/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/examples/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/repository/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/large-datasets/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/</loc>
