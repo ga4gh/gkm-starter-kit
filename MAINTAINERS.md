@@ -1,6 +1,6 @@
 # Maintainers
 
-This repository is maintained by the GKS Starter Kit working group within the GA4GH Genomic Knowledge Standards Work Stream.
+This repository is maintained by the GKM Starter Kit working group within the GA4GH Genomic Knowledge Standards Work Stream.
 
 ## Current maintainers
 

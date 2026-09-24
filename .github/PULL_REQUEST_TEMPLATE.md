@@ -1,6 +1,6 @@
 ## What's in this PR
 
-<!-- Brief summary. If this is a vignette PR, name the implementer + GKS products. -->
+<!-- Brief summary. If this is a vignette PR, name the implementer + GKM products. -->
 
 ## Linked issue (if any)
 

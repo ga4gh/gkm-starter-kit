@@ -1,5 +1,5 @@
 name: Propose a vignette
-description: Suggest a new vignette for the GKS Starter Kit
+description: Suggest a new vignette for the GKM Starter Kit
 title: "Vignette: <one-line use case>"
 labels: ["vignette", "triage"]
 body:
@@ -56,7 +56,7 @@ body:
   - type: textarea
     id: products
     attributes:
-      label: GKS products and versions
+      label: GKM products and versions
       description: List each product and version on its own line. Products must be GKS-Core, VRS, Cat-VRS, or VA-Spec. Versions are optional but strongly encouraged.
       placeholder: |
         VRS 2.0
@@ -83,7 +83,7 @@ body:
     id: use_case
     attributes:
       label: Why this matters
-      description: In 3–5 plain-language sentences, explain the real problem, who it affects, and what GKS unlocks. Avoid unexplained jargon and acronyms.
+      description: In 3–5 plain-language sentences, explain the real problem, who it affects, and what GKM unlocks. Avoid unexplained jargon and acronyms.
       placeholder: "A non-technical reader should be able to understand and forward this paragraph."
     validations:
       required: true
@@ -104,7 +104,7 @@ body:
     id: tools
     attributes:
       label: Tools used
-      description: Name the concrete libraries or services involved, with their own tool/library versions and links where available. GKS specification versions belong in "GKS products and versions" above.
+      description: Name the concrete libraries or services involved, with their own tool/library versions and links where available. GKM specification versions belong in "GKM products and versions" above.
       placeholder: |
         vrs-python 2.1.0 — https://github.com/ga4gh/vrs-python
     validations:

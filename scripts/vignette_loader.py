@@ -1,4 +1,4 @@
-"""Shared frontmatter loader for the GKS Starter Kit.
+"""Shared frontmatter loader for the GKM Starter Kit.
 
 The catalog and filter-page generators import from here, so the frontmatter
 contract has a single source of truth.

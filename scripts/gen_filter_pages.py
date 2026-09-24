@@ -23,7 +23,7 @@ def _render_catalog(vignettes: list[dict], patterns: dict[str, str]) -> str:
     lines = [
         "# Pillar III: User Stories",
         "",
-        "User stories are the third pillar of the Starter Kit: **real community use cases**, each told as one vignette about who, what problem, and what GKS unlocks, with the actual data and tools. The common thread is always the same: *what a group needs the standards for, and the standards delivering it.*",
+        "User stories are the third pillar of the Starter Kit: **real community use cases**, each told as one vignette about who, what problem, and what GKM unlocks, with the actual data and tools. The common thread is always the same: *what a group needs the standards for, and the standards delivering it.*",
         "",
     ]
     if not vignettes:

@@ -1,1 +1,1 @@
-"""GKS Starter Kit build scripts."""
+"""GKM Starter Kit build scripts."""

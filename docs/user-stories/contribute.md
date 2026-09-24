@@ -1,13 +1,13 @@
 # Contribute to User Stories
 
-Share a user story if you have built on GKS or have a credible proposal.
+Share a user story if you have built on GKM or have a credible proposal.
 
 ## Is your idea a fit?
 
 Your story should:
 
 - [ ] Describe a real implementation or a credible proposal with a clear use case.
-- [ ] Use one or more GKS standards: GKS-Core, VRS, Cat-VRS, or VA-Spec.
+- [ ] Use one or more GKM standards: GKS-Core, VRS, Cat-VRS, or VA-Spec.
 - [ ] Include real example payloads, or clearly label synthetic payloads.
 - [ ] Name the tools and libraries used, with their own versions and links.
 - [ ] State the value in plain language that a non-technical reader can understand and forward.
@@ -18,7 +18,7 @@ If you are unsure, open an issue and a maintainer can help.
 
 ### 1. Propose first (lower commitment)
 
-Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-starter-kit/issues/new?template=propose-vignette.yml) form. It collects the title, source namespace, slug, catalog summary, implementer, GKS products and specification versions, reuse pattern, plain-language rationale, status, tools, and relevant links. A maintainer will triage the proposal and help determine the next step.
+Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-starter-kit/issues/new?template=propose-vignette.yml) form. It collects the title, source namespace, slug, catalog summary, implementer, GKM products and specification versions, reuse pattern, plain-language rationale, status, tools, and relevant links. A maintainer will triage the proposal and help determine the next step.
 
 ### 2. Draft a PR directly
 
@@ -34,7 +34,7 @@ To draft a PR:
 
 - The "Why this matters" paragraph uses plain language with no unexplained jargon or acronyms.
 - Payloads are real, or synthetic payloads are clearly labelled.
-- Tools are named explicitly with their own versions and links. Record GKS specification versions separately in `products`.
+- Tools are named explicitly with their own versions and links. Record GKM specification versions separately in `products`.
 - The `status` field accurately reflects where the implementation actually is.
 - A new `pattern` value is added to `docs/user-stories/patterns.yml` in the same PR when needed.
 

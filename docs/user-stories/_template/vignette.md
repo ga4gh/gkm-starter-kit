@@ -34,7 +34,7 @@ last_updated: 2026-05-27
 
 ## The story
 
-<2–4 paragraphs: the real situation, what was hard before, what GKS unlocked.>
+<2–4 paragraphs: the real situation, what was hard before, what GKM unlocked.>
 
 ## The data
 
