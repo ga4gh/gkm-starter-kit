@@ -76,7 +76,11 @@ nav = [
           "user-stories/civic/civic-oncogenicity-gkm/vignette/index.md",
           { "Try the Notebook" = "user-stories/civic/civic-oncogenicity-gkm/notebook.md" },
         ] },
-      ] }
+      ] },
+      { "Individual-Centric Genomics Platform JPN" = [
+        "user-stories/by-implementer/individual-centric-genomics-platform-jpn/index.md",
+        { "Making personal genomic knowledge auditable so AI can be trusted, not just believed" = "user-stories/individual-centric-genomics-platform-jpn/auditable-personal-genomic-knowledge/vignette.md" },
+      ] },
     ] },
     { "Contribute to User Stories" = "user-stories/contribute.md" },
   ] },
