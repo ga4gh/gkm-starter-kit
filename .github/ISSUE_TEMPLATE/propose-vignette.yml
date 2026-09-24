@@ -1,12 +1,12 @@
 name: Propose a vignette
-description: Suggest a new vignette for the GKS Starter Kit
+description: Suggest a new vignette for the GKM Starter Kit
 title: "Vignette: <one-line use case>"
 labels: ["vignette", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for proposing a vignette! This form captures the basics so a maintainer can triage. After triage, you (or a helper) will draft the full vignette in a follow-up PR — see [the contribution guide](https://ga4gh.github.io/gkm-starter-kit/contribute/) for the structure.
+        Thanks for proposing a vignette! This form captures the vignette details needed for triage and to start a follow-up PR. A maintainer can help you complete the vignette. See [the contribution guide](https://ga4gh.github.io/gkm-starter-kit/contribute/) for the full structure.
 
   - type: input
     id: title
@@ -14,6 +14,33 @@ body:
       label: Working title
       description: One-line use case description.
       placeholder: "e.g. BRCA Exchange: identifying unique variants across sources with VRS"
+    validations:
+      required: true
+
+  - type: input
+    id: slug
+    attributes:
+      label: Slug
+      description: Kebab-case identifier. It must match the eventual vignette folder name.
+      placeholder: "e.g. identifying-unique-variants-vrs"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source namespace
+      description: The short, kebab-case source folder for this implementer or project.
+      placeholder: "e.g. brca"
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Catalog summary
+      description: One sentence for the catalog card. Keep it distinct from the longer "Why this matters" paragraph below.
+      placeholder: "e.g. BRCA Exchange uses VRS identifiers to recognize the same variant across disparate data sources."
     validations:
       required: true
 
@@ -26,33 +53,38 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: textarea
     id: products
     attributes:
-      label: GKS products used
-      description: Select all that apply.
-      options:
-        - label: VRS
-        - label: Cat-VRS
-        - label: VA-Spec
+      label: GKM products and versions
+      description: List each product and version on its own line. Products must be GKS-Core, VRS, Cat-VRS, or VA-Spec. Versions are optional but strongly encouraged.
+      placeholder: |
+        VRS 2.0
+        VA-Spec 1.0
     validations:
       required: true
 
-  - type: input
-    id: product_versions
+  - type: dropdown
+    id: pattern
     attributes:
-      label: Product versions
-      description: Which version of each selected product is being used? Comma-separated, e.g. "VRS 2.0, VA-Spec 1.0".
-      placeholder: "VRS 2.0"
+      label: Reuse pattern
+      description: Choose the pattern that best describes this use case. If none fits, choose "New pattern" and describe it in Additional context; a new value must be added to patterns.yml with the vignette PR.
+      options:
+        - Cross-source variant harmonization
+        - Knowledgebase exchange
+        - Variant categorization
+        - Variant annotation
+        - Clinical evidence sharing
+        - New pattern (describe below)
     validations:
       required: true
 
   - type: textarea
     id: use_case
     attributes:
-      label: One-paragraph use case
-      description: What real problem does this solve? What does GKS unlock?
-      placeholder: "Plain language is fine — the maintainer will help shape the final 'Why this matters' paragraph."
+      label: Why this matters
+      description: In 3–5 plain-language sentences, explain the real problem, who it affects, and what GKM unlocks. Avoid unexplained jargon and acronyms.
+      placeholder: "A non-technical reader should be able to understand and forward this paragraph."
     validations:
       required: true
 
@@ -65,6 +97,16 @@ body:
         - production
         - pilot
         - proposal
+    validations:
+      required: true
+
+  - type: textarea
+    id: tools
+    attributes:
+      label: Tools used
+      description: Name the concrete libraries or services involved, with their own tool/library versions and links where available. GKM specification versions belong in "GKM products and versions" above.
+      placeholder: |
+        vrs-python 2.1.0 — https://github.com/ga4gh/vrs-python
     validations:
       required: true
 
@@ -82,4 +124,4 @@ body:
     id: additional_context
     attributes:
       label: Additional context
-      description: Anything else you'd like to share that wasn't covered above?
+      description: Include a proposed new pattern (if applicable), data/payload availability, contributors, notebook plans, or anything else not covered above.

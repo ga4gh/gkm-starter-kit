@@ -1,46 +1,45 @@
 # Contribute to User Stories
 
-If you've built something real on top of GKS, or you're proposing to, a user story is the way to share it.
+Share a user story if you have built on GKM or have a credible proposal.
 
 ## Is your idea a fit?
 
-Use this short checklist:
+Your story should:
 
-- [ ] Real implementation, or a credible proposal with a clear use case.
-- [ ] Uses one or more GKM standards (GKS-Core, VRS, Cat-VRS, VA-Spec).
-- [ ] You can include real data (example payloads, not synthetic placeholders).
-- [ ] You can name the actual tools and libraries used, with versions and links.
-- [ ] The value can be stated in plain language that a non-technical reader could understand and forward.
+- [ ] Describe a real implementation or a credible proposal with a clear use case.
+- [ ] Use one or more GKM standards: GKS-Core, VRS, Cat-VRS, or VA-Spec.
+- [ ] Include real example payloads, or clearly label synthetic payloads.
+- [ ] Name the tools and libraries used, with their own versions and links.
+- [ ] State the value in plain language that a non-technical reader can understand and forward.
 
-If all five are yes, you have a user story. If you're not sure, open an issue (see below) and a maintainer will help.
+If you are unsure, open an issue and a maintainer can help.
 
 ## Two ways to contribute
 
 ### 1. Propose first (lower commitment)
 
-Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-starter-kit/issues/new?template=propose-vignette.yml) template. The form captures the title, implementer, products, a one-paragraph use case, status, and your contact. A maintainer will triage and either assign it back to you or to a willing helper.
+Open an issue using the [**Propose a user story**](https://github.com/ga4gh/gkm-starter-kit/issues/new?template=propose-vignette.yml) form. It collects the title, source namespace, slug, catalog summary, implementer, GKM products and specification versions, reuse pattern, plain-language rationale, status, tools, and relevant links. A maintainer will triage the proposal and help determine the next step.
 
 ### 2. Draft a PR directly
 
-If you're ready to write:
+To draft a PR:
 
 1. Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) (the `_template/` folder in the repo).
 2. Copy `docs/user-stories/_template/vignette.md` into a new `docs/user-stories/<source>/<your-slug>/` folder.
 3. Fill in the frontmatter and body. Add `payloads/` and `diagrams/` subfolders as needed.
-4. Run `python -m scripts.build_docs && zensical build --clean --strict`
-   locally to catch errors.
+4. Run `python -m scripts.build_docs && zensical build --clean --strict` locally.
 5. Open a PR. The PR template's checklist mirrors the authoring requirements.
 
 ## What makes a strong user story
 
-- The "Why this matters" paragraph uses plain language with no unexplained jargon.
-- Payloads are real (or, if synthetic, clearly labelled).
-- Tools are named explicitly with versions and links.
+- The "Why this matters" paragraph uses plain language with no unexplained jargon or acronyms.
+- Payloads are real, or synthetic payloads are clearly labelled.
+- Tools are named explicitly with their own versions and links. Record GKM specification versions separately in `products`.
 - The `status` field accurately reflects where the implementation actually is.
-- A new pattern, if you need one, is added to `docs/user-stories/patterns.yml` in the same PR.
+- A new `pattern` value is added to `docs/user-stories/patterns.yml` in the same PR when needed.
 
-The [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) has examples of strong and weak "Why this matters" paragraphs. It is worth reading before you start.
+Read the [user story authoring guide](https://github.com/ga4gh/gkm-starter-kit/tree/main/docs/user-stories/_template) before drafting. It defines all frontmatter fields and includes strong and weak "Why this matters" examples.
 
 ## What to expect from review
 
-A maintainer will review against the template. They may ask for clarifications, most often on the "Why this matters" paragraph (plain language is harder than it looks) or on confirming the `status` matches reality. Once aligned, the user story merges and ships on the next push.
+A maintainer reviews each story against the template. They may ask you to clarify the plain-language rationale or confirm the `status`. Merged stories publish on the next push.
