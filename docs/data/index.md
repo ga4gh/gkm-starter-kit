@@ -8,8 +8,9 @@ from individual records to compact bundles and larger datasets.
 
 ## Ways to share GKM data
 
-The right delivery method depends on the scale and the use case. The initial
-implementation supports some patterns today; others are in development.
+The initial implementation supports some sharing patterns today. Others remain
+in development or are future directions. The right delivery method depends on
+the scale and use case.
 
 <div class="grid cards" markdown>
 
