@@ -1,15 +1,21 @@
-# Mini bundle examples
+# Bundle examples
 
-Mini bundles are small, focused subsets of a producer's complete dataset. They
-pair representative GKM data from a community resource with its bundle schema,
-making the bundle's structure and relationships easier to inspect. They are not
-complete published datasets.
+These examples are **small, focused subsets of a producer's actual published
+dataset**. They let readers inspect genuine, unmodified GKM records without
+downloading the full dataset.
+
+!!! note "Want the full dataset?"
+
+    Download a producer's complete dataset from the [Public bundle repository](repository.md).
 
 ## CIViC
 
-These two CIViC mini bundles show different VA-Spec assertion types. Both use
+These two CIViC bundle examples show different VA-Spec assertion types. Both use
 the [`civic-gks-bundle-v0.1.0.schema.json`](civic-gks-bundle-v0.1.0.schema.json){ target="_blank" rel="noopener" }
 bundle schema.
+
+Each file is a complete, connected subset of CIViC data. Open it to inspect the
+records and bundle-local references.
 
 - [**`civic-assertion-9-bundle.json`**](civic-assertion-9-bundle.json){ target="_blank" rel="noopener" }
   represents [CIViC Assertion 9](https://civicdb.org/links/assertion/9): a Tier II
