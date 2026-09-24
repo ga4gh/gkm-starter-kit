@@ -40,7 +40,8 @@ interpretations, provenance, and supporting evidence.
   <div class="gks-standard-layer gks-standard-layer--core">
     <a class="gks-standard-block" href="https://github.com/ga4gh/gkm-core" title="Genomic Knowledge Standards Core" aria-label="See the Genomic Knowledge Standards Core docs on GitHub">
       <strong>GKS-Core</strong>
+      <span class="gks-standard-foundation">The foundation of GKM standards</span>
     </a>
-    <p class="gks-standard-description"><a href="https://github.com/ga4gh/gkm-core"><strong>Genomic Knowledge Standards Core</strong></a><br>Foundation: shared concepts for genomic knowledge.</p>
+    <p class="gks-standard-description"><a href="https://github.com/ga4gh/gkm-core"><strong>Genomic Knowledge Standards Core</strong></a><br>Provides shared concepts for genomic knowledge.</p>
   </div>
 </div>
