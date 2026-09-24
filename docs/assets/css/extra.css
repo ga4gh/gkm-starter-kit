@@ -186,6 +186,8 @@
 .gks-standard-layer {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 1rem;
     width: 100%;
 }
 
@@ -233,8 +235,9 @@
 }
 
 .gks-standard-description {
-    flex: 1 1 0;
-    margin: 0 0 0 1rem;
+    flex: 0 1 22rem;
+    min-width: 0;
+    margin: 0;
     color: var(--md-default-fg-color--light);
     font-size: 0.78rem;
     line-height: 1.4;
@@ -261,28 +264,25 @@
 }
 
 .gks-standard-layer--core .gks-standard-block {
-    width: 50%;
+    width: 18rem;
     border-color: #6a9fca;
     background: #eaf4fb;
 }
 
 .gks-standard-layer--vrs .gks-standard-block {
-    width: 43%;
-    margin-left: 3.5%;
+    width: 15.5rem;
     border-color: #79b8d5;
     background: #edf8fc;
 }
 
 .gks-standard-layer--cat-vrs .gks-standard-block {
-    width: 36%;
-    margin-left: 7%;
+    width: 13rem;
     border-color: #a59bc4;
     background: #f3f0f9;
 }
 
 .gks-standard-layer--va-spec .gks-standard-block {
-    width: 29%;
-    margin-left: 10.5%;
+    width: 10.5rem;
     border-color: #9ebc7e;
     background: #f2f8ed;
 }
@@ -332,7 +332,6 @@
 
     .gks-standard-layer .gks-standard-block {
         width: 100%;
-        margin-left: 0;
     }
 
     .gks-standard-description {

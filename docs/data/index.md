@@ -4,7 +4,8 @@ GKM describes one piece of genomic knowledge, such as a variant, a category
 of variants, or a clinical assertion, in a consistent way. Real resources
 contain many of these objects and need consistent ways to share them.
 **This pillar shows how GKM data can be packaged and shared in practice**,
-from individual records to compact bundles and larger datasets.
+from individual records to bundles, GKM's compact record format, and larger
+datasets.
 
 ## Ways to share GKM data
 
@@ -14,25 +15,25 @@ the scale and use case.
 
 <div class="grid cards" markdown>
 
-- [**Native records**](native-records.md)
+- [**Native**](native-records.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
     A single record or a small set. Each object is **self-contained**, with
     nothing compacted.
 
-    *Formats: JSON, YAML*
+    *Formats: JSON, JSONL, YAML*
 
-- [**Compact records**](bundles/index.md)<span class="gks-card-badge">Bundle</span>
+- [**Bundle**](bundles/index.md)
 
     <span class="gks-status gks-status--production">Available now</span>
 
-    Package related objects together, stating **shared representations once**
-    and linking to them by reference. GKM calls this **bundling**.
+    GKM's format for **compact records**. Packages related objects together, stating
+    **shared representations once** and linking to them by reference.
 
     *Formats: JSON, JSON Schema*
 
-- [**Large-volume datasets**](large-datasets.md)
+- [**Bulk**](large-datasets.md)
 
     <span class="gks-status gks-status--pilot">In development</span>
 
@@ -133,7 +134,7 @@ the cards above for format-specific guidance and examples.
 
 The Starter Kit uses real content developed with resources such as
 **[ClinVar GKM](https://dataexchange.clinicalgenome.org/clinvar-gkm/)** and
-**CIViC**. Each partner defines its collection names and object
+**[CIViC](https://civicdb.org/)**. Each partner defines its collection names and object
 groupings in a bundle schema, preserving familiar terminology while using
 shared GKM models.
 
