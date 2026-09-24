@@ -178,15 +178,14 @@
 
 .gks-standard-stack {
     display: grid;
-    justify-items: center;
     gap: 0.7rem;
     margin: 1.25rem auto 1.75rem;
-    max-width: 24rem;
+    max-width: 48rem;
 }
 
 .gks-standard-layer {
     display: flex;
-    justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
@@ -201,11 +200,23 @@
     line-height: 1.35;
     text-align: center;
     text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease,
+        box-shadow 0.15s ease, transform 0.15s ease;
+    cursor: pointer;
 }
 
-.gks-standard-block:hover {
+.gks-standard-block:hover,
+.gks-standard-block:focus-visible {
     color: var(--md-default-fg-color);
     text-decoration: none;
+    border-color: var(--md-primary-fg-color--dark);
+    box-shadow: 0 0.2rem 0.55rem rgb(27 117 187 / 25%);
+    transform: translateY(-0.1rem);
+}
+
+.gks-standard-block:focus-visible {
+    outline: 3px solid var(--md-accent-fg-color);
+    outline-offset: 3px;
 }
 
 .gks-standard-block strong {
@@ -213,8 +224,16 @@
     text-transform: uppercase;
 }
 
-.gks-standard-block span {
+.gks-standard-description {
+    flex: 1 1 0;
+    margin: 0 0 0 1rem;
+    color: var(--md-default-fg-color--light);
     font-size: 0.78rem;
+    line-height: 1.4;
+}
+
+.gks-standard-description a {
+    color: var(--md-primary-fg-color--dark);
 }
 
 .gks-standard-layer--core {
@@ -222,37 +241,40 @@
 }
 
 .gks-standard-layer--vrs {
-    width: 86%;
+    width: 100%;
 }
 
 .gks-standard-layer--cat-vrs {
-    width: 72%;
+    width: 100%;
 }
 
 .gks-standard-layer--va-spec {
-    width: 58%;
+    width: 100%;
 }
 
 .gks-standard-layer--core .gks-standard-block {
-    width: 100%;
+    width: 50%;
     border-color: #6a9fca;
     background: #eaf4fb;
 }
 
 .gks-standard-layer--vrs .gks-standard-block {
-    width: 100%;
+    width: 43%;
+    margin-left: 3.5%;
     border-color: #79b8d5;
     background: #edf8fc;
 }
 
 .gks-standard-layer--cat-vrs .gks-standard-block {
-    width: 100%;
+    width: 36%;
+    margin-left: 7%;
     border-color: #a59bc4;
     background: #f3f0f9;
 }
 
 .gks-standard-layer--va-spec .gks-standard-block {
-    width: 100%;
+    width: 29%;
+    margin-left: 10.5%;
     border-color: #9ebc7e;
     background: #f2f8ed;
 }
@@ -263,6 +285,16 @@
 
 [data-md-color-scheme="slate"] .gks-standard-block:hover {
     color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .gks-standard-block:hover,
+[data-md-color-scheme="slate"] .gks-standard-block:focus-visible {
+    border-color: var(--md-primary-fg-color--light);
+    box-shadow: 0 0.2rem 0.55rem rgb(79 174 220 / 30%);
+}
+
+[data-md-color-scheme="slate"] .gks-standard-description a {
+    color: var(--md-primary-fg-color--light);
 }
 
 [data-md-color-scheme="slate"] .gks-standard-layer--core .gks-standard-block {
@@ -279,6 +311,22 @@
 
 [data-md-color-scheme="slate"] .gks-standard-layer--va-spec .gks-standard-block {
     background: #304528;
+}
+
+@media screen and (max-width: 44.99em) {
+    .gks-standard-layer {
+        display: block;
+    }
+
+    .gks-standard-layer .gks-standard-block {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .gks-standard-description {
+        margin: 0.4rem 0 0;
+        text-align: center;
+    }
 }
 
 /* v2 landing: three-pillars explainer graphic */
