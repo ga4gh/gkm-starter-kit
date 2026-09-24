@@ -31,7 +31,7 @@ nav = [
       { "Getting started" = "tools/gkm-toolkit/getting-started.md" },
       { "Explore with notebooks" = [
         "tools/gkm-toolkit/notebooks/index.md",
-        { "Explore mini bundles" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
+        { "Explore GKM Toolkit features with CIViC mini bundles" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
         { "Explore the public bundle repository" = "tools/gkm-toolkit/notebooks/repository-notebook.md" },
       ] },
       { "API reference" = [

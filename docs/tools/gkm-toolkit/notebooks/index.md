@@ -11,8 +11,9 @@ your browser without installing anything. Mini bundles are subsets for
 exploration. Published bundles contain the complete dataset released by a
 producer.
 
-- [Explore mini bundles](civic-notebook.md) — load and explore two CIViC mini
-  bundles, inspect their collections, and follow bundle-local references.
+- [Explore GKM Toolkit features with CIViC mini bundles](civic-notebook.md) —
+  learn the Toolkit by loading two mini CIViC bundles, inspecting their
+  collections, and following bundle-local references.
 - [Explore the public bundle repository](repository-notebook.md) — discover
   public resources, retrieve a producer's complete published bundle and its
   schema, load them into GKM models, and handle repository errors.
