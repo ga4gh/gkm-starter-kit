@@ -1738,14 +1738,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../user-stories/by-product/gks-core/" class="md-nav__link">
+      <a href="../../../user-stories/by-product/gkm-core/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  GKS-Core
+  GKM-Core
 
     
   </span>
@@ -2663,34 +2663,43 @@ validates the bundle and schema before you work with the data.</p>
 follow the records it connects. This one links a classification to a proposition
 about a variant and a condition:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">assertion</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">assertion</span><span class="p">[</span><span class="s2">"civic.aid:9"</span><span class="p">]</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">proposition</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">assertion</span><span class="p">[</span><span class="s2">"proposition"</span><span class="p">])</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">variant</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">proposition</span><span class="o">.</span><span class="n">subjectVariant</span><span class="p">)</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">condition</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">proposition</span><span class="o">.</span><span class="n">objectCondition</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">proposition</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">proposition</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">variant</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">subject</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">condition</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">object</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Classification:"</span><span class="p">,</span> <span class="n">assertion</span><span class="p">[</span><span class="s2">"classification"</span><span class="p">][</span><span class="s2">"name"</span><span class="p">])</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Classification:"</span><span class="p">,</span> <span class="n">assertion</span><span class="o">.</span><span class="n">classification</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Variant:"</span><span class="p">,</span> <span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Condition:"</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Condition:"</span><span class="p">,</span> <span class="n">condition</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </code></pre></div>
 <p>Expected output:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Classification: Tier II
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Variant: ACVR1 G328V
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Condition: Diffuse Midline Glioma, H3 K27-altered
 </code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Get pointers with <code>to_dict()</code>, then use <code>resolve()</code></p>
+<p>Typed assertion fields contain resolved GKM models. Use <code>civic.resolve(pointer)</code>
+only with a bundle-local JSON Pointer, such as one from <code>civic.to_dict()</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">bundle_document</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">proposition_pointer</span> <span class="o">=</span> <span class="n">bundle_document</span><span class="p">[</span><span class="s2">"assertion"</span><span class="p">][</span><span class="s2">"civic.aid:9"</span><span class="p">][</span><span class="s2">"proposition"</span><span class="p">]</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">proposition</span> <span class="o">=</span> <span class="n">civic</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">proposition_pointer</span><span class="p">)</span>
+</code></pre></div>
+</div>
 <p>This is the integration step: the Toolkit follows the links in the bundle so
 your application can use related knowledge together.</p>
 <h2 id="export-a-result-for-your-application">Export a result for your application</h2>
 <p>Finally, save just this connected slice of knowledge as a standalone JSON file
 for your application to use or pass on:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"source"</span><span class="p">:</span> <span class="s2">"CIViC"</span><span class="p">,</span> <span class="s2">"assertion"</span><span class="p">:</span> <span class="n">civic</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">assertion</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)}</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"civic-integrated-knowledge.json"</span><span class="p">)</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">output_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"source"</span><span class="p">:</span> <span class="s2">"CIViC"</span><span class="p">,</span> <span class="s2">"assertion"</span><span class="p">:</span> <span class="n">civic</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="n">assertion</span><span class="p">,</span> <span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)}</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">"civic-integrated-knowledge.json"</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">output_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <p>Expected output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Wrote civic-integrated-knowledge.json
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Wrote civic-integrated-knowledge.json
 </code></pre></div>
 <p>The JSON file contains that assertion, its proposition, and the referenced
 knowledge expanded inline.</p>

@@ -2018,14 +2018,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../user-stories/by-product/gks-core/" class="md-nav__link">
+      <a href="../../../../user-stories/by-product/gkm-core/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  GKS-Core
+  GKM-Core
 
     
   </span>
@@ -4473,13 +4473,16 @@ mapping syntax, attribute access, or :meth:<code>collection</code>.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Resolve an RFC 6901 JSON Pointer into the bundle.</p>
-<p><code>iriReference</code> objects are accepted directly. When the supplied
-producer schema identifies the exact target with a supported GA4GH W3ID
-reference, return its validated model; otherwise return the JSON value.
-Use :meth:<code>normalize</code> to expand references recursively. Model traversal
-is restricted to declared Pydantic fields; methods and other model
-implementation attributes are not valid pointer targets.</p>
+        <p>Resolve a bundle-local RFC 6901 JSON Pointer.</p>
+<p>Pass a pointer from this bundle's serialized representation, such as a
+value retrieved from :meth:<code>to_dict</code>. Do not pass a field from a typed
+object: linked fields on typed GKM models may already be resolved.
+<code>iriReference</code> objects are accepted directly. When the producer schema
+identifies the target with a supported GA4GH W3ID reference, return its
+validated model; otherwise return the JSON value. Use :meth:<code>normalize</code>
+to expand references recursively. Model traversal is restricted to
+declared Pydantic fields; methods and other implementation attributes
+are not valid pointer targets.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -4896,8 +4899,11 @@ local references.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Return the complete bundle as shallow Python values.</p>
-<p>This preserves local pointers and does not write a file.</p>
+        <p>Return the complete bundle as a JSON-compatible shallow document.</p>
+<p>This preserves bundle-local JSON Pointers rather than resolving them.
+Use a pointer from this result with :meth:<code>resolve</code>, or use
+:meth:<code>normalize</code> to recursively replace local pointers with their
+targets. This method does not write a file.</p>
 
 
     <p><span class="doc-section-title">Returns:</span></p>

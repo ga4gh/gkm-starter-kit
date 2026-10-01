@@ -1632,14 +1632,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../by-product/gks-core/" class="md-nav__link">
+      <a href="../../../by-product/gkm-core/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  GKS-Core
+  GKM-Core
 
     
   </span>
@@ -3131,8 +3131,8 @@
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classification: </span><span class="si">{</span><span class="n">classification</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">proposition</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">proposition</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">variant</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">subjectVariant</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">disease</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">objectTumorType</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">variant</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">subject</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">disease</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">object</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">gene</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">geneContextQualifier</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">origin</span> <span class="o">=</span> <span class="n">proposition</span><span class="o">.</span><span class="n">alleleOriginQualifier</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">evidence_lines</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">hasEvidenceLines</span>
@@ -3151,8 +3151,8 @@
 <div class="highlight"><span class="filename">In [4]</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Subject variant: </span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Gene context: </span><span class="si">{</span><span class="n">gene</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Allele origin: </span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disease: </span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Claim: </span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is oncogenic for </span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disease: </span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Claim: </span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is oncogenic for </span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Subject variant: RET M918T
@@ -3166,7 +3166,7 @@
 <h3 id="storing-the-molecular-profile-and-its-variant-context">Storing the molecular profile and its variant context</h3>
 <p>The assertion links to a CIViC Molecular Profile, which provides its variant context.</p>
 <p><img alt="CIViC Assertion Molecular Profile" src="../civic-assertion-202-molecular-profile-ui.png" /></p>
-<p>CIViCpy represents the Molecular Profile as a Cat-VRS CategoricalVariant, which becomes the proposition's <code>subjectVariant</code>.</p>
+<p>CIViCpy represents the Molecular Profile as a Cat-VRS CategoricalVariant, which becomes the proposition's <code>subject</code>.</p>
 <div class="highlight"><span class="filename">In [5]</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">members</span> <span class="o">=</span> <span class="p">[</span><span class="n">member</span><span class="o">.</span><span class="n">root</span> <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">variant</span><span class="o">.</span><span class="n">members</span><span class="p">]</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">civic_variant</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="n">mapping</span><span class="o">.</span><span class="n">coding</span>
@@ -3275,14 +3275,14 @@
 <p>The linked disease record provides the CIViC term that GKM maps to a normalized disease concept:</p>
 <p><img alt="CIViC Disease Medullary Thyroid Carcinoma" src=".././civic-disease-medullary-thyroid-carcinoma.png" /></p>
 <p>The CIViC Disease record supplies the display name. GKM retains it and adds a computable disease identifier, helping other systems recognize the same disease concept:</p>
-<div class="highlight"><span class="filename">In [9]</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Disease:"</span><span class="p">,</span> <span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">mappings</span> <span class="ow">or</span> <span class="p">[]:</span>
+<div class="highlight"><span class="filename">In [9]</span><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Disease:"</span><span class="p">,</span> <span class="n">disease</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">for</span> <span class="n">mapping</span> <span class="ow">in</span> <span class="n">disease</span><span class="o">.</span><span class="n">mappings</span> <span class="ow">or</span> <span class="p">[]:</span>
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="n">coding</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">coding</span>
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">mapping</span><span class="o">.</span><span class="n">relation</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">coding</span><span class="o">.</span><span class="n">system</span><span class="si">}{</span><span class="n">coding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  </span><span class="si">{</span><span class="n">mapping</span><span class="o">.</span><span class="n">relation</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">coding</span><span class="o">.</span><span class="n">system</span><span class="si">}{</span><span class="n">coding</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Disease: Medullary Thyroid Carcinoma
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  exactMatch: https://disease-ontology.org/?id=DOID:3973
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  exactMatch: https://disease-ontology.org/?id=root='DOID:3973'
 </code></pre></div>
 <h4 id="disease-concept-json">Disease concept JSON</h4>
 <p>The next output shows the full mapped disease concept:</p>
@@ -3291,18 +3291,19 @@
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">{</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"civic.did:15"</span><span class="p">,</span>
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="nt">"conceptType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease"</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MappableConcept"</span><span class="p">,</span>
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Medullary Thyroid Carcinoma"</span><span class="p">,</span>
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">"mappings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">      </span><span class="nt">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">        </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://disease-ontology.org/?id="</span><span class="p">,</span>
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOID:3973"</span>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">      </span><span class="p">},</span>
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">      </span><span class="nt">"relation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exactMatch"</span>
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">  </span><span class="p">]</span>
-<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="p">}</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">"conceptType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Disease"</span><span class="p">,</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">"mappings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">      </span><span class="nt">"coding"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">        </span><span class="nt">"system"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://disease-ontology.org/?id="</span><span class="p">,</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOID:3973"</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">      </span><span class="p">},</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">      </span><span class="nt">"relation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exactMatch"</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="mapping-the-evidence-behind-the-classification">Mapping the evidence behind the classification</h2>
 <h3 id="oncogenicity-criteria-as-evidence-lines">Oncogenicity criteria as Evidence Lines</h3>
@@ -3333,11 +3334,11 @@
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Code  Method                          Strength      Score
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>--------------------------------------------------------------
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>OM1   functional_domain_location      moderate      2
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>OS2   functional_assay                strong        4
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>OP4   population_frequency            supporting    1
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>OP1   computational_prediction        supporting    1
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>OP3   somatic_hotspot_recurrence      supporting    1
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>OM1   functional_domain_assessment    moderate      2
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>OS2   functional_data_assessment      strong        4
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>OP4   population_data_assessment      supporting    1
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>OP1   in_silico_impact_assessment     supporting    1
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>OP3   somatic_hotspot_assessment      supporting    1
 <a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
 <a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>Total classification score: 9
 </code></pre></div>
@@ -3419,8 +3420,8 @@
 <div class="highlight"><span class="filename">In [16]</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">connected</span> <span class="o">=</span> <span class="n">civic_bundle</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">assertion</span><span class="p">)</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connected record: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classification: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'classification'</span><span class="p">][</span><span class="s1">'primaryCoding'</span><span class="p">][</span><span class="s1">'code'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Variant: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'subjectVariant'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disease: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'objectTumorType'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Variant: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'subject'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Disease: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'proposition'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Evidence lines:"</span><span class="p">,</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">evidence_codes</span><span class="p">))</span>
 <a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Approving agent: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'contributions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'contributor'</span><span class="p">][</span><span class="s1">'name'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
@@ -3440,7 +3441,7 @@
 <a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="n">interpretation</span> <span class="o">=</span> <span class="p">(</span>
 <a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">assertion</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">:**</span><span class="se">\n\n</span><span class="s2">"</span>
 <a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">origin</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">** **</span><span class="si">{</span><span class="n">variant</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">** is "</span>
-<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">classification</span><span class="si">}</span><span class="s2">** for **</span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">**, evaluated under the "</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">classification</span><span class="si">}</span><span class="s2">** for **</span><span class="si">{</span><span class="n">disease</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">**, evaluated under the "</span>
 <a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2">** framework.</span><span class="se">\n\n</span><span class="s2">"</span>
 <a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>    <span class="s2">"The classification has a score of "</span>
 <a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">** and is supported by </span><span class="si">{</span><span class="n">evidence_summary</span><span class="si">}</span><span class="s2"> evidence. CIViC associates "</span>
@@ -3455,7 +3456,7 @@
 <p><strong>Output:</strong></p>
 <p><strong>CIVIC.AID:202:</strong></p>
 <p><strong>Somatic</strong> <strong>RET M918T</strong> is <strong>likely oncogenic</strong> for <strong>Medullary Thyroid Carcinoma</strong>, evaluated under the <strong>ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022</strong> framework.</p>
-<p>The classification has a score of <strong>9</strong> and is supported by functional domain location (OM1), functional assay (OS2), population frequency (OP4), computational prediction (OP1), somatic hotspot recurrence (OP3) evidence. CIViC associates the following Evidence Items and source documents with the assertion:</p>
+<p>The classification has a score of <strong>9</strong> and is supported by functional domain assessment (OM1), functional data assessment (OS2), population data assessment (OP4), in silico impact assessment (OP1), somatic hotspot assessment (OP3) evidence. CIViC associates the following Evidence Items and source documents with the assertion:</p>
 <ul>
 <li><a href="https://civicdb.org/links/evidence/74">https://civicdb.org/links/evidence/74</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/18073307/">PMID 18073307</a>)</li>
 <li><a href="https://civicdb.org/links/evidence/78">https://civicdb.org/links/evidence/78</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/9839497/">PMID 9839497</a>)</li>

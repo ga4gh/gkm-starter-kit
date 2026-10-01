@@ -23,7 +23,7 @@
             }
           ],
           "default": null,
-          "description": "Object counts grouped by concrete GKS type, when applicable.",
+          "description": "Object counts grouped by concrete GKM type, when applicable.",
           "title": "Types"
         }
       },
@@ -33,29 +33,8 @@
       "title": "CollectionStatistics",
       "type": "object"
     },
-    "GksAssertionError": {
-      "description": "Describe a CIViC Assertion that could not become a GKS Statement.",
-      "properties": {
-        "assertionId": {
-          "description": "CIViC Assertion ID that could not be exported.",
-          "title": "Assertionid",
-          "type": "integer"
-        },
-        "message": {
-          "description": "Short explanation of why the Assertion could not be exported.",
-          "title": "Message",
-          "type": "string"
-        }
-      },
-      "required": [
-        "assertionId",
-        "message"
-      ],
-      "title": "GksAssertionError",
-      "type": "object"
-    },
     "ImplementationVersions": {
-      "description": "Python package versions used to generate a GKS export.",
+      "description": "Python package versions used to generate a GKM export.",
       "properties": {
         "VRSPython": {
           "description": "VRS-Python version used to generate this export.",
@@ -93,12 +72,12 @@
           "type": "string"
         },
         "bundleFormat": {
-          "default": "civic-gks-bundle",
+          "default": "civic-gkm-bundle",
           "title": "Bundleformat",
           "type": "string"
         },
         "bundleFormatVersion": {
-          "default": "0.1.0",
+          "default": "0.1.0-a0",
           "title": "Bundleformatversion",
           "type": "string"
         },
@@ -115,28 +94,28 @@
       "type": "object"
     },
     "SpecificationVersions": {
-      "description": "GA4GH specification versions represented in a GKS export.",
+      "description": "GA4GH specification versions represented in a GKM export.",
       "properties": {
-        "GKSCore": {
-          "default": "1.1.0",
-          "description": "GKS-Core version represented in this export.",
-          "title": "Gkscore",
+        "GKMCore": {
+          "default": "1.3.0",
+          "description": "GKM-Core version represented in this export.",
+          "title": "Gkmcore",
           "type": "string"
         },
         "VRS": {
-          "default": "2.1.0-snapshot.2026-02.2",
+          "default": "2.1.1",
           "description": "VRS version represented in this export.",
           "title": "Vrs",
           "type": "string"
         },
         "CatVRS": {
-          "default": "1.1.0-snapshot.2026-02.3",
+          "default": "1.1.1",
           "description": "Cat-VRS version represented in this export.",
           "title": "Catvrs",
           "type": "string"
         },
         "VASpec": {
-          "default": "1.1.0-snapshot.2026-06.1",
+          "default": "1.1.0",
           "description": "VA-Spec version used to generate this export.",
           "title": "Vaspec",
           "type": "string"
@@ -146,7 +125,7 @@
       "type": "object"
     },
     "Statistics": {
-      "description": "Summarize the contents of a CIViC GKS bundle.",
+      "description": "Summarize the contents of a CIViC GKM bundle.",
       "properties": {
         "collections": {
           "additionalProperties": {
@@ -164,18 +143,18 @@
       "type": "object"
     }
   },
-  "$id": "urn:civic:gks-bundle:schema:0.1.0",
+  "$id": "urn:civic:gkm-bundle:schema:0.1.0-a0",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "civicBundleFormat": "civic-gks-bundle",
-  "civicBundleFormatVersion": "0.1.0",
-  "description": "CIViC organizes curated cancer variant knowledge around variants and molecular profiles with evidence from source publications, summary assertions, and clinical context such as diseases, therapies, phenotypes, variant origins, and curating organizations. This schema describes a GA4GH GKS representation of those CIViC concepts. Top-level keys use CIViC knowledge model terms where possible, with additional keys for supporting GKS representation details. For the CIViC data model, see https://civic.readthedocs.io/en/latest/model.html.",
+  "civicBundleFormat": "civic-gkm-bundle",
+  "civicBundleFormatVersion": "0.1.0-a0",
+  "description": "CIViC organizes curated cancer variant knowledge around variants and molecular profiles with evidence from source publications, summary assertions, and clinical context such as diseases, therapies, phenotypes, variant origins, and curating organizations. This schema describes a GA4GH GKM representation of those CIViC concepts. Top-level keys use CIViC knowledge model terms where possible, with additional keys for supporting GKM representation details. For the CIViC data model, see https://civic.readthedocs.io/en/latest/model.html.",
   "properties": {
     "sequenceReference": {
       "additionalProperties": false,
       "description": "Reference sequences used by variant coordinates and HGVS expressions. Collection keys are refget sequence accessions.",
       "patternProperties": {
         "^SQ\\.[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceReference"
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/SequenceReference"
         }
       },
       "title": "Sequencereference",
@@ -186,7 +165,7 @@
       "description": "Representative sequence locations for CIViC Variant coordinates. Collection keys are GA4GH SequenceLocation identifiers.",
       "patternProperties": {
         "^ga4gh:SL\\.[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/SequenceLocation"
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/SequenceLocation"
         }
       },
       "title": "Location",
@@ -203,10 +182,10 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/Allele"
                   },
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberChange"
                   }
                 ]
               },
@@ -217,10 +196,10 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/Allele"
                   },
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberChange"
                   }
                 ]
               },
@@ -231,10 +210,10 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/Allele"
                   },
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberChange"
                   }
                 ]
               },
@@ -245,10 +224,10 @@
               "additionalProperties": {
                 "anyOf": [
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/Allele"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/Allele"
                   },
                   {
-                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.0-snapshot.2026-02.2/json/CopyNumberChange"
+                    "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberChange"
                   }
                 ]
               },
@@ -256,7 +235,7 @@
               "type": "object"
             },
             "unsupported": {
-              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/Coding",
+              "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/Coding",
               "description": "Original variant identifier and label used when current tooling cannot represent the variant using VRS."
             }
           },
@@ -273,7 +252,7 @@
         "^civic\\.gid:[0-9]+$": {
           "allOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+              "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"
             },
             {
               "properties": {
@@ -296,7 +275,7 @@
       "description": "CIViC Molecular Profiles interpreted for clinical relevance; this export currently includes profiles with one CIViC Variant. Collection keys are CIViC Molecular Profile IDs.",
       "patternProperties": {
         "^civic\\.mpid:[0-9]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/cat-vrs/1.1.0-snapshot.2026-02.3/json/CategoricalVariant"
+          "$ref": "https://w3id.org/ga4gh/schema/cat-vrs/1.1.1/json/CategoricalVariant"
         }
       },
       "title": "Molecularprofile",
@@ -309,7 +288,7 @@
         "^civic\\.did:[0-9]+$": {
           "allOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Condition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
             },
             {
               "properties": {
@@ -334,7 +313,7 @@
         "^civic\\.phenotype:[0-9]+$": {
           "allOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Condition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
             },
             {
               "properties": {
@@ -354,10 +333,10 @@
     },
     "conditionSet": {
       "additionalProperties": false,
-      "description": "Disease and phenotype context grouped for reuse in GKS propositions. Collection keys are computed bundle-local condition set identifiers.",
+      "description": "Disease and phenotype context grouped for reuse in GKM propositions. Collection keys are computed bundle-local condition set identifiers.",
       "patternProperties": {
         "^civic\\.conditionSet:[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/ConditionSet"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/ConditionSet"
         }
       },
       "title": "Conditionset",
@@ -370,7 +349,7 @@
         "^civic\\.tid:[0-9]+$": {
           "allOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Therapeutic"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Therapy"
             },
             {
               "properties": {
@@ -393,7 +372,7 @@
       "description": "Groups of multiple therapies used in predictive interpretations. Collection keys are computed bundle-local therapy group identifiers.",
       "patternProperties": {
         "^civic\\.therapyGroup:[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/TherapyGroup"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/TherapyGroup"
         }
       },
       "title": "Therapygroup",
@@ -404,7 +383,7 @@
       "description": "Presumed source of a variant in the study context, such as somatic, germline, unknown, or not applicable. Collection keys are computed identifiers based on CIViC variant origin codes.",
       "patternProperties": {
         "^civic\\.variantOrigin:[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"
+          "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"
         }
       },
       "title": "Variantorigin",
@@ -415,7 +394,7 @@
       "description": "Publications or abstracts cited as support for CIViC Evidence Items and Assertions. Collection keys are CIViC Source IDs or PubMed IDs.",
       "patternProperties": {
         "^(civic\\.sid|pmid):[0-9]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Document"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Document"
         }
       },
       "title": "Source",
@@ -423,10 +402,10 @@
     },
     "method": {
       "additionalProperties": false,
-      "description": "Curation or classification method used to produce a CIViC GKS Statement. Collection keys are CIViC curation method IDs, such as civic.method:2019.",
+      "description": "Curation or classification method used to produce a CIViC GKM Statement. Collection keys are CIViC curation method IDs, such as civic.method:2019.",
       "patternProperties": {
         "^civic\\.method:[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Method"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Method"
         }
       },
       "title": "Method",
@@ -437,7 +416,7 @@
       "description": "CIViC organizations connected to assertion approvals or submissions. Collection keys are CIViC Organization IDs.",
       "patternProperties": {
         "^civic\\.organization:[A-Za-z0-9_-]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Agent"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Agent"
         }
       },
       "title": "Organization",
@@ -450,19 +429,19 @@
         "^civic\\.proposition:[A-Za-z0-9_-]+$": {
           "anyOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantClinicalSignificanceProposition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantClinicalSignificanceProposition"
             },
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantDiagnosticProposition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantDiagnosticProposition"
             },
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantOncogenicityProposition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantOncogenicityProposition"
             },
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantPrognosticProposition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantPrognosticProposition"
             },
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/VariantTherapeuticResponseProposition"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantTherapeuticResponseProposition"
             }
           ]
         }
@@ -475,7 +454,7 @@
       "description": "Clinical evidence statements manually curated from a source publication. Collection keys are CIViC Evidence IDs.",
       "patternProperties": {
         "^civic\\.eid:[0-9]+$": {
-          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/base/json/Statement"
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Statement"
         }
       },
       "title": "Evidence",
@@ -488,10 +467,10 @@
         "^civic\\.aid:[0-9]+$": {
           "anyOf": [
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/aac-2017/json/VariantClinicalSignificanceStatement"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/aac-2017/VariantClinicalSignificanceStatement"
             },
             {
-              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0-snapshot.2026-06.1/ccv-2022/json/VariantOncogenicityStatement"
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/ccv-2022/VariantOncogenicityStatement"
             }
           ]
         }
@@ -509,14 +488,6 @@
         "type": "integer"
       },
       "title": "Failedassertionids",
-      "type": "array"
-    },
-    "errors": {
-      "description": "Export errors explaining why specific CIViC Assertions were skipped.",
-      "items": {
-        "$ref": "#/$defs/GksAssertionError"
-      },
-      "title": "Errors",
       "type": "array"
     }
   },
@@ -539,9 +510,8 @@
     "evidence",
     "assertion",
     "metadata",
-    "failedAssertionIds",
-    "errors"
+    "failedAssertionIds"
   ],
-  "title": "CIViC GKS Bundle v0.1.0",
+  "title": "CIViC GKM Bundle v0.1.0-a0",
   "type": "object"
 }
