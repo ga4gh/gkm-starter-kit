@@ -10,9 +10,7 @@ from ga4gh.gkm.bundles.schema_resolution import (
 
 def test_schema_resolution_follows_properties_and_local_references():
     """A pointer target resolves through ``properties`` and a local ``$ref``."""
-    reference = (
-        f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/base/json/Condition"
-    )
+    reference = f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/json/Condition"
     schema = {
         "properties": {
             "conditions": {"$ref": "#/$defs/condition_collection"},

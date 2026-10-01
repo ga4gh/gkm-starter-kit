@@ -26,7 +26,7 @@ REQUIRED_FIELDS = (
     "last_updated",
 )
 ALLOWED_STATUSES = ("production", "pilot", "proposal")
-ALLOWED_PRODUCTS = ("GKS-Core", "VRS", "Cat-VRS", "VA-Spec")
+ALLOWED_PRODUCTS = ("GKM-Core", "VRS", "Cat-VRS", "VA-Spec")
 
 
 def parse_frontmatter(text: str) -> dict | None:

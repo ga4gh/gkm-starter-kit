@@ -11,7 +11,7 @@ from pathlib import Path
 
 from scripts.vignette_loader import load_patterns, load_vignettes, slugify
 
-PRODUCT_ORDER = {"GKS-Core": 0, "VRS": 1, "Cat-VRS": 2, "VA-Spec": 3}
+PRODUCT_ORDER = {"GKM-Core": 0, "VRS": 1, "Cat-VRS": 2, "VA-Spec": 3}
 
 
 def _product_sort_key(value: str) -> tuple[int, str]:
@@ -42,19 +42,19 @@ def _render_catalog(vignettes: list[dict], patterns: dict[str, str]) -> str:
             "",
             "**By product:** "
             + " ".join(
-                f"[{value}](by-product/{slugify(value)}/index.md){{.gks-chip}}"
+                f"[{value}](by-product/{slugify(value)}/index.md){{.gkm-chip}}"
                 for value in products
             ),
             "",
             "**By pattern:** "
             + " ".join(
-                f"[{patterns.get(value, value)}](by-pattern/{slugify(value)}/index.md){{.gks-chip}}"
+                f"[{patterns.get(value, value)}](by-pattern/{slugify(value)}/index.md){{.gkm-chip}}"
                 for value in pattern_slugs
             ),
             "",
             "**By implementer:** "
             + " ".join(
-                f"[{value}](by-implementer/{slugify(value)}/index.md){{.gks-chip}}"
+                f"[{value}](by-implementer/{slugify(value)}/index.md){{.gkm-chip}}"
                 for value in implementers
             ),
             "",
@@ -64,7 +64,7 @@ def _render_catalog(vignettes: list[dict], patterns: dict[str, str]) -> str:
     )
     for item in vignettes:
         products_label = " ".join(
-            f'<span class="gks-product-label gks-product-label--{slugify(product["name"])}">'
+            f'<span class="gkm-product-label gkm-product-label--{slugify(product["name"])}">'
             f"{product['name']}"
             + (
                 f" <small>{product['version']}</small>"
@@ -78,7 +78,7 @@ def _render_catalog(vignettes: list[dict], patterns: dict[str, str]) -> str:
             [
                 f"### [{item['title']}]({item['_path']})",
                 "",
-                f'**Implementer:** {item["implementer"]} · **Pattern:** _{patterns[item["pattern"]]}_ · **Status:** <span class="gks-status gks-status--{item["status"]}">{item["status"]}</span>',
+                f'**Implementer:** {item["implementer"]} · **Pattern:** _{patterns[item["pattern"]]}_ · **Status:** <span class="gkm-status gkm-status--{item["status"]}">{item["status"]}</span>',
                 "",
                 f"**Products:** {products_label}",
                 "",

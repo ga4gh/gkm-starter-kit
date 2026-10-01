@@ -72,7 +72,7 @@ def _render_notebook(path: Path) -> str:
                 "../../../data/bundles",
                 "civic-assertion-9-bundle.json",
                 "civic-assertion-251-bundle.json",
-                "civic-gks-bundle-v0.1.0.schema.json",
+                "civic-gkm-bundle-v0.1.0-a0.schema.json",
             )
             + f"\n\n    Rendered from `{path.as_posix()}`."
         )

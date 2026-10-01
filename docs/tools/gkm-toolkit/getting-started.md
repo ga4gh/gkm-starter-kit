@@ -57,13 +57,13 @@ about a variant and a condition:
 
 ```python
 assertion = civic.assertion["civic.aid:9"]
-proposition = civic.resolve(assertion["proposition"])
-variant = civic.resolve(proposition.subjectVariant)
-condition = civic.resolve(proposition.objectCondition)
+proposition = assertion.proposition
+variant = proposition.subject
+condition = proposition.object
 
-print("Classification:", assertion["classification"]["name"])
+print("Classification:", assertion.classification.name)
 print("Variant:", variant.name)
-print("Condition:", condition.root.name)
+print("Condition:", condition.name)
 ```
 
 Expected output:
@@ -73,6 +73,17 @@ Classification: Tier II
 Variant: ACVR1 G328V
 Condition: Diffuse Midline Glioma, H3 K27-altered
 ```
+
+!!! info "Get pointers with `to_dict()`, then use `resolve()`"
+
+    Typed assertion fields contain resolved GKM models. Use `civic.resolve(pointer)`
+    only with a bundle-local JSON Pointer, such as one from `civic.to_dict()`:
+
+    ```python
+    bundle_document = civic.to_dict()
+    proposition_pointer = bundle_document["assertion"]["civic.aid:9"]["proposition"]
+    proposition = civic.resolve(proposition_pointer)
+    ```
 
 This is the integration step: the Toolkit follows the links in the bundle so
 your application can use related knowledge together.

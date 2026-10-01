@@ -14,7 +14,7 @@ from pydantic import BaseModel
 from .compatibility import check_gkm_version_compatibility
 from .containers import Bundle, BundleCollection
 from .errors import BundleConflictError, BundleNotFoundError, BundleSerializationError
-from .model_conversion import parse_gks_values, parse_schema_references_value
+from .model_conversion import parse_gkm_values, parse_schema_references_value
 from .pointers import validate_and_expand_bundle_references
 from .registry import registry
 from .schema_resolution import schema_for_pointer, schema_references
@@ -188,7 +188,7 @@ def load_bundle(
 
         # Keep the compact values for serialization and use the expanded copy to
         # build typed objects whose required fields may contain local pointers.
-        parsed = parse_gks_values(values)
+        parsed = parse_gkm_values(values)
         expanded_values = expanded_document.get(collection_name, values)
         materialized: dict[str, Any] = {}
 
@@ -211,7 +211,7 @@ def load_bundle(
             else:
                 # Fall back to discriminator-based conversion for objects whose
                 # producer schema does not identify a supported GKM model.
-                parsed_expanded_value = parse_gks_values(expanded_value)
+                parsed_expanded_value = parse_gkm_values(expanded_value)
                 materialized[key] = (
                     parsed_expanded_value
                     if isinstance(parsed_expanded_value, BaseModel)

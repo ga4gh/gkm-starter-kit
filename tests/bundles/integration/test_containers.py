@@ -47,8 +47,7 @@ def test_collection_access_materializes_oncogenicity_models():
                 "additionalProperties": {
                     "$ref": (
                         "https://w3id.org/ga4gh/schema/va-spec/"
-                        "1.1.0-snapshot.2026-06.1/ccv-2022/json/"
-                        "VariantOncogenicityStatement"
+                        "1.1.0/json/ccv-2022/VariantOncogenicityStatement"
                     )
                 }
             },
@@ -58,15 +57,13 @@ def test_collection_access_materializes_oncogenicity_models():
                         {
                             "$ref": (
                                 "https://w3id.org/ga4gh/schema/va-spec/"
-                                "1.1.0-snapshot.2026-06.1/base/json/"
-                                "VariantClinicalSignificanceProposition"
+                                "1.1.0/json/VariantClinicalSignificanceProposition"
                             )
                         },
                         {
                             "$ref": (
                                 "https://w3id.org/ga4gh/schema/va-spec/"
-                                "1.1.0-snapshot.2026-06.1/base/json/"
-                                "VariantOncogenicityProposition"
+                                "1.1.0/json/VariantOncogenicityProposition"
                             )
                         },
                     ]
@@ -85,6 +82,7 @@ def test_collection_access_materializes_oncogenicity_models():
                 "direction": "supports",
                 "classification": {
                     "name": "Likely Oncogenic",
+                    "type": "MappableConcept",
                     "primaryCoding": {
                         "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
                         "code": "likely oncogenic",
@@ -96,7 +94,7 @@ def test_collection_access_materializes_oncogenicity_models():
                         "specifiedBy": {
                             "type": "Method",
                             "name": "Oncogenicity guideline",
-                            "methodType": "functional_domain_location",
+                            "methodType": "functional_domain_assessment",
                             "reportedIn": {
                                 "type": "Document",
                                 "name": "Oncogenicity guideline publication",
@@ -104,10 +102,11 @@ def test_collection_access_materializes_oncogenicity_models():
                         },
                         "directionOfEvidenceProvided": "supports",
                         "strengthOfEvidenceProvided": {
+                            "type": "MappableConcept",
                             "primaryCoding": {
                                 "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
                                 "code": "moderate",
-                            }
+                            },
                         },
                     }
                 ],
@@ -117,14 +116,17 @@ def test_collection_access_materializes_oncogenicity_models():
             "example.proposition:1": {
                 "id": "example.proposition:1",
                 "type": "VariantOncogenicityProposition",
-                "subjectVariant": {
+                "subject": {
                     "type": "CategoricalVariant",
                     "name": "RET M918T",
                     "members": [],
                     "constraints": [],
                 },
                 "predicate": "isOncogenicFor",
-                "objectTumorType": {"name": "Medullary thyroid carcinoma"},
+                "object": {
+                    "name": "Medullary thyroid carcinoma",
+                    "type": "MappableConcept",
+                },
             }
         },
     }
@@ -134,7 +136,7 @@ def test_collection_access_materializes_oncogenicity_models():
     assertion = civic.assertion["example.assertion:1"]
 
     assert isinstance(assertion, VariantOncogenicityStatement)
-    assert assertion.proposition.subjectVariant.name == "RET M918T"
+    assert assertion.proposition.subject.name == "RET M918T"
     assert isinstance(assertion.hasEvidenceLines[0], VariantOncogenicityEvidenceLine)
     assert (
         civic.to_dict()["assertion"]["example.assertion:1"]["proposition"]
@@ -161,13 +163,13 @@ def test_normalize_from_value():
     inline = civic.normalize(proposition)
 
     assert inline["type"] == "VariantClinicalSignificanceProposition"
-    assert isinstance(inline["subjectVariant"], dict)
+    assert isinstance(inline["subject"], dict)
 
 
 def test_resolve_accepts_iri_references(bundle_dir):
     civic = bundles.load_bundle(
         bundle_dir / "civic-assertion-9-bundle.json",
-        schema=bundle_dir / "civic-gks-bundle-v0.1.0.schema.json",
+        schema=bundle_dir / "civic-gkm-bundle-v0.1.0-a0.schema.json",
     )
     subject_variant = civic.resolve(
         iriReference(root="#/molecularProfile/civic.mpid:1594")
@@ -176,20 +178,19 @@ def test_resolve_accepts_iri_references(bundle_dir):
 
     object_condition = civic.resolve(iriReference(root="#/disease/civic.did:2950"))
     assert isinstance(object_condition, Condition)
-    assert isinstance(object_condition.root, MappableConcept)
 
 
 def test_resolve_uses_the_target_schema_not_the_collection_schema(bundle_dir):
     """A nested pointer must not be materialized as its enclosing Statement."""
     civic = bundles.load_bundle(
         bundle_dir / "civic-assertion-9-bundle.json",
-        schema=bundle_dir / "civic-gks-bundle-v0.1.0.schema.json",
+        schema=bundle_dir / "civic-gkm-bundle-v0.1.0-a0.schema.json",
     )
 
     strength = civic.resolve("#/evidence/civic.eid:4846/strength")
 
-    assert isinstance(strength, dict)
-    assert strength["name"] == "Clinical evidence"
+    assert isinstance(strength, MappableConcept)
+    assert strength.name == "Clinical evidence"
 
 
 def test_resolve_follows_local_schema_reference_from_properties():
@@ -206,10 +207,7 @@ def test_resolve_follows_local_schema_reference_from_properties():
                 },
             },
             "condition": {
-                "$ref": (
-                    "https://w3id.org/ga4gh/schema/va-spec/"
-                    "1.1.0-snapshot.2026-06.1/base/json/Condition"
-                )
+                "$ref": ("https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition")
             },
         },
     }
@@ -224,7 +222,6 @@ def test_resolve_follows_local_schema_reference_from_properties():
     condition = bundle.resolve("#/conditions/entry")
 
     assert isinstance(condition, Condition)
-    assert isinstance(condition.root, MappableConcept)
 
 
 def test_resolve_follows_schema_items_for_array_elements():
@@ -239,8 +236,7 @@ def test_resolve_follows_schema_items_for_array_elements():
                             "conditions": {
                                 "items": {
                                     "$ref": (
-                                        "https://w3id.org/ga4gh/schema/va-spec/"
-                                        "1.1.0-snapshot.2026-06.1/base/json/Condition"
+                                        "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
                                     )
                                 },
                                 "type": "array",
@@ -249,8 +245,7 @@ def test_resolve_follows_schema_items_for_array_elements():
                                 "prefixItems": [
                                     {
                                         "$ref": (
-                                            "https://w3id.org/ga4gh/schema/va-spec/"
-                                            "1.1.0-snapshot.2026-06.1/base/json/Condition"
+                                            "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
                                         )
                                     }
                                 ],
@@ -281,9 +276,7 @@ def test_resolve_follows_schema_items_for_array_elements():
     featured_condition = bundle.resolve("#/examples/entry/featured/0")
 
     assert isinstance(condition, Condition)
-    assert isinstance(condition.root, MappableConcept)
     assert isinstance(featured_condition, Condition)
-    assert isinstance(featured_condition.root, MappableConcept)
 
 
 def test_resolve_follows_additional_properties_schema():
@@ -294,8 +287,7 @@ def test_resolve_follows_additional_properties_schema():
             "conditions": {
                 "additionalProperties": {
                     "$ref": (
-                        "https://w3id.org/ga4gh/schema/va-spec/"
-                        "1.1.0-snapshot.2026-06.1/base/json/Condition"
+                        "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
                     )
                 }
             }
@@ -311,7 +303,6 @@ def test_resolve_follows_additional_properties_schema():
     condition = bundle.resolve("#/conditions/producer-defined")
 
     assert isinstance(condition, Condition)
-    assert isinstance(condition.root, MappableConcept)
 
 
 def test_resolve_selects_a_ga4gh_reference_from_all_of():
@@ -326,8 +317,7 @@ def test_resolve_selects_a_ga4gh_reference_from_all_of():
                             {"$ref": "#/$defs/producer-constraint"},
                             {
                                 "$ref": (
-                                    "https://w3id.org/ga4gh/schema/va-spec/"
-                                    "1.1.0-snapshot.2026-06.1/base/json/Condition"
+                                    "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Condition"
                                 )
                             },
                         ]
@@ -347,7 +337,6 @@ def test_resolve_selects_a_ga4gh_reference_from_all_of():
     condition = bundle.resolve("#/conditions/entry")
 
     assert isinstance(condition, Condition)
-    assert isinstance(condition.root, MappableConcept)
 
 
 def test_normalize_and_export_round_trip():

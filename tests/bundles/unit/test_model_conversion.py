@@ -13,18 +13,14 @@ from ga4gh.gkm.bundles.model_conversion import (
 
 def test_model_for_schema_ref_selects_the_installed_va_spec_model():
     """A compatible W3ID reference selects its installed Pydantic model."""
-    reference = (
-        f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/base/json/Condition"
-    )
+    reference = f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/json/Condition"
 
     assert model_for_schema_ref(reference) is Condition
 
 
 def test_model_for_schema_references_skips_unrecognized_references():
     """The first compatible GA4GH reference selects the target model."""
-    reference = (
-        f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/base/json/Condition"
-    )
+    reference = f"https://w3id.org/ga4gh/schema/va-spec/{VASPEC_VERSION}/json/Condition"
 
     assert (
         model_for_schema_references(
@@ -39,4 +35,4 @@ def test_parse_schema_value_validates_nested_va_spec_models():
     condition = parse_schema_value({"name": "Example"}, Condition)
 
     assert isinstance(condition, Condition)
-    assert isinstance(condition.root, MappableConcept)
+    assert isinstance(condition, MappableConcept)

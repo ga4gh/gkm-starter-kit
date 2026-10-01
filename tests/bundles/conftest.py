@@ -69,7 +69,7 @@ def register_example_bundles(bundle_dir):
             bundles.BundleRegistration(
                 name=f"civic-assertion-{assertion_id}",
                 source=bundle_dir / f"civic-assertion-{assertion_id}-bundle.json",
-                schema=bundle_dir / "civic-gks-bundle-v0.1.0.schema.json",
+                schema=bundle_dir / "civic-gkm-bundle-v0.1.0-a0.schema.json",
                 producer="CIViC",
             ),
             replace=True,

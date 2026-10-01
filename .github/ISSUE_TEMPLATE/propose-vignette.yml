@@ -57,7 +57,7 @@ body:
     id: products
     attributes:
       label: GKM products and versions
-      description: List each product and version on its own line. Products must be GKS-Core, VRS, Cat-VRS, or VA-Spec. Versions are optional but strongly encouraged.
+      description: List each product and version on its own line. Products must be GKM-Core, VRS, Cat-VRS, or VA-Spec. Versions are optional but strongly encouraged.
       placeholder: |
         VRS 2.0
         VA-Spec 1.0

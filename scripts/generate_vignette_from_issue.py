@@ -96,7 +96,7 @@ def _product_badges(products: list[tuple[str, str | None]]) -> str:
         product_class = name.lower()
         version_html = f" <small>{html.escape(version)}</small>" if version else ""
         badges.append(
-            f'<span class="gks-product-label gks-product-label--{product_class}">'
+            f'<span class="gkm-product-label gkm-product-label--{product_class}">'
             f"{html.escape(name)}{version_html}</span>"
         )
     return " ".join(badges)
@@ -104,7 +104,7 @@ def _product_badges(products: list[tuple[str, str | None]]) -> str:
 
 def _status_badge(status: str) -> str:
     """Render a validated status as the documented status badge."""
-    return f'<span class="gks-status gks-status--{status}">{status}</span>'
+    return f'<span class="gkm-status gkm-status--{status}">{status}</span>'
 
 
 def _update_navigation(title: str, implementer: str, output: Path) -> None:
