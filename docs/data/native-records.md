@@ -102,14 +102,3 @@ repeats everything it needs, even if two records happen to share a value.
   }
 ]
 ```
-
-## When to move beyond native records
-
-Native records stay simple as long as the set is small and repetition is
-limited. When the same objects recur within one record or across a larger set,
-restating them in full becomes wasteful and harder to keep consistent.
-
-A **compact record**, called a **bundle** in GKM, states each shared object once
-and links to it by reference.
-
-[Learn about bundles →](bundles/index.md)
