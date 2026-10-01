@@ -23,8 +23,8 @@ bundles through the Data Bundles pillar, the bundle schema must:
   URLs that are compatible with the GKM reference implementations used to load
   the bundle.
     - For example,
-      `"$ref": "https://w3id.org/ga4gh/schema/gks-core/1.1.0/json/MappableConcept"`
-      selects `MappableConcept` from GKS-Core version 1.1.0.
+      `"$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"`
+      selects `MappableConcept` from GKM-Core version 1.3.0.
 
 ### Recommendations
 

@@ -11,7 +11,7 @@ downloading the full dataset.
 ## CIViC
 
 These two CIViC bundle examples show different VA-Spec assertion types. Both use
-the [`civic-gks-bundle-v0.1.0.schema.json`](civic-gks-bundle-v0.1.0.schema.json){ target="_blank" rel="noopener" }
+the [`civic-gkm-bundle-v0.1.0-a0.schema.json`](civic-gkm-bundle-v0.1.0-a0.schema.json){ target="_blank" rel="noopener" }
 bundle schema.
 
 Each file is a complete, connected subset of CIViC data. Open it to inspect the

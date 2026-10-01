@@ -136,6 +136,8 @@
   "feature": {
     "civic.gid:154": {
       "id": "civic.gid:154",
+      "type": "MappableConcept",
+      "name": "ACVR1",
       "extensions": [
         {
           "name": "aliases",
@@ -152,7 +154,6 @@
         }
       ],
       "conceptType": "Gene",
-      "name": "ACVR1",
       "mappings": [
         {
           "coding": {
@@ -226,12 +227,14 @@
           "allele": "#/variant/civic.vid:1686/protein/ga4gh:VA.fcWuwB4g25bTPp52iyTF7DnBNPm5POer",
           "relations": [
             {
+              "type": "MappableConcept",
               "primaryCoding": {
-                "system": "ga4gh-gks-term:allele-relation",
+                "system": "ga4gh-gkm-term:allele-relation",
                 "code": "liftover_to"
               }
             },
             {
+              "type": "MappableConcept",
               "primaryCoding": {
                 "system": "http://www.sequenceontology.org",
                 "code": "translation_of"
@@ -352,8 +355,9 @@
   "disease": {
     "civic.did:2950": {
       "id": "civic.did:2950",
-      "conceptType": "Disease",
+      "type": "MappableConcept",
       "name": "Diffuse Midline Glioma, H3 K27-altered",
+      "conceptType": "Disease",
       "mappings": [
         {
           "coding": {
@@ -372,6 +376,7 @@
   "variantOrigin": {
     "civic.variantOrigin:SOMATIC": {
       "id": "civic.variantOrigin:SOMATIC",
+      "type": "MappableConcept",
       "name": "somatic",
       "mappings": [
         {
@@ -441,32 +446,32 @@
   },
   "organization": {},
   "proposition": {
-    "civic.proposition:f0SrtLbW05PqfqLs-hOK4tZxI3xO3kMO": {
-      "id": "civic.proposition:f0SrtLbW05PqfqLs-hOK4tZxI3xO3kMO",
+    "civic.proposition:H6qvcvpF_jzQmVg72PCxDbwJIAsMh58Q": {
+      "id": "civic.proposition:H6qvcvpF_jzQmVg72PCxDbwJIAsMh58Q",
+      "type": "VariantDiagnosticProposition",
+      "subject": "#/molecularProfile/civic.mpid:1594",
+      "predicate": "isDiagnosticInclusionCriterionFor",
+      "object": "#/disease/civic.did:2950",
+      "geneContextQualifier": "#/feature/civic.gid:154",
+      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC"
+    },
+    "civic.proposition:fOBF0e3ZunhJ23AdC3O3m2Vg5k_ARxkv": {
+      "id": "civic.proposition:fOBF0e3ZunhJ23AdC3O3m2Vg5k_ARxkv",
       "type": "VariantClinicalSignificanceProposition",
-      "subjectVariant": "#/molecularProfile/civic.mpid:1594",
-      "geneContextQualifier": "#/feature/civic.gid:154",
-      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC",
+      "subject": "#/molecularProfile/civic.mpid:1594",
       "predicate": "hasClinicalSignificanceFor",
-      "objectCondition": "#/disease/civic.did:2950"
-    },
-    "civic.proposition:gGPvwGKtZSs7Me0eqveHyfB2zKj1QXX6": {
-      "id": "civic.proposition:gGPvwGKtZSs7Me0eqveHyfB2zKj1QXX6",
-      "type": "VariantDiagnosticProposition",
-      "subjectVariant": "#/molecularProfile/civic.mpid:1594",
+      "object": "#/disease/civic.did:2950",
       "geneContextQualifier": "#/feature/civic.gid:154",
-      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC",
-      "predicate": "isDiagnosticInclusionCriterionFor",
-      "objectCondition": "#/disease/civic.did:2950"
+      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC"
     },
-    "civic.proposition:ki9U_ovzggtVxDm1a9DXc8yWMKzGWOPK": {
-      "id": "civic.proposition:ki9U_ovzggtVxDm1a9DXc8yWMKzGWOPK",
+    "civic.proposition:fVMf9yXRjEnfSFLW1GujuTQeTpPSRsiZ": {
+      "id": "civic.proposition:fVMf9yXRjEnfSFLW1GujuTQeTpPSRsiZ",
       "type": "VariantDiagnosticProposition",
-      "subjectVariant": "#/molecularProfile/civic.mpid:1937",
-      "geneContextQualifier": "#/feature/civic.gid:154",
-      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC",
+      "subject": "#/molecularProfile/civic.mpid:1937",
       "predicate": "isDiagnosticInclusionCriterionFor",
-      "objectCondition": "#/disease/civic.did:2950"
+      "object": "#/disease/civic.did:2950",
+      "geneContextQualifier": "#/feature/civic.gid:154",
+      "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC"
     }
   },
   "evidence": {
@@ -478,9 +483,10 @@
       "reportedIn": [
         "#/source/civic.sid:2149"
       ],
-      "proposition": "#/proposition/civic.proposition:ki9U_ovzggtVxDm1a9DXc8yWMKzGWOPK",
+      "proposition": "#/proposition/civic.proposition:fVMf9yXRjEnfSFLW1GujuTQeTpPSRsiZ",
       "direction": "supports",
       "strength": {
+        "type": "MappableConcept",
         "name": "Clinical evidence",
         "primaryCoding": {
           "system": "https://civic.readthedocs.io/en/latest/model/evidence/level.html",
@@ -506,9 +512,10 @@
       "reportedIn": [
         "#/source/civic.sid:2680"
       ],
-      "proposition": "#/proposition/civic.proposition:gGPvwGKtZSs7Me0eqveHyfB2zKj1QXX6",
+      "proposition": "#/proposition/civic.proposition:H6qvcvpF_jzQmVg72PCxDbwJIAsMh58Q",
       "direction": "supports",
       "strength": {
+        "type": "MappableConcept",
         "name": "Clinical evidence",
         "primaryCoding": {
           "system": "https://civic.readthedocs.io/en/latest/model/evidence/level.html",
@@ -538,15 +545,17 @@
         "#/source/civic.sid:2149",
         "#/source/civic.sid:2680"
       ],
-      "proposition": "#/proposition/civic.proposition:f0SrtLbW05PqfqLs-hOK4tZxI3xO3kMO",
+      "proposition": "#/proposition/civic.proposition:fOBF0e3ZunhJ23AdC3O3m2Vg5k_ARxkv",
       "direction": "supports",
       "strength": {
+        "type": "MappableConcept",
         "primaryCoding": {
           "system": "AMP/ASCO/CAP Guidelines, 2017",
           "code": "potential"
         }
       },
       "classification": {
+        "type": "MappableConcept",
         "name": "Tier II",
         "primaryCoding": {
           "system": "AMP/ASCO/CAP Guidelines, 2017",
@@ -556,13 +565,14 @@
       "hasEvidenceLines": [
         {
           "type": "EvidenceLine",
-          "targetProposition": "#/proposition/civic.proposition:gGPvwGKtZSs7Me0eqveHyfB2zKj1QXX6",
+          "targetProposition": "#/proposition/civic.proposition:H6qvcvpF_jzQmVg72PCxDbwJIAsMh58Q",
           "hasEvidenceItems": [
             "#/evidence/civic.eid:4846",
             "#/evidence/civic.eid:6955"
           ],
           "directionOfEvidenceProvided": "supports",
           "strengthOfEvidenceProvided": {
+            "type": "MappableConcept",
             "primaryCoding": {
               "system": "AMP/ASCO/CAP Guidelines, 2017",
               "code": "C"
@@ -574,19 +584,19 @@
   },
   "metadata": {
     "implementationVersions": {
-      "VRSPython": "2.4.0a3.dev2+gdaceb0b6c",
-      "CatVRSPython": "0.8.0a3.dev1+g30d6c5035",
-      "VASpecPython": "0.5.0a4.dev7+gdaa80e6e8"
+      "VRSPython": "2.4.0a6",
+      "CatVRSPython": "0.8.0a6",
+      "VASpecPython": "0.5.0a6"
     },
     "specificationVersions": {
-      "GKSCore": "1.1.0",
-      "VRS": "2.1.0-snapshot.2026-02.2",
-      "CatVRS": "1.1.0-snapshot.2026-02.3",
-      "VASpec": "1.1.0-snapshot.2026-06.1"
+      "GKMCore": "1.3.0",
+      "VRS": "2.1.1",
+      "CatVRS": "1.1.1",
+      "VASpec": "1.1.0"
     },
-    "createdAt": "2026-09-11",
-    "bundleFormat": "civic-gks-bundle",
-    "bundleFormatVersion": "0.1.0",
+    "createdAt": "2026-10-01",
+    "bundleFormat": "civic-gkm-bundle",
+    "bundleFormatVersion": "0.1.0-a0",
     "statistics": {
       "collections": {
         "sequenceReference": {
@@ -654,6 +664,5 @@
       }
     }
   },
-  "failedAssertionIds": [],
-  "errors": []
+  "failedAssertionIds": []
 }

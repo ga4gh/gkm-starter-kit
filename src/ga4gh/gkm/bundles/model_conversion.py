@@ -24,7 +24,7 @@ from .errors import BundleValidationError
 def _model_types() -> dict[str, type[BaseModel]]:
     """Discover concrete models exposed by GA4GH reference packages.
 
-    :return: Models keyed by GKS type discriminator and class name.
+    :return: Models keyed by GKM type discriminator and class name.
     """
     modules = [
         vrs_models,
@@ -82,7 +82,7 @@ def _only_bundle_reference_errors(error: ValidationError) -> bool:
     )
 
 
-def parse_gks_values(value: Any) -> Any:
+def parse_gkm_values(value: Any) -> Any:
     """Convert valid, discriminator-typed mappings to GA4GH models.
 
     :param value: JSON-compatible value to inspect.
@@ -90,7 +90,7 @@ def parse_gks_values(value: Any) -> Any:
     :raises BundleValidationError: If a recognized object is invalid.
     """
     if isinstance(value, list):
-        return [parse_gks_values(item) for item in value]
+        return [parse_gkm_values(item) for item in value]
 
     if not isinstance(value, Mapping):
         return value
@@ -98,13 +98,13 @@ def parse_gks_values(value: Any) -> Any:
     type_name = value.get("type")
     model = _model_types().get(type_name) if isinstance(type_name, str) else None
     if model is None:
-        return {key: parse_gks_values(item) for key, item in value.items()}
+        return {key: parse_gkm_values(item) for key, item in value.items()}
 
     try:
         return model.model_validate(value)
     except ValidationError as error:
         if _only_bundle_reference_errors(error):
-            return {key: parse_gks_values(item) for key, item in value.items()}
+            return {key: parse_gkm_values(item) for key, item in value.items()}
 
         message = f"Invalid {type_name!r} bundle object: {error}"
         raise BundleValidationError(message) from error

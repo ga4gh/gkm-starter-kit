@@ -22,10 +22,10 @@ BRCA Exchange aggregates cancer-risk variants in the BRCA1 and BRCA2 genes from 
 **At a glance**
 
 - **Implementer:** BRCA Exchange
-- **Products:** <span class="gks-product-label gks-product-label--vrs">VRS <small>2.0</small></span>
+- **Products:** <span class="gkm-product-label gkm-product-label--vrs">VRS <small>2.0</small></span>
 - **Pattern:** Cross-source variant harmonization
 - **Tools:** `vrs-python` (link below)
-- **Status:** <span class="gks-status gks-status--pilot">pilot</span>
+- **Status:** <span class="gkm-status gkm-status--pilot">pilot</span>
 
 ---
 

@@ -32,7 +32,7 @@ def _to_json_value(value: Any) -> Any:
     :return: A JSON-compatible value.
     """
     if isinstance(value, BaseModel):
-        return value.model_dump(mode="json", exclude_none=True)
+        return value.model_dump(mode="json", exclude_none=True, serialize_as_any=True)
 
     if isinstance(value, Mapping):
         return {key: _to_json_value(item) for key, item in value.items()}
@@ -236,14 +236,17 @@ class Bundle(Mapping[str, BundleCollection]):
         return self[name]
 
     def resolve(self, pointer: str | iriReference) -> Any:
-        """Resolve an RFC 6901 JSON Pointer into the bundle.
+        """Resolve a bundle-local RFC 6901 JSON Pointer.
 
-        ``iriReference`` objects are accepted directly. When the supplied
-        producer schema identifies the exact target with a supported GA4GH W3ID
-        reference, return its validated model; otherwise return the JSON value.
-        Use :meth:`normalize` to expand references recursively. Model traversal
-        is restricted to declared Pydantic fields; methods and other model
-        implementation attributes are not valid pointer targets.
+        Pass a pointer from this bundle's serialized representation, such as a
+        value retrieved from :meth:`to_dict`. Do not pass a field from a typed
+        object: linked fields on typed GKM models may already be resolved.
+        ``iriReference`` objects are accepted directly. When the producer schema
+        identifies the target with a supported GA4GH W3ID reference, return its
+        validated model; otherwise return the JSON value. Use :meth:`normalize`
+        to expand references recursively. Model traversal is restricted to
+        declared Pydantic fields; methods and other implementation attributes
+        are not valid pointer targets.
 
         :param pointer: Bundle-local JSON Pointer beginning with ``#/``, or
             an ``iriReference`` whose ``root`` contains that pointer.
@@ -342,7 +345,9 @@ class Bundle(Mapping[str, BundleCollection]):
             )
 
         if isinstance(value, BaseModel):
-            value = value.model_dump(mode="json", exclude_none=True)
+            value = value.model_dump(
+                mode="json", exclude_none=True, serialize_as_any=True
+            )
 
         if isinstance(value, Mapping):
             return {
@@ -489,9 +494,12 @@ class Bundle(Mapping[str, BundleCollection]):
         return exported
 
     def to_dict(self) -> dict[str, Any]:
-        """Return the complete bundle as shallow Python values.
+        """Return the complete bundle as a JSON-compatible shallow document.
 
-        This preserves local pointers and does not write a file.
+        This preserves bundle-local JSON Pointers rather than resolving them.
+        Use a pointer from this result with :meth:`resolve`, or use
+        :meth:`normalize` to recursively replace local pointers with their
+        targets. This method does not write a file.
 
         :return: The complete serialized bundle.
         :raises BundleSerializationError: If producer-specific extras conflict

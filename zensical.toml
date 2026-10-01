@@ -54,7 +54,7 @@ nav = [
     "user-stories/index.md",
     { "Browse by product" = [
       "user-stories/by-product/index.md",
-      { GKS-Core = "user-stories/by-product/gks-core/index.md" },
+      { GKM-Core = "user-stories/by-product/gkm-core/index.md" },
       { VRS = "user-stories/by-product/vrs/index.md" },
       { Cat-VRS = "user-stories/by-product/cat-vrs/index.md" },
       { VA-Spec = "user-stories/by-product/va-spec/index.md" },

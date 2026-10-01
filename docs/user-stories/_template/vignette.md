@@ -3,7 +3,7 @@ title: "<One-line use case>"
 slug: <kebab-case-slug-matching-vignette-folder-name>
 summary: "<One-sentence catalog blurb. Distinct from 'Why this matters' below.>"
 products:
-  - name: VRS              # one of: GKS-Core, VRS, Cat-VRS, VA-Spec
+  - name: VRS              # one of: GKM-Core, VRS, Cat-VRS, VA-Spec
     version: "2.0"
 pattern: <one value from docs/user-stories/patterns.yml>
 implementer: <organization, consortium, knowledgebase, or project>
@@ -24,11 +24,11 @@ last_updated: 2026-05-27
 **At a glance**
 
 - **Implementer:** <implementer>
-- **Products:** <span class="gks-product-label gks-product-label--vrs">VRS <small>2.0</small></span> <span class="gks-product-label gks-product-label--va-spec">VA-Spec <small>1.0</small></span>
+- **Products:** <span class="gkm-product-label gkm-product-label--vrs">VRS <small>2.0</small></span> <span class="gkm-product-label gkm-product-label--va-spec">VA-Spec <small>1.0</small></span>
 - **Pattern:** <pattern label from `patterns.yml`>
 - **Tools:** <named libraries / services with links>
 - **Notebook:** [Explore the example](../notebook.md) <!-- Remove this line if the user story has no supporting notebook. -->
-- **Status:** <span class="gks-status gks-status--production">production</span>
+- **Status:** <span class="gkm-status gkm-status--production">production</span>
 
 ---
 

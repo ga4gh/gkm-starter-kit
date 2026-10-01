@@ -3,14 +3,14 @@ title: Sharing oncogenicity knowledge with GA4GH GKM
 slug: civic-oncogenicity-gkm
 summary: "CIViC represents oncogenicity classifications and their supporting evidence with GA4GH GKM for exchange, reuse, and workflows such as ClinVar submission."
 products:
-  - name: GKS-Core
+  - name: GKM-Core
     version: 1.1.0
   - name: VRS
-    version: 2.1.0-snapshot.2026-02.2
+    version: 2.1.1
   - name: Cat-VRS
-    version: 1.1.0-snapshot.2026-02.3
+    version: 1.1.1
   - name: VA-Spec
-    version: 1.1.0-snapshot.2026-06.1
+    version: 1.1.0
 pattern: knowledgebase-exchange
 implementer: CIViC
 notebook:
@@ -30,11 +30,11 @@ CIViC curates oncogenicity classifications and their supporting evidence. To use
 **At a glance**
 
 * **Implementer:** CIViC
-* **Products:** <span class="gks-product-label gks-product-label--gks-core">GKS-Core <small>1.1.0</small></span> <span class="gks-product-label gks-product-label--vrs">VRS <small>2.1.0-snapshot.2026-02.2</small></span> <span class="gks-product-label gks-product-label--cat-vrs">Cat-VRS <small>1.1.0-snapshot.2026-02.3</small></span> <span class="gks-product-label gks-product-label--va-spec">VA-Spec <small>1.1.0-snapshot.2026-06.1</small></span>
+* **Products:** <span class="gkm-product-label gkm-product-label--gkm-core">GKM-Core <small>1.3.0</small></span> <span class="gkm-product-label gkm-product-label--vrs">VRS <small>2.1.1</small></span> <span class="gkm-product-label gkm-product-label--cat-vrs">Cat-VRS <small>1.1.1</small></span> <span class="gkm-product-label gkm-product-label--va-spec">VA-Spec <small>1.1.0</small></span>
 * **Pattern:** Knowledgebase exchange
 * **Tools:** [CIViCpy](https://github.com/griffithlab/civicpy), [ClinVar This](https://github.com/clingen-data-model/clinvar-this)
 * **Notebook:** [Explore the example](../notebook.md)
-* **Status:** <span class="gks-status gks-status--pilot">pilot</span>
+* **Status:** <span class="gkm-status gkm-status--pilot">pilot</span>
 
 ---
 
@@ -72,13 +72,13 @@ The example places the Molecular Profile, claim, source document, and assertion 
     }
   },
   "proposition": {
-    "civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4": {
+    "civic.proposition:5ApL2QQsXFCk0CnKObMuYDSs3vGv9eCE": {
       "type": "VariantOncogenicityProposition",
-      "subjectVariant": "#/molecularProfile/civic.mpid:82",
+      "subject": "#/molecularProfile/civic.mpid:82",
       "geneContextQualifier": "#/feature/civic.gid:31", // MAP2K1
       "alleleOriginQualifier": "#/variantOrigin/civic.variantOrigin:SOMATIC",
       "predicate": "isOncogenicFor",
-      "objectTumorType": "#/disease/civic.did:216" // Cancer
+      "object": "#/disease/civic.did:216" // Cancer
     }
   },
   "source": {
@@ -98,8 +98,9 @@ The example places the Molecular Profile, claim, source document, and assertion 
   "assertion": {
     "civic.aid:251": {
       "type": "Statement",
-      "proposition": "#/proposition/civic.proposition:1VqM04P0kzvUa1aj63ujSB9DGZNFDyE4",
+      "proposition": "#/proposition/civic.proposition:5ApL2QQsXFCk0CnKObMuYDSs3vGv9eCE",
       "classification": {
+        "type": "MappableConcept",
         "primaryCoding": {
           "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
           "code": "likely oncogenic"
@@ -121,7 +122,7 @@ The example places the Molecular Profile, claim, source document, and assertion 
 
 ### Storing the molecular profile and its variant context
 
-CIViCpy represents the CIViC Molecular Profile as the Cat-VRS CategoricalVariant `civic.mpid:82`. It retains the profile's grouping of one or more CIViC Variants and serves as the proposition's `subjectVariant`.
+CIViCpy represents the CIViC Molecular Profile as the Cat-VRS CategoricalVariant `civic.mpid:82`. It retains the profile's grouping of one or more CIViC Variants and serves as the proposition's `subject`.
 
 CIViC stores the genomic, coding, and protein sequence representations under one CIViC Variant ID. In this example, each `members` path begins with `civic.vid:82`. The CategoricalVariant preserves that context through VRS Allele members, each with a precise, computable representation.
 

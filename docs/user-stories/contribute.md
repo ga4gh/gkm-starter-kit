@@ -7,7 +7,7 @@ Share a user story if you have built on GKM or have a credible proposal.
 Your story should:
 
 - [ ] Describe a real implementation or a credible proposal with a clear use case.
-- [ ] Use one or more GKM standards: GKS-Core, VRS, Cat-VRS, or VA-Spec.
+- [ ] Use one or more GKM standards: GKM-Core, VRS, Cat-VRS, or VA-Spec.
 - [ ] Include real example payloads, or clearly label synthetic payloads.
 - [ ] Name the tools and libraries used, with their own versions and links.
 - [ ] State the value in plain language that a non-technical reader can understand and forward.

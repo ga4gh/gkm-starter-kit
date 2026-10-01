@@ -45,7 +45,7 @@ slug with `--new-pattern-slug`.
 | `title` | yes | One-line use case description. Quoted. |
 | `slug` | yes | Kebab-case. Must match the vignette folder name. The source folder defines the URL namespace. |
 | `summary` | yes | One-sentence catalog blurb shown on the index card. Distinct from "Why this matters" in the body. |
-| `products` | yes | List of `{name, version?}` entries. `name` must be one of: `GKS-Core`, `VRS`, `Cat-VRS`, `VA-Spec`. Version is optional but strongly encouraged. |
+| `products` | yes | List of `{name, version?}` entries. `name` must be one of: `GKM-Core`, `VRS`, `Cat-VRS`, `VA-Spec`. Version is optional but strongly encouraged. |
 | `pattern` | yes | One value from `docs/user-stories/patterns.yml`. If no existing pattern fits, add a new entry to `patterns.yml` in the same PR. |
 | `implementer` | yes | The organization, consortium, knowledgebase, or project behind the use case. For `status: proposal`, the proposing party. |
 | `status` | yes | One of: `production`, `pilot`, `proposal`. Rendered as a coloured badge on the index. |

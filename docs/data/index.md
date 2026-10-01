@@ -17,7 +17,7 @@ the scale and use case.
 
 - [**Native**](native-records.md)
 
-    <span class="gks-status gks-status--production">Available now</span>
+    <span class="gkm-status gkm-status--production">Available now</span>
 
     A single record or a small set. Each object is **self-contained**, with
     nothing compacted.
@@ -26,7 +26,7 @@ the scale and use case.
 
 - [**Bundle**](bundles/index.md)
 
-    <span class="gks-status gks-status--production">Available now</span>
+    <span class="gkm-status gkm-status--production">Available now</span>
 
     GKM's format for **compact records**. Packages related objects together, stating
     **shared representations once** and linking to them by reference.
@@ -35,7 +35,7 @@ the scale and use case.
 
 - [**Bulk**](large-datasets.md)
 
-    <span class="gks-status gks-status--pilot">In development</span>
+    <span class="gkm-status gkm-status--pilot">In development</span>
 
     Bulk formats such as **Parquet** or **relational tables** for very large
     collections, as support develops.

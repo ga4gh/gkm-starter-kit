@@ -16,7 +16,7 @@ BUNDLE_DIR = Path(__file__).parents[2] / "notebooks" / "civic" / "bundles"
 def test_supported_gkm_versions():
     versions = bundles.supported_gkm_versions()
 
-    assert set(versions) == {"gks-core", "vrs", "cat-vrs", "va-spec"}
+    assert set(versions) == {"gkm-core", "vrs", "cat-vrs", "va-spec"}
     assert all(versions.values())
 
 
