@@ -3,25 +3,5 @@
     "version": "latest",
     "title": "latest",
     "aliases": []
-  },
-  {
-    "version": "0.4.0-a2",
-    "title": "0.4.0-a2",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-a1",
-    "title": "0.4.0-a1",
-    "aliases": []
-  },
-  {
-    "version": "0.4.0-a0",
-    "title": "0.4.0-a0",
-    "aliases": []
-  },
-  {
-    "version": "0.3.0",
-    "title": "0.3.0",
-    "aliases": []
   }
 ]
