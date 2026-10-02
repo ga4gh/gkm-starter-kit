@@ -30,7 +30,7 @@ ClinVar is the largest public collection of expert interpretations linking genet
 - **Implementer:** ClinGen
 - **Products:** <span class="gkm-product-label gkm-product-label--vrs">VRS <small>2.1.1</small></span> <span class="gkm-product-label gkm-product-label--cat-vrs">Cat-VRS <small>1.1.1</small></span> <span class="gkm-product-label gkm-product-label--va-spec">VA-Spec <small>1.1.0</small></span> <span class="gkm-product-label gkm-product-label--gkm-core">GKM-Core <small>1.3.0</small></span>
 - **Pattern:** Cross-source variant harmonization
-- **Tools:** [vrs-python](https://github.com/ga4gh/vrs-python), [va-spec-python](https://github.com/ga4gh/va-spec-python), and the [GKM Toolkit](../../../tools/gkm-toolkit/getting-started.md); the published clinvar-gkm [bundle](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/)
+- **Tools:** [vrs-python](https://github.com/ga4gh/vrs-python), [va-spec-python](https://github.com/ga4gh/va-spec-python), and the [GKM Toolkit](../../../tools/gkm-toolkit/quick-start.md); the published clinvar-gkm [bundle](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/)
 - **Status:** <span class="gkm-status gkm-status--production">production</span>
 
 ---
@@ -72,7 +72,7 @@ Any dataset that computes the same `ga4gh:VA.EE08XW4IpzeWhJAwComKOSmsPHTcP-1R` a
 
 - **[vrs-python](https://github.com/ga4gh/vrs-python)** — compute the VRS allele id for your own variants, to join against clinvar-gkm's `allele` section.
 - **[va-spec-python](https://github.com/ga4gh/va-spec-python)** — construct and validate the classification `Statement`s and `Proposition`s as typed Python models.
-- **[GKM Toolkit](../../../tools/gkm-toolkit/getting-started.md)** (`ga4gh.gkm`) — load a published bundle, follow `#/…` pointers, and export a connected slice, without writing the resolution yourself.
+- **[GKM Toolkit](../../../tools/gkm-toolkit/quick-start.md)** (`ga4gh.gkm`) — load a published bundle, follow `#/…` pointers, and export a connected slice, without writing the resolution yourself.
 - **The clinvar-gkm [bundle](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/)** — the monthly full plus weekly deltas on Cloudflare R2.
 
 ## How to reuse this pattern

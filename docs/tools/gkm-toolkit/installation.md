@@ -74,7 +74,7 @@ Choose what you want to do next:
 
 <div class="grid cards" markdown>
 
-- :material-play-circle-outline: [**Getting started**](getting-started.md)
+- :material-play-circle-outline: [**Quick Start**](quick-start.md)
 
     Explore a published bundle, follow its linked records, and export a focused
     result.

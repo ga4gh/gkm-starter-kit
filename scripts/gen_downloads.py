@@ -3,11 +3,13 @@
 import re
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
-from ga4gh.gkm.bundles import BundleRepository
+import requests
 
-REPOSITORY_PAGE = Path("data/bundles/repository.md")
+from ga4gh.gkm.bundles.repository import BundleRepository
+
+REPOSITORY_PAGE = Path("data/bundle/repository.md")
 PLACEHOLDER = "{{ downloads_table }}"
 URL_PATTERN = re.compile(r"https?://[^\s<>()]+")
 
@@ -29,6 +31,32 @@ def _schema_description(schema: dict[str, Any]) -> str:
     )
 
 
+def _get_file_size(url: str) -> str:
+    """Fetch file size using an HTTP HEAD request and format it."""
+    try:
+        parsed_url = urlparse(url)
+        if parsed_url.scheme not in ("http", "https"):
+            return "Unknown"
+
+        headers = {"User-Agent": "Mozilla/5.0 (Python File Size Checker)"}
+        response = requests.head(url, headers=headers, timeout=5)
+
+        size_bytes = response.headers.get("Content-Length")
+        if size_bytes:
+            bytes_float = float(size_bytes)
+            for unit in ["B", "KB", "MB", "GB"]:
+                if bytes_float < 1000.0:  # noqa: PLR2004
+                    return (
+                        f"{bytes_float} B"
+                        if unit == "B"
+                        else f"{bytes_float:.2f} {unit}"
+                    )
+                bytes_float /= 1000.0
+    except requests.RequestException:
+        pass
+    return "Unknown"
+
+
 def _render_table(
     resource_names: list[str],
     descriptions: dict[str, str],
@@ -48,10 +76,18 @@ def _render_table(
         # Resource names are repository path components, not arbitrary URLs.
         path_name = quote(name, safe="")
         resource_url = f"{base_url.rstrip('/')}/{path_name}"
+
+        bundle_url = f"{resource_url}/{bundle_filename}"
+        schema_url = f"{resource_url}/{bundle_schema_filename}"
+
+        # Fetch file sizes dynamically
+        bundle_size = _get_file_size(bundle_url)
+        schema_size = _get_file_size(schema_url)
+
         rows.append(
             f"| `{name}` | {descriptions.get(name, '')} "
-            f"| [Download]({resource_url}/{bundle_filename}) "
-            f"| [Download]({resource_url}/{bundle_schema_filename}) |"
+            f"| [Download]({bundle_url}) ({bundle_size}) "
+            f"| [Download]({schema_url}) ({schema_size}) |"
         )
     return "\n".join(rows)
 

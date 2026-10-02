@@ -13,14 +13,14 @@ nav = [
   { Home = "index.md" },
   { Data = [
     "data/index.md",
-    { Native = "data/native-records.md" },
+    { Native = "data/native.md" },
     { Bundle = [
-      "data/bundles/index.md",
-      { "Bundle schemas and contents" = "data/bundles/schemas-and-contents.md" },
-      { "Bundle examples" = "data/bundles/examples.md" },
-      { "Explore published bundles" = "data/bundles/repository.md" },
+      "data/bundle/index.md",
+      { "Bundle schemas and contents" = "data/bundle/schemas-and-contents.md" },
+      { "Bundle examples" = "data/bundle/examples.md" },
+      { "Explore published bundles" = "data/bundle/repository.md" },
     ] },
-    { Bulk = "data/large-datasets.md" },
+    { Bulk = "data/bulk.md" },
   ] },
   { Tools = [
     "tools/index.md",
@@ -28,11 +28,12 @@ nav = [
     { "GKM Toolkit" = [
       "tools/gkm-toolkit/index.md",
       "tools/gkm-toolkit/installation.md",
-      { "Getting started" = "tools/gkm-toolkit/getting-started.md" },
+      { "Quick start" = "tools/gkm-toolkit/quick-start.md" },
       { "Explore with notebooks" = [
         "tools/gkm-toolkit/notebooks/index.md",
         { "Explore GKM Toolkit features with CIViC bundle examples" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
         { "Explore the public bundle repository" = "tools/gkm-toolkit/notebooks/repository-notebook.md" },
+        { "Validate a bundle" = "tools/gkm-toolkit/notebooks/validation-notebook.md" },
       ] },
       { "API reference" = [
         "tools/gkm-toolkit/api/index.md",
