@@ -1,4 +1,4 @@
-# Getting started
+# Quick start
 
 The GKM Toolkit lets you bring published genomic knowledge into Python, follow
 the links between related records, and save just the knowledge your application
@@ -123,7 +123,7 @@ and replace `"civic"`.
 
     Read guided notebook examples online, or learn how to run them yourself.
 
-- :material-database: [**Explore available data**](../../data/bundles/repository.md)
+- :material-database: [**Explore available data**](../../data/bundle/repository.md)
 
     Learn about the public bundle repository and its published datasets.
 
@@ -131,7 +131,7 @@ and replace `"civic"`.
 
     Read the API documentation for the package and its functionality.
 
-- :material-file-search-outline: [**Preview example data**](../../data/bundles/examples.md)
+- :material-file-search-outline: [**Preview example data**](../../data/bundle/examples.md)
 
     Inspect a bundle example and the linked records it contains.
 

@@ -28,10 +28,10 @@ The Toolkit currently supports the following GKM product versions:
 
     Install the GKM Toolkit and choose the dependencies you need.
 
-- :material-play-circle-outline: [**Getting started**](getting-started.md)
+- :material-play-circle-outline: [**Quick start**](quick-start.md)
 
-    Take your first step: explore a published bundle, follow its linked records,
-    and export a focused result.
+    Explore a published bundle, follow its linked records, and export a
+    focused result.
 
 - :material-notebook-outline: [**See examples**](notebooks/index.md)
 

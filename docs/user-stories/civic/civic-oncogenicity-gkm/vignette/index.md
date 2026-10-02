@@ -56,7 +56,7 @@ CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-
 
 ### Connected GKM representation
 
-The example places the Molecular Profile, claim, source document, and assertion in one connected representation. The sections that follow explain the most important relationships in the JSON.
+The example places the Molecular Profile, claim, assertion, and linked Evidence Item in one connected representation. The sections that follow explain the most important relationships in the JSON.
 
 ```json
 {
@@ -81,24 +81,29 @@ The example places the Molecular Profile, claim, source document, and assertion 
       "object": "#/disease/civic.did:216" // Cancer
     }
   },
-  "source": {
-    "civic.sid:5629": {
-      "id": "civic.sid:5629",
-      "type": "Document",
-      "name": "Nikolaev et al., 2011",
-      "title": "Exome sequencing identifies recurrent somatic MAP2K1 and MAP2K2 mutations in melanoma.",
-      "urls": [
-        "https://civicdb.org/links/evidence/12986", // CIViC Evidence Item
-        "https://civicdb.org/links/source/5629",
-        "http://www.ncbi.nlm.nih.gov/pubmed/22197931"
-      ],
-      "pmid": "22197931"
-    }
-  },
   "assertion": {
     "civic.aid:251": {
+      "id": "civic.aid:251",
       "type": "Statement",
+      "description": "MAP2K1 P124S causes increased colony formation and increased pERK/ERK ratio (civic.eid:12986, OS2). In cancerhotspots.org there are more than 10 (15) samples with the same amino acid change and less than 50 (25) samples with a somatic variant at the same amino acid position (OM3). The variant is absent in gnomAD database (v4.1.0) (OP4). Together these criteria indicate that P124S is likely oncogenic, with a score of 7. Variant classification was done using ClinGen Somatic MAPK/ERK pathway SC-VCEP guidelines.",
+      "specifiedBy": {
+        "type": "Method",
+        "name": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+        "methodType": "guideline",
+        "reportedIn": "#/source/pmid:35101336"
+      },
+      "reportedIn": [
+        "https://civicdb.org/links/assertion/251"
+      ],
       "proposition": "#/proposition/civic.proposition:5ApL2QQsXFCk0CnKObMuYDSs3vGv9eCE",
+      "direction": "supports",
+      "strength": {
+        "type": "MappableConcept",
+        "primaryCoding": {
+          "system": "ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022",
+          "code": "likely"
+        }
+      },
       "classification": {
         "type": "MappableConcept",
         "primaryCoding": {
@@ -106,9 +111,8 @@ The example places the Molecular Profile, claim, source document, and assertion 
           "code": "likely oncogenic"
         }
       },
-      "reportedIn": [
-        "https://civicdb.org/links/assertion/251",
-        "#/source/civic.sid:5629"
+      "hasEvidence": [
+        "https://civicdb.org/links/evidence/12986"
       ],
       "hasEvidenceLines": [
         { "evidenceOutcome": "OS2", "scoreOfEvidenceProvided": 4, ... },
@@ -130,7 +134,7 @@ CIViC stores the genomic, coding, and protein sequence representations under one
 
 Together, these objects form a reusable statement: Somatic **RET M918T is likely oncogenic for Medullary Thyroid Carcinoma**, evaluated under the ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022 framework. The classification has a score of 9 and is supported by functional domain location (OM1), functional assay (OS2), population frequency (OP4), computational prediction (OP1), somatic hotspot recurrence (OP3) evidence.
 
-CIViC stores oncogenicity codes on the assertion, but does not link each code to an Evidence Item. Curators may mention both in free text, for example `(civic.EID:12709, OS2)`, but conventions vary. CIViCpy cannot reliably infer those links, so `EvidenceLine.hasEvidenceItems` is empty. The Evidence Item URL (`https://civicdb.org/links/evidence/12986`) remains in the source document referenced by `Statement.reportedIn`.
+CIViC associates Evidence Items with the assertion but does not link an individual item to an oncogenicity code. CIViCpy maps the assertion-level links to `Statement.hasEvidence`, such as `https://civicdb.org/links/evidence/12986`, and maps each scored criterion to an `EvidenceLine`. `EvidenceLine.hasEvidenceItems` remains empty because CIViC does not identify supporting Evidence Lines for individual codes.
 
 ## The tools used
 

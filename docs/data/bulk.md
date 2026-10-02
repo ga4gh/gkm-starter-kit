@@ -1,7 +1,7 @@
-# Large-volume datasets
+# Bulk data
 
-Both [native records](native-records.md) and
-[bundles (compact records)](bundles/index.md) distribute GKM knowledge as JSON
+Both [native records](native.md) and
+[bundles (compact records)](bundle/index.md) distribute GKM knowledge as JSON
 documents. This works well until the volume grows to the point where a single
 document is impractical to produce, transfer, or load into memory. Some
 producers need to share GKM records by the hundreds of thousands or millions.

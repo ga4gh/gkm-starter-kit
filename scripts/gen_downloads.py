@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 from ga4gh.gkm.bundles import BundleRepository
 
-REPOSITORY_PAGE = Path("data/bundles/repository.md")
+REPOSITORY_PAGE = Path("data/bundle/repository.md")
 PLACEHOLDER = "{{ downloads_table }}"
 URL_PATTERN = re.compile(r"https?://[^\s<>()]+")
 

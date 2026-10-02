@@ -310,18 +310,6 @@
     }
   },
   "source": {
-    "civic.sid:5629": {
-      "id": "civic.sid:5629",
-      "type": "Document",
-      "name": "Nikolaev et al., 2011",
-      "title": "Exome sequencing identifies recurrent somatic MAP2K1 and MAP2K2 mutations in melanoma.",
-      "urls": [
-        "https://civicdb.org/links/evidence/12986",
-        "https://civicdb.org/links/source/5629",
-        "http://www.ncbi.nlm.nih.gov/pubmed/22197931"
-      ],
-      "pmid": "22197931"
-    },
     "pmid:35101336": {
       "id": "pmid:35101336",
       "type": "Document",
@@ -361,8 +349,7 @@
         "reportedIn": "#/source/pmid:35101336"
       },
       "reportedIn": [
-        "https://civicdb.org/links/assertion/251",
-        "#/source/civic.sid:5629"
+        "https://civicdb.org/links/assertion/251"
       ],
       "proposition": "#/proposition/civic.proposition:5ApL2QQsXFCk0CnKObMuYDSs3vGv9eCE",
       "direction": "supports",
@@ -380,6 +367,9 @@
           "code": "likely oncogenic"
         }
       },
+      "hasEvidence": [
+        "https://civicdb.org/links/evidence/12986"
+      ],
       "hasEvidenceLines": [
         {
           "type": "EvidenceLine",
@@ -471,7 +461,7 @@
       "CatVRS": "1.1.1",
       "VASpec": "1.1.0"
     },
-    "createdAt": "2026-10-01",
+    "createdAt": "2026-10-02",
     "bundleFormat": "civic-gkm-bundle",
     "bundleFormatVersion": "0.1.0-a0",
     "statistics": {
@@ -516,7 +506,7 @@
           "count": 1
         },
         "source": {
-          "count": 2
+          "count": 1
         },
         "method": {
           "count": 0

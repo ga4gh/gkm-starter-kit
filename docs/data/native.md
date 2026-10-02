@@ -4,7 +4,7 @@ A **native record** is a single GKM object, such as a variant, a category of
 variants, or a clinical assertion, written out on its own with everything it
 needs **inline**. Nothing is factored out into shared collections or linked by
 reference. It is the form of a GKM object before it is
-[bundled into a compact record](bundles/index.md).
+[bundled into a compact record](bundle/index.md).
 
 Use native records to exchange one record, or a small set, in a message or API
 response.
