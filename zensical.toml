@@ -28,7 +28,7 @@ nav = [
     { "GKM Toolkit" = [
       "tools/gkm-toolkit/index.md",
       "tools/gkm-toolkit/installation.md",
-      { "Quick start" = "tools/gkm-toolkit/getting-started.md" },
+      { "Quick start" = "tools/gkm-toolkit/quick-start.md" },
       { "Explore with notebooks" = [
         "tools/gkm-toolkit/notebooks/index.md",
         { "Explore GKM Toolkit features with CIViC bundle examples" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
