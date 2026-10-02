@@ -17,6 +17,8 @@ complete dataset released by a producer.
 - [Explore the public bundle repository](repository-notebook.md) — discover
   public resources, retrieve a producer's complete published bundle and its
   schema, load them into GKM models, and handle repository errors.
+- [Validate a bundle](validation-notebook.md): see how the Toolkit checks a
+  bundle and what happens when something is wrong.
 
 ## Run the notebooks with MyBinder
 

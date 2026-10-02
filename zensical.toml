@@ -33,6 +33,7 @@ nav = [
         "tools/gkm-toolkit/notebooks/index.md",
         { "Explore GKM Toolkit features with CIViC bundle examples" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
         { "Explore the public bundle repository" = "tools/gkm-toolkit/notebooks/repository-notebook.md" },
+        { "Validate a bundle" = "tools/gkm-toolkit/notebooks/validation-notebook.md" },
       ] },
       { "API reference" = [
         "tools/gkm-toolkit/api/index.md",

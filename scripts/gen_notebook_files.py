@@ -19,6 +19,8 @@ ONCOGENICITY_NOTEBOOK_PAGE = Path(
 )
 REPOSITORY_NOTEBOOK = Path("notebooks/repository/load-public-bundle.ipynb")
 REPOSITORY_NOTEBOOK_PAGE = Path("tools/gkm-toolkit/notebooks/repository-notebook.md")
+VALIDATION_NOTEBOOK = Path("notebooks/validation/validate-bundles.ipynb")
+VALIDATION_NOTEBOOK_PAGE = Path("tools/gkm-toolkit/notebooks/validation-notebook.md")
 
 
 def _text(value: str | list[str]) -> str:
@@ -117,6 +119,7 @@ def main(output_root: Path = Path("docs")) -> None:
         (NOTEBOOK, NOTEBOOK_PAGE),
         (ONCOGENICITY_NOTEBOOK, ONCOGENICITY_NOTEBOOK_PAGE),
         (REPOSITORY_NOTEBOOK, REPOSITORY_NOTEBOOK_PAGE),
+        (VALIDATION_NOTEBOOK, VALIDATION_NOTEBOOK_PAGE),
     ):
         target_path = output_root / target
         target_path.parent.mkdir(parents=True, exist_ok=True)
