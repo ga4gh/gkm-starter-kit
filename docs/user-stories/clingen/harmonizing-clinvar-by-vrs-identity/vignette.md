@@ -3,14 +3,14 @@ title: "Harmonizing ClinVar by VRS identity"
 slug: harmonizing-clinvar-by-vrs-identity
 summary: "Republishing all of ClinVar in the GKM so every variant carries a VRS identity and every classification is a structured VA-Spec statement, letting you join ClinVar to any VRS-aware dataset by identity."
 products:
+  - name: GKM-Core
+    version: "1.3.0"
   - name: VRS
     version: "2.1.1"
   - name: Cat-VRS
     version: "1.1.1"
   - name: VA-Spec
     version: "1.1.0"
-  - name: GKM-Core
-    version: "1.3.0"
 pattern: cross-source-variant-harmonization
 implementer: ClinGen
 status: production
