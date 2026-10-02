@@ -7,22 +7,22 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/native-records/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/native/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/schemas-and-contents/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle/schemas-and-contents/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/examples/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle/examples/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundles/repository/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bundle/repository/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/large-datasets/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/data/bulk/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/</loc>
@@ -37,7 +37,7 @@
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/installation/</loc>
       </url>
       <url>
-        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/getting-started/</loc>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/quick-start/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/</loc>
@@ -47,6 +47,9 @@
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/repository-notebook/</loc>
+      </url>
+      <url>
+        <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/notebooks/validation-notebook/</loc>
       </url>
       <url>
         <loc>https://ga4gh.github.io/gkm-starter-kit/latest/tools/gkm-toolkit/api/</loc>

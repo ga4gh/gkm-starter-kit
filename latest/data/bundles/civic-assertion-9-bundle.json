@@ -399,7 +399,6 @@
       "name": "Fontebasso et al., 2014",
       "title": "Recurrent somatic mutations in ACVR1 in pediatric midline high-grade astrocytoma.",
       "urls": [
-        "https://civicdb.org/links/evidence/4846",
         "https://civicdb.org/links/source/2149",
         "http://www.ncbi.nlm.nih.gov/pubmed/24705250",
         "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4282994"
@@ -412,7 +411,6 @@
       "name": "Buczkowicz et al., 2014",
       "title": "Genomic analysis of diffuse intrinsic pontine gliomas identifies three molecular subgroups and recurrent activating ACVR1 mutations.",
       "urls": [
-        "https://civicdb.org/links/evidence/6955",
         "https://civicdb.org/links/source/2680",
         "http://www.ncbi.nlm.nih.gov/pubmed/24705254",
         "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3997489"
@@ -541,9 +539,7 @@
       "description": "ACVR1 G328V mutations occur within the kinase domain, leading to activation of downstream signaling. Exclusively seen in high-grade pediatric gliomas, supporting diagnosis of diffuse intrinsic pontine glioma.",
       "specifiedBy": "#/method/civic.method:2019",
       "reportedIn": [
-        "https://civicdb.org/links/assertion/9",
-        "#/source/civic.sid:2149",
-        "#/source/civic.sid:2680"
+        "https://civicdb.org/links/assertion/9"
       ],
       "proposition": "#/proposition/civic.proposition:fOBF0e3ZunhJ23AdC3O3m2Vg5k_ARxkv",
       "direction": "supports",
@@ -562,6 +558,10 @@
           "code": "tier ii"
         }
       },
+      "hasEvidence": [
+        "https://civicdb.org/links/evidence/4846",
+        "https://civicdb.org/links/evidence/6955"
+      ],
       "hasEvidenceLines": [
         {
           "type": "EvidenceLine",
@@ -594,7 +594,7 @@
       "CatVRS": "1.1.1",
       "VASpec": "1.1.0"
     },
-    "createdAt": "2026-10-01",
+    "createdAt": "2026-10-02",
     "bundleFormat": "civic-gkm-bundle",
     "bundleFormatVersion": "0.1.0-a0",
     "statistics": {

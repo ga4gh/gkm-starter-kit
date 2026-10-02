@@ -496,7 +496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../data/native-records/" class="md-nav__link">
+      <a href="../../../../data/native/" class="md-nav__link">
         
   
   
@@ -552,7 +552,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../data/bundles/" class="md-nav__link ">
+            <a href="../../../../data/bundle/" class="md-nav__link ">
               
   
   
@@ -594,7 +594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../data/bundles/schemas-and-contents/" class="md-nav__link">
+      <a href="../../../../data/bundle/schemas-and-contents/" class="md-nav__link">
         
   
   
@@ -621,7 +621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../data/bundles/examples/" class="md-nav__link">
+      <a href="../../../../data/bundle/examples/" class="md-nav__link">
         
   
   
@@ -648,7 +648,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../data/bundles/repository/" class="md-nav__link">
+      <a href="../../../../data/bundle/repository/" class="md-nav__link">
         
   
   
@@ -683,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../data/large-datasets/" class="md-nav__link">
+      <a href="../../../../data/bulk/" class="md-nav__link">
         
   
   
@@ -915,14 +915,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/gkm-toolkit/getting-started/" class="md-nav__link">
+      <a href="../../../../tools/gkm-toolkit/quick-start/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-  Getting started
+  Quick start
 
     
   </span>
@@ -946,6 +946,8 @@
       
         
           
+        
+      
         
       
         
@@ -1046,6 +1048,33 @@
     
   
   Explore the public bundle repository
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tools/gkm-toolkit/notebooks/validation-notebook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Validate a bundle
 
     
   </span>
@@ -2460,10 +2489,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-oncogenicity-codes-and-evidence-items-remain-separate" class="md-nav__link">
+  <a href="#civic-evidence-items-and-scored-criteria" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Why oncogenicity codes and Evidence Items remain separate
+        CIViC Evidence Items and scored criteria
       </span>
     </span>
   </a>
@@ -2471,21 +2500,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evidence-item-links" class="md-nav__link">
+  <a href="#linking-civic-evidence-items-to-the-assertion" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Evidence Item links
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linking-civic-evidence-items-to-source-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Linking CIViC Evidence Items to source documents
+        Linking CIViC Evidence Items to the assertion
       </span>
     </span>
   </a>
@@ -3072,10 +3090,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-oncogenicity-codes-and-evidence-items-remain-separate" class="md-nav__link">
+  <a href="#civic-evidence-items-and-scored-criteria" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Why oncogenicity codes and Evidence Items remain separate
+        CIViC Evidence Items and scored criteria
       </span>
     </span>
   </a>
@@ -3083,21 +3101,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#evidence-item-links" class="md-nav__link">
+  <a href="#linking-civic-evidence-items-to-the-assertion" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Evidence Item links
-      </span>
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linking-civic-evidence-items-to-source-documents" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        Linking CIViC Evidence Items to source documents
+        Linking CIViC Evidence Items to the assertion
       </span>
     </span>
   </a>
@@ -3453,55 +3460,49 @@
 <a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
 <a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>Total classification score: 9
 </code></pre></div>
-<h3 id="why-oncogenicity-codes-and-evidence-items-remain-separate">Why oncogenicity codes and Evidence Items remain separate</h3>
+<h3 id="civic-evidence-items-and-scored-criteria">CIViC Evidence Items and scored criteria</h3>
 <p>The Evidence Lines contribute scores of 2 (OM1), 4 (OS2), and 1 each (OP4, OP1, and OP3), for a total of 9.</p>
-<p>CIViC does not consistently link each oncogenicity code to an Evidence Item. GKM therefore leaves <code>EvidenceLine.hasEvidenceItems</code> empty. The output shows those empty links.</p>
+<p>CIViC associates Evidence Items with the assertion but does not link an individual item to an oncogenicity code. CIViCpy maps the assertion-level links to <code>Statement.hasEvidence</code> and each scored criterion to an <code>EvidenceLine</code>. <code>EvidenceLine.hasEvidenceItems</code> remains empty because CIViC does not identify supporting Evidence Lines for individual codes.</p>
 <div class="highlight"><span class="filename">In [12]</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span><span class="p">:</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">criterion</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="s2">"hasEvidenceItems:"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">hasEvidenceItems</span><span class="p">)</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="s2">"Evidence Lines hasEvidenceItems:"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">hasEvidenceItems</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>OM1 hasEvidenceItems: None
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>OS2 hasEvidenceItems: None
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>OP4 hasEvidenceItems: None
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>OP1 hasEvidenceItems: None
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>OP3 hasEvidenceItems: None
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>OM1 Evidence Lines hasEvidenceItems: None
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>OS2 Evidence Lines hasEvidenceItems: None
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>OP4 Evidence Lines hasEvidenceItems: None
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>OP1 Evidence Lines hasEvidenceItems: None
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>OP3 Evidence Lines hasEvidenceItems: None
 </code></pre></div>
-<h3 id="evidence-item-links">Evidence Item links</h3>
-<p>The output confirms that no Evidence Line has a linked Evidence Item. CIViCpy preserves Evidence Item URLs without inferring a code-to-item link. Evidence strength belongs to an Evidence Line. Evidence level and trust rating belong to the CIViC Evidence Item and are not structured in this bundle.</p>
-<h3 id="linking-civic-evidence-items-to-source-documents">Linking CIViC Evidence Items to source documents</h3>
+<h3 id="linking-civic-evidence-items-to-the-assertion">Linking CIViC Evidence Items to the assertion</h3>
 <p>CIViC lists Evidence Items separately from the oncogenicity codes:</p>
 <p><img alt="CIViC Assertion 202 EIDs" src=".././civic-assertion-202-eids-ui.png" /></p>
-<p>CIViCpy keeps these links in <code>assertion.reportedIn</code>. The output follows each link to its source document.</p>
-<div class="highlight"><span class="filename">In [13]</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">evidence_item_documents</span> <span class="o">=</span> <span class="p">[</span>
-<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="n">document</span> <span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">assertion</span><span class="o">.</span><span class="n">reportedIn</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">document</span><span class="p">,</span> <span class="s2">"urls"</span><span class="p">)</span>
-<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">]</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="n">evidence_item_links</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Evidence Item URL -&gt; source document"</span><span class="p">)</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="k">for</span> <span class="n">document</span> <span class="ow">in</span> <span class="n">evidence_item_documents</span><span class="p">:</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    <span class="n">civic_eid_url</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">url</span> <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">document</span><span class="o">.</span><span class="n">urls</span> <span class="k">if</span> <span class="s2">"/links/evidence/"</span> <span class="ow">in</span> <span class="n">url</span><span class="p">)</span>
-<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>    <span class="n">pmid_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"https://pubmed.ncbi.nlm.nih.gov/</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2">/"</span>
-<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>    <span class="n">evidence_item_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>        <span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">) ([PMID </span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">pmid_url</span><span class="si">}</span><span class="s2">))"</span>
-<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>    <span class="p">)</span>
-<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">: PMID:</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">pmid</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">document</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
-<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="n">evidence_item_bullets</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">evidence_item_links</span><span class="p">)</span>
+<p>CIViCpy stores these URLs in <code>assertion.hasEvidence</code>. The output lists the Evidence Items linked to the assertion.</p>
+<div class="highlight"><span class="filename">In [13]</span><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">evidence_item_urls</span> <span class="o">=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">hasEvidence</span> <span class="ow">or</span> <span class="p">[]</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">evidence_item_links</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"Evidence Item URLs"</span><span class="p">)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">for</span> <span class="n">evidence_item</span> <span class="ow">in</span> <span class="n">evidence_item_urls</span><span class="p">:</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    <span class="n">civic_eid_url</span> <span class="o">=</span> <span class="n">evidence_item</span><span class="o">.</span><span class="n">root</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="n">evidence_item_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">](</span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">civic_eid_url</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="n">evidence_item_bullets</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"- </span><span class="si">{</span><span class="n">item</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">evidence_item_links</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Evidence Item URL -&gt; source document
-<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>- https://civicdb.org/links/evidence/74: PMID:18073307 (civic.sid:44)
-<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>- https://civicdb.org/links/evidence/78: PMID:9839497 (civic.sid:92)
-<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>- https://civicdb.org/links/evidence/12711: PMID:29515777 (civic.sid:5458)
-<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>- https://civicdb.org/links/evidence/12805: PMID:17108110 (civic.sid:5519)
-<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>- https://civicdb.org/links/evidence/11867: PMID:32284345 (civic.sid:4870)
-<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>- https://civicdb.org/links/evidence/12709: PMID:9191060 (civic.sid:4953)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Evidence Item URLs
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>- https://civicdb.org/links/evidence/74
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>- https://civicdb.org/links/evidence/12800
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>- https://civicdb.org/links/evidence/78
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>- https://civicdb.org/links/evidence/12711
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>- https://civicdb.org/links/evidence/12805
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>- https://civicdb.org/links/evidence/11723
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>- https://civicdb.org/links/evidence/12709
 </code></pre></div>
-<p>The output links each CIViC Evidence Item to its source document.</p>
-<p>The next output identifies the ClinGen/CGC/VICC guideline cited by the Evidence Lines. It defines how to weigh the criteria.</p>
-<div class="highlight"><span class="filename">In [14]</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">guideline</span> <span class="o">=</span> <span class="n">evidence_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">reportedIn</span>
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"PMID:"</span><span class="p">,</span> <span class="n">guideline</span><span class="o">.</span><span class="n">pmid</span><span class="p">)</span>
+<p>The output lists each CIViC Evidence Item associated with the assertion.</p>
+<p>Each Evidence Line's <code>specifiedBy</code> method identifies the ClinGen/CGC/VICC guideline that defines how its criterion is weighed. The method's <code>reportedIn</code> field points to the following guideline document.</p>
+<div class="highlight"><span class="filename">In [14]</span><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">guideline_document</span> <span class="o">=</span> <span class="n">evidence_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">specifiedBy</span><span class="o">.</span><span class="n">reportedIn</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline_document</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">guideline_document</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">"PMID:"</span><span class="p">,</span> <span class="n">guideline_document</span><span class="o">.</span><span class="n">pmid</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>Horak et al., 2022, Genet Med.
@@ -3527,7 +3528,7 @@
 </code></pre></div>
 <p>The approval output records the activity, agent, and date.</p>
 <h2 id="reusing-the-connected-interpretation">Reusing the connected interpretation</h2>
-<p>CIViC stores the Molecular Profile, Disease, Evidence Items, and assertion as related records. The published GKM bundle uses pointers to preserve those links. The output shows the connected interpretation.</p>
+<p>CIViC stores the Molecular Profile, Disease, Evidence Items, and assertion as related records. The bundle uses pointers for internal records and <code>hasEvidence</code> URLs for the assertion's Evidence Items.</p>
 <div class="highlight"><span class="filename">In [16]</span><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">connected</span> <span class="o">=</span> <span class="n">civic_bundle</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="n">assertion</span><span class="p">)</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connected record: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Classification: </span><span class="si">{</span><span class="n">connected</span><span class="p">[</span><span class="s1">'classification'</span><span class="p">][</span><span class="s1">'primaryCoding'</span><span class="p">][</span><span class="s1">'code'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -3545,7 +3546,7 @@
 <a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>Approving agent: CIViC
 </code></pre></div>
 <h3 id="construct-the-complete-interpretation">Construct the complete interpretation</h3>
-<p>The final cell assembles the connected records for display or exchange. It keeps oncogenicity codes and Evidence Items separate because CIViC does not identify which item supports which code.</p>
+<p>The final cell assembles the connected records for display or exchange. It lists the assertion's Evidence Items and scored Evidence Lines separately because CIViC does not link an item to an individual oncogenicity code.</p>
 <div class="highlight"><span class="filename">In [17]</span><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Markdown</span>
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span> <span class="k">as</span> <span class="n">ipython_display</span>
 <a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
@@ -3556,7 +3557,7 @@
 <a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">framework</span><span class="si">}</span><span class="s2">** framework.</span><span class="se">\n\n</span><span class="s2">"</span>
 <a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>    <span class="s2">"The classification has a score of "</span>
 <a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>    <span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">total_score</span><span class="si">}</span><span class="s2">** and is supported by </span><span class="si">{</span><span class="n">evidence_summary</span><span class="si">}</span><span class="s2"> evidence. CIViC associates "</span>
-<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>    <span class="sa">f</span><span class="s2">"the following Evidence Items and source documents with the assertion:</span><span class="se">\n\n</span><span class="s2">"</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>    <span class="sa">f</span><span class="s2">"the following Evidence Items with the assertion:</span><span class="se">\n\n</span><span class="s2">"</span>
 <a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">evidence_item_bullets</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">"</span>
 <a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>    <span class="s2">"The classification was "</span>
 <a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">activityType</span><span class="si">}</span><span class="s2"> by **</span><span class="si">{</span><span class="n">approval</span><span class="o">.</span><span class="n">contributor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">** on "</span>
@@ -3567,14 +3568,15 @@
 <p><strong>Output:</strong></p>
 <p><strong>CIVIC.AID:202:</strong></p>
 <p><strong>Somatic</strong> <strong>RET M918T</strong> is <strong>likely oncogenic</strong> for <strong>Medullary Thyroid Carcinoma</strong>, evaluated under the <strong>ClinGen/CGC/VICC Guidelines for Oncogenicity, 2022</strong> framework.</p>
-<p>The classification has a score of <strong>9</strong> and is supported by functional domain assessment (OM1), functional data assessment (OS2), population data assessment (OP4), in silico impact assessment (OP1), somatic hotspot assessment (OP3) evidence. CIViC associates the following Evidence Items and source documents with the assertion:</p>
+<p>The classification has a score of <strong>9</strong> and is supported by functional domain assessment (OM1), functional data assessment (OS2), population data assessment (OP4), in silico impact assessment (OP1), somatic hotspot assessment (OP3) evidence. CIViC associates the following Evidence Items with the assertion:</p>
 <ul>
-<li><a href="https://civicdb.org/links/evidence/74">https://civicdb.org/links/evidence/74</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/18073307/">PMID 18073307</a>)</li>
-<li><a href="https://civicdb.org/links/evidence/78">https://civicdb.org/links/evidence/78</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/9839497/">PMID 9839497</a>)</li>
-<li><a href="https://civicdb.org/links/evidence/12711">https://civicdb.org/links/evidence/12711</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/29515777/">PMID 29515777</a>)</li>
-<li><a href="https://civicdb.org/links/evidence/12805">https://civicdb.org/links/evidence/12805</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/17108110/">PMID 17108110</a>)</li>
-<li><a href="https://civicdb.org/links/evidence/11867">https://civicdb.org/links/evidence/11867</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/32284345/">PMID 32284345</a>)</li>
-<li><a href="https://civicdb.org/links/evidence/12709">https://civicdb.org/links/evidence/12709</a> (<a href="https://pubmed.ncbi.nlm.nih.gov/9191060/">PMID 9191060</a>)</li>
+<li><a href="https://civicdb.org/links/evidence/74">https://civicdb.org/links/evidence/74</a></li>
+<li><a href="https://civicdb.org/links/evidence/12800">https://civicdb.org/links/evidence/12800</a></li>
+<li><a href="https://civicdb.org/links/evidence/78">https://civicdb.org/links/evidence/78</a></li>
+<li><a href="https://civicdb.org/links/evidence/12711">https://civicdb.org/links/evidence/12711</a></li>
+<li><a href="https://civicdb.org/links/evidence/12805">https://civicdb.org/links/evidence/12805</a></li>
+<li><a href="https://civicdb.org/links/evidence/11723">https://civicdb.org/links/evidence/11723</a></li>
+<li><a href="https://civicdb.org/links/evidence/12709">https://civicdb.org/links/evidence/12709</a></li>
 </ul>
 <p>The classification was approval.last_reviewed by <strong>CIViC</strong> on <strong>2026-04-16</strong>.</p>
 <h2 id="why-gkm-matters-for-exchange">Why GKM matters for exchange</h2>
