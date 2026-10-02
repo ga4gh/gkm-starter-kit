@@ -14,6 +14,12 @@ The GKM Toolkit helps you:
 - **Explore** collections of genomic knowledge and the relationships between objects.
 - **Preserve** producer-specific content when processing or writing bundles.
 
+## Supported GKM product versions
+
+The Toolkit currently supports the following GKM product versions:
+
+{{ supported_product_versions_table }}
+
 ## Explore the GKM Toolkit
 
 <div class="grid cards" markdown>
