@@ -3465,14 +3465,14 @@
 <p>CIViC associates Evidence Items with the assertion but does not link an individual item to an oncogenicity code. CIViCpy maps the assertion-level links to <code>Statement.hasEvidence</code> and each scored criterion to an <code>EvidenceLine</code>. <code>EvidenceLine.hasEvidenceItems</code> remains empty because CIViC does not identify supporting Evidence Lines for individual codes.</p>
 <div class="highlight"><span class="filename">In [12]</span><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">evidence_lines</span><span class="p">:</span>
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="n">criterion</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">evidenceOutcome</span><span class="o">.</span><span class="n">primaryCoding</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">root</span>
-<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="s2">"Evidence Lines hasEvidenceItems:"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">hasEvidenceItems</span><span class="p">)</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">criterion</span><span class="p">,</span> <span class="s2">"Evidence Line hasEvidenceItems:"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">hasEvidenceItems</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>OM1 Evidence Lines hasEvidenceItems: None
-<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>OS2 Evidence Lines hasEvidenceItems: None
-<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>OP4 Evidence Lines hasEvidenceItems: None
-<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>OP1 Evidence Lines hasEvidenceItems: None
-<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>OP3 Evidence Lines hasEvidenceItems: None
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>OM1 Evidence Line hasEvidenceItems: None
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>OS2 Evidence Line hasEvidenceItems: None
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>OP4 Evidence Line hasEvidenceItems: None
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>OP1 Evidence Line hasEvidenceItems: None
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>OP3 Evidence Line hasEvidenceItems: None
 </code></pre></div>
 <h3 id="linking-civic-evidence-items-to-the-assertion">Linking CIViC Evidence Items to the assertion</h3>
 <p>CIViC lists Evidence Items separately from the oncogenicity codes:</p>
@@ -3521,10 +3521,10 @@
 <a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
 <a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="k">for</span> <span class="n">contribution</span> <span class="ow">in</span> <span class="n">assertion</span><span class="o">.</span><span class="n">contributions</span> <span class="ow">or</span> <span class="p">[]:</span>
 <a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>    <span class="n">contributor</span> <span class="o">=</span> <span class="n">contribution</span><span class="o">.</span><span class="n">contributor</span>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">contribution</span><span class="o">.</span><span class="n">activityType</span><span class="si">}</span><span class="s2"> by </span><span class="si">{</span><span class="n">contributor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">contribution</span><span class="o">.</span><span class="n">date</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">contribution</span><span class="o">.</span><span class="n">activityType</span><span class="si">}</span><span class="s2"> by </span><span class="si">{</span><span class="n">contributor</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">approval_date</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </code></pre></div>
 <p><strong>Output:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>approval.last_reviewed by CIViC on 2026-04-16 00:00:00
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>approval.last_reviewed by CIViC on 2026-04-16
 </code></pre></div>
 <p>The approval output records the activity, agent, and date.</p>
 <h2 id="reusing-the-connected-interpretation">Reusing the connected interpretation</h2>
