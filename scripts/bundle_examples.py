@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 BUNDLE_SOURCE_DIR = Path("notebooks/civic/bundles")
-BUNDLE_OUTPUT_DIR = Path("data/bundles")
+BUNDLE_OUTPUT_DIR = Path("data/bundle")
 
 
 def discover_bundle_paths() -> tuple[Path, ...]:
