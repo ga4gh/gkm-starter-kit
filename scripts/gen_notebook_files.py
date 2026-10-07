@@ -71,7 +71,7 @@ def _render_notebook(path: Path) -> str:
         note = (
             '!!! info "Data files"\n\n    Example files: '
             + render_bundle_linkouts(
-                "../../../data/bundles",
+                "../../../data/bundle",
                 "civic-assertion-9-bundle.json",
                 "civic-assertion-251-bundle.json",
                 "civic-gkm-bundle-v0.1.0-a0.schema.json",

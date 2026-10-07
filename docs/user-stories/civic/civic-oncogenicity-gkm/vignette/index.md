@@ -52,7 +52,7 @@ This gives CIViC one shared representation instead of a separate CIViC-specific 
 
 ## The data
 
-CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-VRS for the molecular profile, VRS for the underlying alleles, and VA-Spec for the proposition, assertion, evidence assessments, and provenance. This preserves the links between the variant, its context, the classification, and its evidence. The following shortened example is adapted from [CIViC Assertion 251](../../../data/bundles/civic-assertion-251-bundle.json){ target="_blank" rel="noopener" }. The linked bundle contains the full record.
+CIViCpy represents an oncogenicity interpretation as connected GKM objects: Cat-VRS for the molecular profile, VRS for the underlying alleles, and VA-Spec for the proposition, assertion, evidence assessments, and provenance. This preserves the links between the variant, its context, the classification, and its evidence. The following shortened example is adapted from [CIViC Assertion 251](../../../../data/bundle/civic-assertion-251-bundle.json){ target="_blank" rel="noopener" }. The linked bundle contains the full record.
 
 ### Connected GKM representation
 
