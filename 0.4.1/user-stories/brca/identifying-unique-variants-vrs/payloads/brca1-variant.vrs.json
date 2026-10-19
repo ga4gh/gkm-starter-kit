@@ -1,0 +1,22 @@
+{
+  "id": "ga4gh:VA.YpMp7lIYDfsjOmHyPel8NHPgkOlL_J0B",
+  "type": "Allele",
+  "digest": "YpMp7lIYDfsjOmHyPel8NHPgkOlL_J0B",
+  "location": {
+    "id": "ga4gh:SL.dlLI8V13wN0QF9iTu7o9DJZKn8TjXkh3",
+    "type": "SequenceLocation",
+    "digest": "dlLI8V13wN0QF9iTu7o9DJZKn8TjXkh3",
+    "sequenceReference": {
+      "type": "SequenceReference",
+      "refgetAccession": "SQ.dLZ15tNO1Ur0IcGjwc3Sdi_0A6Yf4zm7"
+    },
+    "start": 43093453,
+    "end": 43093454
+  },
+  "state": {
+    "type": "ReferenceLengthExpression",
+    "length": 1,
+    "sequence": "C",
+    "repeatSubunitLength": 1
+  }
+}
