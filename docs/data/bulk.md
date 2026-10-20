@@ -9,7 +9,12 @@ producers need to share GKM records by the hundreds of thousands or millions.
 Planned **bulk-friendly formats** will let consumers query large collections
 without reading everything at once.
 
-!!! warning "Not yet available"
+## Published bulk data
+
+[Explore published bulk data](bulk/repository.md) for download sites and
+dataset descriptions, including the official ClinVar-GKM releases.
+
+!!! warning "Formats and tooling in development"
 
     The formats and tooling below are in development. Community partners are
     helping prioritize the work.
