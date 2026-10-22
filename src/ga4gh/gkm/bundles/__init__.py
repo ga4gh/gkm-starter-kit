@@ -21,6 +21,12 @@ from .errors import (
 from .loading import BundleSource, load_bundle, load_bundles, load_repository_bundle
 from .registry import BundleRegistration, BundleRegistry, registry
 from .repository import BundleRepository
+from .streaming import (
+    StreamValidationResult,
+    build_schema_registry,
+    load_schema_directory,
+    validate_bundle_stream,
+)
 
 __all__ = [
     "Bundle",
@@ -43,10 +49,14 @@ __all__ = [
     "BundleSerializationError",
     "BundleSource",
     "BundleValidationError",
+    "StreamValidationResult",
+    "build_schema_registry",
     "check_gkm_version_compatibility",
     "load_bundle",
     "load_bundles",
     "load_repository_bundle",
+    "load_schema_directory",
     "registry",
     "supported_gkm_versions",
+    "validate_bundle_stream",
 ]
