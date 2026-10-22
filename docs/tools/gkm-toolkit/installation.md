@@ -57,6 +57,8 @@ Most users can start with the GKM Toolkit package alone. Add these extras only
 when you need the related capability:
 
 - **`notebooks`** — Run the example notebooks.
+- **`streaming`** — [Validate large bundle files](validate-bundle.md) without
+  loading them into memory.
 - **`tests`** — Run the test suite.
 - **`dev`** — Change the GKM Toolkit's code and run code-quality checks.
 - **`docs`** — Build or edit the documentation.
@@ -65,7 +67,7 @@ You can install more than one at a time by separating them with commas. For
 example, this installs all optional dependencies:
 
 ```shell
-python3 -m pip install "ga4gh.gkm[notebooks,tests,dev,docs]" --pre
+python3 -m pip install "ga4gh.gkm[notebooks,streaming,tests,dev,docs]" --pre
 ```
 
 ## Now that you're set up
