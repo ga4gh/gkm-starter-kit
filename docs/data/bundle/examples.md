@@ -6,7 +6,8 @@ downloading the full dataset.
 
 !!! note "Want the full dataset?"
 
-    Download a producer's complete dataset from the [Public bundle repository](repository.md).
+    Download a producer's complete dataset from the [Public bundle repository](repository.md),
+    or from the producer's own download site for very large datasets such as ClinVar-GKM.
 
 ## CIViC
 
@@ -28,26 +29,29 @@ records and bundle-local references.
 
 ## ClinVar-GKM
 
-This ClinVar-GKM bundle example shows one submitter's complete footprint in
-ClinVar. It uses the ClinVar-GKM 1.1.0
-[`clinvar-gkm-bundle.schema.json`](https://raw.githubusercontent.com/clingen-data-model/clinvar-gkm/1.1.0/schema/clinvar-gkm/clinvar-gkm-bundle.schema.json){ target="_blank" rel="noopener" }
+This ClinVar-GKM bundle example shows everything ClinVar holds about one
+variation. It uses the ClinVar-GKM 1.1.0
+[`clinvar-gkm-bundle-1.1.0.schema.json`](clinvar-gkm-bundle-1.1.0.schema.json){ target="_blank" rel="noopener" }
 bundle schema.
 
 !!! warning "Snapshot of the 2026-10-18 ClinVar release"
 
     This example was extracted from the ClinVar-GKM build of the **2026-10-18**
     ClinVar weekly release and is not updated. Later ClinVar releases may add,
-    update, or remove these submissions. For current data, download the latest
-    `clinvar-gkm` bundle from the [Public bundle repository](repository.md).
+    update, or remove these records. For current data, use the complete
+    ClinVar-GKM releases on the
+    [ClinVar-GKM download site](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/).
 
-The file is a complete, connected subset of that release. It is gzip-compressed
-(1.6 MB; 43 MB uncompressed). Download and decompress it to inspect the records
-and bundle-local references.
+The file is a complete, connected subset of that release. Open it to inspect the
+records and bundle-local references.
 
-- [**`nch-igm-bundle.json.gz`**](https://raw.githubusercontent.com/clingen-data-model/clinvar-gkm/796a3a8c34e85a75d33a94451373b11645b9ec20/nch-igm-bundle.json.gz)
-  represents every ClinVar submission from the
-  [IGM Clinical Laboratory at Nationwide Children's Hospital](https://www.ncbi.nlm.nih.gov/clinvar/submitters/196472/)
-  (submitter `196472`) as of 2026-10-18: all 2,443 of its submitted clinical variant
-  classifications (SCVs), together with the variations, conditions, propositions,
-  and evidence lines they reference. It was extracted with the ClinVar-GKM
+- [**`clinvar-variation-10-bundle.json`**](clinvar-variation-10-bundle.json){ target="_blank" rel="noopener" }
+  represents [ClinVar Variation 10](https://www.ncbi.nlm.nih.gov/clinvar/variation/10/),
+  `NM_000410.4(HFE):c.187C>G (p.His63Asp)`, as of 2026-10-18. It includes all
+  61 submitted classifications (SCVs), the 30 condition-level (RCV) and 10
+  variation-level (VCV) aggregate statements, and every variation, condition,
+  proposition, evidence line, and submitter record they reference. The
+  aggregate statements show several kinds of ClinVar classification for one
+  variant: conflicting classifications of pathogenicity, risk factor, other, and
+  not provided. It was extracted with the ClinVar-GKM
   [sub-bundle tool](https://dataexchange.clinicalgenome.org/clinvar-gkm/pipeline/sub-bundle/){ target="_blank" rel="noopener" }.
