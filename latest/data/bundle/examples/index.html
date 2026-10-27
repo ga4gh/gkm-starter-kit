@@ -702,6 +702,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#clinvar-gkm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ClinVar-GKM
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2654,6 +2665,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#clinvar-gkm" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        ClinVar-GKM
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2683,7 +2705,8 @@ dataset</strong>. They let readers inspect genuine, unmodified GKM records witho
 downloading the full dataset.</p>
 <div class="admonition note">
 <p class="admonition-title">Want the full dataset?</p>
-<p>Download a producer's complete dataset from the <a href="../repository/">Public bundle repository</a>.</p>
+<p>Download a producer's complete dataset from the <a href="../repository/">Public bundle repository</a>,
+or use the producer's download site for large datasets such as ClinVar-GKM.</p>
 </div>
 <h2 id="civic">CIViC</h2>
 <p>These two CIViC bundle examples show different VA-Spec assertion types. Both use
@@ -2700,6 +2723,31 @@ records and bundle-local references.</p>
   represents <a href="https://civicdb.org/links/assertion/251">CIViC Assertion 251</a>: a
   likely-oncogenic assertion under the ClinGen/CGC/VICC Guidelines for Oncogenicity
   (2022).</li>
+</ul>
+<h2 id="clinvar-gkm">ClinVar-GKM</h2>
+<p>This example contains the ClinVar-GKM records for one variation. It uses the
+ClinVar-GKM 1.1.0
+<a href="../clinvar/clinvar-gkm-bundle-1.1.0.schema.json" rel="noopener" target="_blank"><code>clinvar-gkm-bundle-1.1.0.schema.json</code></a>
+bundle schema.</p>
+<div class="admonition warning">
+<p class="admonition-title">Snapshot of the 2026-10-18 ClinVar release</p>
+<p>This fixed snapshot comes from the ClinVar-GKM build of the <strong>2026-10-18</strong>
+ClinVar weekly release. Later releases may add, update, or remove records.
+Download current, complete releases from the
+<a href="https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/">ClinVar-GKM download site</a>.</p>
+</div>
+<p>The file contains a complete, connected subset of that release, including all
+records referenced by bundle-local pointers.</p>
+<ul>
+<li><a href="../clinvar/clinvar-variation-10-bundle.json" rel="noopener" target="_blank"><strong><code>clinvar-variation-10-bundle.json</code></strong></a>
+  represents <a href="https://www.ncbi.nlm.nih.gov/clinvar/variation/10/">ClinVar Variation 10</a>,
+  <code>NM_000410.4(HFE):c.187C&gt;G (p.His63Asp)</code>, as of 2026-10-18. It includes all
+  61 submitted classifications (SCVs), 30 condition-level (RCV) and 10
+  variation-level (VCV) aggregate statements, and every variation, condition,
+  proposition, evidence line, and submitter record they reference. The
+  aggregate statements include conflicting classifications of pathogenicity,
+  risk factor, other, and not provided. The bundle was extracted with the ClinVar-GKM
+  <a href="https://dataexchange.clinicalgenome.org/clinvar-gkm/pipeline/sub-bundle/" rel="noopener" target="_blank">sub-bundle tool</a>.</li>
 </ul>
 
 
