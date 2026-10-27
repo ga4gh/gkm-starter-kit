@@ -1,0 +1,330 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/clinvar-gkm-bundle.schema.json",
+  "title": "ClinVar-GKM Bundle",
+  "description": "A ClinVar-GKM bundle: a single JSON object whose root properties are named sections, each a non-empty map from a typed record id to a GKM object. Objects cross-reference each other by '#/<section>/<id>' JSON pointers. The same shape covers the monthly full bundle, the weekly delta, and sub-bundle extracts, so no individual section is required (a delta or sub-bundle carries only the sections it touches). Beyond this schema, a producer must also guarantee that every bundle-local '#/...' pointer resolves within the bundle.",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "description": "Every proposition section (any section whose name contains 'proposition'): a proposition's geneContextQualifier must match ClinvarGeneContextQualifier, which restricts the 'geneContextSource' extension value to its four defined values. This also covers the GA4GH VA-Spec proposition types, whose own schemas leave qualifier extensions open. It sits in allOf so it does not widen the root's additionalProperties.",
+      "patternProperties": {
+        "proposition": {
+          "additionalProperties": {
+            "properties": {
+              "geneContextQualifier": {
+                "anyOf": [
+                  {
+                    "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarGeneContextQualifier"
+                  },
+                  {
+                    "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/iriReference"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.1.0",
+      "description": "The clinvar-gkm bundle schema version this bundle conforms to (semver; matches this schema's $id version). Lets a consumer identify the version from the bundle alone. See ADR 0004. Optional so sub-bundle extracts may omit it; full and delta releases always emit it."
+    },
+    "sequenceReference": {
+      "type": "object",
+      "title": "sequenceReference",
+      "description": "VRS SequenceReference records (NCBI RefSeq sequences).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^SQ\\..+": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/SequenceReference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "location": {
+      "type": "object",
+      "title": "location",
+      "description": "VRS SequenceLocation records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^ga4gh:SL\\..+": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/SequenceLocation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "allele": {
+      "type": "object",
+      "title": "allele",
+      "description": "VRS Allele records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^ga4gh:VA\\..+": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/Allele"
+        }
+      },
+      "additionalProperties": false
+    },
+    "copyNumberCount": {
+      "type": "object",
+      "title": "copyNumberCount",
+      "description": "VRS CopyNumberCount records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^ga4gh:CN\\..+": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberCount"
+        }
+      },
+      "additionalProperties": false
+    },
+    "copyNumberChange": {
+      "type": "object",
+      "title": "copyNumberChange",
+      "description": "VRS CopyNumberChange records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^ga4gh:CX\\..+": {
+          "$ref": "https://w3id.org/ga4gh/schema/vrs/2.1.1/json/CopyNumberChange"
+        }
+      },
+      "additionalProperties": false
+    },
+    "gene": {
+      "type": "object",
+      "title": "gene",
+      "description": "Gene records (MappableConcept with NCBI Gene / HGNC codings).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^ncbigene:[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"
+        }
+      },
+      "additionalProperties": false
+    },
+    "variation": {
+      "type": "object",
+      "title": "variation",
+      "description": "Cat-VRS CategoricalVariant records \u2014 one of the ClinVar variant shapes.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar:[0-9]+$": {
+          "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarCategoricalVariant"
+        }
+      },
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "object",
+      "title": "condition",
+      "description": "Condition / trait records (MappableConcept).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.trait:[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"
+        }
+      },
+      "additionalProperties": false
+    },
+    "conditionSet": {
+      "type": "object",
+      "title": "conditionSet",
+      "description": "ConditionSet records (multi-condition) \u2014 submitted (clinvar.traitset:) or aggregate (clinvar.conditionset:).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.(trait[sS]et|conditionset):.+": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/ConditionSet"
+        }
+      },
+      "additionalProperties": false
+    },
+    "therapy": {
+      "type": "object",
+      "title": "therapy",
+      "description": "Therapy records (MappableConcept, content-addressed).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.therapy:.+": {
+          "$ref": "https://w3id.org/ga4gh/schema/gkm-core/1.3.0/json/MappableConcept"
+        }
+      },
+      "additionalProperties": false
+    },
+    "therapyGroup": {
+      "type": "object",
+      "title": "therapyGroup",
+      "description": "TherapyGroup records (combination therapies, content-addressed).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.therapygroup:.+": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/TherapyGroup"
+        }
+      },
+      "additionalProperties": false
+    },
+    "submitter": {
+      "type": "object",
+      "title": "submitter",
+      "description": "Submitter organization records (Agent).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.submitter:[0-9]+$": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/Agent"
+        }
+      },
+      "additionalProperties": false
+    },
+    "propositionPathogenicity": {
+      "type": "object",
+      "title": "propositionPathogenicity",
+      "description": "Variant pathogenicity propositions (germline classifications, SCV/RCV/VCV).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^(SCV|VCV|RCV).+": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantPathogenicityProposition"
+        }
+      },
+      "additionalProperties": false
+    },
+    "propositionOncogenicity": {
+      "type": "object",
+      "title": "propositionOncogenicity",
+      "description": "Variant oncogenicity propositions (SCV/RCV/VCV).",
+      "minProperties": 1,
+      "patternProperties": {
+        "^(SCV|VCV|RCV).+": {
+          "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantOncogenicityProposition"
+        }
+      },
+      "additionalProperties": false
+    },
+    "propositionSomaticClinicalImpact": {
+      "type": "object",
+      "title": "propositionSomaticClinicalImpact",
+      "description": "Somatic clinical impact propositions: clinical significance (SCV/RCV/VCV) and the diagnostic, prognostic and therapeutic-response propositions that SCV evidence lines target.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^(SCV|VCV|RCV).+": {
+          "anyOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantClinicalSignificanceProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantDiagnosticProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantPrognosticProposition"
+            },
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/VariantTherapeuticResponseProposition"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "propositionClinvarCustom": {
+      "type": "object",
+      "title": "propositionClinvarCustom",
+      "description": "ClinVar custom germline propositions (the Clinvar*Proposition types, incl. ClinvarUndefinedProposition), SCV/RCV/VCV.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^(SCV|VCV|RCV).+": {
+          "anyOf": [
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarRiskFactorProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarProtectiveProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarDrugResponseProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarAffectsProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarAssociationProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarConfersSensitivityProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarOtherProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarNotProvidedProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarConflictingDataFromSubmitterProposition"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarUndefinedProposition"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceLine": {
+      "type": "object",
+      "title": "evidenceLine",
+      "description": "Evidence line records tying aggregate statements to their contributors.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^(clinvar\\.submission:SCV|VCV|RCV).+": {
+          "anyOf": [
+            {
+              "$ref": "https://w3id.org/ga4gh/schema/va-spec/1.1.0/json/EvidenceLine"
+            },
+            {
+              "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarSomaticEvidenceLine"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "scv": {
+      "type": "object",
+      "title": "scv",
+      "description": "SCV (submitted) statement records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^clinvar\\.submission:SCV[0-9]+\\.[0-9]+$": {
+          "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarScvStatement"
+        }
+      },
+      "additionalProperties": false
+    },
+    "vcv": {
+      "type": "object",
+      "title": "vcv",
+      "description": "VCV (variation-level aggregate) statement records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^VCV[0-9]+\\..+": {
+          "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarVcvStatement"
+        }
+      },
+      "additionalProperties": false
+    },
+    "rcv": {
+      "type": "object",
+      "title": "rcv",
+      "description": "RCV (variation+condition aggregate) statement records.",
+      "minProperties": 1,
+      "patternProperties": {
+        "^RCV[0-9]+\\..+": {
+          "$ref": "https://w3id.org/clingen/schema/clinvar-gkm/1.1.0/json/ClinvarRcvStatement"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
