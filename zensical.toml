@@ -21,6 +21,7 @@ nav = [
       { "Explore published bundles" = "data/bundle/repository.md" },
     ] },
     { Bulk = "data/bulk.md" },
+    { "Contribute to Data" = "data/contributing.md" },
   ] },
   { Tools = [
     "tools/index.md",
