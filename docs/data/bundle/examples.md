@@ -7,7 +7,7 @@ downloading the full dataset.
 !!! note "Want the full dataset?"
 
     Download a producer's complete dataset from the [Public bundle repository](repository.md),
-    or from the producer's own download site for very large datasets such as ClinVar-GKM.
+    or use the producer's download site for large datasets such as ClinVar-GKM.
 
 ## CIViC
 
@@ -29,29 +29,27 @@ records and bundle-local references.
 
 ## ClinVar-GKM
 
-This ClinVar-GKM bundle example shows everything ClinVar holds about one
-variation. It uses the ClinVar-GKM 1.1.0
-[`clinvar-gkm-bundle-1.1.0.schema.json`](clinvar-gkm-bundle-1.1.0.schema.json){ target="_blank" rel="noopener" }
+This example contains the ClinVar-GKM records for one variation. It uses the
+ClinVar-GKM 1.1.0
+[`clinvar-gkm-bundle-1.1.0.schema.json`](clinvar/clinvar-gkm-bundle-1.1.0.schema.json){ target="_blank" rel="noopener" }
 bundle schema.
 
 !!! warning "Snapshot of the 2026-10-18 ClinVar release"
 
-    This example was extracted from the ClinVar-GKM build of the **2026-10-18**
-    ClinVar weekly release and is not updated. Later ClinVar releases may add,
-    update, or remove these records. For current data, use the complete
-    ClinVar-GKM releases on the
+    This fixed snapshot comes from the ClinVar-GKM build of the **2026-10-18**
+    ClinVar weekly release. Later releases may add, update, or remove records.
+    Download current, complete releases from the
     [ClinVar-GKM download site](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/).
 
-The file is a complete, connected subset of that release. Open it to inspect the
-records and bundle-local references.
+The file contains a complete, connected subset of that release, including all
+records referenced by bundle-local pointers.
 
-- [**`clinvar-variation-10-bundle.json`**](clinvar-variation-10-bundle.json){ target="_blank" rel="noopener" }
+- [**`clinvar-variation-10-bundle.json`**](clinvar/clinvar-variation-10-bundle.json){ target="_blank" rel="noopener" }
   represents [ClinVar Variation 10](https://www.ncbi.nlm.nih.gov/clinvar/variation/10/),
   `NM_000410.4(HFE):c.187C>G (p.His63Asp)`, as of 2026-10-18. It includes all
-  61 submitted classifications (SCVs), the 30 condition-level (RCV) and 10
+  61 submitted classifications (SCVs), 30 condition-level (RCV) and 10
   variation-level (VCV) aggregate statements, and every variation, condition,
   proposition, evidence line, and submitter record they reference. The
-  aggregate statements show several kinds of ClinVar classification for one
-  variant: conflicting classifications of pathogenicity, risk factor, other, and
-  not provided. It was extracted with the ClinVar-GKM
+  aggregate statements include conflicting classifications of pathogenicity,
+  risk factor, other, and not provided. The bundle was extracted with the ClinVar-GKM
   [sub-bundle tool](https://dataexchange.clinicalgenome.org/clinvar-gkm/pipeline/sub-bundle/){ target="_blank" rel="noopener" }.
