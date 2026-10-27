@@ -10,6 +10,7 @@ data, see the [bundle examples](examples.md).
 Download the files below, or access the repository programmatically through the [Python API](../../tools/gkm-toolkit/api/repository.md). The table is generated during the documentation build using `BundleRepository`.
 
 {{ downloads_table }}
+| ClinVar-GKM | ClinVar variation and clinical interpretation data represented with GKM standards. In addition to bundles, the official download site provides monthly full releases, weekly deltas, and typed Parquet files, with instructions for downloading and querying the data. | [Explore ClinVar-GKM downloads](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/) | — |
 
 !!! info "Dataset contributions"
 

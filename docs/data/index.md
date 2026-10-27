@@ -40,8 +40,6 @@ the scale and use case.
     Bulk formats such as **Parquet** or **relational tables** for very large
     collections, as support develops.
 
-    [Published bulk data](bulk/repository.md), including ClinVar-GKM, is available now.
-
 </div>
 
 ### Native and bundled representations

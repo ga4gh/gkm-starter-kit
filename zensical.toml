@@ -20,10 +20,7 @@ nav = [
       { "Bundle examples" = "data/bundle/examples.md" },
       { "Explore published bundles" = "data/bundle/repository.md" },
     ] },
-    { Bulk = [
-      "data/bulk.md",
-      { "Explore published bulk data" = "data/bulk/repository.md" },
-    ] },
+    { Bulk = "data/bulk.md" },
   ] },
   { Tools = [
     "tools/index.md",
