@@ -6,7 +6,8 @@ downloading the full dataset.
 
 !!! note "Want the full dataset?"
 
-    Download a producer's complete dataset from the [Public bundle repository](repository.md).
+    Download a producer's complete dataset from the [Public bundle repository](repository.md),
+    or use the producer's download site for large datasets such as ClinVar-GKM.
 
 ## CIViC
 
@@ -25,3 +26,30 @@ records and bundle-local references.
   represents [CIViC Assertion 251](https://civicdb.org/links/assertion/251): a
   likely-oncogenic assertion under the ClinGen/CGC/VICC Guidelines for Oncogenicity
   (2022).
+
+## ClinVar-GKM
+
+This example contains the ClinVar-GKM records for one variation. It uses the
+ClinVar-GKM 1.1.0
+[`clinvar-gkm-bundle-1.1.0.schema.json`](clinvar/clinvar-gkm-bundle-1.1.0.schema.json){ target="_blank" rel="noopener" }
+bundle schema.
+
+!!! warning "Snapshot of the 2026-10-18 ClinVar release"
+
+    This fixed snapshot comes from the ClinVar-GKM build of the **2026-10-18**
+    ClinVar weekly release. Later releases may add, update, or remove records.
+    Download current, complete releases from the
+    [ClinVar-GKM download site](https://dataexchange.clinicalgenome.org/clinvar-gkm/data-access/download/).
+
+The file contains a complete, connected subset of that release, including all
+records referenced by bundle-local pointers.
+
+- [**`clinvar-variation-10-bundle.json`**](clinvar/clinvar-variation-10-bundle.json){ target="_blank" rel="noopener" }
+  represents [ClinVar Variation 10](https://www.ncbi.nlm.nih.gov/clinvar/variation/10/),
+  `NM_000410.4(HFE):c.187C>G (p.His63Asp)`, as of 2026-10-18. It includes all
+  61 submitted classifications (SCVs), 30 condition-level (RCV) and 10
+  variation-level (VCV) aggregate statements, and every variation, condition,
+  proposition, evidence line, and submitter record they reference. The
+  aggregate statements include conflicting classifications of pathogenicity,
+  risk factor, other, and not provided. The bundle was extracted with the ClinVar-GKM
+  [sub-bundle tool](https://dataexchange.clinicalgenome.org/clinvar-gkm/pipeline/sub-bundle/){ target="_blank" rel="noopener" }.
