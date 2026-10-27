@@ -33,7 +33,8 @@ docs = [
   "PyYAML==6.0.2",
   "mkdocstrings-python"
 ]
-tests = ["pytest", "pytest-cov"]
+streaming = ["ijson>=3.3"]
+tests = ["pytest", "pytest-cov", "ijson>=3.3"]
 dev = ["prek>=0.2.23", "ruff==0.14.10"]
 notebooks = ["ipykernel", "jupyterlab"]
 
@@ -46,6 +47,7 @@ Source = "https://github.com/ga4gh/gkm-starter-kit"
 "Bug Tracker" = "https://github.com/ga4gh/gkm-starter-kit/issues"
 
 [project.scripts]
+gkm-validate-bundle = "ga4gh.gkm.cli:validate_bundle_main"
 
 [build-system]
 requires = ["setuptools>=77.0", "setuptools_scm>=8"]

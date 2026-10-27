@@ -29,6 +29,7 @@ nav = [
       "tools/gkm-toolkit/index.md",
       "tools/gkm-toolkit/installation.md",
       { "Quick start" = "tools/gkm-toolkit/quick-start.md" },
+      { "Validate a bundle file" = "tools/gkm-toolkit/validate-bundle.md" },
       { "Explore with notebooks" = [
         "tools/gkm-toolkit/notebooks/index.md",
         { "Explore GKM Toolkit features with CIViC bundle examples" = "tools/gkm-toolkit/notebooks/civic-notebook.md" },
@@ -41,6 +42,7 @@ nav = [
         { Loading = "tools/gkm-toolkit/api/loading.md" },
         { Pointers = "tools/gkm-toolkit/api/pointers.md" },
         { "Schema validation" = "tools/gkm-toolkit/api/schema-validation.md" },
+        { "Streaming validation" = "tools/gkm-toolkit/api/streaming.md" },
         { "Schema resolution" = "tools/gkm-toolkit/api/schema-resolution.md" },
         { "Model conversion" = "tools/gkm-toolkit/api/model-conversion.md" },
         { Compatibility = "tools/gkm-toolkit/api/compatibility.md" },

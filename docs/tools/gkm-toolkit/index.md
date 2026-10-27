@@ -11,6 +11,7 @@ The GKM Toolkit helps you:
 - **Validate and work with** GKM objects as Python models using the [GKM Python
   reference implementations](../reference-implementations.md).
 - **Load** producer-published GKM Bundles and their schemas.
+- **Verify** large bundle files record by record, with a stamped report.
 - **Explore** collections of genomic knowledge and the relationships between objects.
 - **Preserve** producer-specific content when processing or writing bundles.
 
@@ -36,6 +37,11 @@ The Toolkit currently supports the following GKM product versions:
 - :material-notebook-outline: [**See examples**](notebooks/index.md)
 
     Read guided notebook examples online, or learn how to run them yourself.
+
+- :material-file-check-outline: [**Validate a bundle file**](validate-bundle.md)
+
+    Check every record of a large published bundle and write a verification
+    report.
 
 - :material-language-python: [**Python API Reference**](api/index.md)
 
